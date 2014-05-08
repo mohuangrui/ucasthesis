@@ -1,0 +1,396 @@
+%%%%% --------------------------------------------------------------------------------
+%%
+%%%%***************************** version infomation *********************************
+%%
+%% this is the "custom.sty" package used for configure document styles
+%% written by Mo Huangrui <mohuangrui@gmail.com>
+%%
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{custom}
+  [2014/02/14 v0.1 custom 
+   macros package]
+%%%%% --------------------------------------------------------------------------------
+%%
+%%%%********************************Required Packages*********************************
+%%
+%% Language Setting
+\RequirePackage{ifpdf,ifxetex}
+%% packages and settings depend on PDF mode
+\ifxetex % running XeLaTeX in PDF mode
+%%%%% --------------------------------------------------------------------------------
+%%
+%%%%*********************************Chinese*****************************************
+%%
+%%% >>> Chinese Environment
+%%
+%% for chinese document, xelatex is superior to pdflatex! make sure using utf-8 format!
+%% Chinese Environment support by ctex package: ctex.sty or ctexcap.sty.
+%\RequirePackage[cs4size,a4paper,fancyhdr,fntef,hyperref,UTF8,adobefonts]{ctexcap}% Chinese environments support.
+%% If compile by "xelatex", then it support system fonts.
+%\defaultfontfeatures{Mapping=tex-text}% use tex style to support LaTeX quoting style.
+%% Set English fonts.
+%\setmainfont{Calibri}% default font for English, Times New Roman ...
+\setmainfont[Mapping=tex-text]{Times New Roman} %set English main font
+%\setsansfont{Arial}% \sffamily
+%\setmonofont{Courier New}% \ttfamily
+%%% Set Chinese fonts.
+%\setCJKmainfont{Microsoft YaHei}% default Chinese font, [BoldFont=SimHei]{SimSun} ...
+%\setCJKsansfont{SimHei}% \sffamily
+%\setCJKmonofont{FangSong}% \ttfamily
+\else
+  \ifpdf % running pdfTeX in PDF mode
+%%%%% --------------------------------------------------------------------------------
+%%
+%%%%*********************************English******************************************
+%%
+%%% >>>  Input encoding and the font encoding
+%%
+%% Specify language.
+%% Set Language you want to use: \RequirePackage[language]{babel}
+%% You should place it soon after the \documentclass command, so that all the other
+%% packages you load afterwards will know the language you are using.
+\RequirePackage[english]{babel}% language.
+%% Specify input encoding.
+\RequirePackage[utf8]{inputenc}% make sure your document is saved using the UTF-8 encoding.
+%\RequirePackage[latin1]{inputenc}% latin encoding
+%% Font encoding.
+\RequirePackage[T1]{fontenc}
+%% The default Computer Modern font does not support T1. You will need Latin Modern if T1:
+%\RequirePackage{lmodern}
+%% Font package.
+%\RequirePackage{palatino}%
+%% Options:
+%% Need \RequirePackage[T1]{fontenc}:
+%% - \RequirePackage{lmodern}, modern font.
+%% - \RequirePackage{concrete}, text: Concrete, math: Concrete italic + Euler VM symbols.
+%% - \RequirePackage{concmath}, text: Concrete, math: Concrete italic + Concmath symbols.
+%% No need \RequirePackage[T1]{fontenc}:
+%% Text: Helvetica, Math: Helvetica italic + Euler VM symbols:
+%% - \RequirePackage{eulervm} + \RequirePackage[scaled]{helvet}
+%% Text: Palatino, Math: Palatino italic + Euler VM symbols:
+%% - \RequirePackage{palatino} or {mathpazo} + \RequirePackage{eulervm}
+%% Text + Math: Times, not a good font for screen presentation:
+%% - \RequirePackage{mathptmx}
+%% Text: Bradhley Hand writing, Math: mathpazo symbols:
+%% - \RequirePackage{mathpazo} % Mathpazo symbols + \renewcommand{\rmdefault}{ibh} % Bradhley Hand.
+\RequirePackage{mathptmx}
+  \fi
+\fi
+%%
+%% >>> graphic packages
+%%
+\RequirePackage{graphicx}% graphics packages
+\RequirePackage{caption}% caption, options like:[margin=10pt,font=small,labelfont=bf]
+\RequirePackage{subcaption}% subcaption
+\RequirePackage[section]{placeins}% to prevent floats from being moved over section
+%%
+%% >>> Page Layout and Line Spacing
+%%
+\RequirePackage{fancyhdr}% fancy headers and footers
+%\RequirePackage{geometry}% page layout
+%\RequirePackage{setspace}% line spacing
+%%
+%%% >>> Natural Sciences Citations and References
+%%
+%% if use bibtex citation, not need to use any packages!
+%% if use natbib package, then:
+%\RequirePackage[round]{natbib}% author year citation mode
+%\RequirePackage[square,comma,numbers,sort&compress]{natbib}% numeric cite mode
+\RequirePackage[square,comma,super,sort&compress]{natbib}% superscripted numeric cite mode
+\bibliographystyle{unsrtnat}% natbib reference appearence style for numerical citation
+%\bibliographystyle{plainnat}% natbib reference appearence style for author year citation
+%%
+%%% >>> Verbatim
+%%
+%% Improves the verbatim environment, fixing some bugs. Moreover,
+%% it provides the comment environment, that lets you add multiple-line
+%% comments or easily comment out big parts of the code.
+%\RequirePackage{verbatim}
+%\RequirePackage{fancyvrb}%
+%\RequirePackage{listing}%
+%%
+%% >>> List Structures
+%%
+%\RequirePackage{enumerate}%
+%%
+%%% >>> Color
+%%
+%\RequirePackage{color}%
+%\RequirePackage[usenames,dvipsnames,svgnames,table]{xcolor}%
+%%
+%%% >>> Tables
+%%
+%% colortbl - add colour to latex tables for cols, rows, cells.
+%% dcolumn - align on the decimal point of numbers in tabular columns.
+%%           it contians \RequirePackage{array}.
+%\RequirePackage{colortbl,dcolumn}%
+%% ctable package imports the array, tabularx and booktabs packages,
+%% all commands from those packages are available as well.
+%\RequirePackage{ctable}%
+%% booktabs - professional tables for academic paper.
+%%  Many professionally typeset books and journals feature simple tables,
+%%  which have appropriate spacing above and below lines, and almost never
+%%  use vertical rules.
+%\RequirePackage{booktabs}
+%%
+%% >>> Math packages
+%%
+\RequirePackage{mathtools,amsthm,amsfonts,amssymb,bm}
+%%
+%% >>> Tkiz and multimedia
+%%
+%% Draw graphics directly with TeX commands
+%% LaTeX/PGF/TikZ to draw procedural graphics directly with TeX commands.
+%% Using TikZ in a LaTeX document requires loading the tikz package:
+%% Using TikZ in a LaTeX document requires loading the tikz package:
+%\RequirePackage{tikz}%
+%% This will automatically load the pgf package. To load further libraries use:
+%\usetikzlibrary{
+%  positioning,
+%  arrows,
+%  backgrounds,
+%  fit,
+%  calc,
+%  fadings,
+%  shadows,
+%  mindmap,
+%  calendar,
+%  decorations.pathreplacing,
+%  decorations.pathmorphing,
+%  decorations.markings,
+%  shapes,
+%  trees
+%}%
+%% Examples for libraries are "arrows", "automata", "backgrounds", "calendar",
+%% "chains", "matrix", "mindmap", "patterns", "petri", "shadows", "shapes.geometric",
+%% "shapes.misc", "spy", "trees".
+%% Multimedia
+%\RequirePackage{media9}% multimedia inclusion package with Adobe Reader9/X compatibility.
+%%
+%% >>> hyperref packages
+%%
+%% packages and settings depend on PDF mode
+\ifxetex % running XeLaTeX in PDF mode
+  \RequirePackage[xetex]{hyperref}
+\else
+  \ifpdf % running pdfTeX in PDF mode
+    \RequirePackage[pdftex]{hyperref}
+  \fi
+\fi
+%% Setting Hyperlinks
+\hypersetup{% set hyperlinks.
+pdfauthor={Author's name},%
+pdftitle={Document Title},%
+%unicode=true,% use characters of non-Latin based languages in Acrobat bookmarks.
+pdfstartview=FitH,%
+bookmarksnumbered=true,%
+%bookmarksopen=true,%
+%colorlinks=true,% colors the text of the links (true).
+%linkcolor=blue,% color of internal links (sections, pages, etc.)
+%citecolor=blue,% color of citation links (bibliography).
+%urlcolor=blue,% color of URL links (mail, web).
+%filecolor=magenta,% color of file links
+%pagebackref=true,% activate back references inside bibliography.
+%breaklinks,%
+%linktoc=section,% none,section,page,all.
+hidelinks,% remove link color and border.
+}
+%% it gives LaTeX the possibility to manage links
+%% within the document or to any URL when you compile in PDF.
+%% Just load the package in the preamble, at the end of all the
+%% other packages but prior to other settings.
+%%%%% --------------------------------------------------------------------------------
+%%
+%%%%*********************************New Command*************************************
+%%
+%%% >>> Declare Options
+%%
+%% end-user parameters, each option is declared by one declare option command
+\DeclareOption*{% handle non-implemented options
+\PackageWarning{custom}{Unknown option '\CurrentOption'}%
+}
+%% terminates all options processing
+\ProcessOptions\relax
+%%
+%% >>> Extensions and Directories for graphics
+%%
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}% available graphic extensions
+%\graphicspath{{./Img/}}% pictures put in this dir(search path for figures)
+%%
+%%% >>> Math
+%%
+\newcommand{\ds}{\displaystyle}% short command for displaystyle
+\newcommand{\ve}{\varepsilon}% short command for epsilon
+\newcommand{\der}[2]{\frac{d #1}{d #2}}% short command for derivative
+\newcommand{\pder}[2]{\frac{\partial #1}{\partial #2}}% short command for pde
+\newcommand{\secpder}[2]{\frac{\partial^2 #1}{\partial #2}}% short command for  second pde
+\newcommand{\myvec}[1]{\vec{#1}}% vector style
+%%
+%%% >>> Graphic Length Factor
+%%
+\newcommand*{\MyFactor}{0.8}% for single figure
+\newcommand*{\MySubFactor}{0.48}% for subfigure
+%%
+%%% >>> Skip Space
+%%
+%\newlength{\MySpace}
+%\setlength{\MySpace}{8pt}
+%%
+%%% >>> Define Some Color Command:
+%%
+%\pagecolor{declared-color} % page background color.
+%%
+%%% >>> Grouping Figure/Equation Numbering by Section, Numberwithin.
+%%
+%% For long documents the numbering can become cumbersome as the numbers
+%% reach into double and triple digits. To reset the counters at the
+%% start of each section and prefix the numbers by the section number,
+%% include the following in the preamble.
+%% The same can be done with similar counter types and document units such as "subsection".
+%%
+%% Get enumeration at the section level:
+%\numberwithin{equation}{section}
+%\renewcommand{\theequation}{\thesection\arabic{equation}}% configure the label style.
+%\numberwithin{figure}{section}
+%\renewcommand{\thefigure}{\thesection\arabic{equation}}% configure the label style.
+%%
+%% Get enumeration at the subsection level:
+%\numberwithin{equation}{subsection}
+%\renewcommand{\theequation}{\thesubsection\arabic{equation}}% configure the label style.
+%\numberwithin{figure}{subsection}
+%\renewcommand{\thefigure}{\thesubsection\arabic{equation}}% configure the label style.
+%%
+%%% >>> Page Style
+%%
+%% Page styles in Latex terms refers not to page dimensions, but to the running headers
+%% and footers of a document. These headers typically contain document titles, chapter
+%% or section numbers/names, and page numbers.
+%% The possibilities of changing the headers in plain Latex are actually quite limited.
+%% There are two commands available:
+%% \pagestyle{''style''} will apply the specified style to the current and all subsequent pages
+%% \thispagestyle{''style''} will only affect the current page. The possible styles are:
+%% empty	Both header and footer are cleared
+%% plain	Header is clear, but the footer contains the page number in the center.
+%% headings	Footer is blank, header displays information according to document class
+%%          (e.g., section name) and page number top right.
+%% myheadings Page number is top right, and it is possible to control the rest of the header.
+%% To get better control over the headers, one can use the package "fancyhdr"
+%% set page style by fancyhdr:
+  %% Documents can be either one- or two-sided. Articles are by default one-sided, books are two-sided.
+  %% For one-sided document, only the odd commands and variables will be in effect.
+  %% the command \fancyhead for header and \fancyfoot for footer.
+  %% \fancyhf is a merge of \fancyhead and \fancyfoot, hence the name.
+  %% The syntax is: \fancyhead[selectors]{output you want}
+  %% E Even page
+  %% O Odd page
+  %% L Left field
+  %% C Center field
+  %% R Right field
+  %% H Header
+  %% F Footer
+  %% so [CE,RO] will refer to the center of the even pages and to the right side of the odd pages.
+%% configure fancy style
+%\pagestyle{fancy}
+  %% the style for chapter and section mark
+  %\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\chaptername\ \thechapter.\ #1}}{}}
+  %\renewcommand{\sectionmark}[1]{\markright{\MakeUppercase{\thesection.\ #1}}}
+  %\fancyhf{}% clear all header and footer fields
+  %% header configure:
+  %\fancyhead[CE]{\small \UCAS@value@titlemark}% title name in header, \@title is the default value
+  %\fancyhead[CO]{\small \leftmark}% chapter name in header
+  %\fancyhead[LE,RO]{\small \thepage}% page number in header
+  %% footer configure:
+  %\fancyfoot[CO,CE]{\small \thepage\\Institute of Mechanics, CAS}% footer at center with text
+  %\fancyfoot[LE,RO]{\small \thepage}% page number in footer at left or right
+  %\fancyfoot[CE,CO]{\small \thepage}% page number in footer at center
+  %% the thickness of the decorative lines on both the header and the footer
+  %\renewcommand{\headrulewidth}{0.5pt}
+  %\renewcommand{\footrulewidth}{0pt}
+%% Some LATEX commands, like \chapter, use the \thispagestyle command to automatically switch
+%% to the plain page style, thus ignoring the page style currently in effect.
+%% To customize even such pages you must redefine the plain pagestyle.
+%% redefine plain style:
+%\fancypagestyle{plain}{%
+  %\fancyhf{}% remove everything
+  %% header configure:
+  %\fancyhead[C]{\small \leftmark}% chapter name at left of odd page header
+  %% the thickness of the decorative lines on both the header and the footer
+  %\renewcommand{\headrulewidth}{0.5pt}% remove lines as well
+  %\renewcommand{\footrulewidth}{0pt}% remove lines as well
+%}
+%%
+%%% >>> Layout and Margin
+%%
+%\newgeometry{margin=2cm}% same margin size at every side.
+%\newgeometry{left=3cm,right=1cm,top=0.1cm,bottom=0.1cm}% different margin size at each side.
+%\newgeometry{left=1cm,right=1cm}
+%\newgeometry{hmarginratio=1:1,top=32mm,columnsep=20pt} % Document margins
+%\restoregeometry% restores the page layout specified in the preamble.
+%%
+%%% >>> Space and Skip
+%%
+%\setlength{\parindent}{1cm}% size of subsequent paragraph indents.
+%\setlength{\parskip}{0.75ex plus .2ex minus .5ex}% vertical space inserted before a paragraph.
+%% Set line space by \linespread:
+%\linespread{1.2}% set line spacing in the whole document.
+%% Set line space by setspace package:
+%\singlespacing
+%\onehalfspacing
+%\doublespacing
+%% To change line spacing within the document, use the setspace package:
+%% \begin{environments} content... \end{environments}
+%% environments: {singlespace}, {onehalfspace}, {doublespace} and {spacing}{value}.
+%%
+%%% >>> New even page
+%%
+%% In the twoside-mode you have the ability to get a new odd-side page by:
+%\cleardoublepage
+%% However, LaTeX doesn't give you the ability to get a new even-side page.
+%% The following method opens up this;
+%% The following must be put in your document preamble:
+%\RequirePackage{ifthen}
+%
+%\newcommand{\newevenside}{
+%        \ifthenelse{\isodd{\thepage}}{\newpage}{
+%        \newpage
+%        \phantom{placeholder}% doesn't appear on page
+%        \thispagestyle{empty}% if want no header/footer
+%        \newpage
+%        }
+%}
+%% To active the new even-side page, type the following
+%% where you want the new even-side:
+%\newevenside
+%% If the given page is an odd-side page, the next new page is
+%% subsequently an even-side page, and LaTeX will do nothing
+%% more than a regular \newpage. However, if the given page is
+%% an even page, LaTeX will make a new (odd) page, put in
+%% a placeholder, and make another new (even) page.
+%% A crude but effective method.
+%%
+%%% >>> Toc Style
+%%
+%\setcounter{tocdepth}{2}% specifies what depth to take the Table of Contents to.
+%\setcounter{secnumdepth}{1}% the depth for section numbering occurs, default is 2(subsub).
+%%
+%%% >>> Define a macro for add chapter without an number to toc and bookmark.
+%%
+%\newcommand\intro[1]{%
+%  %%\section*{#1}%
+%  %%\chapter*{#1}%
+%  \markboth{\MakeUppercase{#1}}{}%
+%  %%The \chapter* or \section* command does not set the leftmark, so need above cammand.
+%  \phantomsection% use for adobe bookmark.
+%  \addcontentsline{toc}{section}{#1}% for sections.
+%  \addcontentsline{toc}{chapter}{#1}% for chapters.
+%}
+%%
+%%% >>> URL Style
+%%
+%% By default, URLs are printed using mono-spaced fonts. If you don't like it and
+%% you want them to be printed with the same style of the rest of the text, you can use this:
+%\urlstyle{same}
+%%%%% --------------------------------------------------------------------------------
+\endinput
+%% End of custon.sty
+%%%%% --------------------------------------------------------------------------------
