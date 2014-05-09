@@ -23,20 +23,22 @@
 %%
 %%% >>> Chinese Environment
 %%
-%% for chinese document, xelatex is superior to pdflatex! make sure using utf-8 format!
-%% Chinese Environment support by ctex package: ctex.sty or ctexcap.sty.
-%\RequirePackage[cs4size,a4paper,fancyhdr,fntef,hyperref,UTF8,adobefonts]{ctexcap}% Chinese environments support.
+%% for chinese document, xelatex is superior to pdflatex, make sure using utf-8 format!
+%% Chinese Environment support recommend using ctex class.
+%% \RequirePackage{xeCJK}% chinese environment support, will load by ctex class
 %% If compile by "xelatex", then it support system fonts.
+%% Fonts and tweaks for XeLaTeX:
+%% \RequirePackage{fontspec}% automatically loaded by xeCJK package.
 %\defaultfontfeatures{Mapping=tex-text}% use tex style to support LaTeX quoting style.
 %% Set English fonts.
 %\setmainfont{Calibri}% default font for English, Times New Roman ...
 \setmainfont[Mapping=tex-text]{Times New Roman} %set English main font
 %\setsansfont{Arial}% \sffamily
 %\setmonofont{Courier New}% \ttfamily
-%%% Set Chinese fonts.
-%\setCJKmainfont{Microsoft YaHei}% default Chinese font, [BoldFont=SimHei]{SimSun} ...
-%\setCJKsansfont{SimHei}% \sffamily
-%\setCJKmonofont{FangSong}% \ttfamily
+%% Set Chinese fonts.
+%\setCJKmainfont[BoldFont=Adobe Heiti Std,ItalicFont=Adobe Kaiti Std]{Adobe Song Std}
+%\setCJKsansfont{Adobe Heiti Std}% \sffamily
+%\setCJKmonofont{Adobe Fangsong Std}% \ttfamily
 \else
   \ifpdf % running pdfTeX in PDF mode
 %%%%% --------------------------------------------------------------------------------
@@ -80,7 +82,7 @@
 %% >>> graphic packages
 %%
 \RequirePackage{graphicx}% graphics packages
-\RequirePackage{caption}% caption, options like:[margin=10pt,font=small,labelfont=bf]
+%\RequirePackage{caption}% caption options like:[margin=10pt,font=small,labelfont=bf]
 \RequirePackage{subcaption}% subcaption
 \RequirePackage[section]{placeins}% to prevent floats from being moved over section
 %%
