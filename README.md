@@ -1,8 +1,9 @@
 ucasthesis 
-(模板下载请点击当前页面右边的：Download ZIP)
 ==========
 
 LATEX thesis template for The University of Chinese Academy of Sciences 中国科学院大学学位论文模板
+
+(模板下载请点击当前页面右边的：Download ZIP)
  
 本模板用于撰写中国科学院大学学位论文，面向对象为国科大学生（本、硕、博）
 
