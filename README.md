@@ -1,4 +1,5 @@
-ucasthesis (模板下载请点击当前页面右边的：Download ZIP)
+                ucasthesis 
+(模板下载请点击当前页面右边的：Download ZIP)
 ==========
 
 LATEX thesis template for The University of Chinese Academy of Sciences 中国科学院大学学位论文模板
