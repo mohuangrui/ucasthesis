@@ -11,6 +11,16 @@
    macros package]
 %%%%% --------------------------------------------------------------------------------
 %%
+%%%%********************************Declare Options**********************************
+%%
+%% end-user parameters, each option is declared by one declare option command
+\DeclareOption*{% handle non-implemented options
+\PackageWarning{custom}{Unknown option '\CurrentOption'}%
+}
+%% terminates all options processing
+\ProcessOptions\relax
+%%%%% --------------------------------------------------------------------------------
+%%
 %%%%********************************Required Packages*********************************
 %%
 %% Language Setting
@@ -29,14 +39,24 @@
 %% If compile by "xelatex", then it support system fonts.
 %% Fonts and tweaks for XeLaTeX:
 %% \RequirePackage{fontspec}% automatically loaded by xeCJK package.
-%\defaultfontfeatures{Mapping=tex-text}% use tex style to support LaTeX quoting style.
-%% Set English fonts.
-%\setmainfont{Calibri}% default font for English, Times New Roman ...
-\setmainfont[Mapping=tex-text]{Times New Roman} %set English main font
-%\setsansfont{Arial}% \sffamily
-%\setmonofont{Courier New}% \ttfamily
-%% Set Chinese fonts.
-%\setCJKmainfont[BoldFont=Adobe Heiti Std,ItalicFont=Adobe Kaiti Std]{Adobe Song Std}
+%\defaultfontfeatures{Ligatures=TeX}% use tex style to support LaTeX quoting style.
+%% -- Set English fonts.
+%% Roman, or Serif - typefaces are named for the features at the ends of their strokes
+%% determine \rmfamily, usually for main contents
+%% beacuse \renewcommand*{\familydefault}{\rmdefault}, it's also determine \normalfont
+%% examples: Times New Roman, Garamond, Adobe Garamond Pro
+%\setmainfont[BoldFont=Garamond-Bold,ItalicFont=Garamond-Italic]{Garamond}%
+\setmainfont{Times New Roman}%
+%% Sans serif - typefaces without strokes (lit. without serif) to get high readability
+%% determine \sffamily, usually for signage, headings that demanding high readability
+%% examples: Helvetica, Gill Sans, Futura
+%\setsansfont{GillSans}%
+%% Monospaced - typefaces that every glyph is the same width (opposed to variable-width fonts)
+%% determine \ttfamily, usually for programming, tabulated data, etc.
+%% examples: Rockwell, Andale Mono, Courier, Monaco
+%\setmonofont{Rockwell}%
+%% -- Set Chinese fonts.
+%\setCJKmainfont[BoldFont=Adobe Heiti Std,ItalicFont=Adobe Kaiti Std]{Adobe Song Std}% \rmfamily
 %\setCJKsansfont{Adobe Heiti Std}% \sffamily
 %\setCJKmonofont{Adobe Fangsong Std}% \ttfamily
 \else
@@ -204,15 +224,6 @@ hidelinks,% remove link color and border.
 %%%%% --------------------------------------------------------------------------------
 %%
 %%%%*********************************New Command*************************************
-%%
-%%% >>> Declare Options
-%%
-%% end-user parameters, each option is declared by one declare option command
-\DeclareOption*{% handle non-implemented options
-\PackageWarning{custom}{Unknown option '\CurrentOption'}%
-}
-%% terminates all options processing
-\ProcessOptions\relax
 %%
 %% >>> Extensions and Directories for graphics
 %%
