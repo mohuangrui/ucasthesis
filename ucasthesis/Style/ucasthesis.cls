@@ -96,7 +96,6 @@
 \textheight 21 true cm
 \textwidth 14.5 true cm
 \headheight 15pt
-\parskip 0.5ex plus 0.25ex minus 0.25ex
 %%%%% --------------------------------------------------------------------------------
 %%
 %%%%********************* some style control commands ********************************
@@ -105,8 +104,6 @@
 \def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
   \thispagestyle{empty}%
   \hbox{}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}
-%% default floats fraction
-\renewcommand{\floatpagefraction}{0.80}
 %% space used in items title
 \newcommand\UCASspace{\protect\CTEX@spaceChar\protect\CTEX@spaceChar}
 %% underline
@@ -117,13 +114,8 @@
 %%
 %%%%********************** chinese titlepage items ***********************************
 %%
-%\newcommand\classification[1]{\def\UCAS@value@classification{#1}}
 \newcommand\confidential[1]{\def\UCAS@value@confidential{#1}}
-%\newcommand\UDC[1]{\def\UCAS@value@UDC{#1}}
-%\newcommand\serialnumber[1]{\def\UCAS@value@serialnumber{#1}}
 \newcommand\schoollogo[2]{\def\UCAS@value@schoollogo{\includegraphics[#1]{#2}}}
-\newcommand\degree[1]{\def\UCAS@value@degree{#1}}
-\newcommand\degreetype[1]{\def\UCAS@value@degreetype{#1}}
 \renewcommand\title[2][\UCAS@value@title]{%
   \def\UCAS@value@title{#2}
   \def\UCAS@value@titlemark{\MakeUppercase{#1}}}
@@ -131,11 +123,11 @@
 \newcommand\advisor[1]{\def\UCAS@value@advisor{#1}}
 \newcommand\advisortitle[1]{\def\UCAS@value@advisortitle{#1}}
 \newcommand\advisorinstitute[1]{\def\UCAS@value@advisorinstitute{#1}}
+\newcommand\degree[1]{\def\UCAS@value@degree{#1}}
+\newcommand\degreetype[1]{\def\UCAS@value@degreetype{#1}}
 \newcommand\major[1]{\def\UCAS@value@major{#1}}
-\newcommand\submitdate[1]{\def\UCAS@value@submitdate{#1}}
-%\newcommand\defenddate[1]{\def\UCAS@value@defenddate{#1}}
 \newcommand\institute[1]{\def\UCAS@value@institute{#1}}
-%\newcommand\chairman[1]{\def\UCAS@value@chairman{#1}}
+\newcommand\chinesedate[1]{\def\UCAS@value@chinesedate{#1}}
 %%%%% --------------------------------------------------------------------------------
 %%
 %%%%**************************** make chinese titlepage ******************************
@@ -169,7 +161,7 @@
       \UCAS@label@institute & \UCASunderline[299pt]{\UCAS@value@institute}
     \end{tabular}
     \vskip \stretch{6}
-    \UCAS@value@submitdate
+    \UCAS@value@chinesedate
   \end{center}
   \clearpage
   \if@twoside
@@ -192,10 +184,10 @@
 \newcommand\englishauthor[1]{\def\UCAS@value@englishauthor{#1}}
 \newcommand\englishadvisor[1]{\def\UCAS@value@englishadvisor{#1}}
 \newcommand\englishadvisortitle[1]{\def\UCAS@value@englishadvisortitle{#1}}
-\newcommand\englishinstitute[1]{\def\UCAS@value@englishinstitute{#1}}
-\newcommand\englishdate[1]{\def\UCAS@value@englishdate{#1}}
 \newcommand\englishdegree[1]{\def\UCAS@value@englishdegree{#1}}
 \newcommand\englishmajor[1]{\def\UCAS@value@englishmajor{#1}}
+\newcommand\englishinstitute[1]{\def\UCAS@value@englishinstitute{#1}}
+\newcommand\englishdate[1]{\def\UCAS@value@englishdate{#1}}
 %%%%% --------------------------------------------------------------------------------
 %%
 %%%%*********************** make english titlepage ***********************************
