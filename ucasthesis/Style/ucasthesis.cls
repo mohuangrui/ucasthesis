@@ -1,45 +1,11 @@
 %%%%% --------------------------------------------------------------------------------
-%% This is file `ucasthesis.cls',
-%%
-%% Copyright 2004-2014
-%% CTEX.ORG and any individual authors listed elsewhere in this file.
-%%
-%% This file was modified by Mo Huangrui from file(s) of the CASthesis package project.
+%% This is file `ucasthesis.cls'
+%% This file was recreated by Mo Huangrui from file(s) of the CASthesis package project.
 %%%%% --------------------------------------------------------------------------------
 %%
 %% It may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License, either version 1.2
 %% of this license or (at your option) any later version.
-%% The latest version of this license is in
-%%    http://www.latex-project.org/lppl.txt
-%% and version 1.2 or later is part of all distributions of LaTeX
-%% version 1999/12/01 or later.
-%%
-%% This file may only be distributed together with a copy of original
-%% source files. You may however distribute original source files
-%% without such generated files. Copying of this file is authorized
-%% only if either:
-%% (1) you make absolutely no changes to your copy, including name; OR
-%% (2) if you do make changes, you first rename it to some other name.
-%%
-%% To produce the documentation run the original source files ending
-%% with `.dtx' through LaTeX.
-%%
-%% \CharacterTable
-%%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
-%%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
-%%   Digits        \0\1\2\3\4\5\6\7\8\9
-%%   Exclamation   \!     Double quote  \"     Hash (number) \#
-%%   Dollar        \$     Percent       \%     Ampersand     \&
-%%   Acute accent  \'     Left paren    \(     Right paren   \)
-%%   Asterisk      \*     Plus          \+     Comma         \,
-%%   Minus         \-     Point         \.     Solidus       \/
-%%   Colon         \:     Semicolon     \;     Less than     \<
-%%   Equals        \=     Greater than  \>     Question mark \?
-%%   Commercial at \@     Left bracket  \[     Backslash     \\
-%%   Right bracket \]     Circumflex    \^     Underscore    \_
-%%   Grave accent  \`     Left brace    \{     Vertical bar  \|
-%%   Right brace   \}     Tilde         \~}
 %%
 %%%%% --------------------------------------------------------------------------------
 %%
@@ -100,10 +66,22 @@
 %%
 %%%%********************* some style control commands ********************************
 %%
-%% clear double page
-\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
-  \thispagestyle{empty}%
-  \hbox{}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+%% redefine \cleardoublepage to handle both oneside and twoside modes
+\def\cleardoublepage{%
+  \clearpage%
+  \if@twoside%
+    \ifodd\c@page%
+      % do nothing
+    \else%
+      \thispagestyle{empty}%
+      \hbox{}%
+      \newpage%
+      \if@twocolumn%
+        \hbox{}%
+        \newpage%
+      \fi%
+    \fi%
+  \fi}%
 %% space used in items title
 \newcommand\UCASspace{\protect\CTEX@spaceChar\protect\CTEX@spaceChar}
 %% underline
