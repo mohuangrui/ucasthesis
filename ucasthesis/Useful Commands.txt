@@ -1,3 +1,6 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% These commands are derived from LaTeX Wikibook and LaTeX Stack Exchange
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% single float graphics
 
@@ -17,6 +20,14 @@
   \caption{}
   \label{fig:}
 \end{figure}
+
+%% if want a note for a figure, put following command below "\caption{}"
+%% note the use of \par at the end of the footnote-sized material is necessary
+
+\medskip % induce some separation between caption and explanatory material
+\begin{minipage}{\MyFactor\textwidth} % choose width suitably
+{\footnotesize \par}
+\end{minipage}
 
 %% multiple graphics
 
