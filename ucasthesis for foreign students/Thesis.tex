@@ -3,28 +3,15 @@
 %%                               Document Template
 %%
 %%%%% --------------------------------------------------------------------------------
-%% Document Template by Mo Huang Rui <mohuangrui@gmail.com>
-%% based on the LaTeX-Wikibook.
-%%
-%% written by Mo Huangrui <mohuangrui@gmail.com>
-%% $Id: Thesis.tex,v 0.1 2014/02/14 08:00:00 $
+%% written by Huangrui Mo <mohuangrui@gmail.com>
+%% $Last-modified: 10 Nov 2014 10:09:59 PM
 %%
 %% This program can be redistributed and/or modified under the terms
 %% of the GNU Public License, version 2.
-%%
-%% This fork was created to satisfy personnal taste in code.
 %%%%% --------------------------------------------------------------------------------
 %%
 %%%%*************************Document Class Declaration*******************************
 %%
-%%% >>> Article
-%%
-%\documentclass[12pt,a4paper]{article}% english
-%\documentclass[cs4size,a4paper,fancyhdr,fntef,hyperref,UTF8,adobefonts]{ctexart}% chinese
-%%
-%%% >>>> Book
-%%
-%\documentclass[12pt,a4paper]{book}% english
 \documentclass{ucasthesis}% thesis template of the Uni of Chinese Academy of Sciences
 %% Options:
 %% [draftinfo] % show draft version information
@@ -32,7 +19,8 @@
 %%
 %%%%**************************Command Define and Settings*****************************
 %%
-\usepackage{custom}% custom settings and user defined commands
+\usepackage[ucas]{commons}% common settings
+\usepackage{custom}% user defined commands
 %%%%% --------------------------------------------------------------------------------
 %%
 %%%%*********************************Content******************************************
@@ -109,3 +97,4 @@
 \input{Thanks}
 %%
 \end{document}
+%%%%% --------------------------------------------------------------------------------
