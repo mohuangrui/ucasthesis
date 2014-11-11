@@ -1,0 +1,271 @@
+%%%%% --------------------------------------------------------------------------------
+%%
+%%%%***************************** version information *********************************
+%%
+%% this is the "commons.sty" package used for configure document styles
+%% written by Huangrui Mo <mohuangrui@gmail.com>
+%% $Last-modified: 10 Nov 2014 09:55:04 PM
+%%
+%% This program can be redistributed and/or modified under the terms
+%% of the GNU Public License, version 2.
+%%
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{commons}
+[2014/11/10 v0.1 commons 
+macros package]
+%%%%% --------------------------------------------------------------------------------
+%%
+%%%%********************************Declare Options**********************************
+%%
+\newif\ifCOMMONS@uwaterloo \COMMONS@uwaterloofalse
+\DeclareOption{uwaterloo}{% uwaterloo thesis style
+    \COMMONS@uwaterlootrue%
+}
+\newif\ifCOMMONS@ucas \COMMONS@ucasfalse
+\DeclareOption{ucas}{% ucas thesis style
+    \COMMONS@ucastrue%
+}
+%% end-user parameters, each option is declared by one declare option command
+\DeclareOption*{% handle non-implemented options
+    \PackageWarning{commons}{Unknown option '\CurrentOption'}%
+}
+%% terminates all options processing
+\ProcessOptions\relax
+%%%%% --------------------------------------------------------------------------------
+%%
+%%%%********************************Required Packages*********************************
+%%
+%% Language Setting
+\RequirePackage{ifpdf,ifxetex}
+%% packages and settings depend on PDF mode
+\ifxetex % running xelatex in PDF mode
+%%%%% --------------------------------------------------------------------------------
+%%
+%%%%***********************************xelatex****************************************
+%%
+%%% >>> System Font Environment
+%%
+%% If compile by "xelatex", then it support system fonts.
+%% Fonts and tweaks for xelatex:
+\RequirePackage{fontspec}% fontspec package.
+\defaultfontfeatures{Ligatures=TeX}% use tex style to support LaTeX quoting style.
+%% -- Set English fonts.
+%% Roman, or Serif - typefaces are named for the features at the ends of their strokes
+%% determine \rmfamily, usually for main contents
+%% because of \renewcommand*{\familydefault}{\rmdefault}, it's also determine \normalfont.
+%% examples: Times New Roman, Garamond, Adobe Garamond Pro
+%\setmainfont[BoldFont=Garamond-Bold,ItalicFont=Garamond-Italic]{Garamond}%
+%% Sans serif - typefaces without strokes (without serif) to get high readability
+%% determine \sffamily, usually for signage, headings that demanding high readability
+%% examples: Helvetica, Gill Sans, Futura
+%\setsansfont{Gill Sans MT}%
+%% Monospaced - typefaces that every glyph is the same width (opposed to variable-width fonts).
+%% determine \ttfamily, usually for programming, tabulated data, etc.
+%% examples: Rockwell, Andale Mono, Courier, Monaco
+%\setmonofont{Rockwell}%
+\else
+\ifpdf % running pdfTeX in PDF mode
+%%%%% --------------------------------------------------------------------------------
+%%
+%%%%*********************************pdflatex*****************************************
+%%
+%%% >>>  Input encoding and the font encoding
+%%
+%% Specify language.
+%% Set Language you want to use: \RequirePackage[language]{babel}
+%% You should place it soon after the \documentclass command, so that all the other
+%% packages you load afterwards will know the language you are using.
+%\RequirePackage[english]{babel}% language.
+%% Specify input encoding.
+\RequirePackage[utf8]{inputenc}% make sure your document is saved using the UTF-8 encoding.
+%\RequirePackage[latin1]{inputenc}% latin encoding
+%% Font encoding.
+\RequirePackage[T1]{fontenc}
+%% Font package.
+\RequirePackage{mathptmx}
+%% Options:
+%% Need \RequirePackage[T1]{fontenc}:
+%% - \RequirePackage{lmodern}, modern font.
+%% - \RequirePackage{concrete}, text: Concrete, math: Concrete italic + Euler VM symbols.
+%% - \RequirePackage{concmath}, text: Concrete, math: Concrete italic + Concmath symbols.
+%% No need \RequirePackage[T1]{fontenc}:
+%% Text: Helvetica, Math: Helvetica italic + Euler VM symbols:
+%% - \RequirePackage{eulervm} + \RequirePackage[scaled]{helvet}
+%% Text: Palatino, Math: Palatino italic + Euler VM symbols:
+%% - \RequirePackage{palatino} or {mathpazo} + \RequirePackage{eulervm}
+%% Text + Math: Times, not a good font for screen presentation:
+%% - \RequirePackage{mathptmx}
+%% Text: Bradhley Hand writing, Math: mathpazo symbols:
+%% - \RequirePackage{mathpazo} % Mathpazo symbols + \renewcommand{\rmdefault}{ibh} % Bradhley Hand.
+\fi
+\fi
+%%
+%% >>> graphic packages
+%%
+\RequirePackage{graphicx}% graphics packages for including graphics
+%\RequirePackage{caption}% caption options like:[margin=10pt,font=small,labelfont=bf]
+\RequirePackage{subcaption}% subcaption package for subfigures
+\RequirePackage[section]{placeins}% to prevent floats from being moved over section
+%%
+%% >>> Page Layout and Line Spacing
+%%
+\RequirePackage{fancyhdr}% fancy headers and footers
+%\RequirePackage{geometry}% page layout
+%\RequirePackage{setspace}% line spacing
+%%
+%%% >>> Natural Sciences Citations and References
+%%
+%% if use bibtex citation, not need to use any packages!
+%% if use natbib package, then:
+\RequirePackage{natbib}% author year citation mode
+%\RequirePackage[square,comma,numbers,sort&compress]{natbib}% numeric cite mode
+%\RequirePackage[square,comma,super,sort&compress]{natbib}% superscripted numeric cite mode
+\bibliographystyle{apalike}% APA citation style
+%\bibliographystyle{unsrtnat}% sort as referenced
+%\bibliographystyle{plainnat}% sort by author name
+%%
+%%% >>> Verbatim
+%%
+%% Improves the verbatim environment, fixing some bugs. Moreover
+%% it provides the comment environment, that lets you add multiple-line
+%% comments or easily comment out big parts of the code.
+%\RequirePackage{verbatim}
+%\RequirePackage{fancyvrb}%
+%\RequirePackage{listing}%
+%%
+%% >>> List Structures
+%%
+%\RequirePackage{enumerate}%
+%%
+%%% >>> Color
+%%
+%\RequirePackage{color}%
+%\RequirePackage[usenames,dvipsnames,svgnames,table]{xcolor}%
+%%
+%%% >>> Tables
+%%
+%% ctable package imports the array, tabularx and booktabs packages
+%% all commands from those packages are available as well.
+%\RequirePackage{ctable}%
+%%
+%% >>> Math packages
+%%
+\RequirePackage{amsmath,amssymb,amstext}
+%%
+%% >>> hyperref packages
+%%
+%% packages and settings depend on PDF mode
+\ifxetex % running xelatex in PDF mode
+  \RequirePackage[xetex]{hyperref}
+\else
+  \ifpdf % running pdfTeX in PDF mode
+    \RequirePackage[pdftex]{hyperref}
+  \fi
+\fi
+%% Setting Hyperlinks
+\hypersetup{% set hyperlinks.
+    %pdftitle={},% title
+    %pdfauthor={},% author
+    %pdfsubject={},% subject
+    %pdfkeywords={keyword1}{key2} {key3},% list of keywords, and uncomment this line if desired
+    %pdftoolbar=true,% show Acrobat’s toolbar?
+    %pdfmenubar=true,% show Acrobat’s menu?
+    pdffitwindow=false,% window fit to page when opened
+    pdfstartview={FitH},% fits the width of the page to the window
+    %pdfnewwindow=true,% links in new window
+    %colorlinks=true,% false: boxed links; true: colored links
+    %linkcolor=blue,% color of internal links
+    %citecolor=green,% color of links to bibliography
+    %filecolor=magenta,% color of file links
+    %urlcolor=cyan% color of external links
+    hidelinks% remove link color and border.
+}
+%% it gives LaTeX the possibility to manage links
+%% within the document or to any URL when you compile in PDF.
+%% Just load the package in the preamble, at the end of all the
+%% other packages but prior to other settings.
+%%%%% --------------------------------------------------------------------------------
+%%
+%%%%*****************************Configuration Command********************************
+%%
+%% >>> Extensions and Directories for graphics
+%%
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}% available graphic extensions
+%\graphicspath{{./Img/}}% search path for figures, no need if use scripts to compile
+%%
+%%% >>> Define Some Color Command:
+%%
+%\pagecolor{declared-color} % page background color.
+%%
+%%% >>> Layout and Margin
+%%
+%\geometry{left=3.18cm,right=3.18cm,top=2.54cm,bottom=2.54cm}% normal margins at each side.
+%\geometry{left=2.54cm,right=2.54cm,top=2.54cm,bottom=2.54cm}% normal margins at each side.
+%%
+%%% >>> Page header and footer Style
+%%
+%% Page styles in Latex terms refers not to page dimensions, but to the running headers
+%% and footers of a document. These headers typically contain document titles, chapter
+%% or section numbers/names, and page numbers.
+%% The possibilities of changing the headers in plain Latex are actually quite limited.
+%% There are two commands available:
+%% \pagestyle{''style''} will apply the specified style to the current and all subsequent pages
+%% \thispagestyle{''style''} will only affect the current page. The possible styles are:
+%% empty	Both header and footer are cleared
+%% plain	Header is clear, but the footer contains the page number in the center.
+%% headings	Footer is blank, header displays information according to document class
+%%          (e.g., section name) and page number top right.
+%% myheadings Page number is top right, and it is possible to control the rest of the header.
+%% To get better control over the headers, one can use the package "fancyhdr"
+%% set page style by fancyhdr:
+%% Documents can be either one- or two-sided. Articles are by default one-sided, books are two-sided.
+%% For one-sided document, only the odd commands and variables will be in effect.
+%% the command \fancyhead for header and \fancyfoot for footer.
+%% \fancyhf is a merge of \fancyhead and \fancyfoot, hence the name.
+%% The syntax is: \fancyhead[selectors]{output you want}
+%% E Even page
+%% O Odd page
+%% L Left field
+%% C Center field
+%% R Right field
+%% H Header
+%% F Footer
+%% so [CE,RO] will refer to the center of the even pages and to the right side of the odd pages.
+%% the width of the headers and footers, make the width wider or narrower by using:
+%% \fancyhfoffset[selectors]{length}% length could be >0 or <0
+%% \fancyhfoffset is a merge of \fancyheadoffset and \fancyfootoffset
+%% configure fancy style
+\ifCOMMONS@uwaterloo% header and footer style for uwaterloo thesis
+\pagestyle{fancy}
+%% the width of header and footer
+%\fancyheadoffset[LE,RO]{\marginparsep+\marginparwidth}
+%% reset style of chapter and section mark to actual name without converting it to uppercase
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{#1}{}}
+\fancyhf{}% clear all header and footer fields
+%% header configure:
+\fancyhead[RE]{\small \UW@value@titlemark}% title name in header, \@title is the default value
+\fancyhead[LO]{\small \leftmark}% chapter name in header
+\fancyhead[LE,RO]{\small \thepage}% page number in header
+%% footer configure:
+%\fancyfoot[CE,CO]{\small \thepage}% page number in footer at center
+%% the thickness of the decorative lines on both the header and the footer
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+%% Some LATEX commands, like \chapter, use the \thispagestyle command to automatically switch
+%% to the plain page style, thus ignoring the page style currently in effect.
+%% To customize even such pages you must redefine the plain pagestyle.
+%% redefine plain style:
+%\fancypagestyle{plain}{%
+%\fancyhf{}% remove everything
+%% header configure:
+%\fancyhead[C]{\small \leftmark}% chapter name at left of odd page header
+%% the thickness of the decorative lines on both the header and the footer
+%\renewcommand{\headrulewidth}{0.5pt}% remove lines as well
+%\renewcommand{\footrulewidth}{0pt}% remove lines as well
+%}
+\fi
+%%%%% --------------------------------------------------------------------------------
+\endinput
+%% End of commons.sty
+%%%%% --------------------------------------------------------------------------------
