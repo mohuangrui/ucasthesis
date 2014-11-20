@@ -4,7 +4,7 @@
 %%
 %% this is the "commons.sty" package used for configure document styles
 %% written by Huangrui Mo <mohuangrui@gmail.com>
-%% $Last-modified: 10 Nov 2014 09:55:04 PM
+%% $Last-modified: 20 Nov 2014 01:42:56 AM
 %%
 %% This program can be redistributed and/or modified under the terms
 %% of the GNU Public License, version 2.
@@ -17,10 +17,6 @@ macros package]
 %%
 %%%%********************************Declare Options**********************************
 %%
-\newif\ifCOMMONS@uwaterloo \COMMONS@uwaterloofalse
-\DeclareOption{uwaterloo}{% uwaterloo thesis style
-    \COMMONS@uwaterlootrue%
-}
 \newif\ifCOMMONS@ucas \COMMONS@ucasfalse
 \DeclareOption{ucas}{% ucas thesis style
     \COMMONS@ucastrue%
@@ -117,11 +113,11 @@ macros package]
 %%
 %% if use bibtex citation, not need to use any packages!
 %% if use natbib package, then:
-\RequirePackage{natbib}% author year citation mode
+%\RequirePackage{natbib}% author year citation mode
 %\RequirePackage[square,comma,numbers,sort&compress]{natbib}% numeric cite mode
-%\RequirePackage[square,comma,super,sort&compress]{natbib}% superscripted numeric cite mode
-\bibliographystyle{apalike}% APA citation style
-%\bibliographystyle{unsrtnat}% sort as referenced
+\RequirePackage[square,comma,super,sort&compress]{natbib}% superscripted numeric cite mode
+%\bibliographystyle{apalike}% APA citation style
+\bibliographystyle{unsrtnat}% sort as referenced
 %\bibliographystyle{plainnat}% sort by author name
 %%
 %%% >>> Verbatim
@@ -235,36 +231,6 @@ macros package]
 %% \fancyhfoffset[selectors]{length}% length could be >0 or <0
 %% \fancyhfoffset is a merge of \fancyheadoffset and \fancyfootoffset
 %% configure fancy style
-\ifCOMMONS@uwaterloo% header and footer style for uwaterloo thesis
-\pagestyle{fancy}
-%% the width of header and footer
-%\fancyheadoffset[LE,RO]{\marginparsep+\marginparwidth}
-%% reset style of chapter and section mark to actual name without converting it to uppercase
-\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
-\renewcommand{\sectionmark}[1]{\markright{#1}{}}
-\fancyhf{}% clear all header and footer fields
-%% header configure:
-\fancyhead[RE]{\small \UW@value@titlemark}% title name in header, \@title is the default value
-\fancyhead[LO]{\small \leftmark}% chapter name in header
-\fancyhead[LE,RO]{\small \thepage}% page number in header
-%% footer configure:
-%\fancyfoot[CE,CO]{\small \thepage}% page number in footer at center
-%% the thickness of the decorative lines on both the header and the footer
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0pt}
-%% Some LATEX commands, like \chapter, use the \thispagestyle command to automatically switch
-%% to the plain page style, thus ignoring the page style currently in effect.
-%% To customize even such pages you must redefine the plain pagestyle.
-%% redefine plain style:
-%\fancypagestyle{plain}{%
-%\fancyhf{}% remove everything
-%% header configure:
-%\fancyhead[C]{\small \leftmark}% chapter name at left of odd page header
-%% the thickness of the decorative lines on both the header and the footer
-%\renewcommand{\headrulewidth}{0.5pt}% remove lines as well
-%\renewcommand{\footrulewidth}{0pt}% remove lines as well
-%}
-\fi
 %%%%% --------------------------------------------------------------------------------
 \endinput
 %% End of commons.sty
