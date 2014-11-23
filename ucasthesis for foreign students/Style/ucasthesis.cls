@@ -33,7 +33,7 @@
 %%
 %%%%*************************** loadclass infomation *********************************
 %%
-\LoadClass[nocap,noindent,cs4size,a4paper,fancyhdr,fntef,hyperref,UTF8,adobefonts]{ctexbook}[2011/03/11]
+\LoadClass[nocap,indent,cs4size,a4paper,fancyhdr,fntef,hyperref,UTF8,adobefonts]{ctexbook}[2011/03/11]
 %%%%% --------------------------------------------------------------------------------
 %%
 %%%%***************************** package infomation *********************************
@@ -227,6 +227,13 @@
     \if@restonecol\twocolumn\fi
     }
 \addtocontents{toc}{\let\string\CTEX@spaceChar\relax}
+%% define a macro for add chapter without an number to toc and bookmark.
+\newcommand\intotoc[1]{%
+  %\markboth{\MakeUppercase{#1}}{}%set the leftmark with upcase
+  \markboth{{#1}}{}%set the leftmark
+  \phantomsection% use for adobe bookmark.
+  \addcontentsline{toc}{chapter}{#1}% for chapters.
+}
 %% define Nchapter command
 \newcommand\Nchapter[1]{%
   \if@mainmatter%

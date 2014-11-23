@@ -4,7 +4,7 @@
 %%
 %% this is the "commons.sty" package used for configure document styles
 %% written by Huangrui Mo <mohuangrui@gmail.com>
-%% $Last-modified: 20 Nov 2014 01:42:56 AM
+%% $Last-modified: 23 Nov 2014 08:59:30 AM
 %%
 %% This program can be redistributed and/or modified under the terms
 %% of the GNU Public License, version 2.
@@ -197,40 +197,6 @@ macros package]
 %%
 %\geometry{left=3.18cm,right=3.18cm,top=2.54cm,bottom=2.54cm}% normal margins at each side.
 %\geometry{left=2.54cm,right=2.54cm,top=2.54cm,bottom=2.54cm}% normal margins at each side.
-%%
-%%% >>> Page header and footer Style
-%%
-%% Page styles in Latex terms refers not to page dimensions, but to the running headers
-%% and footers of a document. These headers typically contain document titles, chapter
-%% or section numbers/names, and page numbers.
-%% The possibilities of changing the headers in plain Latex are actually quite limited.
-%% There are two commands available:
-%% \pagestyle{''style''} will apply the specified style to the current and all subsequent pages
-%% \thispagestyle{''style''} will only affect the current page. The possible styles are:
-%% empty	Both header and footer are cleared
-%% plain	Header is clear, but the footer contains the page number in the center.
-%% headings	Footer is blank, header displays information according to document class
-%%          (e.g., section name) and page number top right.
-%% myheadings Page number is top right, and it is possible to control the rest of the header.
-%% To get better control over the headers, one can use the package "fancyhdr"
-%% set page style by fancyhdr:
-%% Documents can be either one- or two-sided. Articles are by default one-sided, books are two-sided.
-%% For one-sided document, only the odd commands and variables will be in effect.
-%% the command \fancyhead for header and \fancyfoot for footer.
-%% \fancyhf is a merge of \fancyhead and \fancyfoot, hence the name.
-%% The syntax is: \fancyhead[selectors]{output you want}
-%% E Even page
-%% O Odd page
-%% L Left field
-%% C Center field
-%% R Right field
-%% H Header
-%% F Footer
-%% so [CE,RO] will refer to the center of the even pages and to the right side of the odd pages.
-%% the width of the headers and footers, make the width wider or narrower by using:
-%% \fancyhfoffset[selectors]{length}% length could be >0 or <0
-%% \fancyhfoffset is a merge of \fancyheadoffset and \fancyfootoffset
-%% configure fancy style
 %%%%% --------------------------------------------------------------------------------
 \endinput
 %% End of commons.sty
