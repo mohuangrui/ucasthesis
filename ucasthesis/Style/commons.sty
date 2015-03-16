@@ -4,22 +4,57 @@
 %%
 %% this is the "commons.sty" package used for configure document styles
 %% written by Huangrui Mo <mohuangrui@gmail.com>
-%% $Last-modified: 23 Nov 2014 08:59:30 AM
+%% $Last-modified: 14 Dec 2014 07:42:50 PM
 %%
 %% This program can be redistributed and/or modified under the terms
 %% of the GNU Public License, version 2.
 %%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{commons}
-[2014/11/10 v0.1 commons 
+[2014/10/01 v0.1 commons 
 macros package]
 %%%%% --------------------------------------------------------------------------------
 %%
 %%%%********************************Declare Options**********************************
 %%
-\newif\ifCOMMONS@ucas \COMMONS@ucasfalse
-\DeclareOption{ucas}{% ucas thesis style
-    \COMMONS@ucastrue%
+\newif\ifCOMMONS@fancyhdr \COMMONS@fancyhdrfalse
+\DeclareOption{fancyhdr}{% enable fancyhdr for header and footer
+    \COMMONS@fancyhdrtrue%
+}
+\newif\ifCOMMONS@myhdr \COMMONS@myhdrfalse
+\DeclareOption{myhdr}{% user defined header and footer style
+    \COMMONS@fancyhdrtrue% need the fancyhdr package
+    \COMMONS@myhdrtrue%
+}
+\newif\ifCOMMONS@geometry \COMMONS@geometryfalse
+\DeclareOption{geometry}{% enable geometry for redefining page layout
+    \COMMONS@geometrytrue%
+}
+\newif\ifCOMMONS@numeric \COMMONS@numericfalse
+\DeclareOption{numeric}{% enable numeric citation mode
+    \COMMONS@numerictrue%
+}
+\newif\ifCOMMONS@list \COMMONS@listfalse
+\DeclareOption{list}{% enable enhanced list structures
+    \COMMONS@listtrue%
+}
+\newif\ifCOMMONS@color \COMMONS@colorfalse
+\DeclareOption{color}{% enable color package to use color
+    \COMMONS@colortrue%
+}
+\newif\ifCOMMONS@background \COMMONS@backgroundfalse
+\DeclareOption{background}{% enable page background
+    \COMMONS@colortrue% need a color package
+    \COMMONS@backgroundtrue%
+}
+\newif\ifCOMMONS@tikz \COMMONS@tikzfalse
+\DeclareOption{tikz}{% enable tikz package for complex diagrams
+    \COMMONS@colortrue% need xcolor package
+    \COMMONS@tikztrue%
+}
+\newif\ifCOMMONS@table \COMMONS@tablefalse
+\DeclareOption{table}{% enable a table package for complex tables
+    \COMMONS@tabletrue%
 }
 %% end-user parameters, each option is declared by one declare option command
 \DeclareOption*{% handle non-implemented options
@@ -105,58 +140,85 @@ macros package]
 %%
 %% >>> Page Layout and Line Spacing
 %%
-\RequirePackage{fancyhdr}% fancy headers and footers
-%\RequirePackage{geometry}% page layout
-%\RequirePackage{setspace}% line spacing
+\ifCOMMONS@fancyhdr% header and footer style
+    \RequirePackage{fancyhdr}% fancy headers and footers
+\fi
+\ifCOMMONS@geometry% enable geometry to redefine page layout
+    \RequirePackage{geometry}% page layout
+    %\RequirePackage{setspace}% line spacing
+\fi
 %%
 %%% >>> Natural Sciences Citations and References
 %%
 %% if use bibtex citation, not need to use any packages!
 %% if use natbib package, then:
-%\RequirePackage{natbib}% author year citation mode
-%\RequirePackage[square,comma,numbers,sort&compress]{natbib}% numeric cite mode
-\RequirePackage[square,comma,super,sort&compress]{natbib}% superscripted numeric cite mode
-%\bibliographystyle{apalike}% APA citation style
-\bibliographystyle{unsrtnat}% sort as referenced
-%\bibliographystyle{plainnat}% sort by author name
-%%
-%%% >>> Verbatim
-%%
-%% Improves the verbatim environment, fixing some bugs. Moreover
-%% it provides the comment environment, that lets you add multiple-line
-%% comments or easily comment out big parts of the code.
-%\RequirePackage{verbatim}
-%\RequirePackage{fancyvrb}%
-%\RequirePackage{listing}%
+\ifCOMMONS@numeric% enable numeric citation mode
+    %\RequirePackage[square,comma,numbers,sort&compress]{natbib}% numeric cite mode
+    \RequirePackage[square,comma,super,sort&compress]{natbib}% superscripted numeric cite mode
+    \bibliographystyle{unsrtnat}% sort as referenced
+\else
+    \RequirePackage{natbib}% author year citation mode is the default
+    \bibliographystyle{apalike}% author citation mode with APA citation style
+\fi
 %%
 %% >>> List Structures
 %%
-%\RequirePackage{enumerate}%
+\ifCOMMONS@list% enable enhanced list and verbatim structures
+    \RequirePackage{enumitem}% configure the enumerate environment
+    \RequirePackage{listings}% useful for Algorithm and Coding
+    %% Improves the verbatim environment, fixing some bugs. Moreover
+    %% it provides the comment environment, that lets you add multiple-line
+    %% comments or easily comment out big parts of the code.
+    \RequirePackage{verbatim}
+\fi
 %%
 %%% >>> Color
 %%
-%\RequirePackage{color}%
-%\RequirePackage[usenames,dvipsnames,svgnames,table]{xcolor}%
+\ifCOMMONS@color% enable color package to use color
+    %\RequirePackage{color}%
+    \RequirePackage[dvipsnames]{xcolor}%
+\fi
 %%
 %%% >>> Tables
 %%
-%% ctable package imports the array, tabularx and booktabs packages
-%% all commands from those packages are available as well.
-%\RequirePackage{ctable}%
+\ifCOMMONS@table% enable a table for complex tables
+    %% ctable package imports the array, tabularx and booktabs packages
+    %% all commands from those packages are available as well.
+    \RequirePackage{ctable}%
+\fi
 %%
 %% >>> Math packages
 %%
-\RequirePackage{amsmath,amssymb,amstext}
+\RequirePackage{mathtools,amstext,amsfonts}
+%%
+%% >>> Tkiz
+%%
+%% Draw graphics directly with TeX commands
+%% LaTeX/PGF/TikZ to draw procedural graphics directly with TeX commands.
+%% Using TikZ in a LaTeX document requires loading the tikz package:
+\ifCOMMONS@tikz% enable tikz for complex diagrams
+    \RequirePackage{tikz}%
+    %% This will automatically load the pgf package. To load further libraries use:
+    \usetikzlibrary{
+        positioning,
+        arrows,
+        calc,
+        trees
+    }%
+\fi
+%% Examples for libraries are "arrows", "automata", "backgrounds", "calendar",
+%% "chains", "matrix", "mindmap", "patterns", "petri", "shadows", "shapes.geometric",
+%% "shapes.misc", "spy", "trees".
 %%
 %% >>> hyperref packages
 %%
 %% packages and settings depend on PDF mode
 \ifxetex % running xelatex in PDF mode
-  \RequirePackage[xetex]{hyperref}
+    \RequirePackage[xetex]{hyperref}
 \else
-  \ifpdf % running pdfTeX in PDF mode
-    \RequirePackage[pdftex]{hyperref}
-  \fi
+    \ifpdf % running pdfTeX in PDF mode
+        \RequirePackage[pdftex]{hyperref}
+    \fi
 \fi
 %% Setting Hyperlinks
 \hypersetup{% set hyperlinks.
@@ -186,17 +248,91 @@ macros package]
 %%
 %% >>> Extensions and Directories for graphics
 %%
-\DeclareGraphicsExtensions{.pdf,.png,.jpg}% available graphic extensions
+\ifxetex % running xelatex in PDF mode
+    \DeclareGraphicsExtensions{.pdf,.png,.jpg,.gif,.bmp}% available graphic extensions
+\else
+    \ifpdf % running pdfTeX in PDF mode
+        \DeclareGraphicsExtensions{.pdf,.png,.jpg,.jpeg,.PNG,.JPG,.JPEG}%
+    \fi
+\fi
 %\graphicspath{{./Img/}}% search path for figures, no need if use scripts to compile
 %%
-%%% >>> Define Some Color Command:
+%%% >>> Page background:
 %%
-%\pagecolor{declared-color} % page background color.
+\ifCOMMONS@background% enable page background
+    \definecolor{backgroundcolor}{RGB}{224,224,224}
+    \pagecolor{backgroundcolor} % page background color, require a color package.
+\fi
 %%
 %%% >>> Layout and Margin
 %%
-%\geometry{left=3.18cm,right=3.18cm,top=2.54cm,bottom=2.54cm}% normal margins at each side.
-%\geometry{left=2.54cm,right=2.54cm,top=2.54cm,bottom=2.54cm}% normal margins at each side.
+\ifCOMMONS@geometry% enable geometry to redefine page layout
+    \geometry{left=1.125in,right=1.125in}% reduced margins at each side.
+\fi
+%%
+%%% >>> Page header and footer Style
+%%
+%% Page styles in Latex terms refers not to page dimensions, but to the running headers
+%% and footers of a document. These headers typically contain document titles, chapter
+%% or section numbers/names, and page numbers.
+%% configure fancy style
+\ifCOMMONS@fancyhdr% header and footer style
+    \pagestyle{fancy}
+    %% the width of header and footer
+    %\fancyheadoffset[LE,RO]{\marginparsep+\marginparwidth}
+    %% reset style of chapter and section mark to actual name without converting it to uppercase
+    \renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+    \renewcommand{\sectionmark}[1]{\markright{#1}{}}
+    %\fancyhf{}% clear all header and footer fields
+    %% header configure:
+    %\fancyhead[RE]{\small \@title}% title name in header
+    %\fancyhead[LO]{\small \rightmark}% section name in header
+    %\fancyhead[LE,RO]{\small \thepage}% page number in header
+    %% footer configure:
+    %\fancyfoot[CE,CO]{\small \thepage}% page number in footer at center
+    %% the thickness of the decorative lines on both the header and the footer
+    %\renewcommand{\headrulewidth}{0pt}
+    %\renewcommand{\footrulewidth}{0pt}
+    %% Some LATEX commands, like \chapter, use the \thispagestyle command to automatically switch
+    %% to the plain page style, thus ignoring the page style currently in effect.
+    %% To customize even such pages you must redefine the plain pagestyle.
+    %% redefine plain style:
+    %\fancypagestyle{plain}{%
+        %\fancyhf{}% remove everything
+        %\renewcommand{\headrulewidth}{0pt}% remove lines as well
+        %\renewcommand{\footrulewidth}{0pt}% remove lines as well
+    %}
+\fi
+\ifCOMMONS@myhdr% user defined header and footer style
+%% define different kinds of header and footer for defferent parts
+\fancypagestyle{frontmatterstyle}{% header and footer style for frontmatter
+    \fancyhf{}% Clear header/footer
+    \fancyfoot[C]{\thepage}%
+    \renewcommand{\headrulewidth}{0pt}% No header rule
+    \renewcommand{\footrulewidth}{0pt}% No footer rule
+}
+\fancypagestyle{mainmatterstyle}{% header and footer style for mainmatter
+    \fancyhf{}% clear all header and footer fields
+    %% header configure:
+    \fancyhead[RE]{\small \@title}% title name in header, \@title is the default value
+    \fancyhead[LO]{\small \leftmark}% chapter name in header
+    \fancyhead[LE,RO]{\small \thepage}% page number in header
+    \renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\footrulewidth}{0pt}
+}
+%% redefine \frontmatter to include the change
+\let\myfrontmatter\frontmatter
+\renewcommand{\frontmatter}{%
+    \myfrontmatter
+    \pagestyle{frontmatterstyle}
+}
+%% redefine \mainmatter to include the change
+\let\mymainmatter\mainmatter
+\renewcommand{\mainmatter}{%
+    \mymainmatter
+    \pagestyle{mainmatterstyle}
+}
+\fi
 %%%%% --------------------------------------------------------------------------------
 \endinput
 %% End of commons.sty

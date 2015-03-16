@@ -4,7 +4,7 @@
 %%
 %%%%% --------------------------------------------------------------------------------
 %% written by Huangrui Mo <mohuangrui@gmail.com>
-%% $Last-modified: 20 Nov 2014 01:39:26 AM
+%% $Last-modified: 16 Mar 2015 01:11:33 PM
 %%
 %% This program can be redistributed and/or modified under the terms
 %% of the GNU Public License, version 2.
@@ -12,14 +12,29 @@
 %%
 %%%%*************************Document Class Declaration*******************************
 %%
-\documentclass{ucasthesis}% thesis template of the Uni of Chinese Academy of Sciences
+\documentclass[doublesided,draftversion]{ucasthesis}% thesis template of the Uni of Chinese Academy of Sciences
 %% Options:
-%% [draftinfo] % show draft version information
+%% Multiple Options:
+%% [doublesided] % change to double-sided style, default is single-sided
+%% [printcopy] % doublesided is for EThesis. if printed, need this for a uniform binding width
+%% [draftversion] % show draft version information, default is no show
+%% [standard options for book class]
 %%%%% --------------------------------------------------------------------------------
 %%
 %%%%**************************Command Define and Settings*****************************
 %%
-\usepackage[ucas]{commons}% common settings
+\usepackage[myhdr]{commons}% common settings
+%% usage: \usepackage[option1,option2,...,optionN]{commons}
+%% Multiple Options:
+%% [fancyhdr] % configure header and footer by fancydhr package
+%% [myhdr] % one available header and footer style, will auto enable fancyhdr
+%% [geometry] % configure page layout by geometry package
+%% [numeric] % enable numeric citation mode replace the default "APA" style
+%% [list] % enable enhanced list environments, useful for Algorithm and Coding
+%% [color] % enable color package to use color, current package is xcolor
+%% [background] % enable page background, will auto enable color package
+%% [tikz] % enable tikz for complex diagrams, will auto enbale color package
+%% [table] % enable a table package for complex tables, current is ctable
 \usepackage{custom}% user defined commands
 %%%%% --------------------------------------------------------------------------------
 %%
@@ -34,27 +49,21 @@
 %% Frontmatter of Title page, Table of contents, Preface chapter.
 \frontmatter
 %%
-%% >>> Cover
+%% >>> Frontpages
 %%
-\input{Cover}
-%%
-%% >>> Abstract
-%%
-\input{Abstract}
+\input{Frontpages}
 %%
 %%% >>> List of Content
 %%
-%\clearpage
 \tableofcontents% contents catalog
 \listoftables% tables catalog
+\intotoc{表格列表}% add a corresponding item to the contents table and bookmark
 \listoffigures% figures catalog
+\intotoc{图形列表}% add a corresponding item to the contents table and bookmark
 %%
 %% >>> prematter
 %%
-%\input{Prematter}% list of symbols, preface of books
-%% Ends the current page and causes any floats encountered in the input,
-%% but yet to appear, to be printed.
-%\clearpage
+\input{Prematter}% list of symbols, preface of books
 %%
 %%%%% --------------------------------------------------------------------------------
 %%
