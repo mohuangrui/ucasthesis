@@ -41,7 +41,11 @@ ucasthesis模板不仅只是提供了相应的类文件，同时也提供了包�
         \item AdobeSongStd-Light.otf（adobe 宋体）
       \end{enumerate}
 
+	  下载字体文件后，将其放置在 \verb|%windir%\Fonts| 目录下(Or you can simply double click to install the fonts)。
+	  
       若无法下载到相应字体文件，另一种解决方式是：请在 “ucasthesis.cls” 文件中找到 “adobefonts”字符串，将其修改为 “winfonts”，但如此一来，可能出现拷贝pdf文档内容到word时存在乱码的问题，更好的解决方式是选择安装adobe相应的字体库。
+	  
+	  REMARKS: In the newest version, "winfonts" has been set to the default option, if the "adobefonts" is desired to obtain a better appearance, please follow the instructions above.
 \end{enumerate}
 
 \section{各文档及目录简介 }
@@ -55,6 +59,8 @@ Thesis.tex文档为主文档，其设计和规划了论文的整体框架，通�
 Compile.bat为编译此模板的Dos脚本，通过双击运行此脚本即可获得编译后的PDF文档（是的，前提是你的系统安装有\LaTeX{}编译器～），编译生成的文档及临时文件皆位于Tmp文件夹内。在此脚本中可以设定编译器为“pdflatex” or “xelatex” (default，且极力推荐使用xelatex 编译中文及中英文混排的\LaTeX{}文档)。Clear\textunderscore Tmp.bat 脚本用于清空Tmp文件夹。
 
 同样，用户一般也无需修改它们，而且它们具有很高的通用性，如果你想编译自己编写的其他“.tex”文档，只需将其和目标“.tex”文件放在同一目录下，然后双击运行即可。另外，脚本撰写中避免了文件目录相关性，从而，若您不太喜欢默认的文件夹体系或者名称，可随意更改和设定，只需保证与当前的主文档位于同一父目录下即可。
+
+The existence of "Clear\textunderscore Tmp.bat" is not only for clearing the temporary directory, but also for the reason that you will always encounter errors after a true error happened and fixed if you do not clear the temporary files. This is a mysterious problem which happens on Windows. 
 
 \subsection{Tmp文件夹}
 
@@ -203,6 +209,6 @@ Biblio文件夹内放置参考文献的索引信息文件：Myrefs.bib，此文�
 
 1）使用“google scholar”搜索“The use of fast Fourier transform for the estimation of power spectra: a method based on time averaging over short, modified periodograms”，在目标条目下点击“引用”，展开后选择“ 导入BibTeX”，然后google将为你打开此文章的BibTeX索引信息，将它们copy添加到Myrefs.bib文件中（此文件位于“Biblio”文件夹下）。
 
-2）你会发现索引信息中第一行为 “\verb|@article{welch1967use,|”，其中的 \verb|welch1967use|即为此文献的label，想要在论文中索引此文献，只需要索引位置输入 “\verb|\cite{welch1967use}|”，正如此处所示\cite{welch1967use}。如此，即完成了文献的索引，请查看下本文档的“参考文献”一章，看看是不是就是这么简单呢？是的，就是这么简单！
+2）你会发现索引信息中第一行为 “\verb|@article{welch1967use,|”，其中的 \verb|welch1967use|即为此文献的label，想要在论文中索引此文献，只需要索引位置输入 “\verb|\citet{welch1967use}|”，正如此处所示 \citet{welch1967use}; 输入 “\verb|\citep{welch1967use}|”，正如此处所示 \citep{welch1967use}。如此，即完成了文献的索引，请查看下本文档的“参考文献”一章，看看是不是就是这么简单呢？是的，就是这么简单！
 
 参考文献索引更为详细的信息，请见CTAN网站上的关于bibtex or natbib 的Documentation。

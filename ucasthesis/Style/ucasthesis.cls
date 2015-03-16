@@ -1,28 +1,35 @@
 %%%%% --------------------------------------------------------------------------------
-%% This is file `ucasthesis.cls'
+%%
+%%%%***************************** version information *********************************
+%%
+%% this is the "ucasthesis.cls" file for "ucasthesis" class definition
 %% This file was recreated by Mo Huangrui from file(s) of the CASthesis package project.
-%%%%% --------------------------------------------------------------------------------
+%% $Last-modified: 16 Mar 2015 01:07:36 PM
 %%
-%% It may be distributed and/or modified under the
-%% conditions of the LaTeX Project Public License, either version 1.2
-%% of this license or (at your option) any later version.
-%%
-%%%%% --------------------------------------------------------------------------------
-%%
-%%%%***************************** version infomation *********************************
+%% This program can be redistributed and/or modified under the terms
+%% of the GNU Public License, version 2.
 %%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{ucasthesis}
-  [2014/02/14 v0.1 ucasthesis
+  [2014/10/01 v0.1 ucasthesis
    document class]
 %%%%% --------------------------------------------------------------------------------
 %%
 %%%%*************************** Declare Options **************************************
 %%
 %% end-user parameters, each option is declared by one declare option command
-\newif\ifUCAS@typeinfo \UCAS@typeinfofalse
-\DeclareOption{draftinfo}{% draft information reminder
-  \UCAS@typeinfotrue%
+\newif\ifUCAS@versioninfo \UCAS@versioninfofalse
+\DeclareOption{draftversion}{% draft information reminder
+  \UCAS@versioninfotrue%
+}
+\newif\ifUCAS@doublesided \UCAS@doublesidedfalse
+\DeclareOption{doublesided}{% enable double-sided printing
+  \UCAS@doublesidedtrue%
+}
+\newif\ifUCAS@printcopy \UCAS@printcopyfalse
+\DeclareOption{printcopy}{% enable print copy layout
+  \UCAS@doublesidedtrue% auto enable double-sided style
+  \UCAS@printcopytrue%
 }
 \DeclareOption*{% handle non-implemented options
   \PassOptionsToClass{\CurrentOption}{ctexbook}%
@@ -33,13 +40,17 @@
 %%
 %%%%*************************** loadclass infomation *********************************
 %%
-\LoadClass[cs4size,a4paper,fancyhdr,fntef,hyperref,UTF8,adobefonts]{ctexbook}[2011/03/11]
+\ifUCAS@doublesided% if double-sided printing enabled
+  \LoadClass[cs4size,a4paper,fancyhdr,fntef,hyperref,UTF8,twoside,winfonts]{ctexbook}[2011/03/11]
+\else% if double-sided printing isn't enabled
+  \LoadClass[cs4size,a4paper,fancyhdr,fntef,hyperref,UTF8,oneside,winfonts]{ctexbook}[2011/03/11]
+\fi
 %%%%% --------------------------------------------------------------------------------
 %%
 %%%%***************************** package infomation *********************************
 %%
 %% math packages
-\RequirePackage{mathtools,amsthm,amsfonts,amssymb,bm}
+\RequirePackage{amsmath,amssymb,amstext}
 %%%%% --------------------------------------------------------------------------------
 %%
 %%%%************************ load class configuretion ********************************
@@ -53,15 +64,31 @@
 %%
 %%%%******************************* page layout **************************************
 %%
-\oddsidemargin 1.5 true cm
-\if@twoside
-  \evensidemargin 0 true cm
+%% set margins to minimum permitted by thesis regulations:
+%% part one -- horizontal widths
+\ifUCAS@printcopy% if print copy layout enabled
+  \setlength{\oddsidemargin}{6.35mm}% ensure binding side at least 0.125in + 1.0in (fixed)
+  \setlength{\evensidemargin}{0mm}% ensure a uniform binding width for two-sided printed copy
 \else
-  \evensidemargin 1.5 true cm
+  \setlength{\oddsidemargin}{3.175mm}% ensure binding side at least 1.125in
+  \setlength{\evensidemargin}{3.175mm}% ensure a uniform left margin for EThesis when two-sided
 \fi
-\textheight 21 true cm
-\textwidth 14.5 true cm
-\headheight 15pt
+%% set margin for notes to zero to get the maximum textwidth
+\setlength{\marginparwidth}{0pt}% width of margin notes
+\setlength{\marginparsep}{0pt}% width of space between body text and margin notes
+%% assuming A4 paper (210mm x 297mm) and note margins as above
+%% if note margins are 0, then \textwidth should be \paperwidth - 2*1.0in - \oddsidemargin
+\setlength{\textwidth}{156.025mm}% text width
+%% part two -- vertical heights
+\setlength{\headheight}{13.6pt}% set a minimum header height
+\raggedbottom
+%% specifies the amount of space between paragraphs.
+%% other reasonable specifications are \bigskipamount and \smallskipamount.
+\setlength{\parskip}{\medskipamount}
+%% line spacing
+\renewcommand{\baselinestretch}{1} % this is the default line space setting
+%% default pagestyle is page number at bottom without headers and footers
+\pagestyle{plain}
 %%%%% --------------------------------------------------------------------------------
 %%
 %%%%********************* some style control commands ********************************
@@ -82,6 +109,15 @@
       \fi%
     \fi%
   \fi}%
+%% define prechapter command
+\newcommand\prechapter[1]{%
+  \if@mainmatter%
+    \@mainmatterfalse%
+    \chapter{#1}%
+    \@mainmattertrue%
+  \else
+    \chapter{#1}%
+  \fi}
 %% space used in items title
 \newcommand\UCASspace{\protect\CTEX@spaceChar\protect\CTEX@spaceChar}
 %% underline
@@ -96,7 +132,9 @@
 \newcommand\schoollogo[2]{\def\UCAS@value@schoollogo{\includegraphics[#1]{#2}}}
 \renewcommand\title[2][\UCAS@value@title]{%
   \def\UCAS@value@title{#2}
-  \def\UCAS@value@titlemark{\MakeUppercase{#1}}}
+  %\def\UCAS@value@titlemark{\MakeUppercase{#1}}}
+  \def\UCAS@value@titlemark{#1}}
+\def\@title{\UCAS@value@titlemark}
 \renewcommand\author[1]{\def\UCAS@value@author{#1}}
 \newcommand\advisor[1]{\def\UCAS@value@advisor{#1}}
 \newcommand\advisortitle[1]{\def\UCAS@value@advisortitle{#1}}
@@ -144,14 +182,24 @@
   \clearpage
   \if@twoside
     \thispagestyle{empty}
-    \ifUCAS@typeinfo
+    \ifUCAS@versioninfo
       \vspace*{\stretch{1}}
       \begin{footnotesize}
         \noindent
-        Draft Version (\UCAS@value@englishdate)
+        Draft Version (\today)
       \end{footnotesize}
     \fi
     \cleardoublepage
+  \else
+    \ifUCAS@versioninfo
+      \thispagestyle{empty}
+      \vspace*{\stretch{1}}
+      \begin{footnotesize}
+        \noindent
+        Draft Version (\today)
+      \end{footnotesize}
+      \cleardoublepage
+    \fi
   \fi
 }
 %%%%% --------------------------------------------------------------------------------
@@ -202,7 +250,7 @@
 %%
 %% define chinese abstract
 \newenvironment{abstract}
-  {\Nchapter{\UCAS@label@abstract}}
+  {\prechapter{\UCAS@label@abstract}}
   {}
 %% define chinese keywords
 \newcommand\keywords[1]{%
@@ -228,28 +276,12 @@
     \else
       \@restonecolfalse
     \fi
-    \Nchapter{\contentsname}%
+    \prechapter{\contentsname}%
     \@mkboth{\MakeUppercase\contentsname}{\MakeUppercase\contentsname}%
     \@starttoc{toc}%
     \if@restonecol\twocolumn\fi
     }
 \addtocontents{toc}{\let\string\CTEX@spaceChar\relax}
-%% define a macro for add chapter without an number to toc and bookmark.
-\newcommand\intotoc[1]{%
-  %\markboth{\MakeUppercase{#1}}{}%set the leftmark with upcase
-  \markboth{{#1}}{}%set the leftmark
-  \phantomsection% use for adobe bookmark.
-  \addcontentsline{toc}{chapter}{#1}% for chapters.
-}
-%% define Nchapter command
-\newcommand\Nchapter[1]{%
-  \if@mainmatter%
-    \@mainmatterfalse%
-    \chapter{#1}%
-    \@mainmattertrue%
-  \else
-    \chapter{#1}%
-  \fi}
 \def\@dottedtocline#1#2#3#4#5{%
   \ifnum #1>\c@tocdepth \else
     \vskip \z@ \@plus.2\p@
@@ -300,7 +332,7 @@
     \endgroup
   \fi}
 \renewenvironment{thebibliography}[1]
-     {\Nchapter{\bibname}%
+     {\prechapter{\bibname}%
       \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
       \list{\@biblabel{\@arabic\c@enumiv}}%
            {\settowidth\labelwidth{\@biblabel{#1}}%
@@ -319,7 +351,7 @@
        {\@latex@warning{Empty `thebibliography' environment}}%
       \endlist}
 \newenvironment{publications}[1]
-     {\Nchapter{\UCAS@label@publications}%
+     {\prechapter{\UCAS@label@publications}%
       \@mkboth{\MakeUppercase\UCAS@label@publications}
               {\MakeUppercase\UCAS@label@publications}%
       \list{\@biblabel{\@arabic\c@enumiv}}%
@@ -339,7 +371,7 @@
        {\@latex@warning{Empty `publications' environment}}%
       \endlist}
 \newenvironment{resume}
-  {\Nchapter{\UCAS@label@resume}}
+  {\prechapter{\UCAS@label@resume}}
   {}
 \newenvironment{resumesection}[1]
   {{\noindent\normalfont\bfseries #1}
@@ -356,58 +388,13 @@
    \item\relax}
   {\endlist}
 \renewenvironment{thanks}
-  {\Nchapter{\UCAS@label@thanks}}
+  {\prechapter{\UCAS@label@thanks}}
   {}
+%% nomenclature
+\newenvironment{nomenclature}
+  {\chapter{\UCAS@label@nomenclature}}
+  {\cleardoublepage}
 \setcounter{secnumdepth}{4}
-\newtheoremstyle{break}% name
-  {}%      Space above, empty = `usual value'
-  {}%      Space below
-  {\itshape}% Body font
-  {}%         Indent amount (empty = no indent, \parindent = para indent)
-  {\bfseries}% Thm head font
-  {.}%        Punctuation after thm head
-  {\newline}% Space after thm head: \newline = linebreak
-  {}%         Thm head spec
-%%%%% --------------------------------------------------------------------------------
-%%
-%%%%******************************* set headings *************************************
-%%
-%% set page style by fancyhdr:
-  %% The syntax is: \fancyhead[selectors]{output you want}
-  %% E Even page
-  %% O Odd page
-  %% L Left field
-  %% C Center field
-  %% R Right field
-  %% H Header
-  %% F Footer
-  %% so [CE,RO] will refer to the center of the even pages and to the right side of the odd pages.
-%% configure fancy style
-\pagestyle{fancy}
-  %% the style for chapter and section mark
-  %\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\chaptername\ \thechapter.\ #1}}{}}
-  %\renewcommand{\sectionmark}[1]{\markright{\MakeUppercase{\thesection.\ #1}}}
-  \fancyhf{}% clear all header and footer fields
-  %% header configure:
-  \fancyhead[CE]{\small \UCAS@value@titlemark}% title name in header, \@title is the default value
-  \fancyhead[CO]{\small \leftmark}% chapter name in header
-  %% footer configure:
-  \fancyfoot[CE,CO]{\small \thepage}% page number in footer at center
-  %% the thickness of the decorative lines on both the header and the footer
-  %\renewcommand{\headrulewidth}{0.5pt}
-  %\renewcommand{\footrulewidth}{0pt}
-%% Some LATEX commands, like \chapter, use the \thispagestyle command to automatically switch
-%% to the plain page style, thus ignoring the page style currently in effect.
-%% To customize even such pages you must redefine the plain pagestyle.
-%% redefine plain style:
-\fancypagestyle{plain}{%
-  \fancyhf{}% remove everything
-  %% header configure:
-  \fancyhead[C]{\small \leftmark}% chapter name at left of odd page header
-  %% the thickness of the decorative lines on both the header and the footer
-  %\renewcommand{\headrulewidth}{0.5pt}% remove lines as well
-  %\renewcommand{\footrulewidth}{0pt}% remove lines as well
-}
 %%%%% --------------------------------------------------------------------------------
 \endinput
 %% End of file `ucasthesis.cls'.

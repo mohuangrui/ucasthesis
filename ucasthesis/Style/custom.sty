@@ -4,7 +4,7 @@
 %%
 %% this is the "custom.sty" package used for configure document styles
 %% written by Huangrui Mo <mohuangrui@gmail.com>
-%% $Last-modified: 10 Nov 2014 09:37:59 PM
+%% $Last-modified: 14 Dec 2014 07:45:42 PM
 %%
 %% This program can be redistributed and/or modified under the terms
 %% of the GNU Public License, version 2.
@@ -13,7 +13,7 @@
 %%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{custom}
-[2014/11/10 v0.1 custom 
+[2014/10/01 v0.1 custom 
 macros package]
 %%%%% --------------------------------------------------------------------------------
 %%
@@ -29,18 +29,26 @@ macros package]
 %%
 %%%%***************************User Defined Command***********************************
 %%
-%%% >>> Math
-%%
-\newcommand{\ds}{\displaystyle}% short command for displaystyle
-\newcommand{\ve}{\varepsilon}% short command for epsilon
-\newcommand{\der}[2]{\frac{d #1}{d #2}}% short command for derivative
-\newcommand{\pder}[2]{\frac{\partial #1}{\partial #2}}% short command for pde
-\newcommand{\myvec}[1]{\vec{#1}}% vector style
-%%
 %%% >>> Graphic Length Factor
 %%
-\newcommand*{\MyFactor}{0.8}% for single figure
-\newcommand*{\MySubFactor}{0.48}% for subfigure
+\newcommand*{\MyFactor}{0.6}% for single figure
+\newcommand*{\MySubFactor}{0.4}% for subfigure
+%%
+%%% >>> Add content link to the table of content and bookmark
+%%
+%% define a macro for adding chapter/section title to toc and bookmark.
+\newcommand{\intotoc}[2][chapter]{%
+    %\markboth{\MakeUppercase{#2}}{}%set the leftmark with upcase
+    \markboth{{#2}}{}%set the leftmark
+    \phantomsection% use for adobe bookmark.
+    \addcontentsline{toc}{#1}{#2}% add content #2 to toc as #1
+}
+%%
+%%% >>> Define a command for Nomenclature
+%%
+\newcommand{\nomenclatureitem}[3][ ]{
+    \noindent\makebox[0.15\textwidth][l]{#2}{{#3}\hfill{#1}}\par
+}
 %%%%% --------------------------------------------------------------------------------
 %%
 %%%%*****************************User Configuration***********************************
