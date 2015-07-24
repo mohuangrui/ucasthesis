@@ -1,13 +1,12 @@
 %%%%% --------------------------------------------------------------------------------
 %%
-%%%%***************************** version information *********************************
+%%%%***************************** version information ********************************
 %%
-%% this is the "ucasthesis.cls" file for "ucasthesis" class definition
-%% This file was recreated by Mo Huangrui from file(s) of the CASthesis package project.
-%% $Last-modified: 16 Mar 2015 01:07:36 PM
-%%
-%% This program can be redistributed and/or modified under the terms
-%% of the GNU Public License, version 2.
+%% Copyright (C) 2014-2018 Huangrui Mo <huangrui.mo@gmail.com> 
+%% This is free software: you can redistribute it and/or modify it
+%% under the terms of the GNU General Public License as published by
+%% the Free Software Foundation, either version 3 of the License, or
+%% (at your option) any later version.
 %%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{ucasthesis}
@@ -41,9 +40,9 @@
 %%%%*************************** loadclass infomation *********************************
 %%
 \ifUCAS@doublesided% if double-sided printing enabled
-  \LoadClass[cs4size,a4paper,fancyhdr,fntef,hyperref,UTF8,twoside,winfonts]{ctexbook}[2011/03/11]
+  \LoadClass[UTF8,a4paper,twoside,fontset=windows]{ctexbook}
 \else% if double-sided printing isn't enabled
-  \LoadClass[cs4size,a4paper,fancyhdr,fntef,hyperref,UTF8,oneside,winfonts]{ctexbook}[2011/03/11]
+  \LoadClass[UTF8,a4paper,oneside,fontset=windows]{ctexbook}
 \fi
 %%%%% --------------------------------------------------------------------------------
 %%
@@ -66,21 +65,24 @@
 %%
 %% set margins to minimum permitted by thesis regulations:
 %% part one -- horizontal widths
+%% left side width + textwidth + right side width = paperwidth
+%% left side width of [odd, even] page = [odd, even]sidemargin + 1.0in (fixed)
+%% binding side width + textwidth + nonbinding side width = paperwidth
+%% binding side width of [odd, even] page = [left, right] side width
+%% assuming A4 paper (210mm x 297mm) and note margins as above
+\setlength{\textwidth}{156.025mm}% set required text width first
 \ifUCAS@printcopy% if print copy layout enabled
-  \setlength{\oddsidemargin}{6.35mm}% ensure binding side at least 0.125in + 1.0in (fixed)
-  \setlength{\evensidemargin}{0mm}% ensure a uniform binding width for two-sided printed copy
+  \setlength{\oddsidemargin}{3.175mm}% binding side width 0.125in + 1.0in (fixed)
+  \setlength{\evensidemargin}{0mm}% ensure uniform binding side width for two-sided printed copy
 \else
-  \setlength{\oddsidemargin}{3.175mm}% ensure binding side at least 1.125in
-  \setlength{\evensidemargin}{3.175mm}% ensure a uniform left margin for EThesis when two-sided
+  \setlength{\oddsidemargin}{3.175mm}% left side width 0.125in + 1.0in (fixed)
+  \setlength{\evensidemargin}{3.175mm}% ensure uniform left side width for EThesis
 \fi
-%% set margin for notes to zero to get the maximum textwidth
+ %% set margin for notes to zero
 \setlength{\marginparwidth}{0pt}% width of margin notes
 \setlength{\marginparsep}{0pt}% width of space between body text and margin notes
-%% assuming A4 paper (210mm x 297mm) and note margins as above
-%% if note margins are 0, then \textwidth should be \paperwidth - 2*1.0in - \oddsidemargin
-\setlength{\textwidth}{156.025mm}% text width
 %% part two -- vertical heights
-\setlength{\headheight}{13.6pt}% set a minimum header height
+\setlength{\headheight}{14.5pt}% set a minimum header height
 \raggedbottom
 %% specifies the amount of space between paragraphs.
 %% other reasonable specifications are \bigskipamount and \smallskipamount.
@@ -93,37 +95,10 @@
 %%
 %%%%********************* some style control commands ********************************
 %%
-%% redefine \cleardoublepage to handle both oneside and twoside modes
-\def\cleardoublepage{%
-  \clearpage%
-  \if@twoside%
-    \ifodd\c@page%
-      % do nothing
-    \else%
-      \thispagestyle{empty}%
-      \hbox{}%
-      \newpage%
-      \if@twocolumn%
-        \hbox{}%
-        \newpage%
-      \fi%
-    \fi%
-  \fi}%
-%% define prechapter command
-\newcommand\prechapter[1]{%
-  \if@mainmatter%
-    \@mainmatterfalse%
-    \chapter{#1}%
-    \@mainmattertrue%
-  \else
-    \chapter{#1}%
-  \fi}
-%% space used in items title
-\newcommand\UCASspace{\protect\CTEX@spaceChar\protect\CTEX@spaceChar}
 %% underline
 \def\UCAS@underline[#1]#2{%
-  \CTEXunderline{\hbox to #1{\hfill#2\hfill}}}
-\def\UCASunderline{\@ifnextchar[\UCAS@underline\CTEXunderline}
+  \CJKunderline{\hbox to #1{\hfill#2\hfill}}}
+\def\UCASunderline{\@ifnextchar[\UCAS@underline\CJKunderline}
 %%%%% --------------------------------------------------------------------------------
 %%
 %%%%********************** chinese titlepage items ***********************************
@@ -250,7 +225,7 @@
 %%
 %% define chinese abstract
 \newenvironment{abstract}
-  {\prechapter{\UCAS@label@abstract}}
+  {\chapter{\UCAS@label@abstract}}
   {}
 %% define chinese keywords
 \newcommand\keywords[1]{%
@@ -269,132 +244,19 @@
 %% define engish keywords
 \newcommand\englishkeywords[1]{%
   \vspace{2ex}\noindent{\bf \UCAS@label@englishkeywords} #1}
-%% redefine table of contents
-\renewcommand\tableofcontents{%
-    \if@twocolumn
-      \@restonecoltrue\onecolumn
-    \else
-      \@restonecolfalse
-    \fi
-    \prechapter{\contentsname}%
-    \@mkboth{\MakeUppercase\contentsname}{\MakeUppercase\contentsname}%
-    \@starttoc{toc}%
-    \if@restonecol\twocolumn\fi
-    }
-\addtocontents{toc}{\let\string\CTEX@spaceChar\relax}
-\def\@dottedtocline#1#2#3#4#5{%
-  \ifnum #1>\c@tocdepth \else
-    \vskip \z@ \@plus.2\p@
-    {\leftskip #2\relax \rightskip \@tocrmarg \parfillskip -\rightskip
-     \parindent #2\relax\@afterindenttrue
-     \interlinepenalty\@M
-     \leavevmode
-     \@tempdima #3\relax
-     \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
-     {#4}\nobreak
-     \leaders\hbox{$\m@th\mkern 1.5mu\cdot\mkern 1.5mu$}\hfill
-     \nobreak
-     \hb@xt@\@pnumwidth{\hfil\normalfont \normalcolor #5}%
-     \par}%
-  \fi}
-\renewcommand*\l@part[2]{%
-  \ifnum \c@tocdepth >-2\relax
-    \addpenalty{-\@highpenalty}%
-    \addvspace{2.25em \@plus\p@}%
-    \setlength\@tempdima{3em}%
-    \begingroup
-      \parindent \z@ \rightskip \@pnumwidth
-      \parfillskip -\@pnumwidth
-      {\leavevmode
-       \large \bfseries #1
-       \leaders\hbox{$\m@th\mkern 1.5mu\cdot\mkern 1.5mu$}
-       \hfil \hb@xt@\@pnumwidth{\hss #2}}\par
-       \nobreak
-         \global\@nobreaktrue
-         \everypar{\global\@nobreakfalse\everypar{}}%
-    \endgroup
-  \fi}
-\renewcommand*\l@chapter[2]{%
-  \ifnum \c@tocdepth >\m@ne
-    \addpenalty{-\@highpenalty}%
-    \vskip 1.0em \@plus\p@
-    \setlength\@tempdima{1.5em}%
-    \begingroup
-      \parindent \z@ \rightskip \@pnumwidth
-      \parfillskip -\@pnumwidth
-      \leavevmode \bfseries
-      \advance\leftskip\@tempdima
-      \hskip -\leftskip
-      #1\nobreak
-      \leaders\hbox{$\m@th\mkern 1.5mu\cdot\mkern 1.5mu$}
-      \hfil \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
-      \penalty\@highpenalty
-    \endgroup
-  \fi}
-\renewenvironment{thebibliography}[1]
-     {\prechapter{\bibname}%
-      \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
-      \list{\@biblabel{\@arabic\c@enumiv}}%
-           {\settowidth\labelwidth{\@biblabel{#1}}%
-            \leftmargin\labelwidth
-            \advance\leftmargin\labelsep
-            \@openbib@code
-            \usecounter{enumiv}%
-            \let\p@enumiv\@empty
-            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
-      \sloppy
-      \clubpenalty4000
-      \@clubpenalty \clubpenalty
-      \widowpenalty4000%
-      \sfcode`\.\@m}
-     {\def\@noitemerr
-       {\@latex@warning{Empty `thebibliography' environment}}%
-      \endlist}
-\newenvironment{publications}[1]
-     {\prechapter{\UCAS@label@publications}%
-      \@mkboth{\MakeUppercase\UCAS@label@publications}
-              {\MakeUppercase\UCAS@label@publications}%
-      \list{\@biblabel{\@arabic\c@enumiv}}%
-           {\settowidth\labelwidth{\@biblabel{#1}}%
-            \leftmargin\labelwidth
-            \advance\leftmargin\labelsep
-            \@openbib@code
-            \usecounter{enumiv}%
-            \let\p@enumiv\@empty
-            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
-      \sloppy
-      \clubpenalty4000
-      \@clubpenalty \clubpenalty
-      \widowpenalty4000%
-      \sfcode`\.\@m}
-     {\def\@noitemerr
-       {\@latex@warning{Empty `publications' environment}}%
-      \endlist}
-\newenvironment{resume}
-  {\prechapter{\UCAS@label@resume}}
+\newenvironment{publications}
+  {\chapter{\UCAS@label@publications}}%
   {}
-\newenvironment{resumesection}[1]
-  {{\noindent\normalfont\bfseries #1}
-   \list{}{\labelwidth\z@
-           \leftmargin 2\ccwd}
-   \item\relax}
-  {\endlist}
-\newenvironment{resumelist}[1]
-  {{\noindent\normalfont\bfseries #1}
-   \list{}{\labelwidth\z@
-           \leftmargin 4\ccwd
-           \itemindent -2\ccwd
-           \listparindent\itemindent}
-   \item\relax}
-  {\endlist}
+\newenvironment{resume}
+  {\chapter{\UCAS@label@resume}}
+  {}
 \renewenvironment{thanks}
-  {\prechapter{\UCAS@label@thanks}}
+  {\chapter{\UCAS@label@thanks}}
   {}
 %% nomenclature
 \newenvironment{nomenclature}
   {\chapter{\UCAS@label@nomenclature}}
   {\cleardoublepage}
-\setcounter{secnumdepth}{4}
 %%%%% --------------------------------------------------------------------------------
 \endinput
 %% End of file `ucasthesis.cls'.

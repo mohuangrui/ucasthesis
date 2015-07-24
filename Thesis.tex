@@ -3,17 +3,16 @@
 %%                               Document Template
 %%
 %%%%% --------------------------------------------------------------------------------
-%% written by Huangrui Mo <mohuangrui@gmail.com>
-%% $Last-modified: 16 Mar 2015 01:11:33 PM
-%%
-%% This program can be redistributed and/or modified under the terms
-%% of the GNU Public License, version 2.
+%% Copyright (C) 2014-2018 Huangrui Mo <huangrui.mo@gmail.com> 
+%% This is free software: you can redistribute it and/or modify it
+%% under the terms of the GNU General Public License as published by
+%% the Free Software Foundation, either version 3 of the License, or
+%% (at your option) any later version.
 %%%%% --------------------------------------------------------------------------------
 %%
 %%%%*************************Document Class Declaration*******************************
 %%
-\documentclass[doublesided,draftversion]{ucasthesis}% thesis template of the Uni of Chinese Academy of Sciences
-%% Options:
+\documentclass{ucasthesis}% thesis template of the Uni of Chinese Academy of Sciences
 %% Multiple Options:
 %% [doublesided] % change to double-sided style, default is single-sided
 %% [printcopy] % doublesided is for EThesis. if printed, need this for a uniform binding width
@@ -23,11 +22,11 @@
 %%
 %%%%**************************Command Define and Settings*****************************
 %%
-\usepackage[myhdr]{commons}% common settings
+\usepackage[numeric]{commons}% common settings
 %% usage: \usepackage[option1,option2,...,optionN]{commons}
 %% Multiple Options:
-%% [fancyhdr] % configure header and footer by fancydhr package
-%% [myhdr] % one available header and footer style, will auto enable fancyhdr
+%% [myhdr] % one available header and footer style, will enable fancyhdr
+%% [lscape] % provide landscape layout environment
 %% [geometry] % configure page layout by geometry package
 %% [numeric] % enable numeric citation mode replace the default "APA" style
 %% [list] % enable enhanced list environments, useful for Algorithm and Coding
