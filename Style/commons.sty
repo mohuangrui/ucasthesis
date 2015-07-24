@@ -1,13 +1,13 @@
 %%%%% --------------------------------------------------------------------------------
 %%
-%%%%***************************** version information *********************************
+%%%%***************************** version information ********************************
 %%
 %% this is the "commons.sty" package used for configure document styles
-%% written by Huangrui Mo <mohuangrui@gmail.com>
-%% $Last-modified: 14 Dec 2014 07:42:50 PM
-%%
-%% This program can be redistributed and/or modified under the terms
-%% of the GNU Public License, version 2.
+%% Copyright (C) 2014-2018 Huangrui Mo <huangrui.mo@gmail.com> 
+%% This is free software: you can redistribute it and/or modify it
+%% under the terms of the GNU General Public License as published by
+%% the Free Software Foundation, either version 3 of the License, or
+%% (at your option) any later version.
 %%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesPackage{commons}
@@ -15,16 +15,15 @@
 macros package]
 %%%%% --------------------------------------------------------------------------------
 %%
-%%%%********************************Declare Options**********************************
+%%%%********************************Declare Options***********************************
 %%
-\newif\ifCOMMONS@fancyhdr \COMMONS@fancyhdrfalse
-\DeclareOption{fancyhdr}{% enable fancyhdr for header and footer
-    \COMMONS@fancyhdrtrue%
-}
 \newif\ifCOMMONS@myhdr \COMMONS@myhdrfalse
 \DeclareOption{myhdr}{% user defined header and footer style
-    \COMMONS@fancyhdrtrue% need the fancyhdr package
     \COMMONS@myhdrtrue%
+}
+\newif\ifCOMMONS@lscape \COMMONS@lscapefalse
+\DeclareOption{lscape}{% landscape layout
+    \COMMONS@lscapetrue%
 }
 \newif\ifCOMMONS@geometry \COMMONS@geometryfalse
 \DeclareOption{geometry}{% enable geometry for redefining page layout
@@ -140,8 +139,14 @@ macros package]
 %%
 %% >>> Page Layout and Line Spacing
 %%
-\ifCOMMONS@fancyhdr% header and footer style
+\ifCOMMONS@myhdr% header and footer style
     \RequirePackage{fancyhdr}% fancy headers and footers
+\fi
+\ifCOMMONS@lscape% landscape layout
+    \RequirePackage{fancyhdr}% fancy headers and footers
+    %% Usage: \begin{landscape} [\thispagestyle{lscape}] text... \end{landscape}
+    \RequirePackage{pdflscape}% landscape environment
+    \RequirePackage[absolute]{textpos}% rotated page number
 \fi
 \ifCOMMONS@geometry% enable geometry to redefine page layout
     \RequirePackage{geometry}% page layout
@@ -153,8 +158,8 @@ macros package]
 %% if use bibtex citation, not need to use any packages!
 %% if use natbib package, then:
 \ifCOMMONS@numeric% enable numeric citation mode
-    %\RequirePackage[square,comma,numbers,sort&compress]{natbib}% numeric cite mode
-    \RequirePackage[square,comma,super,sort&compress]{natbib}% superscripted numeric cite mode
+    \RequirePackage[square,comma,numbers,sort&compress]{natbib}% numeric cite mode
+    %\RequirePackage[square,comma,super,sort&compress]{natbib}% superscripted numeric cite mode
     \bibliographystyle{unsrtnat}% sort as referenced
 \else
     \RequirePackage{natbib}% author year citation mode is the default
@@ -276,34 +281,11 @@ macros package]
 %% and footers of a document. These headers typically contain document titles, chapter
 %% or section numbers/names, and page numbers.
 %% configure fancy style
-\ifCOMMONS@fancyhdr% header and footer style
-    \pagestyle{fancy}
-    %% the width of header and footer
-    %\fancyheadoffset[LE,RO]{\marginparsep+\marginparwidth}
-    %% reset style of chapter and section mark to actual name without converting it to uppercase
+\ifCOMMONS@myhdr% user defined header and footer style
+\pagestyle{fancy}
+%% reset style of chapter and section mark to actual name without converting it to uppercase
     \renewcommand{\chaptermark}[1]{\markboth{#1}{}}
     \renewcommand{\sectionmark}[1]{\markright{#1}{}}
-    %\fancyhf{}% clear all header and footer fields
-    %% header configure:
-    %\fancyhead[RE]{\small \@title}% title name in header
-    %\fancyhead[LO]{\small \rightmark}% section name in header
-    %\fancyhead[LE,RO]{\small \thepage}% page number in header
-    %% footer configure:
-    %\fancyfoot[CE,CO]{\small \thepage}% page number in footer at center
-    %% the thickness of the decorative lines on both the header and the footer
-    %\renewcommand{\headrulewidth}{0pt}
-    %\renewcommand{\footrulewidth}{0pt}
-    %% Some LATEX commands, like \chapter, use the \thispagestyle command to automatically switch
-    %% to the plain page style, thus ignoring the page style currently in effect.
-    %% To customize even such pages you must redefine the plain pagestyle.
-    %% redefine plain style:
-    %\fancypagestyle{plain}{%
-        %\fancyhf{}% remove everything
-        %\renewcommand{\headrulewidth}{0pt}% remove lines as well
-        %\renewcommand{\footrulewidth}{0pt}% remove lines as well
-    %}
-\fi
-\ifCOMMONS@myhdr% user defined header and footer style
 %% define different kinds of header and footer for defferent parts
 \fancypagestyle{frontmatterstyle}{% header and footer style for frontmatter
     \fancyhf{}% Clear header/footer
@@ -331,6 +313,31 @@ macros package]
 \renewcommand{\mainmatter}{%
     \mymainmatter
     \pagestyle{mainmatterstyle}
+}
+%% Some LATEX commands, like \chapter, use the \thispagestyle command to automatically switch
+%% to the plain page style, thus ignoring the page style currently in effect.
+%% To customize even such pages you must redefine the plain pagestyle.
+%% redefine plain style:
+%\fancypagestyle{plain}{%
+    %\fancyhf{}% remove everything
+    %\renewcommand{\headrulewidth}{0pt}% remove lines as well
+    %\renewcommand{\footrulewidth}{0pt}% remove lines as well
+%}
+\fi
+\ifCOMMONS@lscape% configure landscape environment
+\fancypagestyle{lscape}{% landscape layout style
+    \fancyhf{}% clear all header and footer fields
+    \fancyfoot[CE,CO]{% footer
+    %% textpos: \begin{textblock}{<blockwidth>}[0.5,0.5](<hpos>,<vpos>) text... \end{textblock}
+    %% origin of the absolute coordinate is the top-left corner of the page
+    %% [0.5,0.5] means reference point of the block is the middle
+    \begin{textblock}{0.1}[0.5,0.5](0.85,0.5){\rotatebox{90}{\thepage}}\end{textblock}% position the page number
+    }
+    %% set units of <blockwidth>, <hpos>, and <vpos> arguments by corresponding modules 
+    \setlength{\TPHorizModule}{8.5in}% set to the width of page
+    \setlength{\TPVertModule}{11in} % set to the height of page
+    \renewcommand{\headrulewidth}{0pt}
+    \renewcommand{\footrulewidth}{0pt}
 }
 \fi
 %%%%% --------------------------------------------------------------------------------
