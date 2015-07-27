@@ -40,9 +40,9 @@
 %%%%*************************** loadclass infomation *********************************
 %%
 \ifUCAS@doublesided% if double-sided printing enabled
-  \LoadClass[UTF8,a4paper,twoside,fontset=windows]{ctexbook}
+  \LoadClass[UTF8,a4paper,twoside,fntef,12pt]{ctexbook}
 \else% if double-sided printing isn't enabled
-  \LoadClass[UTF8,a4paper,oneside,fontset=windows]{ctexbook}
+  \LoadClass[UTF8,a4paper,oneside,fntef,12pt]{ctexbook}
 \fi
 %%%%% --------------------------------------------------------------------------------
 %%
@@ -88,7 +88,7 @@
 %% other reasonable specifications are \bigskipamount and \smallskipamount.
 \setlength{\parskip}{\medskipamount}
 %% line spacing
-\renewcommand{\baselinestretch}{1} % this is the default line space setting
+%\renewcommand{\baselinestretch}{1.3} % this is the default line space setting
 %% default pagestyle is page number at bottom without headers and footers
 \pagestyle{plain}
 %%%%% --------------------------------------------------------------------------------
@@ -127,14 +127,14 @@
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
-    \bf\songti\zihao{4}
-    \hfill{} {\bf\songti\zihao{4} \UCAS@label@confidential \UCASunderline[30pt]{\UCAS@value@confidential}}
+    \heiti\zihao{4}
+    \hfill{} {\heiti\zihao{4} \UCAS@label@confidential \UCASunderline[30pt]{\UCAS@value@confidential}}
     \vskip \stretch{3}
       \UCAS@value@schoollogo
     \vskip \stretch{4}
-      {\bf\heiti\zihao{1} \UCAS@value@degree\UCAS@label@thesis}
+      {\heiti\zihao{1} \UCAS@value@degree\UCAS@label@thesis}
     \vskip \stretch{4}
-      {\bf\songti\zihao{3} \UCASunderline{\ \UCAS@value@title\ }}
+      {\heiti\zihao{3} \UCASunderline{\ \UCAS@value@title\ }}
     \vskip \stretch{6}
     \def\tabcolsep{1pt}
     \def\arraystretch{1.5}
@@ -233,7 +233,7 @@
 %% define engish abstract
 \newenvironment{englishabstract}
 {\chapter[\UCAS@label@englishabstract]{
-    \UCAS@value@englishtitle
+    \Large \UCAS@value@englishtitle
      \vskip 5pt
      {\normalfont\zihao{4} \UCAS@value@englishauthor\\
      Directed by \UCAS@value@englishadvisortitle\ \UCAS@value@englishadvisor}
