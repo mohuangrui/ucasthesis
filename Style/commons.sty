@@ -160,10 +160,10 @@ macros package]
 \ifCOMMONS@numeric% enable numeric citation mode
     \RequirePackage[square,comma,numbers,sort&compress]{natbib}% numeric cite mode
     %\RequirePackage[square,comma,super,sort&compress]{natbib}% superscripted numeric cite mode
-    \bibliographystyle{unsrtnat}% sort as referenced
+    \bibliographystyle{elsarticle-num-names}% numbered scheme
 \else
     \RequirePackage{natbib}% author year citation mode is the default
-    \bibliographystyle{apalike}% author citation mode with APA citation style
+    \bibliographystyle{elsarticle-harv}% author year scheme
 \fi
 %%
 %% >>> List Structures
