@@ -43,9 +43,9 @@ ucasthesis~模板不仅只是提供了相应的类文件，同时也提供了包
 
 	  下载字体文件后， 双击安装相应字体。
 	  
-      若无法下载到相应字体文件，另一种解决方式是：请在 “ucasthesis.cls” 文件中找到 “fontset=adobe”字符串，将其修改为 “fontset=windows”，但如此一来，可能出现拷贝pdf文档内容到word时存在乱码的问题，更好的解决方式是选择安装adobe相应的字体库。
+      若无法下载到相应字体文件，另一种解决方式是：请在 “ucasthesis.cls” 文件中找到 “fontset=adobe” 字符串，将其修改为 “fontset=windows”，但如此一来，可能出现拷贝pdf文档内容到word时存在乱码的问题，更好的解决方式是选择安装adobe相应的字体库。
 	  
-	  REMARKS: In the newest version, "fontset=windows" has been set to the default option, if the adobe fonts is desired to obtain a better appearance, please follow the instructions above.
+	  REMARKS: In the newest version, "fontset=windows" has been set as the default option, if the adobe fonts is desired to obtain a better appearance, please set “fontset=adobe”.
 \end{enumerate}
 
 \section{各文档及目录简介 }
@@ -56,15 +56,17 @@ Thesis.tex文档为主文档，其设计和规划了论文的整体框架，通�
 
 \subsection{Compile.bat and Clear\textunderscore Tmp.bat}
 
-Compile.bat为编译此模板的Dos脚本，通过双击运行此脚本即可获得编译后的PDF文档（是的，前提是你的系统安装有\LaTeX{}编译器～），编译生成的文档及临时文件皆位于Tmp文件夹内。在此脚本中可以设定编译器为“pdflatex” or “xelatex” (default，且极力推荐使用xelatex 编译中文及中英文混排的\LaTeX{}文档)。Clear\textunderscore Tmp.bat 脚本用于清空Tmp文件夹。
+Compile.bat为编译此模板的Dos脚本，通过双击运行此脚本即可获得编译后的PDF文档（是的，前提是你的系统安装有\LaTeX{}编译器.），编译生成的文档及临时文件皆位于Tmp文件夹内。在此脚本中可以设定编译器为“pdflatex” or “xelatex” (default，且极力推荐使用xelatex 编译中文及中英文混排的\LaTeX{}文档)。Clear\textunderscore Tmp.bat 脚本用于清空Tmp文件夹。
 
 同样，用户一般也无需修改它们，而且它们具有很高的通用性，如果你想编译自己编写的其他“.tex”文档，只需将其和目标“.tex”文件放在同一目录下，然后双击运行即可。另外，脚本撰写中避免了文件目录相关性，从而，若您不太喜欢默认的文件夹体系或者名称，可随意更改和设定，只需保证与当前的主文档位于同一父目录下即可。
+
+Note: It is recommended to use Compile.bat to compile your files rather than to do compile in WinEdit. If you insist to compile in WinEdit, one choice is to move all the files into a single directory; the other choice is to provide the correct relative path for each file, for example, change \verb+\input{Frontpage}+ to \verb+\input{./Tex/Frontpage}+. 
 
 The existence of "Clear\textunderscore Tmp.bat" is not only for clearing the temporary directory, but also for the reason that you will always encounter errors after a true error happened and fixed if you do not clear the temporary files. This is a mysterious problem which happens on Windows. 
 
 \subsection{Tmp文件夹}
 
-运行编译脚本Compile.bat后，编译所生成的所有文档皆存于Tmp文件夹内，包括编译得到的pdf文档，其存在是为了保持工作空间的整洁，因为好的心情是很重要的～
+运行编译脚本Compile.bat后，编译所生成的所有文档皆存于Tmp文件夹内，包括编译得到的pdf文档，其存在是为了保持工作空间的整洁，因为好的心情是很重要的.
 
 \subsection{Style文件夹}
 
