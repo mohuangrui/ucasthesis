@@ -29,9 +29,23 @@ macros package]
 \DeclareOption{geometry}{% enable geometry for redefining page layout
     \COMMONS@geometrytrue%
 }
-\newif\ifCOMMONS@numeric \COMMONS@numericfalse
-\DeclareOption{numeric}{% enable numeric citation mode
-    \COMMONS@numerictrue%
+\newif\ifCOMMONS@numbered \COMMONS@numberedtrue
+\newif\ifCOMMONS@authoryear \COMMONS@authoryearfalse
+\newif\ifCOMMONS@alpha \COMMONS@alphafalse
+\DeclareOption{numbered}{% enable numbered citation style
+    \COMMONS@numberedtrue%
+    \COMMONS@authoryearfalse
+    \COMMONS@alphafalse
+}
+\DeclareOption{authoryear}{% enable author year citation style
+    \COMMONS@numberedfalse%
+    \COMMONS@authoryeartrue
+    \COMMONS@alphafalse
+}
+\DeclareOption{alpha}{% enable alpha citation style
+    \COMMONS@numberedfalse%
+    \COMMONS@authoryearfalse
+    \COMMONS@alphatrue
 }
 \newif\ifCOMMONS@list \COMMONS@listfalse
 \DeclareOption{list}{% enable enhanced list structures
@@ -157,13 +171,18 @@ macros package]
 %%
 %% if use bibtex citation, not need to use any packages!
 %% if use natbib package, then:
-\ifCOMMONS@numeric% enable numeric citation mode
-    \RequirePackage[square,comma,numbers,sort&compress]{natbib}% numeric cite mode
-    %\RequirePackage[square,comma,super,sort&compress]{natbib}% superscripted numeric cite mode
+\ifCOMMONS@numbered% enable numbered citation style
+    \RequirePackage[square,comma,numbers,sort&compress]{natbib}% square bracket
+    %\RequirePackage[square,comma,super,sort&compress]{natbib}% superscripted square bracket
     \bibliographystyle{elsarticle-num-names}% numbered scheme
-\else
+\fi
+\ifCOMMONS@authoryear% enable author year citation style
     \RequirePackage{natbib}% author year citation mode is the default
     \bibliographystyle{elsarticle-harv}% author year scheme
+\fi
+\ifCOMMONS@alpha% enable alpha citation style
+    \RequirePackage[square,comma,numbers]{natbib}% square bracket
+    \bibliographystyle{alpha}% alpha scheme
 \fi
 %%
 %% >>> List Structures
