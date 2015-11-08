@@ -16,20 +16,23 @@
 %% Multiple Options:
 %% [scheme = plain] % for thesis writing of international students
 %% [doublesided] % change to double-sided style, default is single-sided
-%% [printcopy] % doublesided is for EThesis. if printed, need this for a uniform binding width
+%% [printcopy] % if printed, need this for a uniform binding width
 %% [draftversion] % show draft version information, default is no show
-%% [standard options for book class]
+%% [fontset = adobe] % use Adobe font
+%% [standard options for ctex class]
 %%%%% --------------------------------------------------------------------------------
 %%
 %%%%**************************Command Define and Settings*****************************
 %%
-\usepackage[numeric]{commons}% common settings
+\usepackage{commons}% common settings
 %% usage: \usepackage[option1,option2,...,optionN]{commons}
 %% Multiple Options:
+%% [numbered] % default citation style. textual: Jones [1]; parenthetical: [1]
+%% [authoryear] % author year citation style. textual: Jones (1995); parenthetical: (Jones, 1995)
+%% [alpha] % alpha citation style. textual: not available; parenthetical: [Jon95]
 %% [myhdr] % one available header and footer style, will enable fancyhdr
 %% [lscape] % provide landscape layout environment
 %% [geometry] % configure page layout by geometry package
-%% [numeric] % enable numeric citation mode replace the default "APA" style
 %% [list] % enable enhanced list environments, useful for Algorithm and Coding
 %% [color] % enable color package to use color, current package is xcolor
 %% [background] % enable page background, will auto enable color package
@@ -94,17 +97,9 @@
 \bibliography{Myrefs}%
 \intotoc{参考文献}% add a corresponding item to the contents table and bookmark
 %%
-%%% >>> Publications
+%%% >>> Other contents
 %%
-\input{Pub}
-%%
-%%% >>> Resume
-%%
-\input{Resume}
-%%
-%%% >>> Acknowledgements
-%%
-\input{Thanks}
+\input{Backmatter}
 %%
 \end{document}
 %%%%% --------------------------------------------------------------------------------

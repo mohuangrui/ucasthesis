@@ -112,7 +112,6 @@
 \def\@title{\UCAS@value@titlemark}
 \renewcommand\author[1]{\def\UCAS@value@author{#1}}
 \newcommand\advisor[1]{\def\UCAS@value@advisor{#1}}
-\newcommand\advisortitle[1]{\def\UCAS@value@advisortitle{#1}}
 \newcommand\advisorinstitute[1]{\def\UCAS@value@advisorinstitute{#1}}
 \newcommand\degree[1]{\def\UCAS@value@degree{#1}}
 \newcommand\degreetype[1]{\def\UCAS@value@degreetype{#1}}
@@ -141,7 +140,7 @@
     \begin{tabular}{lc}
       \UCAS@label@author & \UCASunderline[299pt]{\UCAS@value@author}
     \\
-      \UCAS@label@advisor & \UCASunderline[299pt]{\UCAS@value@advisor\ \UCAS@value@advisortitle}
+      \UCAS@label@advisor & \UCASunderline[299pt]{\UCAS@value@advisor}
     \\
       & \UCASunderline[299pt]{\UCAS@value@advisorinstitute}
     \\
@@ -184,7 +183,6 @@
 \newcommand\englishtitle[1]{\def\UCAS@value@englishtitle{#1}}
 \newcommand\englishauthor[1]{\def\UCAS@value@englishauthor{#1}}
 \newcommand\englishadvisor[1]{\def\UCAS@value@englishadvisor{#1}}
-\newcommand\englishadvisortitle[1]{\def\UCAS@value@englishadvisortitle{#1}}
 \newcommand\englishdegree[1]{\def\UCAS@value@englishdegree{#1}}
 \newcommand\englishmajor[1]{\def\UCAS@value@englishmajor{#1}}
 \newcommand\englishinstitute[1]{\def\UCAS@value@englishinstitute{#1}}
@@ -236,7 +234,7 @@
     \Large \UCAS@value@englishtitle
      \vskip 5pt
      {\normalfont\zihao{4} \UCAS@value@englishauthor\\
-     Directed by \UCAS@value@englishadvisortitle\ \UCAS@value@englishadvisor}
+     Directed by \UCAS@value@englishadvisor}
      \vskip 25pt
      \UCAS@label@englishabstract
   }}
