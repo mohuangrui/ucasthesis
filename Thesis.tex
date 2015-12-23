@@ -12,24 +12,24 @@
 %%
 %%%%*************************Document Class Declaration*******************************
 %%
-\documentclass{ucasthesis}% thesis template of the Uni of Chinese Academy of Sciences
-%% Multiple Options:
+\documentclass[doublesided]{ucasthesis}% thesis template of UCAS
+%% Multiple optional arguments:
 %% [scheme = plain] % for thesis writing of international students
-%% [doublesided] % change to double-sided style, default is single-sided
-%% [printcopy] % if printed, need this for a uniform binding width
+%% [<doublesided|printcopy>] % single-sided (default), double-sided, or print layout
 %% [draftversion] % show draft version information, default is no show
-%% [fontset = adobe] % use Adobe font
+%% [fontset = <adobe|...>] % specify font set, default is automatic detection
 %% [standard options for ctex class]
 %%%%% --------------------------------------------------------------------------------
 %%
 %%%%**************************Command Define and Settings*****************************
 %%
-\usepackage{commons}% common settings
+\usepackage[myhdr]{commons}% common settings
 %% usage: \usepackage[option1,option2,...,optionN]{commons}
-%% Multiple Options:
-%% [numbered] % default citation style. textual: Jones [1]; parenthetical: [1]
-%% [authoryear] % author year citation style. textual: Jones (1995); parenthetical: (Jones, 1995)
-%% [alpha] % alpha citation style. textual: not available; parenthetical: [Jon95]
+%% Multiple optional arguments:
+%% [<numbered|authoryear|alpha>] % citation and reference style
+%% <numbered>: textual: Jones [1]; parenthetical: [1]. default style
+%% <authoryear>: textual: Jones (1995); parenthetical: (Jones, 1995)
+%% <alpha>: textual: not available; parenthetical: [Jon95]
 %% [myhdr] % one available header and footer style, will enable fancyhdr
 %% [lscape] % provide landscape layout environment
 %% [geometry] % configure page layout by geometry package

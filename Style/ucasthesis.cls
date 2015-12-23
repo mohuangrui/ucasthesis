@@ -127,13 +127,13 @@
   \thispagestyle{empty}
   \begin{center}
     \heiti\zihao{4}
-    \hfill{} {\heiti\zihao{4} \UCAS@label@confidential \UCASunderline[30pt]{\UCAS@value@confidential}}
+    \hfill{} {\UCAS@label@confidential \UCASunderline[30pt]{\songti\zihao{5}\UCAS@value@confidential}}
     \vskip \stretch{3}
       \UCAS@value@schoollogo
     \vskip \stretch{4}
-      {\heiti\zihao{1} \UCAS@value@degree\UCAS@label@thesis}
+      {\zihao{1} \UCAS@value@degree\UCAS@label@thesis}
     \vskip \stretch{4}
-      {\heiti\zihao{3} \UCASunderline{\ \UCAS@value@title\ }}
+      {\zihao{3} \UCASunderline{\ \UCAS@value@title\ }}
     \vskip \stretch{6}
     \def\tabcolsep{1pt}
     \def\arraystretch{1.5}
@@ -195,21 +195,19 @@
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
+    \bfseries\zihao{3}
     \vspace*{20pt}
-      \bf\zihao{3} \UCASunderline{\ \UCAS@value@englishtitle\ }
+    {\UCASunderline{\ \UCAS@value@englishtitle\ }}
     \vskip \stretch{1}
     By \\
-      \bf\zihao{3} \UCAS@value@englishauthor
-    %\vskip \stretch{1}
-      %\normalfont\zihao{4} \UCAS@label@englishadvisor
-    %\vskip 3pt
-      %\normalfont\zihao{4} \UCAS@value@englishadvisor
+    \UCAS@value@englishauthor
     \vskip \stretch{2}
-      \bf\zihao{4} \UCAS@label@englishstatement
+    \bfseries\zihao{4}
+    \UCAS@label@englishstatement
     \vskip 30pt
-      \bf\zihao{4} \UCAS@value@englishinstitute
+    \UCAS@value@englishinstitute
     \vskip 20pt
-      \bf\zihao{4} \UCAS@value@englishdate
+    \UCAS@value@englishdate
   \end{center}
   \clearpage
   \if@twoside
@@ -231,17 +229,17 @@
 %% define engish abstract
 \newenvironment{englishabstract}
 {\chapter[\UCAS@label@englishabstract]{
-    \Large \UCAS@value@englishtitle
+     {\bfseries\zihao{-3} \UCAS@value@englishtitle}
      \vskip 5pt
-     {\normalfont\zihao{4} \UCAS@value@englishauthor\\
+     {\normalfont\zihao{-4} \UCAS@value@englishauthor\\
      Directed by \UCAS@value@englishadvisor}
      \vskip 25pt
-     \UCAS@label@englishabstract
+     {\bfseries\zihao{-3} \UCAS@label@englishabstract}
   }}
   {}
 %% define engish keywords
 \newcommand\englishkeywords[1]{%
-  \vspace{2ex}\noindent{\bf \UCAS@label@englishkeywords} #1}
+  \vspace{2ex}\noindent{\bfseries \UCAS@label@englishkeywords} #1}
 \newenvironment{publications}
   {\chapter{\UCAS@label@publications}}%
   {}
