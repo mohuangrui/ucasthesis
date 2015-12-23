@@ -42,7 +42,7 @@ Thesis.tex文档为主文档，其设计和规划了论文的整体框架，通�
 
 \subsection{Compile.bat}
 
-Compile.bat为编译此模板的Dos脚本，通过双击运行此脚本即可获得编译后的PDF文档，编译生成的文档及临时文件皆位于Tmp文件夹内。在此脚本中可以设定编译器为“pdflatex” or “xelatex” (default，且极力推荐使用xelatex 编译中文及中英文混排的\LaTeX{}文档)。
+Compile.bat为编译此模板的Dos脚本，通过双击运行此脚本即可获得编译后的PDF文档，编译生成的文档及临时文件皆位于Tmp文件夹内。在此脚本中可以设定编译器为“pdflatex” or “xelatex” (default)。
 
 若你倾向于使用WinEdit的编译方式，则请在 "Thesis.tex" 和 "Main\textunderscore Content.tex" 中为所有文件提供完整的搜索路径。 如 
 
@@ -51,6 +51,8 @@ Compile.bat为编译此模板的Dos脚本，通过双击运行此脚本即可获
 应改为 
 
 \verb+\input{./Tex/Appeddix}+。
+
+若不使用Compile.bat且不对文件进行正确索引，则编译过程中会出现无法找到相应文件的错误。
 
 \subsection{Tmp文件夹}
 
@@ -63,18 +65,18 @@ Style文件夹内包含有ucasthesis文档类的定义文件和配置文件，�
 \begin{enumerate}
   \item ucasthesis.cls： 文档类定义文件，论文的最核心的格式即通过它来定义的。
   \item ucasthesis.cfg： 文档类配置文件，通过它设定论文的某些项目的显示内容，如“abstract”显示为“摘要”，“table of content”显示为“目~~~~录”而不是“目录”等（如果愿意，你也可以改过来）。
-  \item commons.sty: 一些常用的文档设定， 如参考文献样式和文献引用样式等。
+  \item commons.sty: 一些常用的文档设定， 如参考文献样式，文献引用样式，页眉页脚设定等。模板为这些功能提供了开关选项，从而只需在“Thesis.tex”中的“\verb+\usepackage[options]{commons}+”中进行启用即可，而无需修改commons.sty本身。
   \item custom.sty： 用户自定义命令的放置位置以及用来实现一些个性化设定，
 \end{enumerate}
 
 \subsection{Tex文件夹}
 
-Tex文件夹内为论文的所有实体内容，正常情况下，这也是你\textbf{使用此模板撰写学文论文时，主要关注和修改的一个位置}，详细分类介绍如下：
+Tex文件夹内为论文的所有实体内容，正常情况下，这也是你\textbf{使用此模板撰写学文论文时，主要关注和修改的一个位置，注意：所有文件都必须采用UTF8编码，否则编译后将出现乱码文本}，详细分类介绍如下：
 
 \begin{itemize}
   \item Frontpage.tex： 为论文封面内容， 及中英文摘要。
   \item Main\textunderscore Content.tex： 对需要出现的Chapter进行索引，开始写论文时，可以只索引当前章节，以便快速编译和查看，当最终所有章节完成后，再对所有章节进行索引即可。
-  \item Chap\textunderscore XXXXX.tex： 为论文主体的各个章节，用户可根据需要添加和撰写，最终需要包含在论文中的章节，须在Main\textunderscore Content.tex中进行索引。
+  \item Chap\textunderscore XXXXX.tex： 为论文主体的各个章节，用户可根据需要添加和撰写，最终需要包含在论文中的章节，须在Main\textunderscore Content.tex中进行索引。你需要将所有源文件保存为 UTF-8 编码
   \item Appendix.tex： 为附录内容
   \item Backmatter.tex： 为发表文章信息，致谢部分等。
 \end{itemize}
