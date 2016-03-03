@@ -309,7 +309,7 @@ macros package]
 %% define different kinds of header and footer for defferent parts
 \fancypagestyle{frontmatterstyle}{% header and footer style for frontmatter
     \fancyhf{}% Clear header/footer
-    \fancyfoot[C]{\thepage}%
+    \fancyfoot[C]{\small \thepage}%
     \renewcommand{\headrulewidth}{0pt}% No header rule
     \renewcommand{\footrulewidth}{0pt}% No footer rule
 }
@@ -318,8 +318,8 @@ macros package]
     %% header configure:
     \fancyhead[RE]{\small \@title}% title name in header, \@title is the default value
     \fancyhead[LO]{\small \leftmark}% chapter name in header
-    \fancyhead[LE,RO]{\small \thepage}% page number in header
-    \renewcommand{\headrulewidth}{0pt}
+    \fancyfoot[C]{\small \thepage}% page number in header
+    \renewcommand{\headrulewidth}{1pt}
     \renewcommand{\footrulewidth}{0pt}
 }
 %% redefine \frontmatter to include the change
@@ -351,7 +351,7 @@ macros package]
     %% textpos: \begin{textblock}{<blockwidth>}[0.5,0.5](<hpos>,<vpos>) text... \end{textblock}
     %% origin of the absolute coordinate is the top-left corner of the page
     %% [0.5,0.5] means reference point of the block is the middle
-    \begin{textblock}{0.1}[0.5,0.5](0.85,0.5){\rotatebox{90}{\thepage}}\end{textblock}% position the page number
+    \begin{textblock}{0.1}[0.5,0.5](0.85,0.5){\rotatebox{90}{\small \thepage}}\end{textblock}% position the page number
     }
     %% set units of <blockwidth>, <hpos>, and <vpos> arguments by corresponding modules 
     \setlength{\TPHorizModule}{8.5in}% set to the width of page
