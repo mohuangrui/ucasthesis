@@ -21,6 +21,10 @@
 \DeclareOption{draftversion}{% draft information reminder
   \UCAS@versioninfotrue%
 }
+\newif\ifUCAS@singlesided \UCAS@singlesidedfalse
+\DeclareOption{singlesided}{% enable single-sided printing
+  \UCAS@singlesidedtrue%
+}
 \newif\ifUCAS@doublesided \UCAS@doublesidedfalse
 \DeclareOption{doublesided}{% enable double-sided printing
   \UCAS@doublesidedtrue%
@@ -63,30 +67,26 @@
 %%
 %%%%******************************* page layout **************************************
 %%
-%% set margins to minimum permitted by thesis regulations:
 %% part one -- horizontal widths
 %% left side width + textwidth + right side width = paperwidth
 %% left side width of [odd, even] page = [odd, even]sidemargin + 1.0in (fixed)
 %% binding side width + textwidth + nonbinding side width = paperwidth
 %% binding side width of [odd, even] page = [left, right] side width
 %% assuming A4 paper (210mm x 297mm) and note margins as above
-\setlength{\textwidth}{156.025mm}% set required text width first
 \ifUCAS@printcopy% if print copy layout enabled
-  \setlength{\oddsidemargin}{3.175mm}% binding side width 0.125in + 1.0in (fixed)
-  \setlength{\evensidemargin}{0mm}% ensure uniform binding side width for two-sided printed copy
+  \setlength{\oddsidemargin}{15mm}% binding side width 15mm + 1.0in (fixed)
+  \setlength{\evensidemargin}{0mm}% ensure uniform binding side width for print
 \else
-  \setlength{\oddsidemargin}{3.175mm}% left side width 0.125in + 1.0in (fixed)
-  \setlength{\evensidemargin}{3.175mm}% ensure uniform left side width for EThesis
+  \setlength{\oddsidemargin}{15mm}% left side width 15mm + 1.0in (fixed)
+  \setlength{\evensidemargin}{15mm}% ensure uniform left side width for EThesis
 \fi
  %% set margin for notes to zero
 \setlength{\marginparwidth}{0pt}% width of margin notes
 \setlength{\marginparsep}{0pt}% width of space between body text and margin notes
 %% part two -- vertical heights
 \setlength{\headheight}{14.5pt}% set a minimum header height
-\raggedbottom
 %% specifies the amount of space between paragraphs.
-%% other reasonable specifications are \bigskipamount and \smallskipamount.
-\setlength{\parskip}{\medskipamount}
+\setlength{\parskip}{0.5ex plus 0.25ex minus 0.25ex}
 %% line spacing
 %\renewcommand{\baselinestretch}{1.3} % this is the default line space setting
 %% default pagestyle is page number at bottom without headers and footers
@@ -127,7 +127,7 @@
   \thispagestyle{empty}
   \begin{center}
     \heiti\zihao{4}
-    \hfill{} {\UCAS@label@confidential \UCASunderline[30pt]{\songti\zihao{5}\UCAS@value@confidential}}
+    \hfill{} {\UCAS@label@confidential \UCASunderline[50pt]{\songti\zihao{5}\UCAS@value@confidential}}
     \vskip \stretch{3}
       \UCAS@value@schoollogo
     \vskip \stretch{4}
@@ -209,6 +209,20 @@
     \vskip 20pt
     \UCAS@value@englishdate
   \end{center}
+  \clearpage
+  \if@twoside
+    \thispagestyle{empty}
+    \cleardoublepage
+  \fi
+}
+%%%%% --------------------------------------------------------------------------------
+%%
+%%%%*********************** make author declaration ***********************************
+%%
+\newcommand\makedeclaration{%
+  \cleardoublepage
+  \thispagestyle{empty}
+  \UCAS@value@statement
   \clearpage
   \if@twoside
     \thispagestyle{empty}
