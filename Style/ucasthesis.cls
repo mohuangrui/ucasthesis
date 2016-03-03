@@ -72,7 +72,7 @@
 %% left side width of [odd, even] page = [odd, even]sidemargin + 1.0in (fixed)
 %% binding side width + textwidth + nonbinding side width = paperwidth
 %% binding side width of [odd, even] page = [left, right] side width
-%% assuming A4 paper (210mm x 297mm) and note margins as above
+%% assuming A4 paper (210mm x 297mm)
 \ifUCAS@printcopy% if print copy layout enabled
   \setlength{\oddsidemargin}{15mm}% binding side width 15mm + 1.0in (fixed)
   \setlength{\evensidemargin}{0mm}% ensure uniform binding side width for print
