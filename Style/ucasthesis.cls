@@ -73,11 +73,12 @@
 %% binding side width + textwidth + nonbinding side width = paperwidth
 %% binding side width of [odd, even] page = [left, right] side width
 %% assuming A4 paper (210mm x 297mm)
+\setlength{\textwidth}{144mm}% set required text width first
 \ifUCAS@printcopy% if print copy layout enabled
-  \setlength{\oddsidemargin}{15mm}% binding side width 15mm + 1.0in (fixed)
-  \setlength{\evensidemargin}{0mm}% ensure uniform binding side width for print
+  \setlength{\oddsidemargin}{15mm}% binding side width
+  \setlength{\evensidemargin}{0mm}% ensure uniform binding side width for printing
 \else
-  \setlength{\oddsidemargin}{15mm}% left side width 15mm + 1.0in (fixed)
+  \setlength{\oddsidemargin}{15mm}% left side width
   \setlength{\evensidemargin}{15mm}% ensure uniform left side width for EThesis
 \fi
  %% set margin for notes to zero
