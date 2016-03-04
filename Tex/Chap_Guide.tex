@@ -44,7 +44,7 @@ Thesis.tex文档为主文档，其设计和规划了论文的整体框架，通�
 
 Compile.bat为编译此模板的Dos脚本，通过双击运行此脚本即可获得编译后的PDF文档，编译生成的文档及临时文件皆位于Tmp文件夹内。在此脚本中可以设定编译器为“pdflatex” or “xelatex” (default)。
 
-若你倾向于使用WinEdit的编译方式，则请在 "Thesis.tex" 和 "Main\textunderscore Content.tex" 中为所有文件提供完整的搜索路径。 如 
+若倾向于使用WinEdit编译，则请在 "Thesis.tex" 和 "Main\textunderscore Content.tex" 中为所有文件提供完整的搜索路径。 如 
 
 \verb+\input{Appendix}+ 
 
@@ -52,7 +52,7 @@ Compile.bat为编译此模板的Dos脚本，通过双击运行此脚本即可获
 
 \verb+\input{./Tex/Appeddix}+。
 
-若不使用Compile.bat且不对文件进行正确索引，则编译过程中会出现无法找到相应文件的错误。
+若不使用Compile.bat且不对文件进行正确索引，则编译会出现无法找到相应文件的错误。
 
 \subsection{Tmp文件夹}
 
@@ -120,7 +120,7 @@ Biblio文件夹内放置参考文献的索引信息文件：Myrefs.bib，此文�
 \begin{figure}[!htbp]
   \centering
   %trim option's parameter order: left bottom right top
-  \includegraphics[trim = 0mm 25mm 0mm 30mm, clip, width=\MyFactor\textwidth]{Y}
+  \includegraphics[trim = 0mm 25mm 0mm 30mm, clip]{Y}
   \caption{Tandem cylinder clip view}
   \label{fig:Y}
 \end{figure}
@@ -219,7 +219,7 @@ parenthetical mode， 输入：
 
 如此，即完成了文献的索引，请查看下本文档的“参考文献”一章，看看是不是就是这么简单呢？是的，就是这么简单！
 
-不同的参考文献样式和文献引用样式可以通过在 "Thesis.tex" 中对 "commons.sty" 设置不同选项实现，如：
+不同的参考文献样式和引用样式可在 "Thesis.tex" 中对 "commons.sty" 设置实现，如：
 
 \verb+\usepackage[numbered]{commons}+ $\%$ default citation style. textual: Jones [1]; parenthetical: [1]
 

@@ -78,8 +78,8 @@
   \setlength{\oddsidemargin}{15mm}% binding side width
   \setlength{\evensidemargin}{0mm}% ensure uniform binding side width for printing
 \else
-  \setlength{\oddsidemargin}{15mm}% left side width
-  \setlength{\evensidemargin}{15mm}% ensure uniform left side width for EThesis
+  \setlength{\oddsidemargin}{7.6mm}% left side width
+  \setlength{\evensidemargin}{7.6mm}% ensure uniform left side width for EThesis
 \fi
  %% set margin for notes to zero
 \setlength{\marginparwidth}{0pt}% width of margin notes
@@ -223,7 +223,28 @@
 \newcommand\makedeclaration{%
   \cleardoublepage
   \thispagestyle{empty}
-  \UCAS@value@statement
+
+  \begin{center}
+      {\heiti\zihao{-3} \UCAS@value@declare@create}
+  \end{center}
+
+  \UCAS@value@declare@creativity\\
+
+  \hfill{} {\UCAS@value@declare@s \UCASunderline[70pt]{ } \ \ \UCAS@value@declare@d \UCASunderline[70pt]{ }}\\
+
+  \vskip 150pt
+
+  \begin{center}
+      {\heiti\zihao{-3} \UCAS@value@declare@right}
+  \end{center}
+
+  \UCAS@value@declare@rights
+
+  {\heiti \UCAS@value@declare@rule}
+
+  \vfill{}
+
+  \hfill{} {\UCAS@value@declare@s \UCASunderline[70pt]{ } \ \ \UCAS@value@declare@t \UCASunderline[70pt]{ } \ \ \UCAS@value@declare@d \UCASunderline[70pt]{ }}
   \clearpage
   \if@twoside
     \thispagestyle{empty}
