@@ -69,6 +69,10 @@ macros package]
 \DeclareOption{table}{% enable a table package for complex tables
     \COMMONS@tabletrue%
 }
+\newif\ifCOMMONS@unit \COMMONS@unitfalse
+\DeclareOption{siunitx}{% enable unit package
+    \COMMONS@unittrue%
+}
 %% end-user parameters, each option is declared by one declare option command
 \DeclareOption*{% handle non-implemented options
     \PackageWarning{commons}{Unknown option '\CurrentOption'}%
@@ -166,6 +170,7 @@ macros package]
     \RequirePackage{geometry}% page layout
     %\RequirePackage{setspace}% line spacing
 \fi
+\RequirePackage{microtype}% improves general appearance of the text
 %%
 %%% >>> Natural Sciences Citations and References
 %%
@@ -214,6 +219,9 @@ macros package]
 %% >>> Math packages
 %%
 \RequirePackage{mathtools,amstext,amsfonts}
+\ifCOMMONS@unit% enable unit package
+    \RequirePackage{siunitx}% typeset numbers and units in an easy way
+\fi
 %%
 %% >>> Tkiz
 %%
