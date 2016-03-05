@@ -14,3 +14,5 @@ LATEX thesis template for The University of Chinese Academy of Sciences 中国�
 宏包的目的是简化学位论文的撰写，模板文档的默认设定是十分规范的，从而论文作者可以将精力集中到论文的内容上，而不需要在版面设置上花费精力。 同时，在编写模板的LaTeX文档代码过程中，作者对各结构和命令进行了十分详细的注解，并提供了整洁一致的代码结构，对文档的仔细阅读可以为初学的您提供一个学习LaTeX的窗口。除此之外，整个模板的架构十分注重通用性，事实上，本模板不仅是中国科学院大学学文论文模板，同时，也是使用LaTeX撰写中英文article或book的通用模板，并为使用者的个性化设定提供了接口和相应的代码。
 
 具体使用细节请见下载附件中的 UCASthesis Documentation “How to Use”。
+
+2016-03-05 Stable Release v1.0
