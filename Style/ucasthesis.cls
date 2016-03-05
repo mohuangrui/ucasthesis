@@ -10,7 +10,7 @@
 %%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{ucasthesis}
-  [2014/10/01 v0.1 ucasthesis
+  [2016/03/05 v1.0 ucasthesis
    document class]
 %%%%% --------------------------------------------------------------------------------
 %%
@@ -69,27 +69,31 @@
 %%
 %% part one -- horizontal widths
 %% left side width + textwidth + right side width = paperwidth
-%% left side width of [odd, even] page = [odd, even]sidemargin + 1.0in (fixed)
+%% left side width of [odd, even] page = [odd, even]sidemargin + 1.0in (fixed) + hoffset
 %% binding side width + textwidth + nonbinding side width = paperwidth
 %% binding side width of [odd, even] page = [left, right] side width
 %% assuming A4 paper (210mm x 297mm)
-\setlength{\textwidth}{144mm}% set required text width first
+\setlength{\textwidth}{150mm}% set required text width first
 \ifUCAS@printcopy% if print copy layout enabled
-  \setlength{\oddsidemargin}{15mm}% binding side width
+  \setlength{\oddsidemargin}{10mm}% binding side width
   \setlength{\evensidemargin}{0mm}% ensure uniform binding side width for printing
 \else
-  \setlength{\oddsidemargin}{7.6mm}% left side width
-  \setlength{\evensidemargin}{7.6mm}% ensure uniform left side width for EThesis
+  \setlength{\oddsidemargin}{5mm}% left side width
+  \setlength{\evensidemargin}{5mm}% ensure uniform left side width for EThesis
 \fi
  %% set margin for notes to zero
 \setlength{\marginparwidth}{0pt}% width of margin notes
 \setlength{\marginparsep}{0pt}% width of space between body text and margin notes
 %% part two -- vertical heights
-\setlength{\headheight}{14.5pt}% set a minimum header height
+%% top height + textheight + bottom height = paperheight
+%% top height = 1.0in (fixed) + voffset + topmargin + headheight + headsep 
+\setlength{\textheight}{240mm}% set required text height first
+\setlength{\voffset}{-15mm}% set a minimum header height
+\setlength{\headheight}{15pt}% set a minimum header height
 %% specifies the amount of space between paragraphs.
 \setlength{\parskip}{0.5ex plus 0.25ex minus 0.25ex}
 %% line spacing
-%\renewcommand{\baselinestretch}{1.3} % this is the default line space setting
+\renewcommand{\baselinestretch}{1.4} % line space setting
 %% default pagestyle is page number at bottom without headers and footers
 \pagestyle{plain}
 %%%%% --------------------------------------------------------------------------------
@@ -128,13 +132,13 @@
   \thispagestyle{empty}
   \begin{center}
     \heiti\zihao{4}
-    \hfill{} {\UCAS@label@confidential \UCASunderline[50pt]{\songti\zihao{5}\UCAS@value@confidential}}
+    \hfill{} {\UCAS@label@confidential \UCASunderline[40pt]{\songti\zihao{5}\UCAS@value@confidential}}
     \vskip \stretch{3}
       \UCAS@value@schoollogo
     \vskip \stretch{4}
-      {\zihao{1} \UCAS@value@degree\UCAS@label@thesis}
+      {\heiti\zihao{1} \UCAS@value@degree\UCAS@label@thesis}
     \vskip \stretch{4}
-      {\zihao{3} \UCASunderline{\ \UCAS@value@title\ }}
+      {\heiti\zihao{3} \UCASunderline{\ \UCAS@value@title\ }}
     \vskip \stretch{6}
     \def\tabcolsep{1pt}
     \def\arraystretch{1.5}
@@ -225,7 +229,7 @@
   \thispagestyle{empty}
 
   \begin{center}
-      {\heiti\zihao{-3} \UCAS@value@declare@create}
+      {\heiti\zihao{3} \UCAS@value@declare@create}
   \end{center}
 
   \UCAS@value@declare@creativity\\
@@ -235,14 +239,12 @@
   \vskip 150pt
 
   \begin{center}
-      {\heiti\zihao{-3} \UCAS@value@declare@right}
+      {\heiti\zihao{3} \UCAS@value@declare@right}
   \end{center}
 
   \UCAS@value@declare@rights
 
-  {\heiti \UCAS@value@declare@rule}
-
-  \vfill{}
+  {\heiti \UCAS@value@declare@rule}\\
 
   \hfill{} {\UCAS@value@declare@s \UCASunderline[70pt]{ } \ \ \UCAS@value@declare@t \UCASunderline[70pt]{ } \ \ \UCAS@value@declare@d \UCASunderline[70pt]{ }}
   \clearpage
@@ -257,38 +259,26 @@
 %%
 %% define chinese abstract
 \newenvironment{abstract}
-  {\chapter{\UCAS@label@abstract}}
+{\chapter[\UCAS@label@abstract]{
+     {\heiti\zihao{3} \UCAS@value@title}
+     \vskip 25pt
+     {\heiti\zihao{-3} \UCAS@label@abstract}
+  }}
   {}
 %% define chinese keywords
 \newcommand\keywords[1]{%
-  \vspace{2ex}\noindent{\heiti \UCAS@label@keywords} #1}
+    \vspace{2ex}\noindent{\heiti\zihao{4} \UCAS@label@keywords} #1}
 %% define engish abstract
 \newenvironment{englishabstract}
 {\chapter[\UCAS@label@englishabstract]{
-     {\bfseries\zihao{-3} \UCAS@value@englishtitle}
-     \vskip 5pt
-     {\normalfont\zihao{-4} \UCAS@value@englishauthor\\
-     Directed by \UCAS@value@englishadvisor}
+     {\bfseries\zihao{3} \UCAS@value@englishtitle}
      \vskip 25pt
      {\bfseries\zihao{-3} \UCAS@label@englishabstract}
   }}
   {}
 %% define engish keywords
 \newcommand\englishkeywords[1]{%
-  \vspace{2ex}\noindent{\bfseries \UCAS@label@englishkeywords} #1}
-\newenvironment{publications}
-  {\chapter{\UCAS@label@publications}}%
-  {}
-\newenvironment{resume}
-  {\chapter{\UCAS@label@resume}}
-  {}
-\renewenvironment{thanks}
-  {\chapter{\UCAS@label@thanks}}
-  {}
-%% nomenclature
-\newenvironment{nomenclature}
-  {\chapter{\UCAS@label@nomenclature}}
-  {\cleardoublepage}
+  \vspace{2ex}\noindent{\bfseries\zihao{4} \UCAS@label@englishkeywords} #1}
 %%%%% --------------------------------------------------------------------------------
 \endinput
 %% End of file `ucasthesis.cls'.
