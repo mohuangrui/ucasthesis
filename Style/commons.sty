@@ -300,7 +300,7 @@ macros package]
 %%% >>> Layout and Margin
 %%
 \ifCOMMONS@geometry% enable geometry to redefine page layout
-    \geometry{left=1.125in,right=1.125in}% reduced margins at each side.
+    \geometry{paper=a4paper,left=25mm,right=24mm,top=45mm,bottom=5mm}% reduced margins at each side.
 \fi
 %%
 %%% >>> Page header and footer Style
@@ -317,8 +317,11 @@ macros package]
 %% define different kinds of header and footer for defferent parts
 \fancypagestyle{frontmatterstyle}{% header and footer style for frontmatter
     \fancyhf{}% Clear header/footer
-    \fancyfoot[C]{\small \thepage}%
-    \renewcommand{\headrulewidth}{0pt}% No header rule
+    \fancyhead[RE]{\small \@title}% title name in header, \@title is the default value
+    \fancyhead[LO]{\small \leftmark}% chapter name in header
+    \fancyhead[LE]{\small \thepage}% page number in header
+    \fancyhead[RO]{\small \thepage}% page number in header
+    \renewcommand{\headrulewidth}{0.5pt}% No header rule
     \renewcommand{\footrulewidth}{0pt}% No footer rule
 }
 \fancypagestyle{mainmatterstyle}{% header and footer style for mainmatter
@@ -326,8 +329,9 @@ macros package]
     %% header configure:
     \fancyhead[RE]{\small \@title}% title name in header, \@title is the default value
     \fancyhead[LO]{\small \leftmark}% chapter name in header
-    \fancyfoot[C]{\small \thepage}% page number in header
-    \renewcommand{\headrulewidth}{1pt}
+    \fancyhead[LE]{\small \thepage}% page number in header
+    \fancyhead[RO]{\small \thepage}% page number in header
+    \renewcommand{\headrulewidth}{0.5pt}
     \renewcommand{\footrulewidth}{0pt}
 }
 %% redefine \frontmatter to include the change
@@ -342,15 +346,15 @@ macros package]
     \mymainmatter
     \pagestyle{mainmatterstyle}
 }
-%% Some LATEX commands, like \chapter, use the \thispagestyle command to automatically switch
+%% Some LaTeX commands, like \chapter, use the \thispagestyle command to automatically switch
 %% to the plain page style, thus ignoring the page style currently in effect.
 %% To customize even such pages you must redefine the plain pagestyle.
 %% redefine plain style:
-%\fancypagestyle{plain}{%
-    %\fancyhf{}% remove everything
-    %\renewcommand{\headrulewidth}{0pt}% remove lines as well
-    %\renewcommand{\footrulewidth}{0pt}% remove lines as well
-%}
+\fancypagestyle{plain}{%
+    \fancyhf{}% remove everything
+    \renewcommand{\headrulewidth}{0pt}% remove lines as well
+    \renewcommand{\footrulewidth}{0pt}% remove lines as well
+}
 \fi
 \ifCOMMONS@lscape% configure landscape environment
 \fancypagestyle{lscape}{% landscape layout style
