@@ -94,6 +94,7 @@
 \setlength{\parskip}{0.5ex plus 0.25ex minus 0.25ex}
 %% line spacing
 \renewcommand{\baselinestretch}{1.4} % line space setting
+\raggedbottom % prevent adding vertical white space in strange places
 %% default pagestyle is page number at bottom without headers and footers
 \pagestyle{plain}
 %%%%% --------------------------------------------------------------------------------
@@ -102,7 +103,7 @@
 %%
 %% underline
 \def\UCAS@underline[#1]#2{%
-  \CJKunderline{\hbox to #1{\hfill#2\hfill}}}
+    {\color{black} \CJKunderline{\hbox to #1{\hfill#2\hfill}}}}
 \def\UCASunderline{\@ifnextchar[\UCAS@underline\CJKunderline}
 %%%%% --------------------------------------------------------------------------------
 %%
@@ -141,19 +142,20 @@
       {\heiti\zihao{3} \UCASunderline{\ \UCAS@value@title\ }}
     \vskip \stretch{6}
     \def\tabcolsep{1pt}
-    \def\arraystretch{1.5}
+    \def\arraystretch{1.4}
+    %\hskip -15pt
     \begin{tabular}{lc}
-      \UCAS@label@author & \UCASunderline[299pt]{\UCAS@value@author}
+      \UCAS@label@author & \UCASunderline[295pt]{\UCAS@value@author}
     \\
-      \UCAS@label@advisor & \UCASunderline[299pt]{\UCAS@value@advisor}
+      \UCAS@label@advisor & \UCASunderline[295pt]{\UCAS@value@advisor}
     \\
-      & \UCASunderline[299pt]{\UCAS@value@advisorinstitute}
+      & \UCASunderline[295pt]{\UCAS@value@advisorinstitute}
     \\
-      \UCAS@label@degree & \UCASunderline[299pt]{\UCAS@value@degreetype\UCAS@value@degree}
+      \UCAS@label@degree & \UCASunderline[295pt]{\UCAS@value@degreetype\UCAS@value@degree}
     \\
-      \UCAS@label@major &  \UCASunderline[299pt]{\UCAS@value@major}
+      \UCAS@label@major &  \UCASunderline[295pt]{\UCAS@value@major}
     \\
-      \UCAS@label@institute & \UCASunderline[299pt]{\UCAS@value@institute}
+      \UCAS@label@institute & \UCASunderline[295pt]{\UCAS@value@institute}
     \end{tabular}
     \vskip \stretch{6}
     \UCAS@value@chinesedate
