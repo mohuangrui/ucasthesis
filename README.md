@@ -1,4 +1,4 @@
-ucasthesis 
+ucasthesis stable release
 ==========
 
 (模板下载请点击当前页面右边的：Download ZIP)
@@ -15,4 +15,4 @@ LATEX thesis template for The University of Chinese Academy of Sciences 中国�
 
 具体使用细节请见下载附件中的 UCASthesis Documentation “How to Use”。
 
-2016-03-05 Stable Release v1.0
+2016-03-10 Stable Release v1.0
