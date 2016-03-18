@@ -17,8 +17,10 @@ LATEX thesis template for The University of Chinese Academy of Sciences 中国�
 
 Change log:
 ==========
-2016-03-19 Stable Release v1.0
 
-2016-03-18 Update custom.sty and Thesis.tex to ensure correct page reference for "List of Figures". "List of Tables", and "Reference". 
+2016-03-19 Stable Release v1.0
+==========
+
+2016-03-18 Update custom.sty and Thesis.tex to ensure correct page reference for "List of Figures", "List of Tables", and "Reference". 
 
 2016-03-15 Fixed numerous problems and issues with updating almost all the files.
