@@ -35,8 +35,9 @@ macros package]
 %%
 %% define a macro for adding chapter/section title to toc and bookmark.
 \newcommand{\intotoc}[2][chapter]{%
-    %\markboth{\MakeUppercase{#2}}{}%set the leftmark with upcase
-    \markboth{{#2}}{}%set the leftmark
+    \cleardoublepage% ensure correct page reference
+    %\markboth{\MakeUppercase{#2}}{}% set the leftmark with upcase
+    \markboth{{#2}}{}% set the leftmark
     \phantomsection% use for adobe bookmark.
     \addcontentsline{toc}{#1}{#2}% add content #2 to toc as #1
 }
