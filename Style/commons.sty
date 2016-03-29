@@ -205,7 +205,7 @@ macros package]
 %%
 \ifCOMMONS@color% enable color package to use color
     %\RequirePackage{color}%
-    \RequirePackage[dvipsnames]{xcolor}%
+    \RequirePackage[usenames,dvipsnames,table]{xcolor}%
 \fi
 %%
 %%% >>> Tables
@@ -218,7 +218,7 @@ macros package]
 %%
 %% >>> Math packages
 %%
-\RequirePackage{mathtools,amstext,amsfonts}
+\RequirePackage{mathtools,amstext,amsfonts,amssymb}
 \ifCOMMONS@unit% enable unit package
     \RequirePackage{siunitx}% typeset numbers and units in an easy way
 \fi
