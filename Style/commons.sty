@@ -69,9 +69,9 @@ macros package]
 \DeclareOption{table}{% enable a table package for complex tables
     \COMMONS@tabletrue%
 }
-\newif\ifCOMMONS@unit \COMMONS@unitfalse
-\DeclareOption{unit}{% enable unit package
-    \COMMONS@unittrue%
+\newif\ifCOMMONS@math \COMMONS@mathfalse
+\DeclareOption{math}{% enable math package
+    \COMMONS@mathtrue%
 }
 %% end-user parameters, each option is declared by one declare option command
 \DeclareOption*{% handle non-implemented options
@@ -218,8 +218,8 @@ macros package]
 %%
 %% >>> Math packages
 %%
-\RequirePackage{mathtools,amstext,amsfonts,amssymb}
-\ifCOMMONS@unit% enable unit package
+\ifCOMMONS@math% enable some extra math package
+    \RequirePackage{mathtools,amstext,amsfonts,amssymb}
     \RequirePackage{siunitx}% typeset numbers and units in an easy way
 \fi
 %%
@@ -293,7 +293,7 @@ macros package]
 %%% >>> Page background:
 %%
 \ifCOMMONS@background% enable page background
-    \definecolor{backgroundcolor}{RGB}{224,224,224}
+    \definecolor{backgroundcolor}{rgb}{0.85,0.85,0.85}
     \pagecolor{backgroundcolor} % page background color, require a color package.
 \fi
 %%
