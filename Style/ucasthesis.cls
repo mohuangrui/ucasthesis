@@ -53,7 +53,7 @@
 %%%%***************************** package infomation *********************************
 %%
 %% color packages
-\RequirePackage{color}
+\RequirePackage[usenames]{xcolor}%
 %% math packages
 \RequirePackage{amsmath,amssymb,amstext}
 %%%%% --------------------------------------------------------------------------------
