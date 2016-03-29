@@ -52,6 +52,8 @@
 %%
 %%%%***************************** package infomation *********************************
 %%
+%% color packages
+\RequirePackage[usenames,dvipsnames,table]{xcolor}
 %% math packages
 \RequirePackage{amsmath,amssymb,amstext}
 %%%%% --------------------------------------------------------------------------------
@@ -106,8 +108,9 @@
     \thispagestyle{empty}%
 \hbox{}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}
 %% underline
+\renewcommand{\CJKunderlinecolor}{\color{black}}
 \def\UCAS@underline[#1]#2{%
-    {\color{black} \CJKunderline{\hbox to #1{\hfill#2\hfill}}}}
+    \CJKunderline{\hbox to #1{\hfill#2\hfill}}}
 \def\UCASunderline{\@ifnextchar[\UCAS@underline\CJKunderline}
 %%%%% --------------------------------------------------------------------------------
 %%
