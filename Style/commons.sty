@@ -281,14 +281,19 @@ macros package]
 %%
 %% >>> Extensions and Directories for graphics
 %%
+%% Declare graphic extensions for automatic selection when including graphics.
+%% By avoiding supplying graphic extensions in \includegraphics command,
+%% the source file can be more general and adaptive.
 \ifxetex % running xelatex in PDF mode
-    \DeclareGraphicsExtensions{.pdf,.png,.jpg,.gif,.bmp}% available graphic extensions
+    \DeclareGraphicsExtensions{.pdf,.eps,.ps,.tif,.jpg,.png,.bmp,.gif}%
 \else
     \ifpdf % running pdfTeX in PDF mode
-        \DeclareGraphicsExtensions{.pdf,.png,.jpg,.jpeg,.PNG,.JPG,.JPEG}%
+        \DeclareGraphicsExtensions{.pdf,.jpg,.jpeg,.png}%
+        %% To support .eps, .tif for pdfTex, recommend using epstopdf converter
+        %% on the command line only, rather than embedding into source files.
     \fi
 \fi
-%\graphicspath{{./Img/}}% search path for figures, no need if use scripts to compile
+\graphicspath{{./Img/}}% search path for figures, no need if use scripts to compile
 %%
 %%% >>> Page background:
 %%
