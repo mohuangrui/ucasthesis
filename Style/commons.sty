@@ -1,6 +1,6 @@
 %%%%% --------------------------------------------------------------------------------
 %%
-%%%%***************************** version information ********************************
+%%%%***************************** Version Information ********************************
 %%
 %% this is the "commons.sty" package used for configure document styles
 %% Copyright (C) 2014-2018 Huangrui Mo <huangrui.mo@gmail.com> 
@@ -15,7 +15,7 @@
 macros package]
 %%%%% --------------------------------------------------------------------------------
 %%
-%%%%********************************Declare Options***********************************
+%%%%******************************* Declare Options **********************************
 %%
 \newif\ifCOMMONS@myhdr \COMMONS@myhdrfalse
 \DeclareOption{myhdr}{% user defined header and footer style
@@ -81,7 +81,7 @@ macros package]
 \ProcessOptions\relax
 %%%%% --------------------------------------------------------------------------------
 %%
-%%%%********************************Required Packages*********************************
+%%%%******************************* Required Packages ********************************
 %%
 %% Language Setting
 \RequirePackage{ifpdf,ifxetex}
@@ -89,7 +89,7 @@ macros package]
 \ifxetex % running xelatex in PDF mode
 %%%%% --------------------------------------------------------------------------------
 %%
-%%%%***********************************xelatex****************************************
+%%%%********************************** Xelatex ***************************************
 %%
 %%% >>> System Font Environment
 %%
@@ -115,7 +115,7 @@ macros package]
 \ifpdf % running pdfTeX in PDF mode
 %%%%% --------------------------------------------------------------------------------
 %%
-%%%%*********************************pdflatex*****************************************
+%%%%******************************** Pdflatex ****************************************
 %%
 %%% >>>  Input encoding and the font encoding
 %%
@@ -128,23 +128,16 @@ macros package]
 \RequirePackage[utf8]{inputenc}% make sure your document is saved using the UTF-8 encoding.
 %\RequirePackage[latin1]{inputenc}% latin encoding
 %% Font encoding.
-\RequirePackage[T1]{fontenc}
+\RequirePackage[T1]{fontenc}% enable modern font encoding
 %% Font package.
-\RequirePackage{mathptmx}
+\RequirePackage{newtxtext,newtxmath}
 %% Options:
-%% Need \RequirePackage[T1]{fontenc}:
-%% - \RequirePackage{lmodern}, modern font.
-%% - \RequirePackage{concrete}, text: Concrete, math: Concrete italic + Euler VM symbols.
-%% - \RequirePackage{concmath}, text: Concrete, math: Concrete italic + Concmath symbols.
-%% No need \RequirePackage[T1]{fontenc}:
-%% Text: Helvetica, Math: Helvetica italic + Euler VM symbols:
-%% - \RequirePackage{eulervm} + \RequirePackage[scaled]{helvet}
-%% Text: Palatino, Math: Palatino italic + Euler VM symbols:
-%% - \RequirePackage{palatino} or {mathpazo} + \RequirePackage{eulervm}
-%% Text + Math: Times, not a good font for screen presentation:
-%% - \RequirePackage{mathptmx}
-%% Text: Bradhley Hand writing, Math: mathpazo symbols:
-%% - \RequirePackage{mathpazo} % Mathpazo symbols + \renewcommand{\rmdefault}{ibh} % Bradhley Hand.
+%% Text + Math: Adobe Times Roman (Recommended)
+%% - \RequirePackage{newtxtext,newtxmath}
+%% Text + Math: Palatino
+%% - \RequirePackage{palatino}
+%% Text + Math: Adobe Times Roman
+%% - \RequirePackage{mathptmx,newtxmath}
 \fi
 \fi
 %%
@@ -220,7 +213,6 @@ macros package]
 %%
 \ifCOMMONS@math% enable some extra math package
     \RequirePackage{mathtools,amstext,amsfonts,amssymb}
-    \RequirePackage{siunitx}% typeset numbers and units in an easy way
 \fi
 %%
 %% >>> Tkiz
@@ -277,7 +269,7 @@ macros package]
 %% other packages but prior to other settings.
 %%%%% --------------------------------------------------------------------------------
 %%
-%%%%*****************************Configuration Command********************************
+%%%%**************************** Configuration Command *******************************
 %%
 %% >>> Extensions and Directories for graphics
 %%
@@ -293,7 +285,7 @@ macros package]
         %% on the command line only, rather than embedding into source files.
     \fi
 \fi
-\graphicspath{{./Img/}}% search path for figures, no need if use scripts to compile
+\graphicspath{{Img/}}% search path for figures
 %%
 %%% >>> Page background:
 %%

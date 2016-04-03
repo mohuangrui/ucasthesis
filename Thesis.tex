@@ -10,9 +10,9 @@
 %% (at your option) any later version.
 %%%%% --------------------------------------------------------------------------------
 %%
-%%%%*************************Document Class Declaration*******************************
+%%%%************************ Document Class Declaration ******************************
 %%
-\documentclass[doublesided]{ucasthesis}% thesis template of UCAS
+\documentclass[doublesided]{Style/ucasthesis}% thesis template of UCAS
 %% Multiple optional arguments:
 %% [scheme = plain] % for thesis writing of international students
 %% [<singlesided|doublesided|printcopy>] % single-sided, double-sided, or print layout
@@ -21,9 +21,9 @@
 %% [standard options for ctex class]
 %%%%% --------------------------------------------------------------------------------
 %%
-%%%%**************************Command Define and Settings*****************************
+%%%%************************* Command Define and Settings ****************************
 %%
-\usepackage[myhdr]{commons}% common settings
+\usepackage[myhdr]{Style/commons}% common settings
 %% usage: \usepackage[option1,option2,...,optionN]{commons}
 %% Multiple optional arguments:
 %% [<numbered|authoryear|alpha>] % citation and reference style
@@ -38,24 +38,24 @@
 %% [background] % enable page background, will auto enable color package
 %% [tikz] % enable tikz for complex diagrams, will auto enbale color package
 %% [table] % enable a table package for complex tables, default is ctable
-%% [math] % enable some extra math packages for typesetting numbers and units
-\usepackage{custom}% user defined commands
+%% [math] % enable some extra math packages
+\usepackage{Style/custom}% user defined commands
 %%%%% --------------------------------------------------------------------------------
 %%
-%%%%*********************************Content******************************************
+%%%%******************************** Content *****************************************
 %%
 \begin{document}
 %%
 %%%%% --------------------------------------------------------------------------------
 %%
-%%%%*********************************Frontmatter**************************************
+%%%%******************************** Frontmatter *************************************
 %%
 %% Frontmatter of Title page, Table of contents, Preface chapter.
 \frontmatter
 %%
 %% >>> Frontpages
 %%
-\input{Frontpages}
+\input{Tex/Frontpages}
 %%
 %%% >>> List of Content
 %%
@@ -67,28 +67,28 @@
 %%
 %% >>> prematter
 %%
-\input{Prematter}% list of symbols, preface of books
+\input{Tex/Prematter}% list of symbols, preface of books
 %%
 %%%%% --------------------------------------------------------------------------------
 %%
-%%%%*********************************Mainmatter***************************************
+%%%%******************************** Mainmatter **************************************
 %%
 %% Main topics.
 \mainmatter
 %%
 %%% >>> Main Contents
 %%
-\input{Main_Content}%
+\input{Tex/Main_Content}%
 %%%%% --------------------------------------------------------------------------------
 %%
-%%%%*********************************Appendix*****************************************
+%%%%******************************** Appendix ****************************************
 %%
 %% Some subordinate chapters.
 \appendix%
-\input{Appendix}%
+\input{Tex/Appendix}%
 %%%%% --------------------------------------------------------------------------------
 %%
-%%%%********************************Backmatter****************************************
+%%%%******************************* Backmatter ***************************************
 %%
 %% Matters of Bibliography, Glossary, Index.
 \backmatter
@@ -96,11 +96,11 @@
 %%% >>> Bibliography
 %%
 \intotoc{参考文献}% add a corresponding item to the contents table and bookmark
-\bibliography{Myrefs}%
+\bibliography{Biblio/Myrefs}%
 %%
 %%% >>> Other contents
 %%
-\input{Backmatter}
+\input{Tex/Backmatter}
 %%
 \end{document}
 %%%%% --------------------------------------------------------------------------------

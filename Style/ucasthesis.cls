@@ -1,6 +1,6 @@
 %%%%% --------------------------------------------------------------------------------
 %%
-%%%%***************************** version information ********************************
+%%%%***************************** Version Information ********************************
 %%
 %% Copyright (C) 2014-2018 Huangrui Mo <huangrui.mo@gmail.com> 
 %% This is free software: you can redistribute it and/or modify it
@@ -10,7 +10,7 @@
 %%
 \NeedsTeXFormat{LaTeX2e}[1995/12/01]
 \ProvidesClass{ucasthesis}
-  [2016/03/05 v1.0 ucasthesis
+  [2014/10/01 v1.0 ucasthesis
    document class]
 %%%%% --------------------------------------------------------------------------------
 %%
@@ -41,7 +41,7 @@
 \ProcessOptions\relax
 %%%%% --------------------------------------------------------------------------------
 %%
-%%%%*************************** loadclass infomation *********************************
+%%%%*************************** Loadclass Infomation *********************************
 %%
 \ifUCAS@doublesided% if double-sided printing enabled
   \LoadClass[UTF8,a4paper,twoside,fntef,12pt]{ctexbook}
@@ -50,7 +50,7 @@
 \fi
 %%%%% --------------------------------------------------------------------------------
 %%
-%%%%***************************** package infomation *********************************
+%%%%***************************** Package Infomation *********************************
 %%
 %% color packages
 \RequirePackage[usenames,dvipsnames,table]{xcolor}%
@@ -58,16 +58,16 @@
 \RequirePackage{amsmath,amssymb,amstext}
 %%%%% --------------------------------------------------------------------------------
 %%
-%%%%************************ load class configuretion ********************************
+%%%%************************ Load Class Configuretion ********************************
 %%
 \AtEndOfPackage{%class cfg loaded after package, makes commands at preamble take effect
   \makeatletter
-  \InputIfFileExists{ucasthesis.cfg}{}{}
+  \InputIfFileExists{Style/ucasthesis.cfg}{}{}
   \makeatother
 }
 %%%%% --------------------------------------------------------------------------------
 %%
-%%%%******************************* page layout **************************************
+%%%%******************************* Page Layout **************************************
 %%
 %% part one -- horizontal widths
 %% left side width + textwidth + right side width = paperwidth
@@ -101,7 +101,7 @@
 \pagestyle{plain}
 %%%%% --------------------------------------------------------------------------------
 %%
-%%%%********************* some style control commands ********************************
+%%%%********************* Some Style Control Commands ********************************
 %%
 %% redefine cleardoublepage to empty pages
 \def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
@@ -114,7 +114,7 @@
 \def\UCASunderline{\@ifnextchar[\UCAS@underline\CJKunderline}
 %%%%% --------------------------------------------------------------------------------
 %%
-%%%%********************** chinese titlepage items ***********************************
+%%%%********************** Chinese Titlepage Items ***********************************
 %%
 \newcommand\confidential[1]{\def\UCAS@value@confidential{#1}}
 \newcommand\schoollogo[2]{\def\UCAS@value@schoollogo{\includegraphics[#1]{#2}}}
@@ -133,7 +133,7 @@
 \newcommand\chinesedate[1]{\def\UCAS@value@chinesedate{#1}}
 %%%%% --------------------------------------------------------------------------------
 %%
-%%%%**************************** make chinese titlepage ******************************
+%%%%**************************** Make Chinese Titlepage ******************************
 %%
 \renewcommand\maketitle{%
   \cleardoublepage
@@ -192,7 +192,7 @@
 }
 %%%%% --------------------------------------------------------------------------------
 %%
-%%%%*********************** english titlepage items **********************************
+%%%%*********************** English Titlepage Items **********************************
 %%
 \newcommand\englishtitle[1]{\def\UCAS@value@englishtitle{#1}}
 \newcommand\englishauthor[1]{\def\UCAS@value@englishauthor{#1}}
@@ -203,7 +203,7 @@
 \newcommand\englishdate[1]{\def\UCAS@value@englishdate{#1}}
 %%%%% --------------------------------------------------------------------------------
 %%
-%%%%*********************** make english titlepage ***********************************
+%%%%*********************** Make English Titlepage ***********************************
 %%
 \newcommand\makeenglishtitle{%
   \cleardoublepage
@@ -231,7 +231,7 @@
 }
 %%%%% --------------------------------------------------------------------------------
 %%
-%%%%*********************** make author declaration ***********************************
+%%%%*********************** Make Author Declaration ***********************************
 %%
 \newcommand\makedeclaration{%
   \cleardoublepage
@@ -264,7 +264,7 @@
 }
 %%%%% --------------------------------------------------------------------------------
 %%
-%%%%****************************** new environments **********************************
+%%%%****************************** New Environments **********************************
 %%
 %% define chinese abstract
 \newenvironment{abstract}

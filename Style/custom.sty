@@ -1,6 +1,6 @@
 %%%%% --------------------------------------------------------------------------------
 %%
-%%%%***************************** version information ********************************
+%%%%***************************** Version Information ********************************
 %%
 %% Copyright (C) 2014-2018 Huangrui Mo <huangrui.mo@gmail.com> 
 %% This is free software: you can redistribute it and/or modify it
@@ -14,7 +14,7 @@
 macros package]
 %%%%% --------------------------------------------------------------------------------
 %%
-%%%%********************************Declare Options***********************************
+%%%%******************************* Declare Options **********************************
 %%
 %% end-user parameters, each option is declared by one declare option command
 \DeclareOption*{% handle non-implemented options
@@ -24,12 +24,53 @@ macros package]
 \ProcessOptions\relax
 %%%%% --------------------------------------------------------------------------------
 %%
-%%%%***************************User Defined Command***********************************
+%%%%************************** User Defined Command **********************************
+%%
+%%% >>> Notice
+%% 
+%% -- \newcommand: defines a new command, makes an error if already defined
+%% -- \renewcommand: redefines a predefined command, makes an error if not yet defined
+%% -- \providecommand: defines a new command, if already defined, keep old definition
+%% -- \def: define a command whether new or predefined, equivalent to
+%%          \providecommand{name}{}%
+%%          \renewcommand{name}[number of arguments][default value]{definition}
+%%
+%%% >>> Math functions
+%%
+%% International standard layout rules (from isomath package)
+%% -- The overall rule is that symbols representing math quantities or variables should
+%%    be italicised, symbols representing units or labels are unitalicised (roman).
+%% -- Symbols for vectors and matrices are bold italic, symbols for tensors are 
+%%    sans-serif bold italic.
+%% -- The above rules apply equally to letter symbols from the Greek and 
+%%    the Latin alphabet.
+%% -- More information may be found in <<The LaTeX Mathematics Companion>>
+%% However, math typefaces vary from field to field. To keep consistent typography
+%% and easy adaption, it it always best to create a corresponding command for 
+%% variables in each math category.  
+%\providecommand{\Scalar}[1]{#1}% Scalar is the normal math typeset, italic
+\providecommand{\Vector}[1]{\boldsymbol{#1}}% General vectors in bold italic
+%\renewcommand{\vec}[1]{\Vector{#1}}% redefine predefined vector if needed
+\providecommand{\unitVector}[1]{\boldsymbol{\mathbf{#1}}}% Unit vectors in bold roman
+\providecommand{\Tensor}[1]{\boldsymbol{\mathsf{#1}}}% Tensor in sans-serif bold italic
+\providecommand{\unitTensor}[1]{\boldsymbol{{\mathsf{#1}}}}% Identity tensor in sans-serif bold
+\providecommand{\Matrix}[1]{\boldsymbol{\mathbf{#1}}}% Matrix in bold roman
+\providecommand{\unitMatrix}[1]{\boldsymbol{\mathbf{#1}}}% Identity matrix in bold roman
+\providecommand{\Unit}[1]{\,\mathrm{#1}}% Units in roman
+\providecommand{\Const}[1]{\mathrm{#1}}% Math constants, functions, operators
+\providecommand{\Set}[1]{\mathbb{#1}}% Special sets (e.g. real numbers) in blackboard bold
+\providecommand{\Div}[1]{\operatorname{div}\left(#1\right)}% divergence math operator
 %%
 %%% >>> Graphic Length Factor
 %%
-\newcommand*{\MyFactor}{0.6}% for single figure
-\newcommand*{\MySubFactor}{0.4}% for subfigure
+\newcommand*{\MyFactor}{0.8}% for single figure
+\newcommand*{\MySubFactor}{0.48}% for subfigure
+%%
+%%% >>> Nomenclature item
+%%
+\newcommand{\nomenclatureitem}[3][ ]{%
+    \noindent\makebox[0.15\textwidth][l]{#2}{{#3}\hfill{#1}}\par
+}
 %%
 %%% >>> Add content link to the table of content and bookmark
 %%
@@ -41,15 +82,9 @@ macros package]
     \phantomsection% use for adobe bookmark.
     \addcontentsline{toc}{#1}{#2}% add content #2 to toc as #1
 }
-%%
-%%% >>> Define a command for Nomenclature
-%%
-\newcommand{\nomenclatureitem}[3][ ]{
-    \noindent\makebox[0.15\textwidth][l]{#2}{{#3}\hfill{#1}}\par
-}
 %%%%% --------------------------------------------------------------------------------
 %%
-%%%%*****************************User Configuration***********************************
+%%%%**************************** User Configuration **********************************
 %%
 %%
 %%% >>> Space and Skip
