@@ -5,7 +5,7 @@
 @rem ******************************************
 @rem ********* Set target compiler ************
 @rem ******************************************
-set CompilerOrder="1"
+set CompilerOrder="2"
 @rem ******************************************
 if %CompilerOrder% == "1" (
 set CompileName="pdflatex"
