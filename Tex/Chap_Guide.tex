@@ -33,6 +33,10 @@ ucasthesis~模板不仅只是提供了相应的类文件，同时也提供了包
 
   中的“Enable ANSI Format...”选项。
   \item 若编译过程中出现无法找到某些“package”的错误，如无法找到“xcolor.sty”，程序一般可以自动下载和安装相应的文件，否则，请进入~\LaTeX{}软件的“package manager”下载，安装，并更新你的\LaTeX{}包裹库。
+  \item 字体控制。如果对字体控制有较高需求，请选择"xelatex"编译引擎，并在"commons.sty"中设置需要的字体，如启用"Times New Roman" 作为英文字体，在"commons.sty"的"105"行附近:
+
+      \verb+\setmainfont{Times New Roman}+
+
 \end{enumerate}
 
 \section{各文档及目录简介}
