@@ -36,7 +36,8 @@ ucasthesis~模板不仅只是提供了相应的类文件，同时也提供了包
   \item 字体控制。如果对字体控制有较高需求，请选择"xelatex"编译引擎，并在"commons.sty"中设置需要的字体，如启用"Times New Roman" 作为英文字体，在"commons.sty"的"105"行附近:
 
       \verb+\setmainfont{Times New Roman}+
-
+  \item 页面页脚的设定在"commons.sty"的底部。
+  \item "custom.sty"中定义了一系列数学命令。使用它们可以提高数学代码对不同样式的适应性。
 \end{enumerate}
 
 \section{各文档及目录简介}
@@ -87,6 +88,37 @@ Biblio文件夹内放置参考文献的索引信息文件：Myrefs.bib，此文�
 \section{数学公式、图片插入、参考文献等功能}
 
 \subsection{数学公式}
+
+Navier-Stokes equations:
+\begin{equation} \label{eq:ns}
+    \begin{cases}
+        \frac{\partial \rho}{\partial t} + \nabla\cdot(\rho\Vector{V}) = 0 \\
+        \frac{\partial (\rho\Vector{V})}{\partial t} + \nabla\cdot(\rho\Vector{V}\Vector{V}) = \nabla\cdot\Tensor{\sigma}\\
+        \frac{\partial (\rho E)}{\partial t} + \nabla\cdot(\rho E\Vector{V}) = \nabla\cdot(k\nabla T) + \nabla\cdot(\Tensor{\sigma}\cdot\Vector{V})
+    \end{cases}
+\end{equation}
+
+\begin{table}[!htbp]
+    \centering
+    %\footnotesize
+    %\setlength{\tabcolsep}{4pt}
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{lcccccccc}
+        \hline\hline
+        %\multicolumn{2}{c}{Item} \\
+        %\cline{1-2}
+        Row 1 & $1$ & $2$ & $4$ & $5$ & $6$ & $7$ & $8$\\
+        \hline
+        Row 2 & $1$ & $2$ & $4$ & $5$ & $6$ & $7$ & $8$\\
+        \hline
+        Row 3 & $1$ & $2$ & $4$ & $5$ & $6$ & $7$ & $8$\\
+        \hline
+        Row 4 & $1$ & $2$ & $4$ & $5$ & $6$ & $7$ & $8$\\
+        \hline\hline
+    \end{tabular}
+    \caption{This is sample table}
+    \label{tab:sample}
+\end{table}
 
 常用数学公式的命令代码模板，请见如下WiKi：\url{https://en.wikibooks.org/wiki/LaTeX/Mathematics}
 

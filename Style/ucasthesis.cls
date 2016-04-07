@@ -139,14 +139,14 @@
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
-    \heiti\zihao{4}
-    \hfill{} {\UCAS@label@confidential \UCASunderline[40pt]{\songti\zihao{5}\UCAS@value@confidential}}
+    \zihao{4}\heiti
+    \hfill{} {\UCAS@label@confidential \UCASunderline[40pt]{\zihao{5}\songti\UCAS@value@confidential}}
     \vskip \stretch{3}
       \UCAS@value@schoollogo
     \vskip \stretch{4}
-      {\heiti\zihao{1} \UCAS@value@degree\UCAS@label@thesis}
+      {\zihao{1}\heiti \UCAS@value@degree\UCAS@label@thesis}
     \vskip \stretch{4}
-      {\heiti\zihao{3} \UCASunderline{\ \UCAS@value@title\ }}
+      {\zihao{3} \UCASunderline{\ \UCAS@value@title\ }}
     \vskip \stretch{6}
     \def\tabcolsep{1pt}
     \def\arraystretch{1.4}
@@ -209,14 +209,14 @@
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
-    \bfseries\zihao{3}
+    \zihao{3}\bfseries
     \vspace*{20pt}
     {\UCASunderline{\ \UCAS@value@englishtitle\ }}
     \vskip \stretch{1}
     By \\
     \UCAS@value@englishauthor
     \vskip \stretch{2}
-    \bfseries\zihao{4}
+    \zihao{4}\bfseries
     \UCAS@label@englishstatement
     \vskip 30pt
     \UCAS@value@englishinstitute
@@ -238,7 +238,7 @@
   \thispagestyle{empty}
 
   \begin{center}
-      {\heiti\zihao{3} \UCAS@value@declare@create}
+      {\zihao{3}\heiti \UCAS@value@declare@create}
   \end{center}
 
   \UCAS@value@declare@creativity\\
@@ -248,7 +248,7 @@
   \vskip 150pt
 
   \begin{center}
-      {\heiti\zihao{3} \UCAS@value@declare@right}
+      {\zihao{3}\heiti \UCAS@value@declare@right}
   \end{center}
 
   \UCAS@value@declare@rights
@@ -269,25 +269,25 @@
 %% define chinese abstract
 \newenvironment{abstract}
 {\chapter[\UCAS@label@abstract]{
-     {\heiti\zihao{3} \UCAS@value@title}
+     {\zihao{3}\heiti \UCAS@value@title}
      \vskip 25pt
-     {\heiti\zihao{-3} \UCAS@label@abstract}
+     {\zihao{-3}\heiti \UCAS@label@abstract}
   }}
   {}
 %% define chinese keywords
 \newcommand\keywords[1]{%
-    \vspace{2ex}\noindent{\heiti\zihao{4} \UCAS@label@keywords} #1}
+    \vspace{2ex}\noindent{\zihao{4}\heiti \UCAS@label@keywords} #1}
 %% define engish abstract
 \newenvironment{englishabstract}
 {\chapter[\UCAS@label@englishabstract]{
-     {\bfseries\zihao{3} \UCAS@value@englishtitle}
+     {\zihao{3}\bfseries \UCAS@value@englishtitle}
      \vskip 25pt
-     {\bfseries\zihao{-3} \UCAS@label@englishabstract}
+     {\zihao{-3}\bfseries \UCAS@label@englishabstract}
   }}
   {}
 %% define engish keywords
 \newcommand\englishkeywords[1]{%
-  \vspace{2ex}\noindent{\bfseries\zihao{4} \UCAS@label@englishkeywords} #1}
+  \vspace{2ex}\noindent{\zihao{4}\bfseries \UCAS@label@englishkeywords} #1}
 %%%%% --------------------------------------------------------------------------------
 \endinput
 %% End of file `ucasthesis.cls'.
