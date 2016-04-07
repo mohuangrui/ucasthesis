@@ -139,7 +139,7 @@
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
-    \zihao{4}\heiti
+    \zihao{4}\bfseries\songti
     \hfill{} {\UCAS@label@confidential \UCASunderline[40pt]{\zihao{5}\songti\UCAS@value@confidential}}
     \vskip \stretch{3}
       \UCAS@value@schoollogo
