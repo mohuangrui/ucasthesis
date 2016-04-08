@@ -308,14 +308,19 @@ macros package]
 %% configure fancy style
 \ifCOMMONS@myhdr% user defined header and footer style
 \pagestyle{fancy}
-%% reset style of chapter and section mark to actual name without converting it to uppercase
-    \renewcommand{\chaptermark}[1]{\markboth{#1}{}}%
-    \renewcommand{\sectionmark}[1]{\markright{#1}{}}%
-%% define different kinds of header and footer for defferent parts
+    \providecommand{\chaptermark}{}% compatibility for non book classes
+    \providecommand{\thechapter}{}% compatibility for non book classes
+    \providecommand{\CTEXthechapter}{\thechapter.}% compatibility for non ctex classes
+    %% reset style of chapter and section mark to actual name
+    \renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{#1}}{}}%
+    \renewcommand{\sectionmark}[1]{\markright{\MakeUppercase{#1}}{}}%
+    %% deactive uppercase effect
+    \renewcommand{\MakeUppercase}[1]{#1}
+%% define different kinds of header and footer for different parts
 \fancypagestyle{frontmatterstyle}{% header and footer style for frontmatter
     \fancyhf{}% Clear header/footer
-    \fancyhead[RE]{\small \@title}% title name in header, \@title is the default value
-    \fancyhead[LO]{\small \leftmark}% chapter name in header
+    \fancyhead[RE]{\small \@title}% name in header
+    \fancyhead[LO]{\small \leftmark}% name in header
     \fancyhead[LE]{\small \thepage}% page number in header
     \fancyhead[RO]{\small \thepage}% page number in header
     \renewcommand{\headrulewidth}{1pt}% No header rule
@@ -324,24 +329,42 @@ macros package]
 \fancypagestyle{mainmatterstyle}{% header and footer style for mainmatter
     \fancyhf{}% clear all header and footer fields
     %% header configure:
-    \fancyhead[RE]{\small \@title}% title name in header, \@title is the default value
-    \fancyhead[LO]{\small \leftmark}% chapter name in header
+    \fancyhead[RE]{\small \@title}% name in header
+    \fancyhead[LO]{\small \CTEXthechapter\ \leftmark}% name in header
     \fancyhead[LE]{\small \thepage}% page number in header
     \fancyhead[RO]{\small \thepage}% page number in header
     \renewcommand{\headrulewidth}{1pt}%
     \renewcommand{\footrulewidth}{0pt}%
 }
+\fancypagestyle{backmatterstyle}{% header and footer style for backmatter
+    \fancyhf{}% Clear header/footer
+    \fancyhead[RE]{\small \@title}% name in header
+    \fancyhead[LO]{\small \leftmark}% name in header
+    \fancyhead[LE]{\small \thepage}% page number in header
+    \fancyhead[RO]{\small \thepage}% page number in header
+    \renewcommand{\headrulewidth}{1pt}% No header rule
+    \renewcommand{\footrulewidth}{0pt}% No footer rule
+}
 %% redefine \frontmatter to include the change
+\providecommand{\frontmatter}{}% compatibility for non book classes
 \let\myfrontmatter\frontmatter
 \renewcommand{\frontmatter}{%
     \myfrontmatter%
     \pagestyle{frontmatterstyle}%
 }
 %% redefine \mainmatter to include the change
+\providecommand{\mainmatter}{}% compatibility for non book classes
 \let\mymainmatter\mainmatter
 \renewcommand{\mainmatter}{%
     \mymainmatter%
     \pagestyle{mainmatterstyle}%
+}
+%% redefine \backmatter to include the change
+\providecommand{\backmatter}{}% compatibility for non book classes
+\let\mybackmatter\backmatter
+\renewcommand{\backmatter}{%
+    \mybackmatter%
+    \pagestyle{backmatterstyle}%
 }
 %% Some LaTeX commands, like \chapter, use the \thispagestyle command to automatically switch
 %% to the plain page style, thus ignoring the page style currently in effect.

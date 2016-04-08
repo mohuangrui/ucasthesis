@@ -32,11 +32,37 @@ ucasthesis~模板不仅只是提供了相应的类文件，同时也提供了包
   “options --》 Preferences --》 Unicode”
 
   中的“Enable ANSI Format...”选项。
-  \item 若编译过程中出现无法找到某些“package”的错误，如无法找到“xcolor.sty”，程序一般可以自动下载和安装相应的文件，否则，请进入~\LaTeX{}软件的“package manager”下载，安装，并更新你的\LaTeX{}包裹库。
-  \item 字体控制。如果对字体控制有较高需求，请选择"xelatex"编译引擎，并在"commons.sty"中设置需要的字体，如启用"Times New Roman" 作为英文字体，在"commons.sty"的"105"行附近:
+  \item 若编译过程中出现无法找到某些“package”的错误，如无法找到“xcolor.sty”，程序一般可以自动下载和安装相应的文件，否则，请进入~\LaTeX{}软件的“package manager”下载，安装，并更新你的\LaTeX{}宏包库。
+  \item 字体控制。如果对字体控制有较高需求，请选择"xelatex"编译引擎，并在"commons.sty"中设置需要的字体，如启用"Times New Roman" 作为英文字体，在"commons.sty"的"105"行附近设置:
 
       \verb+\setmainfont{Times New Roman}+
-  \item 页面页脚的设定在"commons.sty"的底部。
+  \item 在某些情况下拷贝pdf文档内容到word时存在乱码。
+      解决方式是选择安装adobe相应的字体库，请在公共网站（如百度云盘：\url{http://pan.baidu.com/share/home?uk=3188136325&view=share#category/type=0}）搜索并下载如下四种中文字体文件：
+      \begin{enumerate}
+          \item AdobeFangsongStd-Regular.otf （adobe 仿宋）
+          \item AdobeHeitiStd-Regular.otf（adobe 黑体）
+          \item AdobeKaitiStd-Regular.otf（adobe 楷体）
+          \item AdobeSongStd-Light.otf（adobe 宋体）
+      \end{enumerate}
+      下载字体文件后，双击安装相应字体。
+      
+      在"Thesis.tex"中设置启用adobe的字体:
+
+      \verb+\documentclass[doublesided,fontset=adobe]{Style/ucasthesis}%+
+
+      如果~\LaTeX{}软件版本比较老旧，如Linux用户，ctex宏包没有更新，设置启用adobe的字体则为:
+
+      \verb+\documentclass[doublesided,adobefonts]{Style/ucasthesis}%+
+     
+     最后推荐选择"xelatex"编译引擎编译。
+
+     因为模版的设定考虑兼顾不同操作系统(Windows, Linux, Mac OS)并兼顾pdflatex和xelatex，为了模版的健壮性，上述方案并未作为原始设定。
+  \item 页眉页脚的设定在"commons.sty"的底部。如果需要在页眉页脚中添加章节字样，请使用
+      \begin{enumerate}
+          \item \verb+\CTEXthechapter+  显示: 第X章
+          \item \verb+\CTEXthesection+  显示: 第X节
+      \end{enumerate}
+      参见ctex宏包用户文档\url{http://ctan.mirror.rafal.ca/language/chinese/ctex/ctex.pdf}
   \item "custom.sty"中定义了一系列数学命令。使用它们可以提高数学代码对不同样式的适应性。
 \end{enumerate}
 

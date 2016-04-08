@@ -59,7 +59,13 @@ macros package]
 \providecommand{\Unit}[1]{\,\mathrm{#1}}% Units in roman
 \providecommand{\Const}[1]{\mathrm{#1}}% Math constants, functions, operators
 \providecommand{\Set}[1]{\mathbb{#1}}% Special sets (e.g. real numbers) in blackboard bold
-\providecommand{\Div}[1]{\operatorname{div}\left(#1\right)}% divergence math operator
+\providecommand{\Div}{\operatorname{div}}% divergence operator
+\providecommand{\Order}{\operatorname{O}}% order operator
+\providecommand{\Trace}{\operatorname{tr}}% trace operator
+\providecommand{\Loptr}{\operatorname{\mathcal{L}}}% spatial operator
+\providecommand{\LLoptr}{\operatorname{\mathcal{LL}}}% spatial operator
+\providecommand{\Diag}{\operatorname{diag}}% diagonal
+\providecommand{\Def}{\operatorname{def}}% define
 %%
 %%% >>> Graphic Length Factor
 %%
@@ -77,8 +83,7 @@ macros package]
 %% define a macro for adding chapter/section title to toc and bookmark.
 \newcommand{\intotoc}[2][chapter]{%
     \cleardoublepage% ensure correct page reference
-    %\markboth{\MakeUppercase{#2}}{}% set the leftmark with upcase
-    \markboth{{#2}}{}% set the leftmark
+    \markboth{\MakeUppercase{#2}}{}% set the leftmark
     \phantomsection% use for adobe bookmark.
     \addcontentsline{toc}{#1}{#2}% add content #2 to toc as #1
 }
