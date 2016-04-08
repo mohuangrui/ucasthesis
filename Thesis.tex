@@ -12,7 +12,7 @@
 %%
 %%%%************************ Document Class Declaration ******************************
 %%
-\documentclass[doublesided]{Style/ucasthesis}% thesis template of UCAS
+\documentclass[doublesided,adobefonts]{Style/ucasthesis}% thesis template of UCAS
 %% Multiple optional arguments:
 %% [scheme = plain] % for thesis writing of international students
 %% [<singlesided|doublesided|printcopy>] % single-sided, double-sided, or print layout
@@ -59,11 +59,11 @@
 %%
 %%% >>> List of Content
 %%
-\intotoc{目\quad 录}% add a corresponding item to the contents table and bookmark
+\intotoc{\contentsname}% add a corresponding item to the contents table and bookmark
 \tableofcontents% contents catalog
-\intotoc{表格列表}% add a corresponding item to the contents table and bookmark
+\intotoc{\listfigurename}% add a corresponding item to the contents table and bookmark
 \listoftables% tables catalog
-\intotoc{图形列表}% add a corresponding item to the contents table and bookmark
+\intotoc{\listtablename}% add a corresponding item to the contents table and bookmark
 \listoffigures% figures catalog
 %%
 %% >>> prematter
@@ -85,6 +85,7 @@
 %%%%******************************** Appendix ****************************************
 %%
 %% Some subordinate chapters.
+\cleardoublepage
 \appendix%
 \input{Tex/Appendix}%
 %%%%% --------------------------------------------------------------------------------
@@ -96,7 +97,7 @@
 %%
 %%% >>> Bibliography
 %%
-\intotoc{参考文献}% add a corresponding item to the contents table and bookmark
+\intotoc{\bibname}% add a corresponding item to the contents table and bookmark
 \bibliography{Biblio/Myrefs}%
 %%
 %%% >>> Other contents
