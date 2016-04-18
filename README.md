@@ -18,8 +18,10 @@ LATEX thesis template for The University of Chinese Academy of Sciences 中国�
 Change log:
 ==========
 
-2016-04-14 Stable Release v1.0
+2016-04-18 Stable Release v1.0
 ==========
+
+2016-04-18 Improve the user guide.
 
 2016-04-13 Many aspects of formatting and content have been improved.
 
