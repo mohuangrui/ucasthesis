@@ -71,6 +71,12 @@ ucasthesis模板不仅只是提供了相应的类文件，同时也提供了包�
       "\verb+C:\Program Files\MiKTeX 2.9\miktex\bin\x64+"
 
        找到并运行"updmap.exe"。
+   \item 模版在设计之初就尽可能地考虑了适应性。“致谢”，“简历及攻读学位期间发表的学术论文与科研成果”
+       等几乎所有条目都是通过最为通用的
+       
+       "\verb+\chapter{item name}+"  and "\verb+\section*{item name}+"
+
+       来显式实现的 (请仔细观察下"Frontpage.tex, Prematter.tex, Backmatter.tex")，从而你可以随意添加，放置，和修改他们，如同一般章节。对于图表目录名称则可在"ucasthesis.cfg"中进行修改。
 \end{enumerate}
 
 \section{各文档及目录简介}
