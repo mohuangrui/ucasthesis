@@ -172,11 +172,13 @@ macros package]
 \ifCOMMONS@numbered% enable numbered citation style
     \RequirePackage[square,comma,numbers,sort&compress]{natbib}% square bracket
     %\RequirePackage[square,comma,super,sort&compress]{natbib}% superscripted square bracket
-    \bibliographystyle{elsarticle-num-names}% numbered scheme
+    %\bibliographystyle{elsarticle-num-names}% numbered scheme
+    \bibliographystyle{Biblio/gbt-7714-2015-numerical}% numbered scheme
 \fi
 \ifCOMMONS@authoryear% enable author year citation style
     \RequirePackage{natbib}% author year citation mode is the default
-    \bibliographystyle{elsarticle-harv}% author year scheme
+    %\bibliographystyle{elsarticle-harv}% author year scheme
+    \bibliographystyle{Biblio/gbt-7714-2015-author-year}% numbered scheme
 \fi
 \ifCOMMONS@alpha% enable alpha citation style
     \RequirePackage[square,comma,numbers]{natbib}% square bracket
