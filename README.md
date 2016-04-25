@@ -18,8 +18,10 @@ LATEX thesis template for The University of Chinese Academy of Sciences 中国�
 Change log:
 ==========
 
-2016-04-20 Stable Release v1.0
+2016-04-25 Stable Release v1.0
 ==========
+
+2016-04-25 Use the pdf version of UCAS logo from "xiaoyao9933/UCASthesis". Use the GBT bibliography style from "ustctug/gbt-7714-2015".
 
 2016-04-19 Correct the sequence of "List of Figures" and "List of Tables".
 

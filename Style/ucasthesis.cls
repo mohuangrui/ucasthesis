@@ -140,7 +140,7 @@
   \thispagestyle{empty}
   \begin{center}
     \zihao{4}\bfseries\songti
-    \hfill{} {\UCAS@label@confidential \UCASunderline[40pt]{\zihao{5}\songti\UCAS@value@confidential}}
+    \hfill{} {\UCAS@label@confidential \UCASunderline[50pt]{\zihao{5}\songti\UCAS@value@confidential}}
     \vskip \stretch{3}
       \UCAS@value@schoollogo
     \vskip \stretch{4}
