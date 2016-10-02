@@ -21,6 +21,8 @@ Change log:
 2016-05-28 Stable Release v1.0
 ==========
 
+2016-10-02 Add 中国科学院大学开题报告LaTeX 模板.
+
 2016-05-28 Reduce the space before chapter title.
 
 2016-05-24 Add dotted line for chapers in the table of contents.
