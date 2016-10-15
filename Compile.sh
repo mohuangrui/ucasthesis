@@ -63,7 +63,7 @@ $CompileName -output-directory=$Tmp $File_Name || exit
 #* *************************************************************************
 System_Name=`uname`
 if [[ $System_Name == "Linux" ]]; then
-    PDFviewer="gnome-open"
+    PDFviewer="xdg-open"
 elif [[ $System_Name == "Darwin" ]]; then
     PDFviewer="open"
 else
