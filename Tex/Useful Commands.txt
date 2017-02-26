@@ -6,7 +6,7 @@
 
 \begin{figure}[!htbp]
   \centering
-  \includegraphics[width=\MyFactor\textwidth]{}
+  \includegraphics[width=0.45\textwidth]{}
   \caption{}
   \label{fig:}
 \end{figure}
@@ -16,7 +16,7 @@
 \begin{figure}[!htbp]
   \centering
   %trim option's parameter order: left bottom right top
-  \includegraphics[trim = 0mm 25mm 0mm 30mm, clip, width=\MyFactor\textwidth]{}
+  \includegraphics[trim = 0mm 25mm 0mm 30mm, clip, width=0.45\textwidth]{}
   \caption{}
   \label{fig:}
 \end{figure}
@@ -25,7 +25,7 @@
 %% note the use of \par at the end of the footnote-sized material is necessary
 
 \medskip % induce some separation between caption and explanatory material
-\begin{minipage}{\MyFactor\textwidth} % choose width suitably
+\begin{minipage}{0.45\textwidth} % choose width suitably
 {\footnotesize \par}
 \end{minipage}
 
@@ -33,13 +33,13 @@
 
 \begin{figure}[!htbp]
   \centering
-  \begin{subfigure}[b]{\MySubFactor\textwidth}
+  \begin{subfigure}[b]{0.45\textwidth}
     \includegraphics[width=\textwidth]{}
     \caption{}
     \label{fig:}
   \end{subfigure}%
   ~%add desired spacing
-  \begin{subfigure}[b]{\MySubFactor\textwidth}
+  \begin{subfigure}[b]{0.45\textwidth}
     \includegraphics[width=\textwidth]{}
     \caption{}
     \label{fig:}
@@ -47,21 +47,6 @@
   \caption{}
   \label{fig:}
 \end{figure}
-
-%% tables do not float
-
-\begin{center}
-  \footnotesize
-  \begin{tabular}{lcccc}
-    \hline\hline
-    %%\multicolumn{2}{c}{Item} \\
-    %%\cline{1-2}
-    items \\
-    \hline
-    datas
-    \hline\hline
-  \end{tabular}
-\end{center}
 
 %% float table
 

@@ -77,6 +77,9 @@ ucasthesis模板不仅只是提供了相应的类文件，同时也提供了包�
        "\verb+\chapter{item name}+"  and "\verb+\section*{item name}+"
 
        来显式实现的 (请仔细观察下"Frontpage.tex, Prematter.tex, Backmatter.tex")，从而你可以随意添加，放置，和修改他们，如同一般章节。对于图表目录名称则可在"ucasthesis.cfg"中进行修改。
+    \item 将subsection显示到目录当中: 在 "custom.sty", 修改
+        
+        \verb|\setcounter{tocdepth}{2}% the depth for the Table of Contents.|
 \end{enumerate}
 
 \section{各文档及目录简介}
@@ -118,7 +121,7 @@ Tex文件夹内为论文的所有实体内容，正常情况下，这也是你\t
 
 \subsection{Img文件夹}
 
-Img文件夹用于放置论文中所需要的图类文件，支持格式有：.jpg, .png, .pdf。其中，ucas.jpg为国科大校徽。
+Img文件夹用于放置论文中所需要的图类文件，支持格式有：.jpg, .png, .pdf。其中，ucas.pdf为国科大校徽。
 
 \subsection{Biblio文件夹}
 
@@ -169,24 +172,24 @@ Navier-Stokes equations:
 \begin{verbatim}
 \begin{figure}[!htbp]
   \centering
-  \includegraphics[width=\MyFactor\textwidth]{ITC_Q_Criteria}
+  \includegraphics[width=0.45\textwidth]{ITC_Q_Criteria}
   \caption{Q判据等值面图}
   \label{fig:ITC_Q_Criteria}
 \end{figure}
 \end{verbatim}
 \begin{figure}[!htbp]
   \centering
-  \includegraphics[width=\MyFactor\textwidth]{ITC_Q_Criteria}
+  \includegraphics[width=0.45\textwidth]{ITC_Q_Criteria}
   \caption{Q判据等值面图}
   \label{fig:ITC_Q_Criteria}
 \end{figure}
 
-如果插图的上下空白区域过大，希望减少插入图片后的留白，以图片“Y”为例（图\ref{fig:Y}），可以使用如下代码模板：
+如果插图的空白区域过大，希望减少插入图片后的留白，以图片“Y”为例（图\ref{fig:Y}），可以使用如下代码模板：
 \begin{verbatim}
 \begin{figure}[!htbp]
   \centering
   %trim option's parameter order: left bottom right top
-  \includegraphics[trim = 0mm 25mm 0mm 30mm, clip]{Y}
+  \includegraphics[trim = 30mm 0mm 30mm 0mm, clip, width=0.45\textwidth]{Y}
   \caption{Tandem cylinder clip view}
   \label{fig:Y}
 \end{figure}
@@ -194,33 +197,33 @@ Navier-Stokes equations:
 \begin{figure}[!htbp]
   \centering
   %trim option's parameter order: left bottom right top
-  \includegraphics[trim = 3mm 25mm 3mm 30mm, clip, width=\MyFactor\textwidth]{Y}
-  \caption{Tandem cylinder clip view}
+  \includegraphics[trim = 30mm 0mm 30mm 0mm, clip, width=0.45\textwidth]{Y}
+  \caption{Shock diffraction.}
   \label{fig:Y}
 \end{figure}
 
-多图的插入如图\ref{fig:HC_OASPL}，其代码如下，其中，\verb|\MyFactor|和\verb|\MySubFactor|是在“custom.sty”中定义的两个小数，用于全局控制插入图片的宽度，用户可以适当调整其数值，或者直接在命令调用时，用需要的小数值替代它们就行。
+多图的插入如图\ref{fig:HC_OASPL}，其代码如下。
 \begin{verbatim}
 \begin{figure}[!htbp]
   \centering
-  \begin{subfigure}[b]{\MySubFactor\textwidth}
+  \begin{subfigure}[b]{0.45\textwidth}
     \includegraphics[width=\textwidth]{HC_OASPL_A}
     \caption{}
     \label{fig:HC_OASPL_A}
   \end{subfigure}%
   ~%add desired spacing
-  \begin{subfigure}[b]{\MySubFactor\textwidth}
+  \begin{subfigure}[b]{0.45\textwidth}
     \includegraphics[width=\textwidth]{HC_OASPL_B}
     \caption{}
     \label{fig:HC_OASPL_B}
   \end{subfigure}
-  \begin{subfigure}[b]{\MySubFactor\textwidth}
+  \begin{subfigure}[b]{0.45\textwidth}
     \includegraphics[width=\textwidth]{HC_OASPL_C}
     \caption{}
     \label{fig:HC_OASPL_C}
   \end{subfigure}%
   ~%add desired spacing
-  \begin{subfigure}[b]{\MySubFactor\textwidth}
+  \begin{subfigure}[b]{0.45\textwidth}
     \includegraphics[width=\textwidth]{HC_OASPL_D}
     \caption{}
     \label{fig:HC_OASPL_D}
@@ -231,24 +234,24 @@ Navier-Stokes equations:
 \end{verbatim}
 \begin{figure}[!htbp]
   \centering
-  \begin{subfigure}[b]{\MySubFactor\textwidth}
+  \begin{subfigure}[b]{0.45\textwidth}
     \includegraphics[width=\textwidth]{HC_OASPL_A}
     \caption{}
     \label{fig:HC_OASPL_A}
   \end{subfigure}%
   ~%add desired spacing
-  \begin{subfigure}[b]{\MySubFactor\textwidth}
+  \begin{subfigure}[b]{0.45\textwidth}
     \includegraphics[width=\textwidth]{HC_OASPL_B}
     \caption{}
     \label{fig:HC_OASPL_B}
   \end{subfigure}
-  \begin{subfigure}[b]{\MySubFactor\textwidth}
+  \begin{subfigure}[b]{0.45\textwidth}
     \includegraphics[width=\textwidth]{HC_OASPL_C}
     \caption{}
     \label{fig:HC_OASPL_C}
   \end{subfigure}%
   ~%add desired spacing
-  \begin{subfigure}[b]{\MySubFactor\textwidth}
+  \begin{subfigure}[b]{0.45\textwidth}
     \includegraphics[width=\textwidth]{HC_OASPL_D}
     \caption{}
     \label{fig:HC_OASPL_D}

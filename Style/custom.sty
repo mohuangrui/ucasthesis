@@ -64,16 +64,14 @@ macros package]
 \providecommand{\Trace}{\operatorname{tr}}% trace operator
 \providecommand{\Diag}{\operatorname{diag}}% diagonal
 \providecommand{\Def}{\operatorname{def}}% define
-\providecommand{\Max}{\operatorname{max}}% maximum
-\providecommand{\Min}{\operatorname{min}}% minimum
 \providecommand{\Loptr}{\operatorname{\mathcal{L}}}% spatial operator
 \providecommand{\Toptr}{\operatorname{\mathcal{LL}}}% temporal operator
 \providecommand{\Soptr}{\operatorname{\mathcal{S}}}% solution operator
 %%
 %%% >>> Graphic Length Factor
 %%
-\newcommand*{\MyFactor}{0.8}% for single figure
-\newcommand*{\MySubFactor}{0.48}% for subfigure
+\newcommand*{\MyFactor}{0.6}% for single figure
+\newcommand*{\MySubFactor}{0.45}% for subfigure
 %%
 %%% >>> Nomenclature item
 %%
@@ -99,15 +97,17 @@ macros package]
 %%
 %% Set line space in whole document by \linespread:
 %\linespread{1.3}% 1.3 for "one and a half" line spacing, and 1.6 for "double" line spacing
-%% skip distance for paragraphs
+%% Skip distance for paragraphs
 %\setlength{\parskip}{0.5ex plus 0.25ex minus 0.25ex}% vertical space before a paragraph.
+%% Set distance between bibliographic entries
+\setlength{\bibsep}{0.0pt plus 0.3ex}
 %%
 %%% >>> Toc Style
 %%
-\setcounter{tocdepth}{1}% specifies what depth to take the Table of Contents to.
+\setcounter{tocdepth}{1}% the depth for the Table of Contents.
 \setcounter{secnumdepth}{3}% the depth for section numbering occurs, default is 2(subsub).
 %%
-%%% >>> Grouping Figure/Equation Numbering by Section, Numberwithin.
+%%% >>> Figure/Equation Numbering
 %%
 %% For long documents the numbering can become cumbersome as the numbers
 %% reach into double and triple digits. To reset the counters at the
