@@ -213,7 +213,7 @@
     \vspace*{20pt}
     {\UCASunderline{\ \UCAS@value@englishtitle\ }}
     \vskip \stretch{1}
-    By \\
+    by \\
     \UCAS@value@englishauthor
     \vskip \stretch{2}
     \zihao{4}\bfseries

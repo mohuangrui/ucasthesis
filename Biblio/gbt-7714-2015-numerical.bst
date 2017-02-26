@@ -59,7 +59,8 @@ ENTRY
   { lang }
   { label extra.label sort.label short.list }
 
-INTEGERS { output.state before.all mid.sentence after.sentence after.block }
+INTEGERS { output.state before.all mid.sentence after.sentence after.block after.slash }
+
 INTEGERS { lang.zh lang.ja lang.en lang.ru lang.default }
 
 FUNCTION {init.state.consts}
@@ -67,6 +68,7 @@ FUNCTION {init.state.consts}
   #1 'mid.sentence :=
   #2 'after.sentence :=
   #3 'after.block :=
+  #4 'after.slash :=
   #4 'lang.zh :=
   #5 'lang.ja :=
   #1 'lang.en :=
@@ -92,6 +94,18 @@ FUNCTION {debug.int}
   top$
 }
 
+FUNCTION {punct.colon}
+{ ": "
+}
+
+FUNCTION {punct.slash}
+{ "//"
+}
+
+FUNCTION {punct.space}
+{ " "
+}
+
 FUNCTION {output.nonnull}
 { 's :=
   output.state mid.sentence =
@@ -103,7 +117,11 @@ FUNCTION {output.nonnull}
         }
         { output.state before.all =
             'write$
-            { add.period$ " " * write$ }
+            { output.state after.slash =
+                { punct.slash * write$ }
+                { add.period$ " " * write$ }
+              if$
+            }
           if$
         }
       if$
@@ -146,18 +164,6 @@ FUNCTION {output.after}
   if$
 }
 
-FUNCTION {punct.colon}
-{ ": "
-}
-
-FUNCTION {punct.slash}
-{ "//"
-}
-
-FUNCTION {punct.space}
-{ " "
-}
-
 FUNCTION {output.check}
 { 't :=
   duplicate$ empty$
@@ -175,7 +181,11 @@ FUNCTION {fin.entry}
 FUNCTION {new.block}
 { output.state before.all =
     'skip$
-    { after.block 'output.state := }
+    { output.state after.slash =
+        'skip$
+        { after.block 'output.state := }
+      if$
+    }
   if$
 }
 
@@ -184,9 +194,20 @@ FUNCTION {new.sentence}
     'skip$
     { output.state before.all =
         'skip$
-        { after.sentence 'output.state := }
+        { output.state after.slash =
+            'skip$
+            { after.sentence 'output.state := }
+          if$
+        }
       if$
     }
+  if$
+}
+
+FUNCTION {new.slash}
+{ output.state before.all =
+    'skip$
+    { after.slash 'output.state := }
   if$
 }
 
@@ -280,7 +301,9 @@ FUNCTION {format.names}
   s num.names$ 'numnames :=
   numnames 'namesleft :=
     { namesleft #0 > nameptr #4 < and }
-    { s nameptr "{vv~}{ll}{ f{ }}{ jj}" format.name$ 't :=
+    { s nameptr "{vv~}{ll}{ f{ }}" format.name$ "u" change.case$
+      s nameptr "{, jj}" format.name$ *
+      't :=
       nameptr #1 >
         { namesleft #1 >
             { ", " * t * }
@@ -765,45 +788,16 @@ FUNCTION {format.eid}
   if$
 }
 
-FUNCTION {format.vol.num.pages}
-{ volume field.or.null
-  number empty$
-    'skip$
-    { "\penalty0 (" number * ")" * *
-      volume empty$
-        { "there's a number but no volume in " cite$ * warning$ }
-        'skip$
-      if$
-    }
-  if$
-  pages empty$
-    'skip$
-    { duplicate$ empty$
-        { pop$ format.pages }
-        { ":\penalty0 " * pages n.dashify * }
-      if$
-    }
-  if$
-}
 
-FUNCTION {format.vol.num.eid}
-{ volume field.or.null
+FUNCTION {format.year.vol.num}
+{ format.date field.or.null
+  volume empty$
+    'skip$
+    { ", " volume * * }
+  if$
   number empty$
     'skip$
-    { "\penalty0 (" number * ")" * *
-      volume empty$
-        { "there's a number but no volume in " cite$ * warning$ }
-        'skip$
-      if$
-    }
-  if$
-  eid empty$
-    'skip$
-    { duplicate$ empty$
-        { pop$ format.eid }
-        { ":\penalty0 " * eid * }
-      if$
-    }
+    { " (" number * ")" * * }
   if$
 }
 
@@ -961,8 +955,8 @@ FUNCTION {article}
     { "M" format.mark "" output.after
       new.block
       format.translators output
-      new.block
-      format.editors punct.slash output.after
+      new.slash
+      format.editors output
       new.block
       booktitle "booktitle" output.check
       new.block
@@ -979,8 +973,8 @@ FUNCTION {article}
       new.block
       journal "journal" output.check
       new.block
-      format.date "year" output.check
-      format.vol.num.pages output
+      format.year.vol.num output
+      format.pages punct.colon output.after
     }
   if$
   format.citedate "" output.after
@@ -1103,12 +1097,11 @@ FUNCTION {inproceedings}
   "C" format.mark "" output.after
   new.block
   format.translators output
-  new.block
+  new.slash
   editor empty$
     { organization }
     { format.editors }
-  if$ punct.slash output.after
-  new.block
+  if$ output
   booktitle "booktitle" output.check
   new.block
   format.bvolume punct.colon output.after
@@ -1226,8 +1219,8 @@ FUNCTION {newspaper}
   new.block
   journal "journal" output.check
   new.block
-  format.date "year" output.check
-  format.vol.num.pages output
+  format.year.vol.num output
+  format.pages punct.colon output.after
   format.citedate "" output.after
   format.url output
   format.doi output
@@ -1506,7 +1499,7 @@ FUNCTION {format.lab.names}
 { 's :=
   s #1 "{vv~}{ll}" format.name$
   s num.names$ #1 >
-    { ", " * format.et.al * }
+    { "~" * format.et.al * }
     'skip$
   if$
 }

@@ -21,6 +21,8 @@ Change log:
 2016-05-28 Stable Release v1.0
 ==========
 
+2017-02-25 Update the GBT bibliography style from "zepinglee/gbt-7714-2015".
+
 2016-10-02 Add 中国科学院大学开题报告LaTeX 模板 at https://github.com/mohuangrui/ucasproposal.
 
 2016-05-28 Reduce the space before chapter title.
