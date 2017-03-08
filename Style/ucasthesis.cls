@@ -198,6 +198,7 @@
 \newcommand\englishauthor[1]{\def\UCAS@value@englishauthor{#1}}
 \newcommand\englishadvisor[1]{\def\UCAS@value@englishadvisor{#1}}
 \newcommand\englishdegree[1]{\def\UCAS@value@englishdegree{#1}}
+\newcommand\englishthesistype[1]{\def\UCAS@value@englishthesistype{#1}}
 \newcommand\englishmajor[1]{\def\UCAS@value@englishmajor{#1}}
 \newcommand\englishinstitute[1]{\def\UCAS@value@englishinstitute{#1}}
 \newcommand\englishdate[1]{\def\UCAS@value@englishdate{#1}}
