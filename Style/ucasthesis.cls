@@ -2,7 +2,7 @@
 %%
 %%%%***************************** Version Information ********************************
 %%
-%% Copyright (C) Huangrui Mo <huangrui.mo@gmail.com> 
+%% Copyright (C) Huangrui Mo <huangrui.mo@gmail.com>
 %% This is free software: you can redistribute it and/or modify it
 %% under the terms of the GNU General Public License as published by
 %% the Free Software Foundation, either version 3 of the License, or
@@ -88,7 +88,7 @@
 \setlength{\marginparsep}{0pt}% width of space between body text and margin notes
 %% part two -- vertical heights
 %% top height + textheight + bottom height = paperheight
-%% top height = 1.0in (fixed) + voffset + topmargin + headheight + headsep 
+%% top height = 1.0in (fixed) + voffset + topmargin + headheight + headsep
 \setlength{\textheight}{240mm}% set required text height first
 \setlength{\voffset}{-15mm}% set a minimum header height
 \setlength{\headheight}{15pt}% set a minimum header height
@@ -212,13 +212,14 @@
     \zihao{3}\bfseries
     \vspace*{20pt}
     {\UCASunderline{\ \UCAS@value@englishtitle\ }}
-    \vskip \stretch{1}
-    by \\
-    \UCAS@value@englishauthor
     \vskip \stretch{2}
     \zihao{4}\bfseries
     \UCAS@label@englishstatement
     \vskip 30pt
+    by \\
+    \UCAS@value@englishauthor \\
+    Dissertation/Thesis Supervisor: \UCAS@value@englishadvisor
+    \vskip \stretch{1}
     \UCAS@value@englishinstitute
     \vskip 20pt
     \UCAS@value@englishdate
