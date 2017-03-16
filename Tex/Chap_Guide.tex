@@ -8,7 +8,7 @@
 
 ucasthesis模板不仅只是提供了相应的类文件，同时也提供了包括参考文献等在内的完成学位论文的一切要素，所以，下载时，推荐下载整个ucasthesis文件夹，而不是单独的文档类。
 
-下载ucasthesis文件夹并解压后，请在文件夹内找到“Compile.bat”，双击运行，即可获得本说明文档，而这，也完成了学习使用此模板撰写论文的一半进程，什么？这就学成一半了，这么简单？？？，是的，就这么简单！
+下载ucasthesis文件夹并解压后，请在文件夹内找到Compile.bat，双击运行，即可获得本说明文档，而这，也完成了学习使用此模板撰写论文的一半进程，什么？这就学成一半了，这么简单？？？，是的，就这么简单！
 
 编译完成后，可以进入各个子目录逛逛，熟悉下模板框架。
 
@@ -17,25 +17,25 @@ ucasthesis模板不仅只是提供了相应的类文件，同时也提供了包�
 \begin{enumerate}
   \item 模板文档的编码为UTF-8编码，若出现文本编辑器无法打开文档或打开文档乱码的问题，请检查您使用的编辑器对UTF-8编码的支持，如果使用WinEdt作为文本编辑器，应在其
 
-  “options --》 Preferences --》 wrapping”
+  options --》 Preferences --》 wrapping
 
-  选项卡下将两种 “Wrapping Modes” 中的内容：
+  选项卡下将两种 Wrapping Modes 中的内容：
 
-  “TeX;HTML;ANSI;ASCII|DTX...”
+  TeX;HTML;ANSI;ASCII|DTX...
 
   修改为：
 
-  “TeX;\textbf{UTF-8|ACP;}HTML;ANSI;ASCII|DTX...”
+  TeX;\textbf{UTF-8|ACP;}HTML;ANSI;ASCII|DTX...
 
   同时，取消
 
-  “options --》 Preferences --》 Unicode”
+  options --》 Preferences --》 Unicode
 
-  中的“Enable ANSI Format...”选项。
-  \item 注意：所有文件都必须采用UTF-8编码，你需要将所有源文件保存为 UTF-8 编码。否则编译后生成的文档将出现乱码文本。
-  \item 推荐选择"xelatex"编译引擎编译。Compile.bat的默认设定为"xelatex"编译引擎。你也可以选择不使用此脚本编译，如直接使用 WinEdt编译。注意：WinEdt的默认设定为"PDFTeXify"，为"pdflatex"编译引擎，若选择"xelatex"编译引擎，请进入下拉菜单进行选择。
-  \item 若编译过程中出现无法找到某些“package”的错误，如无法找到“xcolor.sty”，程序一般可以自动下载和安装相应的文件，否则，请进入\LaTeX{}软件的“package manager”下载，安装，并更新你的\LaTeX{}宏包库。
-  \item 字体控制。如果对字体控制有较高需求，请选择"xelatex"编译引擎，并在"commons.sty"中设置需要的字体，如启用"Times New Roman" 作为英文字体，在"commons.sty"的"105"行附近设置:
+  中的Enable ANSI Format...选项。
+  \item 注：所有文件都必须采用UTF-8编码，你需要将所有源文件保存为 UTF-8 编码。否则编译后生成的文档将出现乱码文本。
+  \item 推荐选择xelatex编译引擎编译。Compile.bat的默认设定为xelatex编译引擎。你也可以选择不使用此脚本编译，如直接使用 \TeX{}文本编辑器编译。注：\TeX{}文本编辑器编译的默认设定为pdflatex编译引擎，若选择xelatex编译引擎，请进入下拉菜单进行选择。为正确生成引用链接，编译步骤为: xetex + bibtex + xetex + xetex。
+  \item 若编译过程中出现无法找到某些package的错误，如无法找到xcolor.sty，mathtools.sty，ctexbook.sty，\TeX{}编译程序一般可以自动下载和安装相应的文件，否则，请进入\LaTeX{}软件的Package Manager (Admin)确认启用Repository--Synchronize状态。下次编译过程中\TeX{}编译程序一般将自动下载安装\LaTeX{}宏包库。
+  \item 字体控制。如果对字体控制有较高需求，请选择xelatex编译引擎，并在commons.sty中设置需要的字体，如启用Times New Roman 作为英文字体，在commons.sty的105行附近设置:
 
       \verb+\setmainfont{Times New Roman}+
   \item 在某些情况下拷贝pdf文档内容到word时存在乱码。
@@ -48,7 +48,7 @@ ucasthesis模板不仅只是提供了相应的类文件，同时也提供了包�
       \end{enumerate}
       下载字体文件后，双击安装相应字体。
       
-      在"Thesis.tex"中设置启用adobe的字体:
+      在Thesis.tex中设置启用adobe的字体:
 
       \verb+\documentclass[doublesided,fontset=adobe]{Style/ucasthesis}%+
 
@@ -56,28 +56,28 @@ ucasthesis模板不仅只是提供了相应的类文件，同时也提供了包�
 
       \verb+\documentclass[doublesided,adobefonts]{Style/ucasthesis}%+
      
-     最后推荐选择"xelatex"编译引擎编译。
+     最后推荐选择xelatex编译引擎编译。
 
      因为模版的设定考虑兼顾不同操作系统(Windows, Linux, Mac OS)并兼顾pdflatex和xelatex，为了模版的健壮性，上述方案并未作为原始设定。
-  \item 页眉页脚的设定在"commons.sty"的底部。如果需要在页眉页脚中添加章节字样，请使用
+  \item 页眉页脚的设定在commons.sty的底部。如果需要在页眉页脚中添加章节字样，请使用
       \begin{enumerate}
           \item \verb+\CTEXthechapter+  显示: 第X章
           \item \verb+\CTEXthesection+  显示: 第X节
       \end{enumerate}
       参见ctex宏包用户文档\url{http://ctan.mirror.rafal.ca/language/chinese/ctex/ctex.pdf}
-  \item "custom.sty"中定义了一系列数学命令。使用它们可以提高数学代码对不同样式的适应性。
-  \item 若"pdflatex"编译出现"pdfTeX error (font expansion): auto expansion is only possible with scalable fonts"。是因为"MikTex"安装后字体配置异常，请进入软件的“package manager”更新你的\LaTeX{}宏包库，并请进入
+  \item custom.sty中定义了一系列数学命令。使用它们可以提高数学代码对不同样式的适应性。
+  \item 若pdflatex编译出现pdfTeX error (font expansion): auto expansion is only possible with scalable fonts。是因为MikTex安装后字体配置异常，请进入软件的package manager更新你的\LaTeX{}宏包库，并请进入
       
-      "\verb+C:\Program Files\MiKTeX 2.9\miktex\bin\x64+"
+      \verb+C:\Program Files\MiKTeX 2.9\miktex\bin\x64+
 
-       找到并运行"updmap.exe"。
-   \item 模版在设计之初就尽可能地考虑了适应性。“致谢”，“简历及攻读学位期间发表的学术论文与科研成果”
+       找到并运行updmap.exe。
+   \item 模版在设计之初就尽可能地考虑了适应性。致谢，简历及攻读学位期间发表的学术论文与科研成果
        等几乎所有条目都是通过最为通用的
        
-       "\verb+\chapter{item name}+"  and "\verb+\section*{item name}+"
+       \verb+\chapter{item name}+  and \verb+\section*{item name}+
 
-       来显式实现的 (请仔细观察下"Frontpage.tex, Prematter.tex, Backmatter.tex")，从而你可以随意添加，放置，和修改他们，如同一般章节。对于图表目录名称则可在"ucasthesis.cfg"中进行修改。
-    \item 将subsection显示到目录当中: 在 "custom.sty", 修改
+       来显式实现的 (请仔细观察下Frontpage.tex, Prematter.tex, Backmatter.tex)，从而你可以随意添加，放置，和修改他们，如同一般章节。对于图表目录名称则可在ucasthesis.cfg中进行修改。
+    \item 将subsection显示到目录当中: 在 custom.sty, 修改
         
         \verb|\setcounter{tocdepth}{2}% the depth for the Table of Contents.|
 \end{enumerate}
@@ -90,7 +90,9 @@ Thesis.tex文档为主文档，其设计和规划了论文的整体框架，通�
 
 \subsection{Compile.bat}
 
-Compile.bat为编译此模板的Dos脚本，通过双击运行此脚本即可获得编译后的PDF文档，编译生成的文档及临时文件皆位于Tmp文件夹内。在此脚本中可以设定编译器为“pdflatex” or “xelatex”(默认设定，推荐)。
+Compile.bat为编译此模板的Dos脚本，通过双击运行此脚本即可获得编译后的PDF文档，编译生成的文档及临时文件皆位于Tmp文件夹内。在此脚本中可以设定编译器为pdflatex or xelatex(默认设定，推荐)。如直接使用\TeX{}文本编辑器编译同时想隐藏缓存文件，\TeX{}文本编辑器编译设定为
+
+\verb|xetex -output-directory Tmp|
 
 \subsection{Tmp文件夹}
 
@@ -102,14 +104,14 @@ Style文件夹内包含有ucasthesis文档类的定义文件和配置文件，�
 
 \begin{enumerate}
   \item ucasthesis.cls： 文档类定义文件，论文的最核心的格式即通过它来定义的。
-  \item ucasthesis.cfg： 文档类配置文件，通过它设定论文的某些项目的显示内容，如“abstract”显示为“摘要”，“table of content”显示为“目~~~~录”而不是“目录”等（如果愿意，你也可以改过来）。
-  \item commons.sty: 一些常用的文档设定， 如参考文献样式，文献引用样式，页眉页脚设定等。模板为这些功能提供了开关选项，从而只需在“Thesis.tex”中的“\verb+\usepackage[options]{commons}+”中进行启用即可，而无需修改commons.sty本身。
+  \item ucasthesis.cfg： 文档类配置文件，通过它设定论文的某些项目的显示内容，如abstract显示为摘要，table of content显示为目~~~~录而不是目录等（如果愿意，你也可以改过来）。
+  \item commons.sty: 一些常用的文档设定， 如参考文献样式，文献引用样式，页眉页脚设定等。模板为这些功能提供了开关选项，从而只需在Thesis.tex中的\verb+\usepackage[options]{commons}+中进行启用即可，而无需修改commons.sty本身。
   \item custom.sty： 用户自定义命令的放置位置以及用来实现一些个性化设定，
 \end{enumerate}
 
 \subsection{Tex文件夹}
 
-Tex文件夹内为论文的所有实体内容，正常情况下，这也是你\textbf{使用此模板撰写学文论文时，主要关注和修改的一个位置，注意：所有文件都必须采用UTF-8编码，否则编译后将出现乱码文本}，详细分类介绍如下：
+Tex文件夹内为论文的所有实体内容，正常情况下，这也是你\textbf{使用此模板撰写学文论文时，主要关注和修改的一个位置，注：所有文件都必须采用UTF-8编码，否则编译后将出现乱码文本}，详细分类介绍如下：
 
 \begin{itemize}
   \item Frontpage.tex： 为论文封面内容， 及中英文摘要。
@@ -125,7 +127,7 @@ Img文件夹用于放置论文中所需要的图类文件，支持格式有：.j
 
 \subsection{Biblio文件夹}
 
-Biblio文件夹内放置参考文献的索引信息文件：Myrefs.bib，此文件包含了需要引用的参考文献信息。
+Biblio文件夹内放置参考文献的索引信息文件：ref.bib，此文件包含了需要引用的参考文献信息。
 
 \section{数学公式、图片插入、参考文献等功能}
 
@@ -168,7 +170,7 @@ Navier-Stokes equations:
 
 论文中图片的插入通常分为单图和多图，下面分别加以介绍：
 
-单图插入：假设插入名为“ITC\textunderscore Q\textunderscore Criteria”（后缀可以为.jpg、.png、.pdf，下同）的图片，其效果如图\ref{fig:ITC_Q_Criteria}，其命令可为：
+单图插入：假设插入名为ITC\textunderscore Q\textunderscore Criteria（后缀可以为.jpg、.png、.pdf，下同）的图片，其效果如图\ref{fig:ITC_Q_Criteria}，其命令可为：
 \begin{verbatim}
 \begin{figure}[!htbp]
   \centering
@@ -184,7 +186,7 @@ Navier-Stokes equations:
   \label{fig:ITC_Q_Criteria}
 \end{figure}
 
-如果插图的空白区域过大，希望减少插入图片后的留白，以图片“Y”为例（图\ref{fig:Y}），可以使用如下代码模板：
+如果插图的空白区域过大，希望减少插入图片后的留白，以图片Y为例（图\ref{fig:Y}），可以使用如下代码模板：
 \begin{verbatim}
 \begin{figure}[!htbp]
   \centering
@@ -264,31 +266,35 @@ Navier-Stokes equations:
 
 \subsection{参考文献的使用}
 
-参考文献的引用过程以实例的形式介绍，假设您需要引用名为“Document Preparation System”的文献，步骤如下：
+参考文献的引用过程以实例的形式介绍，假设您需要引用名为Document Preparation System的文献，步骤如下：
 
-1）使用“google scholar”搜索“Document Preparation System”，在目标条目下点击“引用”，展开后选择“ 导入BibTeX”，然后google将为你打开此文章的BibTeX索引信息，将它们copy添加到Myrefs.bib文件中（此文件位于“Biblio”文件夹下）。
+1）使用google scholar搜索Document Preparation System，在目标条目下点击引用，展开后选择 导入BibTeX，然后google将为你打开此文章的BibTeX索引信息，将它们copy添加到ref.bib文件中（此文件位于Biblio文件夹下）。
 
-2）你会发现索引信息中第一行为 “\verb|@article{lamport1986document,|”，其中的 
+2）你会发现索引信息中第一行为 \verb|@article{lamport1986document,|，其中的 
     
-    "\verb|lamport1986document|" 
+    \verb|lamport1986document| 
     
-即为此文献的label，想要在论文中索引此文献，有两种索引模式：
+即为此文献的label (即使中文文献也必须使用英文label)，想要在论文中索引此文献，有两种索引模式：
 
 textual mode， 输入：
 
-“\verb|\citet{lamport1986document}|”
+\verb|\citet{lamport1986document}|
 
 正如此处所示 \citet{lamport1986document}; 
 
 parenthetical mode， 输入：
 
-“\verb|\citep{lamport1986document}|
+\verb|\citep{lamport1986document}|
 
 正如此处所示 \citep{lamport1986document}。
 
-如此，即完成了文献的索引，请查看下本文档的“参考文献”一章，看看是不是就是这么简单呢？是的，就是这么简单！
+多文献索引用英文逗号隔开：
 
-不同的参考文献样式和引用样式可在 "Thesis.tex" 中对 "commons.sty" 设置实现，如：
+\verb|\citep{lamport1986document,wikibook2014latex}|
+
+如此，即完成了文献的索引，请查看下本文档的参考文献一章，看看是不是就是这么简单呢？是的，就是这么简单！
+
+不同的参考文献样式和引用样式可在 Thesis.tex 中对 commons.sty 设置实现，如：
 
 \verb+\usepackage[numbered]{commons}+ $\%$ default citation style. textual: Jones [1]; parenthetical: [1]
 

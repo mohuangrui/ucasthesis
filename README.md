@@ -21,6 +21,8 @@ Change log:
 2016-05-28 Stable Release v1.0
 ==========
 
+2017-03-16 Improve the documentation to incorporate some FAQs asked by users.
+
 2017-03-08 Add a command for setting the thesis type to "thesis/dissertation", as suggested by 臧光明
 
 2017-02-25 Update the GBT bibliography style from "zepinglee/gbt-7714-2015".
