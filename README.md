@@ -21,7 +21,7 @@ Change log:
 2016-05-28 Stable Release v1.0
 ==========
 
-2017-03-16 Improve the documentation to incorporate some FAQs asked by users.
+2017-03-17 Improve the documentation to incorporate some FAQs asked by users.
 
 2017-03-08 Add a command for setting the thesis type to "thesis/dissertation", as suggested by 臧光明
 

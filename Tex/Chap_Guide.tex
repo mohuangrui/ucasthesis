@@ -15,7 +15,7 @@ ucasthesis模板不仅只是提供了相应的类文件，同时也提供了包�
 \section{常见使用问题}
 
 \begin{enumerate}
-  \item 模板文档的编码为UTF-8编码，若出现文本编辑器无法打开文档或打开文档乱码的问题，请检查您使用的编辑器对UTF-8编码的支持，如果使用WinEdt作为文本编辑器，应在其
+  \item 模板文档的编码为UTF-8编码。所有文件都必须采用UTF-8编码，否则编译后生成的文档将出现乱码文本。若出现文本编辑器无法打开文档或打开文档乱码的问题，请检查您使用的编辑器对UTF-8编码的支持，如果使用WinEdt作为文本编辑器，应在其
 
   options --》 Preferences --》 wrapping
 
@@ -32,8 +32,15 @@ ucasthesis模板不仅只是提供了相应的类文件，同时也提供了包�
   options --》 Preferences --》 Unicode
 
   中的Enable ANSI Format...选项。
-  \item 注：所有文件都必须采用UTF-8编码，你需要将所有源文件保存为 UTF-8 编码。否则编译后生成的文档将出现乱码文本。
-  \item 推荐选择xelatex编译引擎编译。Compile.bat的默认设定为xelatex编译引擎。你也可以选择不使用此脚本编译，如直接使用 \TeX{}文本编辑器编译。注：\TeX{}文本编辑器编译的默认设定为pdflatex编译引擎，若选择xelatex编译引擎，请进入下拉菜单进行选择。为正确生成引用链接，编译步骤为: xetex + bibtex + xetex + xetex。
+  \item 推荐选择xelatex编译引擎编译。Compile.bat的默认设定为xelatex编译引擎。你也可以选择不使用此脚本编译，如直接使用 \TeX{}文本编辑器编译。注：\TeX{}文本编辑器编译的默认设定为pdflatex编译引擎，若选择xelatex编译引擎，请进入下拉菜单进行选择。为正确生成引用链接，编译步骤为: xelatex + bibtex + xelatex + xelatex。
+  \item Texmaker使用简介
+      \begin{enumerate}
+          \item 使用 Texmaker 打开文档 Thesis.tex。
+          \item 菜单 Options -> Define Current Document As 'Master Document'
+          \item 菜单 User -> User Commands -> Edit User Commands -> Input Menu Item as 'Auto Build' -> Click 'wizard' -> add: xelatex + bibtex + xelatex + xelatex + pdf viewer -> Click 'OK'
+          \item 使用 Auto Build 编译带有未生成引用链接的源文件，可以仅使用 xelatex 编译带有已经正确生成引用链接的源文件。
+          \item 编译完成，View PDF，在pdf中'ctrl+click'可链接到相对应的源文件。
+      \end{enumerate}
   \item 若编译过程中出现无法找到某些package的错误，如无法找到xcolor.sty，mathtools.sty，ctexbook.sty，\TeX{}编译程序一般可以自动下载和安装相应的文件，否则，请进入\LaTeX{}软件的Package Manager (Admin)确认启用Repository--Synchronize状态。下次编译过程中\TeX{}编译程序一般将自动下载安装\LaTeX{}宏包库。
   \item 字体控制。如果对字体控制有较高需求，请选择xelatex编译引擎，并在commons.sty中设置需要的字体，如启用Times New Roman 作为英文字体，在commons.sty的105行附近设置:
 
@@ -56,7 +63,7 @@ ucasthesis模板不仅只是提供了相应的类文件，同时也提供了包�
 
       \verb+\documentclass[doublesided,adobefonts]{Style/ucasthesis}%+
      
-     最后推荐选择xelatex编译引擎编译。
+     最后选择xelatex编译引擎编译。
 
      因为模版的设定考虑兼顾不同操作系统(Windows, Linux, Mac OS)并兼顾pdflatex和xelatex，为了模版的健壮性，上述方案并未作为原始设定。
   \item 页眉页脚的设定在commons.sty的底部。如果需要在页眉页脚中添加章节字样，请使用
@@ -90,9 +97,7 @@ Thesis.tex文档为主文档，其设计和规划了论文的整体框架，通�
 
 \subsection{Compile.bat}
 
-Compile.bat为编译此模板的Dos脚本，通过双击运行此脚本即可获得编译后的PDF文档，编译生成的文档及临时文件皆位于Tmp文件夹内。在此脚本中可以设定编译器为pdflatex or xelatex(默认设定，推荐)。如直接使用\TeX{}文本编辑器编译同时想隐藏缓存文件，\TeX{}文本编辑器编译设定为
-
-\verb|xetex -output-directory Tmp|
+Compile.bat为编译此模板的Dos脚本，通过双击运行此脚本即可获得编译后的PDF文档，编译生成的文档及临时文件皆位于Tmp文件夹内。在此脚本中可以设定编译器为pdflatex or xelatex(默认设定，推荐)。
 
 \subsection{Tmp文件夹}
 
