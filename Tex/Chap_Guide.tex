@@ -66,13 +66,23 @@ ucasthesis模板不仅只是提供了相应的类文件，同时也提供了包�
      最后选择xelatex编译引擎编译。
 
      因为模版的设定考虑兼顾不同操作系统(Windows, Linux, Mac OS)并兼顾pdflatex和xelatex，为了模版的健壮性，上述方案并未作为原始设定。
- \item 页眉页脚的设定在commons.sty的底部。始于323行附近的frontmatterstyle，mainmatterstyle，和backmatterstyle分别用于定义前言，主要内容，和附录的页眉页脚样式。一般默认情况下每一章的第一页不应显示页眉页脚，若想修改此行为，请将mainmatterstyle样式中的设置拷贝用于定义375行附近的plain样式即可。关于页眉页脚各个命令的作用和意义请参见fancyhdr的用户文档\url{https://www.ctan.org/pkg/fancyhdr?lang=en}。如果需要在页眉页脚中添加章节字样，请使用
+ \item 页眉页脚的设定在commons.sty的底部。始于323行附近的frontmatterstyle，mainmatterstyle，和backmatterstyle分别用于定义前言，主要内容，和附录的页眉页脚样式。一般默认情况下每一章的第一页不应显示页眉页脚，若想修改此行为，请将377-379行附近的plain样式定义注空即可。即修改为
+
+\begin{verbatim}
+\fancypagestyle{plain}{%
+    %\fancyhf{}% clear fields
+    %\renewcommand{\headrulewidth}{0pt}% header rule
+    %\renewcommand{\footrulewidth}{0pt}% footer rule
+}
+\end{verbatim}
+     
+     关于页眉页脚各个命令的作用和意义请参见fancyhdr的用户文档\url{https://www.ctan.org/pkg/fancyhdr?lang=en}。如果需要在页眉页脚中添加章节字样，请使用
       \begin{enumerate}
           \item \verb+\CTEXthechapter+  显示: 第X章
           \item \verb+\CTEXthesection+  显示: 第X节
       \end{enumerate}
       参见ctex宏包用户文档\url{http://ctan.mirror.rafal.ca/language/chinese/ctex/ctex.pdf}
-  \item 一般规范下，每一章应开始于奇数页。从而若前一章结束于奇数页，则一空白页将被插入以保证上述规则。如果想修改规则以取消空白页，有如下两三种方案：
+  \item 一般规范下，每一章应开始于奇数页。从而若前一章结束于奇数页，则一空白页将被插入以保证上述规则。如果想修改规则以取消空白页，有如下三种方案：
 \begin{itemize}
     \item 在thesis.tex的documentclass中使用singlesided替代doublesided选项。这一命令使文档不区分奇偶页，因此章可以开始于任意页。此方案将移除所有的空白页，包括封面处的。同时，页面页脚的设定不再区分奇偶页。
     \item 可以在ucasthesis.cls文件中106行附近，将cleardoublepage命令的定义修改为：
@@ -97,7 +107,9 @@ ucasthesis模板不仅只是提供了相应的类文件，同时也提供了包�
        来显式实现的 (请仔细观察下Frontpage.tex, Prematter.tex, Backmatter.tex)，从而你可以随意添加，放置，和修改他们，如同一般章节。对于图表目录名称则可在ucasthesis.cfg中进行修改。
     \item 将subsection显示到目录当中: 在 custom.sty, 修改
         
-        \verb|\setcounter{tocdepth}{2}% the depth for the Table of Contents.|
+        \verb|\setcounter{tocdepth}{1}% the depth for the Table of Contents.|
+
+       将1改为2就可以了。
     \item 部分同学留意到一个所谓的新的模板要求，那个模板是一位学生发布的，而其英文封面的设定不满足中国科学院大学学位论文封面设定。因中国科学院大学学位论文撰写规定只是限定了封面格式但是没有要求具体的内容格式，部分所因为图方便省事就直接将其作为了模板发布到了所内。但是，迄今为止学校官网上的撰写规定和模板(\url{http://onestop.ucas.edu.cn/home/info/abc167cb-4589-4e05-b014-052fa9291d0c/1})未做出任何修改，亦未发表任何官方声明表示模板需要修改。所以，当前模板将不会在官方版发布之前做出调整。
 \end{enumerate}
 
