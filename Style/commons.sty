@@ -305,8 +305,8 @@ macros package]
 %%
 %%% >>> Page header and footer Style
 %%
-%% Page styles in Latex terms refers not to page dimensions, but to the running headers
-%% and footers of a document. These headers typically contain document titles, chapter
+%% Page styles in Latex refers to headers and footers of a document.
+%% These headers/footers typically contain document titles, chapter
 %% or section numbers/names, and page numbers.
 %% configure fancy style
 \ifCOMMONS@myhdr% user defined header and footer style
@@ -368,10 +368,11 @@ macros package]
     \mybackmatter%
     \pagestyle{backmatterstyle}%
 }
-%% Some LaTeX commands, like \chapter, use the \thispagestyle command to automatically switch
-%% to the plain page style, thus ignoring the page style currently in effect.
-%% To customize even such pages you must redefine the plain pagestyle.
-%% redefine plain style:
+%% Some Latex commands, like \chapter, use the \thispagestyle command
+%% to automatically switch to the plain page style, thus ignoring the
+%% page style currently in effect. To customize such pages you must
+%% redefine the plain pagestyle. If you want the plain style inherits
+%% the current style, comment all the lines in plain style definition.
 \fancypagestyle{plain}{%
     \fancyhf{}% clear fields
     \renewcommand{\headrulewidth}{0pt}% header rule
