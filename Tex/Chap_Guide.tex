@@ -173,13 +173,13 @@ Navier-Stokes equations:
 
 \begin{table}[!htbp]
     \centering
-    %\footnotesize
-    %\setlength{\tabcolsep}{4pt}
-    \renewcommand{\arraystretch}{1.2}
+    \footnotesize% fontsize
+    \setlength{\tabcolsep}{4pt}% column separation
+    \renewcommand{\arraystretch}{1.2}%row space 
     \begin{tabular}{lcccccccc}
         \hline\hline
-        %\multicolumn{2}{c}{Item} \\
-        %\cline{1-2}
+        Row number & \multicolumn{8}{c}{This is a multicolumn} \\
+        \cline{2-9}% partial hline from column i to column j
         Row 1 & $1$ & $2$ & $4$ & $5$ & $6$ & $7$ & $8$\\
         \hline
         Row 2 & $1$ & $2$ & $4$ & $5$ & $6$ & $7$ & $8$\\
@@ -323,7 +323,7 @@ parenthetical mode， 输入：
 
 如此，即完成了文献的索引，请查看下本文档的参考文献一章，看看是不是就是这么简单呢？是的，就是这么简单！
 
-不同的参考文献样式和引用样式可在 Thesis.tex 中对 commons.sty 设置实现，如：
+不同的参考文献样式和引用样式可在Thesis.tex中对commons.sty设置实现，如：
 
 \verb+\usepackage[numbered]{commons}+ $\%$ default citation style. textual: Jones [1]; parenthetical: [1]
 
@@ -331,6 +331,6 @@ parenthetical mode， 输入：
 
 \verb+\usepackage[alpha]{commons}+ $\%$ alpha citation style. textual: not available; parenthetical: [Jon95]
 
-参考文献索引更为详细的信息，请见\citep{wikibook2014latex}。
+如要求的参考文献格式是带方框的上标，打开commons.sty，使用174行的设置替换173行即可。参考文献索引更为详细的信息，请见\citep{wikibook2014latex}。
 
 \nocite{*}% show all the bibliography entries

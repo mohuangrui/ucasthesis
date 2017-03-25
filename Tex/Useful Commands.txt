@@ -15,7 +15,7 @@
 
 \begin{figure}[!htbp]
   \centering
-  %trim option's parameter order: left bottom right top
+  %trim parameter order: left bottom right top
   \includegraphics[trim = 0mm 25mm 0mm 30mm, clip, width=0.45\textwidth]{}
   \caption{}
   \label{fig:}
@@ -52,11 +52,13 @@
 
 \begin{table}[!htbp]
   \centering
-  \footnotesize
+  %\footnotesize% fontsize
+  %\setlength{\tabcolsep}{4pt}% column separation
+  %\renewcommand{\arraystretch}{1.5}%row space 
   \begin{tabular}{lcccc}
     \hline\hline
-    %%\multicolumn{2}{c}{Item} \\
-    %%\cline{1-2}
+    %\multicolumn{num_of_cols_to_merge}{alignment}{contents} \\
+    %\cline{i-j}% partial hline from column i to column j
     items \\
     \hline
     datas
