@@ -34,6 +34,10 @@
   \UCAS@doublesidedtrue% auto enable double-sided style
   \UCAS@printcopytrue%
 }
+\newif\ifUCAS@mangshen \UCAS@mangshentrue
+\DeclareOption{mangshen}{% enable mangshen mode
+  \UCAS@mangshentrue%
+}
 \DeclareOption*{% handle non-implemented options
   \PassOptionsToClass{\CurrentOption}{ctexbook}%
 }
@@ -44,9 +48,9 @@
 %%%%*************************** Loadclass Infomation *********************************
 %%
 \ifUCAS@doublesided% if double-sided printing enabled
-  \LoadClass[UTF8,a4paper,twoside,fntef,12pt]{ctexbook}
+   \LoadClass[UTF8,a4paper,twoside,12pt]{ctexbook}
 \else% if double-sided printing isn't enabled
-  \LoadClass[UTF8,a4paper,oneside,fntef,12pt]{ctexbook}
+  \LoadClass[UTF8,a4paper,oneside,12pt]{ctexbook}
 \fi
 %%%%% --------------------------------------------------------------------------------
 %%
@@ -127,6 +131,8 @@
 \newcommand\advisor[1]{\def\UCAS@value@advisor{#1}}
 \newcommand\advisorinstitute[1]{\def\UCAS@value@advisorinstitute{#1}}
 \newcommand\degree[1]{\def\UCAS@value@degree{#1}}
+\newcommand\papernum[1]{\def\UCAS@value@papernum{#1}}
+\newcommand\direction[1]{\def\UCAS@value@direction{#1}}
 \newcommand\degreetype[1]{\def\UCAS@value@degreetype{#1}}
 \newcommand\major[1]{\def\UCAS@value@major{#1}}
 \newcommand\institute[1]{\def\UCAS@value@institute{#1}}
@@ -146,11 +152,26 @@
     \vskip \stretch{4}
       {\zihao{1}\heiti \UCAS@value@degree\UCAS@label@thesis}
     \vskip \stretch{4}
-      {\zihao{3} \UCASunderline{\ \UCAS@value@title\ }}
+      {\zihao{3} \UCASunderline[350pt]{\ \UCAS@value@title\ }}
     \vskip \stretch{6}
     \def\tabcolsep{1pt}
     \def\arraystretch{1.4}
     %\hskip -15pt
+    \ifUCAS@mangshen
+      \begin{tabular}{lc}
+        &
+      \\
+        \UCAS@label@papernum & \UCASunderline[295pt]{\UCAS@value@papernum}
+      \\
+        \UCAS@label@degree & \UCASunderline[295pt]{\UCAS@value@degreetype\UCAS@value@degree}
+      \\
+        \UCAS@label@major &  \UCASunderline[295pt]{\UCAS@value@major}
+      \\
+        \UCAS@label@direction & \UCASunderline[295pt]{\UCAS@value@direction}
+      \\
+        \UCAS@label@institute & \UCASunderline[295pt]{\UCAS@value@institute}
+      \end{tabular}
+    \else
     \begin{tabular}{lc}
       \UCAS@label@author & \UCASunderline[295pt]{\UCAS@value@author}
     \\
@@ -164,6 +185,7 @@
     \\
       \UCAS@label@institute & \UCASunderline[295pt]{\UCAS@value@institute}
     \end{tabular}
+    \fi
     \vskip \stretch{6}
     \UCAS@value@chinesedate
   \end{center}
@@ -207,6 +229,8 @@
 %%%%*********************** Make English Titlepage ***********************************
 %%
 \newcommand\makeenglishtitle{%
+  \ifUCAS@mangshen
+  \else
   \cleardoublepage
   \thispagestyle{empty}
   \begin{center}
@@ -229,12 +253,15 @@
     \thispagestyle{empty}
     \cleardoublepage
   \fi
+  \fi
 }
 %%%%% --------------------------------------------------------------------------------
 %%
 %%%%*********************** Make Author Declaration ***********************************
 %%
 \newcommand\makedeclaration{%
+  \ifUCAS@mangshen
+  \else
   \cleardoublepage
   \thispagestyle{empty}
 
@@ -261,6 +288,7 @@
   \if@twoside
     \thispagestyle{empty}
     \cleardoublepage
+  \fi
   \fi
 }
 %%%%% --------------------------------------------------------------------------------
