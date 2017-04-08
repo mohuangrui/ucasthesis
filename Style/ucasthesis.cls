@@ -44,9 +44,9 @@
 %%%%*************************** Loadclass Infomation *********************************
 %%
 \ifUCAS@doublesided% if double-sided printing enabled
-  \LoadClass[UTF8,a4paper,twoside,fntef,12pt]{ctexbook}
+  \LoadClass[UTF8,a4paper,twoside,12pt]{ctexbook}
 \else% if double-sided printing isn't enabled
-  \LoadClass[UTF8,a4paper,oneside,fntef,12pt]{ctexbook}
+  \LoadClass[UTF8,a4paper,oneside,12pt]{ctexbook}
 \fi
 %%%%% --------------------------------------------------------------------------------
 %%
