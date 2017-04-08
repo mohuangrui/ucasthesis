@@ -152,7 +152,7 @@
     \vskip \stretch{4}
       {\zihao{1}\heiti \UCAS@value@degree\UCAS@label@thesis}
     \vskip \stretch{4}
-      {\zihao{3} \UCASunderline{\ \UCAS@value@title\ }}
+      {\zihao{3} \UCASunderline[350pt]{\ \UCAS@value@title\ }}
     \vskip \stretch{6}
     \def\tabcolsep{1pt}
     \def\arraystretch{1.4}
