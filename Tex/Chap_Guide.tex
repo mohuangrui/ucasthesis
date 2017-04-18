@@ -263,13 +263,21 @@ parenthetical mode， 输入：\verb|\citep{lamport1986document}|。正如此处
        \verb+\chapter{item name}+  and \verb+\section*{item name}+
 
        来显式实现的 (请仔细观察下Frontpage.tex, Prematter.tex, Backmatter.tex)，从而你可以随意添加，放置，和修改他们，如同一般章节。对于图表目录名称则可在ucasthesis.cfg中进行修改。
-  \item 将subsection显示到目录当中: 在 custom.sty, 修改
-        
-        \verb|\setcounter{tocdepth}{1}% the depth for the Table of Contents.|
+   \item 设置正文行距: 在 custom.sty 99行附近, 修改
 
-       将1改为2就可以了。
-  \item 如果需设置图2.3为图2-3，可将如下命令添加custom.sty中:
-      \begin{verbatim}
+       \verb|\linespread{1.3}|
+
+       设置参考文献行距: 在 custom.sty 103行附近, 修改/注掉
+
+       \verb|\setlength{\bibsep}{0.0pt plus 0.3ex}|
+
+       将subsection显示到目录当中: 在 custom.sty 107行附近, 将1改为2就可以了
+
+       \verb|\setcounter{tocdepth}{1}% the depth for the Table of Contents.|
+
+       如果需设置图2.3为图2-3，可将如下命令添加custom.sty中:
+
+       \begin{verbatim}
 \renewcommand{\theequation}{\arabic{chapter}-\arabic{equation}}
 \renewcommand{\thefigure}{\arabic{chapter}-\arabic{figure}}
 \renewcommand{\thetable}{\arabic{chapter}-\arabic{table}}
