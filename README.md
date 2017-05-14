@@ -18,35 +18,27 @@ LaTeX thesis template for The University of Chinese Academy of Sciences 中国�
 Change log:
 ==========
 
-2016-05-28 Stable Release v1.0
+2017-05-14 模板样式文件 (Style 文件夹) 进行了修改，用户请查看下面的修改描述，以决定是否需要更新。
 ==========
 
-2017-04-18 Improve the documentation to incorporate some FAQs asked by users.
+2017-05-14 将文献上标引用设定为默认，增加 \citepns{} 和 \citetns{} 命令提供嵌入式非上标引用以满足有混合引用需要的用户，问题/建议由赵永明同学提出。修改的文件为：custom.sty，commons.sty。
 
-2017-03-08 Add a command for setting the thesis type to "thesis/dissertation", as suggested by 臧光明
+2017-05-14 对用户文档 HowToUse.pdf 进行了扩充，回答用户常见问题。修改的文件为：HowToUse.pdf。
 
-2017-02-25 Update the GBT bibliography style from "zepinglee/gbt-7714-2015".
+2017-05-14 从 zepinglee/gbt-7714-2015 更新国标的参考文献样式文件。修改的文件为：gbt-7714-2015-numerical，gbt-7714-2015-author-year。
 
-2016-10-02 Add 中国科学院大学开题报告LaTeX 模板 at https://github.com/mohuangrui/ucasproposal.
+2017-03-08 在 Frontpage.tex 中添加一个设定论文类型为 thesis 或 dissertation 的命令 \englishthesistype{}，问题/建议由臧光明同学提出。修改的文件为：ucasthesis.cls，Frontpage.tex。
 
-2016-05-28 Reduce the space before chapter title.
+2016-10-02 添加 中国科学院大学开题报告 LaTeX 模板 https://github.com/mohuangrui/ucasproposal。
 
-2016-05-24 Add dotted line for chapers in the table of contents.
+2016-05-28 缩减章节标题的空隙。修改的文件为：ucasthesis.cfg。
 
-2016-04-25 Use the pdf version of UCAS logo from "xiaoyao9933/UCASthesis". Use the GBT bibliography style from "ustctug/gbt-7714-2015".
+2016-05-24 在目录中添加点断线。修改的文件为：ucasthesis.cls。
 
-2016-04-19 Correct the sequence of "List of Figures" and "List of Tables".
+2016-04-25 从 xiaoyao9933/UCASthesis 引入 PDF 版的 国科大 Logo，从 zepinglee/gbt-7714-2015 引入符合国标的参考文献样式文件。修改的文件为：ucas.pdf，gbt-7714-2015-numerical，gbt-7714-2015-author-year。
 
-2016-04-18 Improve the user guide.
+2016-04-03 修改模板可直接在Tex编辑器 (如 WinEdit，Texmaker) 中编译。修改的文件为：Thesis.tex，Main_Content.tex。
 
-2016-04-13 Many aspects of formatting and content have been improved.
+2016-03-29 修正封面下划线的颜色为黑色。修改的文件为：ucasthesis.cls。
 
-2016-04-07 Minor improvements have been made.
-
-2016-04-03 Adjust the template to be directly compilable by Tex Editors such as WinEdit, since the majority users prefer this.
-
-2016-03-29 Update ucasthesis.cls to set the color of underline to black rather than blue.
-
-2016-03-18 Update custom.sty and Thesis.tex to ensure correct page reference for "List of Figures", "List of Tables", and "Reference". 
-
-2016-03-15 Fixed numerous problems and issues with updating almost all the files.
+2016-03-18 修正图列表和表格列表的页码链接。修改的文件为：custom.sty，Thesis.tex 。

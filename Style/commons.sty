@@ -170,8 +170,8 @@ macros package]
 %% if use bibtex citation, not need to use any packages!
 %% if use natbib package, then:
 \ifCOMMONS@numbered% enable numbered citation style
-    \RequirePackage[square,comma,numbers,sort&compress]{natbib}% square bracket
-    %\RequirePackage[square,comma,super,sort&compress]{natbib}% superscripted square bracket
+    %\RequirePackage[square,comma,numbers,sort&compress]{natbib}% square bracket
+    \RequirePackage[square,comma,super,sort&compress]{natbib}% superscripted square bracket
     %\bibliographystyle{elsarticle-num-names}% numbered scheme
     \bibliographystyle{Biblio/gbt-7714-2015-numerical}% numbered scheme
 \fi

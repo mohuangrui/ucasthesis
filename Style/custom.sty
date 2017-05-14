@@ -70,23 +70,50 @@ macros package]
 %%
 %%% >>> Graphic Length Factor
 %%
-\newcommand*{\MyFactor}{0.6}% for single figure
-\newcommand*{\MySubFactor}{0.45}% for subfigure
+\providecommand*{\MyFactor}{0.6}% for single figure
+\providecommand*{\MySubFactor}{0.45}% for subfigure
 %%
 %%% >>> Nomenclature item
 %%
-\newcommand{\nomenclatureitem}[3][ ]{%
+\providecommand{\nomenclatureitem}[3][ ]{%
     \noindent\makebox[0.15\textwidth][l]{#2}{{#3}\hfill{#1}}\par
 }
 %%
 %%% >>> Add content link to the table of content and bookmark
 %%
 %% define a macro for adding chapter/section title to toc and bookmark.
-\newcommand{\intotoc}[2][chapter]{%
+\providecommand{\intotoc}[2][chapter]{%
     \cleardoublepage% ensure correct page reference
     \markboth{\MakeUppercase{#2}}{}% set the leftmark
     \phantomsection% use for adobe bookmark.
     \addcontentsline{toc}{#1}{#2}% add content #2 to toc as #1
+}
+%%
+%%% >>> Text embedded citation
+%%
+%% \citetns for \citet
+\providecommand*{\citetns}[2][]{%
+    \begingroup%
+        \let\NAT@mbox=\mbox%
+        \let\@cite\NAT@citenum%
+        \let\NAT@space\NAT@spacechar%
+        \let\NAT@super@kern\relax%
+        \renewcommand\NAT@open{[}%
+        \renewcommand\NAT@close{]}%
+        \citet[#1]{#2}%
+    \endgroup%
+}
+%% \citepns for \citep
+\providecommand*{\citepns}[2][]{%
+    \begingroup%
+        \let\NAT@mbox=\mbox%
+        \let\@cite\NAT@citenum%
+        \let\NAT@space\NAT@spacechar%
+        \let\NAT@super@kern\relax%
+        \renewcommand\NAT@open{[}%
+        \renewcommand\NAT@close{]}%
+        \citep[#1]{#2}%
+    \endgroup%
 }
 %%%%% --------------------------------------------------------------------------------
 %%
