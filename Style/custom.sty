@@ -67,6 +67,7 @@ macros package]
 \providecommand{\Loptr}{\operatorname{\mathcal{L}}}% spatial operator
 \providecommand{\Toptr}{\operatorname{\mathcal{LL}}}% temporal operator
 \providecommand{\Soptr}{\operatorname{\mathcal{S}}}% solution operator
+\providecommand{\Des}[1]{\mathrm{#1}}% Superscripts and subscripts are in roman type if they are descriptive
 %%
 %%% >>> Graphic Length Factor
 %%
@@ -128,6 +129,8 @@ macros package]
 %\setlength{\parskip}{0.5ex plus 0.25ex minus 0.25ex}% vertical space before a paragraph.
 %% Set distance between bibliographic entries
 \setlength{\bibsep}{0.0pt plus 0.3ex}
+%% Set font size for bibliography
+\renewcommand*{\bibfont}{\small}
 %%
 %%% >>> Toc Style
 %%
