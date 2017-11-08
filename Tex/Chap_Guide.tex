@@ -8,23 +8,28 @@
 
 ucasthesis模板不仅只是提供了相应的类文件，同时也提供了包括参考文献等在内的完成学位论文的一切要素，所以，下载时，推荐下载整个ucasthesis文件夹，而不是单独的文档类。
 
-下载ucasthesis文件夹并解压后，请在文件夹内找到Compile.bat，双击运行，即可获得本说明文档，而这，也完成了学习使用此模板撰写论文的一半进程，什么？这就学成一半了，这么简单？？？，是的，就这么简单！
+下载ucasthesis文件夹并解压后，Windows用户双击运行Compile.bat脚本，Linux或Mac OS用户在terminal中运行"chmod +x ./Compile.sh"，"./Compile.sh xa"即可获得本说明文档，而这，也完成了学习使用此模板撰写论文的一半进程，什么？这就学成一半了，这么简单？？？，是的，就这么简单！
 
-编译完成后，可以进入各个子目录逛逛，熟悉下模板框架。
+编译完成后，可以进入各个子目录逛逛，熟悉下模板框架。若编译中遇到了问题，请先查看“常见问题”（节~\ref{sec:qa}）。
 
 \section{各文档及目录简介}
 
-\subsection{Thesis.tex文档 }
+\subsection{Thesis.tex文档}
 
 Thesis.tex文档为主文档，其设计和规划了论文的整体框架，通过对其的阅读可以让用户了解整个论文框架的搭建。
 
-\subsection{Compile.bat}
+\subsection{Compile 脚本}
 
-Compile.bat为编译此模板的Dos脚本，通过双击运行此脚本即可获得编译后的PDF文档，编译生成的文档及临时文件皆位于Tmp文件夹内。在此脚本中可以设定编译器为pdflatex or xelatex(默认设定，推荐)。
+\begin{itemize}
+    \item Windows用户：双击运行Compile.bat此Dos脚本即可获得全编译后的PDF文档。在此脚本中可以设定编译器为pdflatex（p） or xelatex（x）(默认设定，推荐)。
+    \item Linux或Mac OS用户：在terminal中运行"./Compile.sh xa"即可获得全编译后的文档，运行"./Compile.sh x"则进行快速编译。对于Linux或Mac用户，ctex已只支持xelatex编译器，若使用pdflatex编译，则将出现无字体支持的错误。
+\end{itemize}
+
+全编译是指运行"xelatex+bibtex+xelatex+xelatex"以正确生成所有的引用链接，如目录，参考文献及引用等。当文章在写作过程中，并无添加新的引用，则可用快速编译即只运行"xelatex"以减少编译时间。
 
 \subsection{Tmp文件夹}
 
-运行编译脚本Compile.bat后，编译所生成的文档皆存于Tmp文件夹内，包括编译得到的pdf文档，其存在是为了保持工作空间的整洁，因为好的心情是很重要的.
+运行编译脚本Compile后，编译所生成的文档皆存于Tmp文件夹内，包括编译得到的pdf文档，其存在是为了保持工作空间的整洁，因为好的心情是很重要的.
 
 \subsection{Style文件夹}
 
@@ -236,9 +241,11 @@ parenthetical：\verb|\citepns{lamport1986document,chen2005zhulu}|。正如此�
 
 参考文献索引更为详细的信息，请见Wikibook\citep{wikibook2014latex}。
 
-\section{常见使用问题}
+\section{常见使用问题}\label{sec:qa}
 
 \begin{enumerate}
+    \item 下载模板后，用脚本编译出现错误，则i)请确定当前模板为最新版本，若否，请下载并更新模板样式文件。请更新你的\LaTeX{}编译器和包裹库，以确保模板与编译器的匹配。ii) 编译中若出现缺乏包裹或字体并提示是否自动下载，请选择自动下载，即可解决大部分初始编译时所遇到的问题。本模板在每次修改的发布前，都已在Windows，Linux，Mac OS系统的最近两个发行版的Texlive上测试通过。
+
   \item 模板文档的编码为UTF-8编码。所有文件都必须采用UTF-8编码，否则编译后生成的文档将出现乱码文本。若出现文本编辑器无法打开文档或打开文档乱码的问题，请检查您使用的编辑器对UTF-8编码的支持，如果使用WinEdt作为文本编辑器，应在其
 
   options --》 Preferences --》 wrapping
@@ -256,7 +263,7 @@ parenthetical：\verb|\citepns{lamport1986document,chen2005zhulu}|。正如此�
   options --》 Preferences --》 Unicode
 
   中的Enable ANSI Format...选项。
-  \item 推荐选择xelatex编译引擎编译。Compile.bat的默认设定为xelatex编译引擎。你也可以选择不使用此脚本编译，如直接使用 \TeX{}文本编辑器编译。注：\TeX{}文本编辑器编译的默认设定为pdflatex编译引擎，若选择xelatex编译引擎，请进入下拉菜单进行选择。为正确生成引用链接，编译步骤为: xelatex + bibtex + xelatex + xelatex。
+  \item 推荐选择xelatex编译引擎编译中文文档。Compile脚本的默认设定为xelatex编译引擎。你也可以选择不使用此脚本编译，如直接使用 \TeX{}文本编辑器编译。注：\TeX{}文本编辑器编译的默认设定为pdflatex编译引擎，若选择xelatex编译引擎，请进入下拉菜单进行选择。为正确生成引用链接，需要进行全编译，其步骤为: xelatex + bibtex + xelatex + xelatex。
   \item Texmaker使用简介
       \begin{enumerate}
           \item 使用 Texmaker 打开文档 Thesis.tex。
@@ -347,6 +354,8 @@ parenthetical：\verb|\citepns{lamport1986document,chen2005zhulu}|。正如此�
 
        找到并运行updmap.exe。
     \item 部分同学留意到一个所谓的新的模板要求，那个模板是一位学生发布的，而其英文封面的设定不满足中国科学院大学学位论文封面设定。因中国科学院大学学位论文撰写规定只是限定了封面格式但是没有要求具体的内容格式，部分所因为图方便省事就直接将其作为了模板发布到了所内。但是，迄今为止学校官网上的撰写规定和模板(\url{http://onestop.ucas.edu.cn/home/info/abc167cb-4589-4e05-b014-052fa9291d0c/1})未做出任何修改，亦未发表任何官方声明表示模板需要修改。所以，当前模板将不会在官方版发布之前做出调整。
+
+        尽管部分所也许对论文格式有不同的设定，\LaTeX{}用户亦无需担心，仍可放心地使用当前模板进行论文撰写，因为\LaTeX{}的特征就在于内容与格式的分离。在使用此模板完成论文的撰写后，任何形式的格式调整都可独立于内容进行，并可只需通过修改模板样式文件中的少数命令轻松快速完成，并无风险。
 \end{enumerate}
 
 \nocite{*}% show all the bibliography entries
