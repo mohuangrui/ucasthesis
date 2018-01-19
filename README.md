@@ -1,4 +1,4 @@
-# `ucasthesis` 中国科学院大学学位论文 LaTeX 模板
+# `ucasthesis 中国科学院大学学位论文 LaTeX 模板`
 
 ## 模板下载
 
