@@ -1,0 +1,516 @@
+%---------------------------------------------------------------------------%
+%-                                                                         -%
+%-                           Document Style                                -%
+%-                                                                         -%
+%---------------------------------------------------------------------------%
+%- Copyright (C) Huangrui Mo <huangrui.mo@gmail.com> 
+%- This is free software: you can redistribute it and/or modify it
+%- under the terms of the GNU General Public License as published by
+%- the Free Software Foundation, either version 3 of the License, or
+%- (at your option) any later version.
+%---------------------------------------------------------------------------%
+%->> Identification
+%---------------------------------------------------------------------------%
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]%
+\ProvidesPackage{artratex}[2014/10/01 v0.1 LaTeX macros package]%
+%---------------------------------------------------------------------------%
+%->> Declare options
+%---------------------------------------------------------------------------%
+%-
+%-> Bibliography processor and package
+%-
+\newif\ifARTRATEX@bibtex \ARTRATEX@bibtextrue
+\newif\ifARTRATEX@biber \ARTRATEX@biberfalse
+\DeclareOption{bibtex}{%
+    \ARTRATEX@bibtextrue
+    \ARTRATEX@biberfalse
+}
+\DeclareOption{biber}{%
+    \ARTRATEX@bibtexfalse
+    \ARTRATEX@bibertrue
+}
+%-
+%-> Citation and reference style
+%-
+\newif\ifARTRATEX@numbers \ARTRATEX@numberstrue
+\newif\ifARTRATEX@super \ARTRATEX@superfalse
+\newif\ifARTRATEX@authoryear \ARTRATEX@authoryearfalse
+\newif\ifARTRATEX@alpha \ARTRATEX@alphafalse
+\DeclareOption{numbers}{%
+    \ARTRATEX@numberstrue
+    \ARTRATEX@superfalse
+    \ARTRATEX@authoryearfalse
+    \ARTRATEX@alphafalse
+}
+\DeclareOption{super}{%
+    \ARTRATEX@numberstrue
+    \ARTRATEX@supertrue
+    \ARTRATEX@authoryearfalse
+    \ARTRATEX@alphafalse
+}
+\DeclareOption{authoryear}{%
+    \ARTRATEX@numbersfalse
+    \ARTRATEX@superfalse
+    \ARTRATEX@authoryeartrue
+    \ARTRATEX@alphafalse
+}
+\DeclareOption{alpha}{%
+    \ARTRATEX@numbersfalse
+    \ARTRATEX@superfalse
+    \ARTRATEX@authoryearfalse
+    \ARTRATEX@alphatrue
+}
+%-
+%-> Page layout reconfiguration
+%-
+\newif\ifARTRATEX@geometry \ARTRATEX@geometryfalse
+\DeclareOption{geometry}{%
+    \ARTRATEX@geometrytrue
+}
+%-
+%-> Landscape layout support
+%-
+\newif\ifARTRATEX@lscape \ARTRATEX@lscapefalse
+\DeclareOption{lscape}{%
+    \ARTRATEX@lscapetrue
+}
+%-
+%-> Header and footer
+%-
+\newif\ifARTRATEX@myhdr \ARTRATEX@myhdrfalse
+\DeclareOption{myhdr}{%
+    \ARTRATEX@myhdrtrue
+}
+%-
+%-> Color support
+%-
+\newif\ifARTRATEX@color \ARTRATEX@colorfalse
+\DeclareOption{color}{%
+    \ARTRATEX@colortrue
+}
+%-
+%-> Page background
+%-
+\newif\ifARTRATEX@background \ARTRATEX@backgroundfalse
+\DeclareOption{background}{%
+    \ARTRATEX@colortrue
+    \ARTRATEX@backgroundtrue
+}
+%-
+%-> Complex diagrams support
+%-
+\newif\ifARTRATEX@tikz \ARTRATEX@tikzfalse
+\DeclareOption{tikz}{%
+    \ARTRATEX@colortrue
+    \ARTRATEX@tikztrue
+}
+%-
+%-> Complex tables support
+%-
+\newif\ifARTRATEX@table \ARTRATEX@tablefalse
+\DeclareOption{table}{%
+    \ARTRATEX@tabletrue
+}
+%-
+%-> Enhanced list
+%-
+\newif\ifARTRATEX@list \ARTRATEX@listfalse
+\DeclareOption{list}{%
+    \ARTRATEX@colortrue
+    \ARTRATEX@listtrue
+}
+%-
+%-> Extra math support
+%-
+\newif\ifARTRATEX@math \ARTRATEX@mathfalse
+\DeclareOption{math}{%
+    \ARTRATEX@mathtrue
+}
+%-
+%-> Handle non-implemented options
+%-
+\DeclareOption*{%
+    \PackageWarning{artratex}{Unknown option '\CurrentOption'}%
+}
+%-
+%-> Terminates all options processing
+%-
+\ProcessOptions\relax%
+%---------------------------------------------------------------------------%
+%->> Required packages
+%---------------------------------------------------------------------------%
+%-
+%-> Language settings
+%-
+\RequirePackage{ifxetex,ifpdf}% packages and settings depending on PDF mode
+\ifxetex% running xelatex in PDF mode: call system fonts
+    \RequirePackage{fontspec}% support calling system fonts
+    %\defaultfontfeatures{Ligatures=TeX}% set quoting style
+    %- Set English fonts
+    %- Roman or Serif - typefaces with strokes, for main contents
+    %- examples: Times New Roman, Garamond, Adobe Garamond Pro
+    %\setmainfont[BoldFont=Garamond-Bold,ItalicFont=Garamond-Italic]{Garamond}% set \rmfamily
+    %- due to \renewcommand*{\familydefault}{\rmdefault}, it also sets \normalfont
+    %- Sans serif - typefaces without strokes, for heading demanding high readability
+    %- examples: Helvetica, Gill Sans, Futura
+    %\setsansfont{Gill Sans MT}% set \sffamily
+    %- Monospaced - typefaces with same width, for programming, tabulated data, etc
+    %- examples: Rockwell, Andale Mono, Courier, Monaco
+    %\setmonofont{Rockwell}% set \ttfamily
+\fi
+\ifpdf% running pdflatex in PDF mode: call font packages
+    \RequirePackage[utf8]{inputenc}% set input encoding, document must use utf-8 encoding
+    \RequirePackage[T1]{fontenc}% set font encoding to enable modern font encoding
+    %- Call font package options:
+    %- Text + Math: Adobe Times Roman (Recommended)
+    \RequirePackage{newtxtext,newtxmath}%
+    %- Text + Math: Palatino
+    %\RequirePackage{palatino}%
+\fi
+%-
+%-> Bibliography processor and package
+%-
+%- Bibtex processor + natbib package
+\ifARTRATEX@bibtex%
+    \ifARTRATEX@numbers% enable numbered citation style
+        \ifARTRATEX@super% enable superscripted citation style
+            \RequirePackage[square,comma,super,sort&compress]{natbib}% superscripted square bracket
+        \else
+            \RequirePackage[square,comma,numbers,sort&compress]{natbib}% square bracket
+        \fi
+        \bibliographystyle{gbt7714-unsrt}% numbered scheme
+        \providecommand*{\citetns}[2][]{% text embedded \citet in superscripted mode
+            \begingroup%
+                \let\NAT@mbox=\mbox%
+                \let\@cite\NAT@citenum%
+                \let\NAT@space\NAT@spacechar%
+                \let\NAT@super@kern\relax%
+                \renewcommand\NAT@open{[}%
+                \renewcommand\NAT@close{]}%
+                \citet[#1]{#2}%
+            \endgroup%
+        }
+        \providecommand*{\citepns}[2][]{% text embedded \citep in superscripted mode
+            \begingroup%
+                \let\NAT@mbox=\mbox%
+                \let\@cite\NAT@citenum%
+                \let\NAT@space\NAT@spacechar%
+                \let\NAT@super@kern\relax%
+                \renewcommand\NAT@open{[}%
+                \renewcommand\NAT@close{]}%
+                \citep[#1]{#2}%
+            \endgroup%
+        }
+    \fi
+    \ifARTRATEX@authoryear% enable author year citation style
+        \RequirePackage{natbib}% author year citation mode
+        \bibliographystyle{gbt7714-plain}% author year scheme
+    \fi
+    \ifARTRATEX@alpha% enable alpha citation style
+        \RequirePackage[square,comma,numbers]{natbib}% square bracket
+        \bibliographystyle{alpha}% alpha scheme
+    \fi
+\fi
+%- Biber processor + biblatex package
+\ifARTRATEX@biber%
+    \ifARTRATEX@numbers% enable numbered citation style
+        \ifARTRATEX@super% enable superscripted citation style
+            \RequirePackage[style=numeric-comp]{biblatex}%
+        \else
+            \RequirePackage[style=numeric-comp]{biblatex}%
+        \fi
+    \fi
+    \ifARTRATEX@authoryear% enable author year citation style
+        \RequirePackage[style=authoryear]{biblatex}%
+    \fi
+    \ifARTRATEX@alpha% enable alpha citation style
+        \RequirePackage[style=alphabetic]{biblatex}%
+    \fi
+    \addbibresource{ref.bib}%
+\fi
+%-
+%-> Figure environment support
+%-
+\RequirePackage{graphicx}% packages for including graphics
+\RequirePackage[font=small,skip=8pt]{caption}% options: [margin=10pt,labelfont=bf]
+\RequirePackage{subcaption}% package for subfigures
+\RequirePackage[section]{placeins}% prevent floats from being moved over section
+%-
+%-> Page layout and spacing
+%-
+\ifARTRATEX@geometry% enable geometry to redefine page layout
+    \RequirePackage{geometry}% page layout
+    %\RequirePackage{setspace}% line spacing
+\fi
+\ifARTRATEX@lscape% landscape layout
+    \RequirePackage{fancyhdr}% fancy headers and footers
+    %- usage: \begin{landscape} [\thispagestyle{lscape}] text... \end{landscape}
+    \RequirePackage{pdflscape}% landscape environment
+    \RequirePackage[absolute]{textpos}% rotated page number
+\fi
+\ifARTRATEX@myhdr% header and footer style
+    \RequirePackage{fancyhdr}% fancy headers and footers
+\fi
+\RequirePackage{microtype}% improves general appearance of the text
+%-
+%-> Color
+%-
+\ifARTRATEX@color% enable color package to use color
+    %\RequirePackage{color}%
+    \RequirePackage[usenames,dvipsnames,table]{xcolor}%
+\fi
+%-
+%-> Draw graphics directly with TeX commands
+%-
+\ifARTRATEX@tikz%
+    \RequirePackage{tikz}% automatically load pgf package
+    \usetikzlibrary{% load libraries
+        positioning,
+        arrows,
+        calc,
+        trees
+    }%
+\fi
+%-
+%-> Complex tables
+%-
+\ifARTRATEX@table%
+    \RequirePackage{ctable}% imports the array, tabularx and booktabs packages
+\fi
+%-
+%-> List structures
+%-
+\ifARTRATEX@list% enable enhanced list and verbatim structures
+    \RequirePackage{verbatim}% improve verbatim environment
+    \RequirePackage{enumitem}% configure the enumerate environment
+    \RequirePackage{listings}% useful for algorithm and coding
+\fi
+%-
+%-> Math packages
+%-
+\RequirePackage{amsmath,amssymb,amstext}% math packages
+\ifARTRATEX@math% extra math packages
+    \RequirePackage{mathtools,amsfonts}%
+\fi
+%-
+%-> Links support
+%-
+\ifxetex% running xelatex in PDF mode
+    \RequirePackage[xetex]{hyperref}%
+\else
+    \ifpdf% running pdflatex in PDF mode
+        \RequirePackage[pdftex]{hyperref}%
+    \fi
+\fi
+\hypersetup{% set hyperlinks
+    %bookmarks=true,% show bookmarks bar
+    unicode=true,% allows non-Latin based languages in bookmarks
+    %pdftitle={},% title
+    %pdfauthor={},% author
+    %pdfsubject={},% subject
+    %pdftoolbar=true,% show toolbar
+    %pdfmenubar=true,% show menu
+    pdffitwindow=false,% window fit to page when opened
+    pdfstartview={FitH},% fits the width of the page to the window
+    %pdfnewwindow=true,% links in new window
+    %colorlinks=true,% false: boxed links; true: colored links
+    %linkcolor=blue,% color of internal links
+    %citecolor=green,% color of links to bibliography
+    %filecolor=magenta,% color of file links
+    %urlcolor=cyan,% color of external links
+    bookmarksnumbered=true,% put section numbers in bookmarks
+    hidelinks% remove link color and border
+}
+%---------------------------------------------------------------------------%
+%->> Configuration command
+%---------------------------------------------------------------------------%
+%-
+%-> Extensions and directories for graphics
+%-
+%- Declare graphic extensions for automatic selection when including graphics
+%- via avoiding supplying graphic extensions in \includegraphics command,
+%- the source file can be more general and adaptive
+\ifxetex% running xelatex in PDF mode
+    \DeclareGraphicsExtensions{.pdf,.png,.jpg,.tif,.bmp,.gif}%
+\else
+    \ifpdf% running pdflatex in PDF mode
+        \DeclareGraphicsExtensions{.pdf,.png,.jpg}%
+    \fi
+\fi
+\graphicspath{{Img/}}% search path for figures
+%-
+%-> Layout, space, and style
+%-
+\ifARTRATEX@geometry% enable geometry to redefine page layout
+    \geometry{paper=a4paper,left=25mm,right=24mm,top=45mm,bottom=5mm}%
+\fi
+%\linespread{1.3}% 1.3 for "one and a half" line spacing, and 1.6 for "double" line spacing
+%\setlength{\parskip}{0.5ex plus 0.25ex minus 0.25ex}% skip space a paragraph
+\setcounter{tocdepth}{1}% depth for the table of contents
+\setcounter{secnumdepth}{3}% depth for section numbering, default is 2(subsub)
+%- Set equation, figure, table numbering
+%\numberwithin{equation}{section}% set enumeration level
+%\renewcommand{\theequation}{\thesection\arabic{equation}}% configure the label style
+%\numberwithin{figure}{section}% set enumeration level
+%\renewcommand{\thefigure}{\thesection\arabic{figure}}% configure the label style
+%\numberwithin{table}{section}% set enumeration level
+%\renewcommand{\thetable}{\thesection\arabic{table}}% configure the label style
+%- Set bibliography entry
+\ifARTRATEX@bibtex%
+    \setlength{\bibsep}{0.0pt plus 0.3ex}% set distance between entries
+\fi
+\ifARTRATEX@biber%
+    \setlength\bibitemsep{0.5\baselineskip}% set distance between entries
+\fi
+\renewcommand*{\bibfont}{\small}% set font size for bibliography
+%-
+%-> Nomenclature item
+%-
+\providecommand{\nomenclatureitem}[3][ ]{%
+    \noindent\makebox[0.15\textwidth][l]{#2}{{#3}\hfill{#1}}\par
+}
+%-
+%-> Macro for adding content link to the table of content and bookmark
+%-
+\providecommand{\intotoc}[2][chapter]{%
+    \cleardoublepage% ensure correct page reference
+    \markboth{\MakeUppercase{#2}}{}% set the leftmark
+    \phantomsection% create link in bookmarks
+    \addcontentsline{toc}{#1}{#2}% add content #2 to toc as #1
+}
+%-
+%-> Page header and footer Style
+%-
+%- Page styles in Latex refers to headers and footers of a document.
+%- These headers/footers typically contain document titles, chapter
+%- or section numbers/names, and page numbers.
+%- Configure fancy style
+\ifARTRATEX@myhdr% user defined header and footer style
+    \pagestyle{fancy}%
+    \providecommand{\chaptermark}{}% compatibility for non-book classes
+    \providecommand{\thechapter}{}% compatibility for non-book classes
+    \providecommand{\CTEXthechapter}{\thechapter.}% compatibility for non ctex classes
+    %- reset style of chapter and section mark to actual name
+    \renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{#1}}{}}%
+    \renewcommand{\sectionmark}[1]{\markright{\MakeUppercase{#1}}{}}%
+    %- deactivate uppercase effect
+    \renewcommand{\MakeUppercase}[1]{#1}%
+    %- Define different kinds of header and footer for different parts
+    \fancypagestyle{frontmatterstyle}{% style for frontmatter
+        \fancyhf{}% clear fields
+        \fancyhead[RE]{\small \@title}% structure elements
+        \fancyhead[LO]{\small \leftmark}% structure elements
+        \fancyhead[LE]{\small \thepage}% page number
+        \fancyhead[RO]{\small \thepage}% page number
+        \renewcommand{\headrulewidth}{1pt}% header rule
+        \renewcommand{\footrulewidth}{0pt}% footer rule
+    }
+    \fancypagestyle{mainmatterstyle}{% style for mainmatter
+        \fancyhf{}% clear fields
+        \fancyhead[RE]{\small \@title}% structure elements
+        \fancyhead[LO]{\small \CTEXthechapter\ \leftmark}% structure elements
+        \fancyhead[LE]{\small \thepage}% page number
+        \fancyhead[RO]{\small \thepage}% page number
+        \renewcommand{\headrulewidth}{1pt}% header rule
+        \renewcommand{\footrulewidth}{0pt}% footer rule
+    }
+    \fancypagestyle{backmatterstyle}{% header and footer style for backmatter
+        \fancyhf{}% clear fields
+        \fancyhead[RE]{\small \@title}% structure elements
+        \fancyhead[LO]{\small \leftmark}% structure elements
+        \fancyhead[LE]{\small \thepage}% page number
+        \fancyhead[RO]{\small \thepage}% page number
+        \renewcommand{\headrulewidth}{1pt}% header rule
+        \renewcommand{\footrulewidth}{0pt}% footer rule
+    }
+    %- Redefine \frontmatter to include the change
+    \providecommand{\frontmatter}{}% compatibility for non-book classes
+    \let\myfrontmatter\frontmatter%
+    \renewcommand{\frontmatter}{%
+        \myfrontmatter%
+        \pagestyle{frontmatterstyle}%
+    }
+    %- Redefine \mainmatter to include the change
+    \providecommand{\mainmatter}{}% compatibility for non-book classes
+    \let\mymainmatter\mainmatter%
+    \renewcommand{\mainmatter}{%
+        \mymainmatter%
+        \pagestyle{mainmatterstyle}%
+    }
+    %- Redefine \backmatter to include the change
+    \providecommand{\backmatter}{}% compatibility for non-book classes
+    \let\mybackmatter\backmatter%
+    \renewcommand{\backmatter}{%
+        \mybackmatter%
+        \pagestyle{backmatterstyle}%
+    }
+    %- Some Latex commands, like \chapter, use the \thispagestyle command
+    %- to automatically switch to the plain page style, thus ignoring the
+    %- page style currently in effect. To customize such pages you must
+    %- redefine the plain pagestyle. If you want the plain style inherits
+    %- the current style, comment all the lines in plain style definition.
+    \fancypagestyle{plain}{%
+        \fancyhf{}% clear fields
+        \renewcommand{\headrulewidth}{0pt}% header rule
+        \renewcommand{\footrulewidth}{0pt}% footer rule
+    }
+\fi
+%-
+%-> Configure landscape environment
+%-
+\ifARTRATEX@lscape%
+\fancypagestyle{lscape}{% landscape layout style
+    \fancyhf{}% clear fields
+    \fancyfoot[CE,CO]{%
+    %- textpos: \begin{textblock}{<blockwidth>}[0.5,0.5](<hpos>,<vpos>) text... \end{textblock}
+    %- origin of the absolute coordinate is the top-left corner of the page
+    %- [0.5,0.5] means reference point of the block is the middle
+    \begin{textblock}{0.1}[0.5,0.5](0.85,0.5){\rotatebox{90}{\small \thepage}}\end{textblock}% position the page number
+    }
+    %- set units of <blockwidth>, <hpos>, and <vpos> arguments by corresponding modules 
+    \setlength{\TPHorizModule}{8.5in}% set to the width of page
+    \setlength{\TPVertModule}{11in}% set to the height of page
+    \renewcommand{\headrulewidth}{0pt}% header rule
+    \renewcommand{\footrulewidth}{0pt}% footer rule
+}
+\fi
+\ifARTRATEX@list% enable enhanced list
+    \definecolor{mygreen}{rgb}{0,0.6,0}
+    \definecolor{mygray}{rgb}{0.5,0.5,0.5}
+    \definecolor{mymauve}{rgb}{0.58,0,0.82}
+    \lstset{%
+        numberbychapter=false,% numbered sequentially or by chapter
+        backgroundcolor=\color{white},% background color;
+        basicstyle=\scriptsize,% font size for code
+        breakatwhitespace=false,% sets if automatic breaks should only happen at whitespace
+        breaklines=true,% sets automatic line breaking
+        captionpos=b,% caption-position to bottom
+        commentstyle=\color{mygreen},% comment style
+        %deletekeywords={...},% delete keywords from the given language
+        frame=single,% adds a frame around the code
+        keepspaces=true,% keeps spaces in text for keeping indentation of code
+        keywordstyle=\color{blue},% keyword style
+        %otherkeywords={*,...},% add more keywords to the set
+        numbers=left,% where to put the line-numbers; possible values are (none, left, right)
+        numbersep=5pt,% how far the line-numbers are from the code
+        numberstyle=\tiny\color{mygray},% the style that is used for the line-numbers
+        rulecolor=\color{black},% if not set, the frame-color may be changed on line-breaks
+        showspaces=false,% show spaces everywhere adding particular underscores;
+        showstringspaces=false,% underline spaces within strings only
+        showtabs=false,% show tabs within strings adding particular underscores
+        stepnumber=2,% the step between two line-numbers. If it's 1, each line will be numbered
+        stringstyle=\color{mymauve},% string literal style
+        tabsize=2,% sets default tabsize to 2 spaces
+        title=\lstname% show the filename of files
+    }
+\fi
+%-
+%-> Page background
+%-
+\ifARTRATEX@background%
+    \definecolor{backgroundcolor}{rgb}{0.85,0.85,0.85}%
+    \pagecolor{backgroundcolor}% background color
+\fi
+%---------------------------------------------------------------------------%
+\endinput
+

@@ -1,0 +1,82 @@
+%---------------------------------------------------------------------------%
+%-                                                                         -%
+%-                        User-defined Commands                            -%
+%-                                                                         -%
+%---------------------------------------------------------------------------%
+%- Copyright (C) Huangrui Mo <huangrui.mo@gmail.com> 
+%- This is free software: you can redistribute it and/or modify it
+%- under the terms of the GNU General Public License as published by
+%- the Free Software Foundation, either version 3 of the License, or
+%- (at your option) any later version.
+%---------------------------------------------------------------------------%
+%->> Identification
+%---------------------------------------------------------------------------%
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]%
+\ProvidesPackage{artracom}[2014/10/01 v0.1 LaTeX macros package]%
+%---------------------------------------------------------------------------%
+%->> Declare options
+%---------------------------------------------------------------------------%
+%-
+%-> Handle non-implemented options
+%-
+\DeclareOption*{%
+    \PackageWarning{artracom}{Unknown option '\CurrentOption'}%
+}
+%-
+%-> Terminates all options processing
+%-
+\ProcessOptions\relax%
+%---------------------------------------------------------------------------%
+%->> User defined commands
+%---------------------------------------------------------------------------%
+%-
+%-> General information
+%- 
+%- \newcommand: defines a new command, makes an error if already defined
+%- \renewcommand: redefines a predefined command, makes an error if not yet defined
+%- \providecommand: defines a new command, if already defined, keep old definition
+%- \def: define a command whether new or predefined, equivalent to
+%-       \providecommand{name}{}%
+%-       \renewcommand{name}[number of arguments][default value]{definition}
+%-
+%-> Math functions
+%-
+%- International standard layout rules (from isomath package)
+%- The overall rule is that symbols representing math quantities or variables should
+%- be italicised, symbols representing units or labels are unitalicised (roman).
+%- Symbols for vectors and matrices are bold italic, symbols for tensors are 
+%- sans-serif bold italic.
+%- The above rules apply equally to letter symbols from the Greek and 
+%- the Latin alphabet.
+%- More information may be found in <<The LaTeX Mathematics Companion>>
+%- However, math typefaces vary from field to field. To keep consistent typography
+%- and easy adaption, it it always best to create a corresponding command for 
+%- variables in each math category.  
+%\providecommand{\Scalar}[1]{#1}% scalar is the normal math typeset, italic
+\providecommand{\Vector}[1]{\boldsymbol{#1}}% general vectors in bold italic
+%\renewcommand{\vec}[1]{\Vector{#1}}% redefine predefined vector if needed
+\providecommand{\unitVector}[1]{\boldsymbol{\mathbf{#1}}}% unit vectors in bold roman
+\providecommand{\Tensor}[1]{\boldsymbol{\mathsf{#1}}}% tensor in sans-serif bold italic
+\providecommand{\unitTensor}[1]{\boldsymbol{{\mathsf{#1}}}}% identity tensor in sans-serif bold
+\providecommand{\Matrix}[1]{\boldsymbol{\mathbf{#1}}}% matrix in bold roman
+\providecommand{\unitMatrix}[1]{\boldsymbol{\mathbf{#1}}}% identity matrix in bold roman
+\providecommand{\Unit}[1]{\,\mathrm{#1}}% units in roman
+\providecommand{\Const}[1]{\mathrm{#1}}% math constants, functions
+\providecommand{\Set}[1]{\mathbb{#1}}% special sets in blackboard bold
+\providecommand{\Div}{\operatorname{div}}% divergence operator
+\providecommand{\Order}{\operatorname{O}}% order operator
+\providecommand{\Trace}{\operatorname{tr}}% trace operator
+\providecommand{\Diag}{\operatorname{diag}}% diagonal
+\providecommand{\Def}{\operatorname{def}}% define
+\providecommand{\Loptr}{\operatorname{\mathcal{L}}}% spatial operator
+\providecommand{\Toptr}{\operatorname{\mathcal{LL}}}% temporal operator
+\providecommand{\Soptr}{\operatorname{\mathcal{S}}}% solution operator
+\providecommand{\Des}[1]{\mathrm{#1}}% descriptive superscripts and subscripts in roman type 
+%-
+%-> Graphical length factor
+%-
+\providecommand*{\MyFactor}{0.6}% for single figure
+\providecommand*{\MySubFactor}{0.45}% for subfigure
+%---------------------------------------------------------------------------%
+\endinput
+
