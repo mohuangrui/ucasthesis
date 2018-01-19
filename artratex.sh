@@ -74,7 +74,7 @@ $TexCompiler -output-directory=$Tmp $FileName || exit
 #-
 if [[ -n $BibCompiler ]]; then
     #- fix the inclusion path for hierarchical auxiliary files
-    sed -i "s|\@input{|\@input{$Tmp/|g" $Tmp/"$FileName".aux
+    sed -i -e "s|\@input{|\@input{$Tmp/|g" $Tmp/"$FileName".aux
     #- extract and format bibliography database via auxiliary files
     $BibCompiler $Tmp/$FileName
     #- insert reference indicators into textual content
