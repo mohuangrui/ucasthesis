@@ -1,57 +1,56 @@
-%%
-%%% >>> Title Page
-%%
-%%
-%%% Chinese Title Page
-%%
-  \confidential{}% show confidential tag
-  \schoollogo{scale=0.112}{UCAS}% university logo
-  \title[国科大学位论文\LaTeX{}模板]{中国科学院大学学位论文\LaTeX{}模板}% \title[short title for headers]{Long title of thesis}
-  \author{莫晃锐}% name of author
-  \advisor{刘青泉~研究员}% names and titles of supervisors
-  \advisorinstitute{中国科学院力学研究所}% institute names of supervisors
-  \degree{硕士}% degree
-  \degreetype{理学}% degree type
-  \major{流体力学}% major
-  \institute{中国科学院力学研究所}% institute of author
-  %\chinesedate{2014~年~06~月}% only need for user customized date
-%%
-%%% English Title Page
-%%
-  \englishtitle{\LaTeX{} Thesis Template\\ of \\ The University of Chinese Academy of Sciences}
-  \englishauthor{Huangrui Mo}
-  \englishadvisor{Professor Qingquan Liu}
-  \englishdegree{Master}
-  \englishthesistype{thesis}
-  \englishmajor{Fluid Mechanics}
-  \englishinstitute{Institute of Mechanics, Chinese Academy of Sciences}
-  %\englishdate{June, 2014}% only need for user customized date
-%%
-%%% Generate Chinese Title
-%%
+%---------------------------------------------------------------------------%
+%->> Titlepage information
+%---------------------------------------------------------------------------%
+%-
+%-> Chinese titlepage
+%-
+\confidential{}% confidential level
+\schoollogo{scale=3.8}{ucas_logo}% university logo
+\title[国科大学位论文\LaTeX{}模板]{中国科学院大学学位论文\LaTeX{}模板 {$~^{\pi}\pi^{\pi}$}}% \title[short title for headers]{Long title of thesis}
+\author{莫晃锐}% name of author
+\advisor{刘青泉~研究员}% names and titles of supervisors
+\advisorinstitute{中国科学院力学研究所}% institute of supervisors
+\degree{硕士}% degree
+\degreetype{理学}% degree type
+\major{流体力学}% major
+\institute{中国科学院力学研究所}% institute of author
+\chinesedate{2014~年~6~月}% customized date, 6 for summer and 12 for winter graduation
+%-
+%-> English titlepage
+%-
+\englishtitle{\LaTeX{} Thesis Template\\ of \\ The University of Chinese Academy of Sciences {$~^{\pi}\pi^{\pi}$}}
+\englishauthor{Huangrui Mo}
+\englishadvisor{Supervisor: Professor Qingquan Liu}
+\englishdegree{Master of Natural Science}% degree type <Doctor|Master> of <Philosophy|Natural Science|Engineering>
+\englishthesistype{thesis}% thesis type <thesis|dissertation>
+\englishmajor{Fluid Mechanics}% major
+\englishinstitute{Institute of Mechanics, Chinese Academy of Sciences}
+\englishdate{June, 2014}% customized date
+%-
+%-> Create titlepages
+%-
 \maketitle
-%%
-%%% Generate English Title
-%%
 \makeenglishtitle
-%%
-%%% >>> Author's declaration
-%%
+%-
+%-> Author's declaration
+%-
 \makedeclaration
-%%
-%%% >>> Abstract
-%%
+%-
+%-> Chinese abstract
+%-
 \chapter{摘\quad 要}% does not show the title on the top
 %\begin{abstract}% will show the title on the top
 本文是中国科学院大学学位论文模板ucasthesis的使用说明文档。主要内容为介绍\LaTeX{}文档类ucasthesis的用法，以及如何使用\LaTeX{}快速高效地撰写学位论文。
 
 \keywords{中国科学院大学，学位论文，\LaTeX{}模板}
 %\end{abstract}
-
-
+%-
+%-> English abstract
+%-
 \chapter{Abstract}% does not show the title on the top
 %\begin{englishabstract}% will show the title on the top
 This paper is a help documentation for the \LaTeX{} class ucasthesis, which is  a thesis template for the University of Chinese Academy of Sciences. The main content is about how to use the ucasthesis, as well as how to write thesis efficiently by using \LaTeX{}.
 
 \englishkeywords{University of Chinese Academy of Sciences (UCAS), Thesis, \LaTeX{} Template}
 %\end{englishabstract}
+%---------------------------------------------------------------------------%

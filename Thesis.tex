@@ -1,108 +1,84 @@
-%%%%% --------------------------------------------------------------------------------
-%%
-%%                               Document Template
-%%
-%%%%% --------------------------------------------------------------------------------
-%% Copyright (C) Huangrui Mo <huangrui.mo@gmail.com> 
-%% This is free software: you can redistribute it and/or modify it
-%% under the terms of the GNU General Public License as published by
-%% the Free Software Foundation, either version 3 of the License, or
-%% (at your option) any later version.
-%%%%% --------------------------------------------------------------------------------
-%%
-%%%%************************ Document Class Declaration ******************************
-%%
-\documentclass[doublesided]{Style/ucasthesis}% thesis template of UCAS
-%% Multiple optional arguments:
-%% [scheme = plain] % for thesis writing of international students
-%% [<singlesided|doublesided|printcopy>] % single-sided, double-sided, or print layout
-%% [draftversion] % show draft version information, default is no show
-%% [fontset = <adobe|...>] % specify font set, default is automatic detection
-%% [standard options for ctex class]
-%%%%% --------------------------------------------------------------------------------
-%%
-%%%%************************* Command Define and Settings ****************************
-%%
-\usepackage[myhdr]{Style/commons}% common settings
-%% usage: \usepackage[option1,option2,...,optionN]{commons}
-%% Multiple optional arguments:
-%% [<numbered|authoryear|alpha>] % citation and reference style
-%% <numbered>: textual: Jones [1]; parenthetical: [1]. default style
-%% <authoryear>: textual: Jones (1995); parenthetical: (Jones, 1995)
-%% <alpha>: textual: not available; parenthetical: [Jon95]
-%% [myhdr] % one available header and footer style, will enable fancyhdr
-%% [lscape] % provide landscape layout environment
-%% [geometry] % configure page layout by geometry package
-%% [list] % enable enhanced list environments, useful for Algorithm and Coding
-%% [color] % enable color package to use color, default package is xcolor
-%% [background] % enable page background, will auto enable color package
-%% [tikz] % enable tikz for complex diagrams, will auto enbale color package
-%% [table] % enable a table package for complex tables, default is ctable
-%% [math] % enable some extra math packages
-\usepackage{Style/custom}% user defined commands
-%%%%% --------------------------------------------------------------------------------
-%%
-%%%%******************************** Content *****************************************
-%%
+%---------------------------------------------------------------------------%
+%-                                                                         -%
+%-                           LaTeX Template                                -%
+%-                                                                         -%
+%---------------------------------------------------------------------------%
+%- Copyright (C) Huangrui Mo <huangrui.mo@gmail.com> 
+%- This is free software: you can redistribute it and/or modify it
+%- under the terms of the GNU General Public License as published by
+%- the Free Software Foundation, either version 3 of the License, or
+%- (at your option) any later version.
+%---------------------------------------------------------------------------%
+%->> Document class declaration
+%---------------------------------------------------------------------------%
+\documentclass[doublesided]{Style/ucasthesis}%
+%- Multiple optional arguments:
+%- [<singlesided|doublesided|printcopy>]% set one or two sided eprint or print
+%- [showmj]% show confidential information
+%- [draftversion]% show draft version information
+%- [fontset=<adobe|...>]% specify font set to replace automatic detection
+%- [scheme=plain]% thesis writing of international students
+%- [standard options for ctex book class: draft|paper size|font size|...]%
+%---------------------------------------------------------------------------%
+%->> Document settings
+%---------------------------------------------------------------------------%
+\usepackage[super,myhdr]{Style/artratex}% document settings
+%- usage: \usepackage[option1,option2,...,optionN]{artratex}
+%- Multiple optional arguments:
+%- [bibtex|biber]% set bibliography processor and package
+%- [<numbers|super|authoryear|alpha>]% set citation and reference style
+%- <numbers>: textual: Jones [1]; parenthetical: [1]
+%- <super>: textual: Jones superscript [1]; parenthetical: superscript [1]
+%- <authoryear>: textual: Jones (1995); parenthetical: (Jones, 1995)
+%- <alpha>: textual: not available; parenthetical: [Jon95]
+%- [geometry]% reconfigure page layout via geometry package
+%- [lscape]% provide landscape layout environment
+%- [myhdr]% enable header and footer via fancyhdr package
+%- [color]% provide color support via xcolor package
+%- [background]% enable page background
+%- [tikz]% provide complex diagrams via tikz package
+%- [table]% provide complex tables via ctable package
+%- [list]% provide enhanced list environments for algorithm and coding
+%- [math]% enable some extra math packages
+\usepackage{Style/artracom}% user defined commands
+%---------------------------------------------------------------------------%
+%->> Document inclusion
+%---------------------------------------------------------------------------%
+%\includeonly{Tex/Chap_1,...,Tex/Chap_N}% selected files compilation
+%---------------------------------------------------------------------------%
+%->> Document content
+%---------------------------------------------------------------------------%
 \begin{document}
-%%
-%%%%% --------------------------------------------------------------------------------
-%%
-%%%%******************************** Frontmatter *************************************
-%%
-%% Frontmatter of Title page, Table of contents, Preface chapter.
-\frontmatter
-%%
-%% >>> Frontpages
-%%
-\input{Tex/Frontpages}
-%%
-%%% >>> List of Content
-%%
-\intotoc{\contentsname}% add a corresponding item to the contents table and bookmark
+%-
+%-> Frontmatter: title page, abstract, content list, symbol list, preface
+%-
+\frontmatter% initialize the environment
+\input{Tex/Frontpages}% title page, abstract, dedication
+\intotoc{\contentsname}% add link to contents table and bookmark
 \tableofcontents% contents catalog
-\intotoc{\listfigurename}% add a corresponding item to the contents table and bookmark
+\intotoc{\listfigurename}% add link to contents table and bookmark
 \listoffigures% figures catalog
-\intotoc{\listtablename}% add a corresponding item to the contents table and bookmark
+\intotoc{\listtablename}% add link to contents table and bookmark
 \listoftables% tables catalog
-%%
-%% >>> prematter
-%%
-\input{Tex/Prematter}% list of symbols, preface of books
-%%
-%%%%% --------------------------------------------------------------------------------
-%%
-%%%%******************************** Mainmatter **************************************
-%%
-%% Main topics.
-\mainmatter
-%%
-%%% >>> Main Contents
-%%
-\input{Tex/Main_Content}%
-%%%%% --------------------------------------------------------------------------------
-%%
-%%%%******************************** Appendix ****************************************
-%%
-%% Some subordinate chapters.
-\cleardoublepage
-\appendix%
-\input{Tex/Appendix}%
-%%%%% --------------------------------------------------------------------------------
-%%
-%%%%******************************* Backmatter ***************************************
-%%
-%% Matters of Bibliography, Glossary, Index.
-\backmatter
-%%
-%%% >>> Bibliography
-%%
-\intotoc{\bibname}% add a corresponding item to the contents table and bookmark
-\bibliography{Biblio/ref}%
-%%
-%%% >>> Other contents
-%%
-\input{Tex/Backmatter}
-%%
+\input{Tex/Prematter}% list of symbols, preface content
+%-
+%-> Mainmatter
+%-
+\mainmatter% initialize the environment
+\input{Tex/Mainmatter}% main content
+%-
+%-> Appendix
+%-
+\cleardoublepage%
+\appendix% initialize the environment
+\input{Tex/Appendix}% appendix content
+%-
+%-> Backmatter: bibliography, glossary, index
+%-
+\backmatter% initialize the environment
+\intotoc{\bibname}% add link to contents table and bookmark
+\bibliography{Biblio/ref}% bibliography
+\input{Tex/Backmatter}% other information
 \end{document}
-%%%%% --------------------------------------------------------------------------------
+%---------------------------------------------------------------------------%
+
