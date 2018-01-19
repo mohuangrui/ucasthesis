@@ -178,7 +178,7 @@
         \else
             \RequirePackage[square,comma,numbers,sort&compress]{natbib}% square bracket
         \fi
-        \bibliographystyle{gbt7714-unsrt}% numbered scheme
+        \bibliographystyle{Biblio/gbt7714-unsrt}% numbered scheme
         \providecommand*{\citetns}[2][]{% text embedded \citet in superscripted mode
             \begingroup%
                 \let\NAT@mbox=\mbox%
@@ -204,7 +204,7 @@
     \fi
     \ifARTRATEX@authoryear% enable author year citation style
         \RequirePackage{natbib}% author year citation mode
-        \bibliographystyle{gbt7714-plain}% author year scheme
+        \bibliographystyle{Biblio/gbt7714-plain}% author year scheme
     \fi
     \ifARTRATEX@alpha% enable alpha citation style
         \RequirePackage[square,comma,numbers]{natbib}% square bracket
