@@ -5,11 +5,11 @@
 %-> Chinese titlepage
 %-
 \confidential{}% confidential level
-\schoollogo{scale=3.8}{ucas_logo}% university logo
+\schoollogo{scale=4.2}{ucas_logo}% university logo
 \title[国科大学位论文\LaTeX{}模板]{中国科学院大学学位论文\LaTeX{}模板 {$~^{\pi}\pi^{\pi}$}}% \title[short title for headers]{Long title of thesis}
 \author{莫晃锐}% name of author
-\advisor{刘青泉~研究员}% names and titles of supervisors
-\advisorinstitute{中国科学院力学研究所}% institute of supervisors
+\advisor{刘青泉~研究员~中国科学院力学研究所}% supervisor
+\advisorsec{}% co-supervisor
 \degree{硕士}% degree
 \degreetype{理学}% degree type
 \major{流体力学}% major
@@ -38,19 +38,18 @@
 %-
 %-> Chinese abstract
 %-
-\chapter{摘\quad 要}% does not show the title on the top
-%\begin{abstract}% will show the title on the top
+\chapter{摘\quad 要}
+\setcounter{page}{1}% set page number
+
 本文是中国科学院大学学位论文模板ucasthesis的使用说明文档。主要内容为介绍\LaTeX{}文档类ucasthesis的用法，以及如何使用\LaTeX{}快速高效地撰写学位论文。
 
 \keywords{中国科学院大学，学位论文，\LaTeX{}模板}
-%\end{abstract}
 %-
 %-> English abstract
 %-
-\chapter{Abstract}% does not show the title on the top
-%\begin{englishabstract}% will show the title on the top
+\chapter{Abstract}
+
 This paper is a help documentation for the \LaTeX{} class ucasthesis, which is  a thesis template for the University of Chinese Academy of Sciences. The main content is about how to use the ucasthesis, as well as how to write thesis efficiently by using \LaTeX{}.
 
 \englishkeywords{University of Chinese Academy of Sciences (UCAS), Thesis, \LaTeX{} Template}
-%\end{englishabstract}
 %---------------------------------------------------------------------------%
