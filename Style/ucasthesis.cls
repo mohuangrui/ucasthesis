@@ -101,27 +101,26 @@
 %- top height + textheight + bottom height = paperheight
 %- top height = 1.0in (fixed) + voffset + topmargin + headheight + headsep 
 \setlength{\textheight}{240mm}% set required text height first
-\setlength{\voffset}{-15mm}% set a minimum header height
+\setlength{\voffset}{-20mm}% set a minimum header height
 \setlength{\headheight}{15pt}% set a minimum header height
 %- specifies the amount of space between paragraphs.
 \setlength{\parskip}{0.5ex plus 0.25ex minus 0.25ex}
 %- line spacing
-\renewcommand{\baselinestretch}{1.3}% line space setting
+\linespread{1.3}% line space setting
 \raggedbottom% prevent adding vertical white space in strange places
 %- default pagestyle is page number at bottom without headers and footers
 \pagestyle{plain}
 %---------------------------------------------------------------------------%
 %->> Style control commands
 %---------------------------------------------------------------------------%
-%- redefine cleardoublepage to empty pages
-\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
-    \thispagestyle{empty}%
-\hbox{}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+%- redefine cleardoublepage to have page style argument
+\renewcommand{\cleardoublepage}[1][plain]{%
+    \clearpage\if@twoside\ifodd\c@page\else%
+    \thispagestyle{#1}%
+    \hbox{}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi%
+}
 %- underline
 \renewcommand{\CJKunderlinecolor}{\color[rgb]{0,0,0}}
-\def\UCAS@underline[#1]#2{%
-    \CJKunderline{\hbox to #1{\hfill#2\hfill}}}
-\def\UCASunderline{\@ifnextchar[\UCAS@underline\CJKunderline}
 %---------------------------------------------------------------------------%
 %->> Titlepage
 %---------------------------------------------------------------------------%
@@ -137,7 +136,7 @@
 \def\@title{\UCAS@value@titlemark}
 \renewcommand\author[1]{\def\UCAS@value@author{#1}}
 \newcommand\advisor[1]{\def\UCAS@value@advisor{#1}}
-\newcommand\advisorinstitute[1]{\def\UCAS@value@advisorinstitute{#1}}
+\newcommand\advisorsec[1]{\def\UCAS@value@advisorsec{#1}}
 \newcommand\degree[1]{\def\UCAS@value@degree{#1}}
 \newcommand\degreetype[1]{\def\UCAS@value@degreetype{#1}}
 \newcommand\major[1]{\def\UCAS@value@major{#1}}
@@ -152,37 +151,42 @@
     \begin{center}
         \bfseries\zihao{4}\songti
         \ifUCAS@mjinfo
-        \hfill{} {\bfseries\zihao{4}\songti\UCAS@label@confidential \UCASunderline[50pt]{\zihao{5}\songti\UCAS@value@confidential}}
+            \hfill{} {\bfseries\zihao{4}\songti\UCAS@label@confidential \CJKunderline{\hbox to 50pt{\hfill\zihao{5}\songti\UCAS@value@confidential\hfill}}}
         \else
-        \hfill{} {}
+            \hfill{} {}
         \fi
-        \vskip \stretch{4}
-        \UCAS@value@schoollogo
-        \vskip \stretch{2}
-        {\bfseries\zihao{1}\heiti \UCAS@value@degree\UCAS@label@thesis}
-        \vskip \stretch{3}
-        {\bfseries\zihao{3}\heiti \UCASunderline{\ \UCAS@value@title\ }}
-        \vskip \stretch{2}
+
+        \vspace*{\stretch{4}}
+
+        {\UCAS@value@schoollogo}
+
+        \vspace*{\stretch{2}}
+
+        {\bfseries\zihao{1}\heiti \CJKunderline*[thickness=2.5pt]{\UCAS@value@degree\UCAS@label@thesis}}
+
+        \vspace*{\stretch{3}}
+
+        {\bfseries\zihao{3}\heiti \CJKunderline*[thickness=1.5pt]{\ \UCAS@value@title\ }}
+
+        \vspace*{\stretch{3}}
+
         \def\tabcolsep{1pt}
         \def\arraystretch{1.4}
-        %\hskip -15pt
         \begin{tabular}{lc}
             \bfseries\zihao{4}\songti
-            \UCAS@label@author & \UCASunderline[350pt]{\hskip -3em\UCAS@value@author}
-            \\
-            \UCAS@label@advisor & \UCASunderline[350pt]{\hskip -3em\UCAS@value@advisor}
-            \\
-            & \UCASunderline[350pt]{\hskip -3em\UCAS@value@advisorinstitute}
-            \\
-            \UCAS@label@degree & \UCASunderline[350pt]{\hskip -3em\UCAS@value@degreetype\UCAS@value@degree}
-            \\
-            \UCAS@label@major &  \UCASunderline[350pt]{\hskip -3em\UCAS@value@major}
-            \\
-            \UCAS@label@institute & \UCASunderline[350pt]{\hskip -3em\UCAS@value@institute}
+            \UCAS@label@author & \CJKunderline*[thickness=1.2pt]{\hbox to 350pt{\hfill\hspace*{-3em}\UCAS@value@author\hfill}}\\
+            \UCAS@label@advisor & \CJKunderline*[thickness=1.2pt]{\hbox to 350pt{\hfill\hspace*{-3em}\UCAS@value@advisor\hfill}}\\
+            & \CJKunderline*[thickness=1.2pt]{\hbox to 350pt{\hfill\hspace*{-3em}\UCAS@value@advisorsec\hfill}}\\
+            \UCAS@label@degree & \CJKunderline*[thickness=1.2pt]{\hbox to 350pt{\hfill\hspace*{-3em}\UCAS@value@degreetype\UCAS@value@degree\hfill}}\\
+            \UCAS@label@major & \CJKunderline*[thickness=1.2pt]{\hbox to 350pt{\hfill\hspace*{-3em}\UCAS@value@major\hfill}}\\
+            \UCAS@label@institute & \CJKunderline*[thickness=1.2pt]{\hbox to 350pt{\hfill\hspace*{-3em}\UCAS@value@institute\hfill}}\\
         \end{tabular}
-        \vskip \stretch{4}
+
+        \vspace*{\stretch{5}}
+
         {\bfseries\zihao{4}\songti\UCAS@value@chinesedate}
-        \vskip \stretch{3}
+
+        \vspace*{\stretch{3}}
     \end{center}
     \clearpage
     \if@twoside
@@ -193,8 +197,8 @@
                 \noindent
                 Draft Version (\today)
             \end{footnotesize}
-       \fi
-       \cleardoublepage
+        \fi
+        \cleardoublepage[empty]
     \else
         \ifUCAS@versioninfo
             \thispagestyle{empty}
@@ -203,7 +207,7 @@
                 \noindent
                 Draft Version (\today)
             \end{footnotesize}
-            \cleardoublepage
+            \cleardoublepage[empty]
         \fi
     \fi
 }
@@ -225,27 +229,37 @@
     \cleardoublepage
     \thispagestyle{empty}
     \begin{center}
+        \linespread{1.5}
         \bfseries\zihao{4}
-        \vspace*{80pt}
 
-        {\UCASunderline{\bfseries\zihao{3}\ \UCAS@value@englishtitle\ }}
+        \vspace*{50pt}
 
-        \bfseries\zihao{4}
-        \vskip \stretch{2}
-        \UCAS@label@englishstatement\\
-        By\\
-        \UCAS@value@englishauthor\\
-        \UCAS@value@englishadvisor\\
-        \vskip \stretch{3}
-        \UCAS@value@englishinstitute
-        \vskip \stretch{1}
-        \UCAS@value@englishdate
-        \vskip \stretch{3}
+        {\CJKunderline*[thickness=1.5pt]{\bfseries\zihao{3}\ \UCAS@value@englishtitle\ }}
+
+        \vspace*{\stretch{2}}
+
+        {\UCAS@label@englishstatement}
+
+        {By}
+
+        {\UCAS@value@englishauthor}
+
+        {\UCAS@value@englishadvisor}
+
+        \vspace*{\stretch{3}}
+
+        {\UCAS@value@englishinstitute}
+
+        \vspace*{\stretch{1}}
+
+        {\UCAS@value@englishdate}
+
+        \vspace*{\stretch{3}}
     \end{center}
     \clearpage
     \if@twoside
       \thispagestyle{empty}
-      \cleardoublepage
+      \cleardoublepage[empty]
     \fi
 }
 %---------------------------------------------------------------------------%
@@ -254,57 +268,55 @@
 \newcommand\makedeclaration{%
     \cleardoublepage
     \thispagestyle{empty}
+    {
+        \linespread{1.5}
+        \zihao{-4}\songti
 
-    \begin{center}
-        {\zihao{3}\heiti \UCAS@value@declare@create}
-    \end{center}
+        \vspace*{2ex}
 
-    \UCAS@value@declare@creativity\\
+        \begin{center}
+            {\bfseries\zihao{4}\heiti \UCAS@value@declare@create}
+        \end{center}
 
-    \hfill{} {\UCAS@value@declare@s \UCASunderline[70pt]{ } \ \ \UCAS@value@declare@d \UCASunderline[70pt]{ }}\\
+        {\UCAS@value@declare@creativity}
 
-    \vskip 150pt
+        \vspace*{3ex}
 
-    \begin{center}
-        {\zihao{3}\heiti \UCAS@value@declare@right}
-    \end{center}
+        \hfill{} {\UCAS@value@declare@s \hspace*{14em}}
 
-    \UCAS@value@declare@rights
+        \hfill{} {\UCAS@value@declare@d \hspace*{14em}}
 
-    {\heiti \UCAS@value@declare@rule}\\
+        \vspace*{6ex}
 
-    \hfill{} {\UCAS@value@declare@s \UCASunderline[70pt]{ } \ \ \UCAS@value@declare@t \UCASunderline[70pt]{ } \ \ \UCAS@value@declare@d \UCASunderline[70pt]{ }}
+        \begin{center}
+            {\bfseries\zihao{4}\heiti \UCAS@value@declare@right}
+        \end{center}
+
+        {\UCAS@value@declare@rights}
+
+        {\UCAS@value@declare@rule}
+
+        \vspace*{3ex}
+
+        \hfill{} {\UCAS@value@declare@s \hspace*{10em} \UCAS@value@declare@t \hspace*{9em}}
+
+        \hfill{} {\UCAS@value@declare@d \hspace*{10em} \UCAS@value@declare@d \hspace*{9em}}
+    }
     \clearpage
     \if@twoside
         \thispagestyle{empty}
-        \cleardoublepage
+        \cleardoublepage[empty]
     \fi
 }
 %---------------------------------------------------------------------------%
 %->> New environments
 %---------------------------------------------------------------------------%
-%- define chinese abstract
-\newenvironment{abstract}
-{\chapter[\UCAS@label@abstract]{
-    {\zihao{3}\heiti \UCAS@value@title}
-    \vskip 25pt
-    {\zihao{-3}\heiti \UCAS@label@abstract}
-}}
-{}
 %- define chinese keywords
 \newcommand\keywords[1]{%
-    \vspace{2ex}\noindent{\zihao{4}\heiti \UCAS@label@keywords} #1}
-%- define engish abstract
-\newenvironment{englishabstract}
-{\chapter[\UCAS@label@englishabstract]{
-    {\zihao{3}\bfseries \UCAS@value@englishtitle}
-     \vskip 25pt
-     {\zihao{-3}\bfseries \UCAS@label@englishabstract}
-}}
-{}
+    \noindent {\bfseries\zihao{-4}\songti \UCAS@label@keywords} #1}
 %- define engish keywords
 \newcommand\englishkeywords[1]{%
-    \vspace{2ex}\noindent{\zihao{4}\bfseries \UCAS@label@englishkeywords} #1}
+    \noindent {\bfseries\zihao{-4} \UCAS@label@englishkeywords} #1}
 %---------------------------------------------------------------------------%
 %->> Dotted line in toc
 %---------------------------------------------------------------------------%
