@@ -298,9 +298,11 @@
 
         \vspace*{3ex}
 
-        \hfill{} {\UCAS@value@declare@s \hspace*{10em} \UCAS@value@declare@t \hspace*{9em}}
+        {\hfill{} {\UCAS@value@declare@s \hspace*{10em} \UCAS@value@declare@t \hspace*{9em}}}
 
-        \hfill{} {\UCAS@value@declare@d \hspace*{10em} \UCAS@value@declare@d \hspace*{9em}}
+        {\hfill{} {\UCAS@value@declare@d \hspace*{10em} \UCAS@value@declare@d \hspace*{9em}}}
+
+        \vspace*{3ex}
     }
     \clearpage
     \if@twoside
