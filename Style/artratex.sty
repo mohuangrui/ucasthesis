@@ -331,7 +331,7 @@
 %- via avoiding supplying graphic extensions in \includegraphics command,
 %- the source file can be more general and adaptive
 \ifxetex% running xelatex in PDF mode
-    \DeclareGraphicsExtensions{.pdf,.png,.jpg,.tif,.bmp,.gif}%
+    \DeclareGraphicsExtensions{.pdf,.png,.jpg,.eps,.tif,.bmp,.gif}%
 \else
     \ifpdf% running pdflatex in PDF mode
         \DeclareGraphicsExtensions{.pdf,.png,.jpg}%

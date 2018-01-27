@@ -254,7 +254,7 @@ Navier-Stokes方程:
 \begin{enumerate}
     \item 下载模板后，用脚本编译出现错误，则i)请下载并更新模板。请更新\LaTeX{}编译器和包裹库，以确保模板与编译器的匹配。ii) 编译中若出现缺乏包裹或字体并提示是否自动下载，请选择自动下载，即可解决大部分初始编译时所遇到的问题。本模板在每次修改的发布前，都已在Windows，Linux，Mac OS系统的最近两个发行版的Texlive上测试通过。
 
-    \item 模板文档的编码为UTF-8编码。所有文件都必须采用UTF-8编码，否则编译后生成的文档将出现乱码文本。若出现文本编辑器无法打开文档或打开文档乱码的问题，请检查您使用的编辑器对UTF-8编码的支持。如果使用WinEdt作为文本编辑器，应在其Options -> Preferences -> wrapping选项卡下将两种Wrapping Modes中的内容：TeX;HTML;ANSI;ASCII|DTX...修改为：TeX;\textbf{UTF-8|ACP;}HTML;ANSI;ASCII|DTX...同时，取消Options -> Preferences -> Unicode中的Enable ANSI Format...选项。
+    \item 模板文档的编码为UTF-8编码。所有文件都必须采用UTF-8编码，否则编译后生成的文档将出现乱码文本。若出现文本编辑器无法打开文档或打开文档乱码的问题，请检查您使用的编辑器对UTF-8编码的支持。如果使用WinEdt作为文本编辑器（不推荐使用），应在其Options -> Preferences -> wrapping选项卡下将两种Wrapping Modes中的内容：TeX;HTML;ANSI;ASCII|DTX...修改为：TeX;\textbf{UTF-8|ACP;}HTML;ANSI;ASCII|DTX...同时，取消Options -> Preferences -> Unicode中的Enable ANSI Format...选项。
 
     \item 推荐选择xelatex编译引擎编译中文文档。编译脚本的默认设定为xelatex编译引擎。你也可以选择不使用脚本编译，如直接使用 \TeX{}文本编辑器编译。注：\TeX{}文本编辑器编译的默认设定为pdflatex编译引擎，若选择xelatex编译引擎，请进入下拉菜单选择xelatex。为正确生成引用链接，需要进行全编译，其步骤为:\verb|xelatex + bibtex + xelatex + xelatex|。
     \item Texmaker使用简介
@@ -267,16 +267,16 @@ Navier-Stokes方程:
         \end{enumerate}
 
     \item 若编译过程中出现无法找到某些package的错误，如无法找到xcolor.sty，mathtools.sty，ctexbook.sty，newtext.sty等，\TeX{}编译程序一般可以自动下载和安装相应的文件，否则，请进入\LaTeX{}软件的Package Manager (Admin)确认启用Repository--Synchronize状态。下次编译过程中\TeX{}编译程序一般将自动下载安装\LaTeX{}宏包库。
-    \item 模版在设计之初就尽可能地考虑了适应性。致谢，简历及攻读学位期间发表的学术论文与科研成果等几乎所有条目都是通过最为通用的
+    \item 模版的设计可能地考虑了适应性。致谢等所有条目都是通过最为通用的
 
         \verb+\chapter{item name}+  and \verb+\section*{item name}+
 
-        来显式实现的 (请观察Backmatter.tex)，从而你可以随意添加，放置，和修改他们，如同一般章节。对于图表目录名称则可在ucasthesis.cfg中进行修改。
+        来显式实现的 (请观察Backmatter.tex)，从而可以随意添加，放置，和修改，如同一般章节。对于图表目录名称则可在ucasthesis.cfg中进行修改。
 
     \item 设置文档样式: 在artratex.sty中搜索关键字定位相应命令，然后修改
         \begin{enumerate}
             \item 正文行距：修改 \verb|\linespread{1.3}|
-            \item 参考文献行距：修改/注掉\verb|\setlength{\bibsep}{0.0pt plus 0.0ex}|
+            \item 参考文献行距：修改\verb|\setlength{\bibsep}{0.0ex}|
             \item 目录显示subsection：修改\verb|\setcounter{tocdepth}{2}|
             \item 页眉页脚的设定：frontmatterstyle，mainmatterstyle，和backmatterstyle分别用于定义前言，主要内容，和附录的页眉页脚样式。                关于页眉页脚各个命令的作用和意义请参见fancyhdr的用户文档 \url{https://www.ctan.org/pkg/fancyhdr?lang=en}。同时参见ctex宏包用户文档
                 
