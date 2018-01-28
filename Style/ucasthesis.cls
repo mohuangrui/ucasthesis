@@ -282,9 +282,9 @@
 
         \vspace*{3ex}
 
-        \hfill{} {\UCAS@value@declare@s \hspace*{14em}}
+        {\hfill{} {\UCAS@value@declare@s \hspace*{14em}}}
 
-        \hfill{} {\UCAS@value@declare@d \hspace*{14em}}
+        {\hfill{} {\UCAS@value@declare@d \hspace*{14em}}}
 
         \vspace*{6ex}
 
@@ -320,62 +320,68 @@
 \newcommand\englishkeywords[1]{%
     \noindent {\bfseries\zihao{-4} \UCAS@label@englishkeywords} #1}
 %---------------------------------------------------------------------------%
-%->> Dotted line in toc
+%->> Configure table of contents
 %---------------------------------------------------------------------------%
 %- define spacing and length
 \def\@dotsep{1.5mu}% spacing for dots
 \def\@pnumwidth{2em}% spacing between titles and page numbers
 \def\@tocrmarg{2em}% right margin indentation
-\def\@chaptervspace{8bp}% spacing between chapter titles
-\def\@dottedtocline#1#2#3#4#5{%
+\def\@chaptervspace{1ex}% spacing between chapter titles
+%- redefine dottedtocline from classes.dtx and latex.ltx
+\def\@dottedtocline#1#2#3#4#5{% [<level>,<indent>,<numwidth>,<title>,<page>]
     \ifnum #1>\c@tocdepth \else
-    \vskip \z@ \@plus.2\p@
-    {\leftskip #2\relax \rightskip \@tocrmarg \parfillskip -\rightskip
-    \parindent #2\relax\@afterindenttrue
-    \interlinepenalty\@M
-    \leavevmode
-    \@tempdima #3\relax
-    \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
-    {#4}\nobreak
-    \leaders\hbox{$\m@th\mkern \@dotsep \cdot\mkern \@dotsep$}\hfill
-    \nobreak
-    \hb@xt@\@pnumwidth{\hfil\normalfont \normalcolor #5}%
-    \par\penalty\@highpenalty}%
-\fi}
-\renewcommand*\l@part[2]{%
-    \ifnum \c@tocdepth >-2\relax
-    \addpenalty{-\@highpenalty}%
-    \addvspace{2.25em \@plus\p@}%
-    \setlength\@tempdima{3em}%
-    \begingroup
-        \parindent \z@ \rightskip \@pnumwidth
-        \parfillskip -\@pnumwidth
-        {\leavevmode
-        \large \bfseries #1
-        \leaders\hbox{$\m@th\mkern \@dotsep \cdot\mkern \@dotsep$}
-        \hfil \hb@xt@\@pnumwidth{\hss #2}}\par
+        \vskip \z@ \@plus.2\p@
+        {\leftskip #2\relax \rightskip \@tocrmarg \parfillskip -\rightskip
+        \parindent #2\relax\@afterindenttrue
+        \interlinepenalty\@M
+        \leavevmode \zihao{-4}\heiti
+        \@tempdima #3\relax
+        \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
+        {#4}\nobreak
+        \leaders\hbox{$\m@th\mkern \@dotsep \cdot\mkern \@dotsep$}\hfill
         \nobreak
-        \global\@nobreaktrue
-        \everypar{\global\@nobreakfalse\everypar{}}%
-    \endgroup
-\fi}
-\renewcommand*\l@chapter[2]{%
+        \hb@xt@\@pnumwidth{\hfil\normalfont \normalcolor #5}%
+        \par\penalty\@highpenalty}%
+    \fi
+}
+%- redefine l@part from book.cls to add dotted toc line
+\renewcommand*\l@part[2]{% [<title>,<page>]
+    \ifnum \c@tocdepth >-2\relax
+        \addpenalty{-\@highpenalty}%
+        \addvspace{2.25em \@plus\p@}%
+        \setlength\@tempdima{3em}%
+        \begingroup
+            \parindent \z@ \rightskip \@pnumwidth
+            \parfillskip -\@pnumwidth
+            {\leavevmode
+            \large \bfseries #1
+            \leaders\hbox{$\m@th\mkern \@dotsep \cdot\mkern \@dotsep$}% add dotted toc line
+            \hfil \hb@xt@\@pnumwidth{\hss #2}}\par
+            \nobreak
+            \global\@nobreaktrue
+            \everypar{\global\@nobreakfalse\everypar{}}%
+        \endgroup
+    \fi
+}
+%- redefine l@chapter from book.cls to add dotted toc line
+\renewcommand*\l@chapter[2]{% [<title>,<page>]
     \ifnum \c@tocdepth >\m@ne
-    \addpenalty{-\@highpenalty}%
-    \vskip \@chaptervspace \@plus\p@
-    \setlength\@tempdima{1.5em}%
-    \begingroup
-        \parindent \z@ \rightskip \@pnumwidth
-        \parfillskip -\@pnumwidth
-        \leavevmode \bfseries
-        \advance\leftskip\@tempdima
-        \hskip -\leftskip
-        #1\nobreak
-        \leaders\hbox{$\m@th\mkern \@dotsep \cdot\mkern \@dotsep$}
-        \hfil \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
-        \penalty\@highpenalty
-    \endgroup
-\fi}
+        \addpenalty{-\@highpenalty}%
+        \vskip \@chaptervspace \@plus\p@
+        \setlength\@tempdima{1.5em}%
+        \begingroup
+            \parindent \z@ \rightskip \@pnumwidth
+            \parfillskip -\@pnumwidth
+            \leavevmode \zihao{4}\heiti
+            \advance\leftskip\@tempdima
+            \hskip -\leftskip
+            #1\nobreak
+            \leaders\hbox{$\m@th\mkern \@dotsep \cdot\mkern \@dotsep$}% add dotted toc line
+            \hfil \nobreak\hb@xt@\@pnumwidth{\hss #2}\par
+            \penalty\@highpenalty
+        \endgroup
+    \fi
+}
 %---------------------------------------------------------------------------%
 \endinput
 
