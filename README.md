@@ -25,7 +25,7 @@ Clone or download -> Download Zip
 
 ## 更新记录
 
-* `2018-01-30` 移除"microtype"宏包以显著提高模板的编译效率。修改的文件为：artratex.sty。
+* `2018-01-30` 移除"microtype"宏包以显著提高模板的编译效率。修复下划线在pdflatex编译下显示异常的问题。修改的文件为：artratex.sty，ucasthesis.cls。
 
 * `2018-01-28` 基于国科大模板要素的变动进行了重大修改：
     * 修改封面为国科大最新封面样式

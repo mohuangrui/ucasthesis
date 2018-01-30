@@ -120,7 +120,13 @@
     \hbox{}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi%
 }
 %- underline
-\renewcommand{\CJKunderlinecolor}{\color[rgb]{0,0,0}}
+\renewcommand{\CJKunderlinecolor}{\color[rgb]{0,0,0}}% set underline color
+\newcommand{\ulenhance}[2][1pt]{% enhanced underline
+    \def\ULthickness{#1}% redefine thickness
+    \CJKunderline{#2}}
+\newcommand{\ulhshift}{-3em}% horizontal shift on underline
+\newcommand{\ulextend}[2][350pt]{% extend underline length
+    \hbox to #1{\hfill\hspace*{\ulhshift}#2\hfill}}
 %---------------------------------------------------------------------------%
 %->> Titlepage
 %---------------------------------------------------------------------------%
@@ -151,7 +157,7 @@
     \begin{center}
         \bfseries\zihao{4}\songti
         \ifUCAS@mjinfo
-            \hfill{} {\bfseries\zihao{4}\songti\UCAS@label@confidential \CJKunderline{\hbox to 50pt{\hfill\zihao{5}\songti\UCAS@value@confidential\hfill}}}
+            \hfill{} {\bfseries\zihao{4}\songti\UCAS@label@confidential \ulenhance{\ulextend[50pt]{\hspace*{-\ulhshift}\zihao{5}\songti\UCAS@value@confidential}}}
         \else
             \hfill{} {}
         \fi
@@ -162,11 +168,11 @@
 
         \vspace*{\stretch{2}}
 
-        {\bfseries\zihao{1}\heiti \CJKunderline*[thickness=2.5pt]{\UCAS@value@degree\UCAS@label@thesis}}
+        {\bfseries\zihao{1}\heiti \ulenhance[2.5pt]{\UCAS@value@degree\UCAS@label@thesis}}
 
         \vspace*{\stretch{3}}
 
-        {\bfseries\zihao{3}\heiti \CJKunderline*[thickness=1.5pt]{\ \UCAS@value@title\ }}
+        {\bfseries\zihao{-3}\heiti \ulenhance[1.5pt]{\ \UCAS@value@title\ }}
 
         \vspace*{\stretch{3}}
 
@@ -174,12 +180,12 @@
         \def\arraystretch{1.4}
         \begin{tabular}{lc}
             \bfseries\zihao{4}\songti
-            \UCAS@label@author & \CJKunderline*[thickness=1.2pt]{\hbox to 350pt{\hfill\hspace*{-3em}\UCAS@value@author\hfill}}\\
-            \UCAS@label@advisor & \CJKunderline*[thickness=1.2pt]{\hbox to 350pt{\hfill\hspace*{-3em}\UCAS@value@advisor\hfill}}\\
-            & \CJKunderline*[thickness=1.2pt]{\hbox to 350pt{\hfill\hspace*{-3em}\UCAS@value@advisorsec\hfill}}\\
-            \UCAS@label@degree & \CJKunderline*[thickness=1.2pt]{\hbox to 350pt{\hfill\hspace*{-3em}\UCAS@value@degreetype\UCAS@value@degree\hfill}}\\
-            \UCAS@label@major & \CJKunderline*[thickness=1.2pt]{\hbox to 350pt{\hfill\hspace*{-3em}\UCAS@value@major\hfill}}\\
-            \UCAS@label@institute & \CJKunderline*[thickness=1.2pt]{\hbox to 350pt{\hfill\hspace*{-3em}\UCAS@value@institute\hfill}}\\
+            \UCAS@label@author & \ulenhance[1.2pt]{\ulextend{\UCAS@value@author}}\\
+            \UCAS@label@advisor & \ulenhance[1.2pt]{\ulextend{\UCAS@value@advisor}}\\
+            & \ulenhance[1.2pt]{\ulextend{\UCAS@value@advisorsec}}\\
+            \UCAS@label@degree & \ulenhance[1.2pt]{\ulextend{\UCAS@value@degreetype\UCAS@value@degree}}\\
+            \UCAS@label@major & \ulenhance[1.2pt]{\ulextend{\UCAS@value@major}}\\
+            \UCAS@label@institute & \ulenhance[1.2pt]{\ulextend{\UCAS@value@institute}}\\
         \end{tabular}
 
         \vspace*{\stretch{5}}
@@ -234,7 +240,7 @@
 
         \vspace*{50pt}
 
-        {\CJKunderline*[thickness=1.5pt]{\bfseries\zihao{3}\ \UCAS@value@englishtitle\ }}
+        {\bfseries\zihao{-3} \ulenhance[1.5pt]{\ \UCAS@value@englishtitle\ }}
 
         \vspace*{\stretch{2}}
 
