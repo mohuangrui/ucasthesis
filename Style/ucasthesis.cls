@@ -127,25 +127,25 @@
 %-
 %-> Chinese item commands
 %-
-\newcommand\confidential[1]{\def\UCAS@value@confidential{#1}}
-\newcommand\schoollogo[2]{\def\UCAS@value@schoollogo{\includegraphics[#1]{#2}}}
-\renewcommand\title[2][\UCAS@value@title]{%
+\newcommand{\confidential}[1]{\def\UCAS@value@confidential{#1}}
+\newcommand{\schoollogo}[2]{\def\UCAS@value@schoollogo{\includegraphics[#1]{#2}}}
+\renewcommand{\title}[2][\UCAS@value@title]{%
     \def\UCAS@value@title{#2}
     %\def\UCAS@value@titlemark{\MakeUppercase{#1}}}
     \def\UCAS@value@titlemark{#1}}
-\def\@title{\UCAS@value@titlemark}
-\renewcommand\author[1]{\def\UCAS@value@author{#1}}
-\newcommand\advisor[1]{\def\UCAS@value@advisor{#1}}
-\newcommand\advisorsec[1]{\def\UCAS@value@advisorsec{#1}}
-\newcommand\degree[1]{\def\UCAS@value@degree{#1}}
-\newcommand\degreetype[1]{\def\UCAS@value@degreetype{#1}}
-\newcommand\major[1]{\def\UCAS@value@major{#1}}
-\newcommand\institute[1]{\def\UCAS@value@institute{#1}}
-\newcommand\chinesedate[1]{\def\UCAS@value@chinesedate{#1}}
+\renewcommand{\@title}{\UCAS@value@titlemark}
+\renewcommand{\author}[1]{\def\UCAS@value@author{#1}}
+\newcommand{\advisor}[1]{\def\UCAS@value@advisor{#1}}
+\newcommand{\advisorsec}[1]{\def\UCAS@value@advisorsec{#1}}
+\newcommand{\degree}[1]{\def\UCAS@value@degree{#1}}
+\newcommand{\degreetype}[1]{\def\UCAS@value@degreetype{#1}}
+\newcommand{\major}[1]{\def\UCAS@value@major{#1}}
+\newcommand{\institute}[1]{\def\UCAS@value@institute{#1}}
+\newcommand{\chinesedate}[1]{\def\UCAS@value@chinesedate{#1}}
 %-
 %-> Redefine Chinese style
 %-
-\renewcommand\maketitle{%
+\renewcommand{\maketitle}{%
     \cleardoublepage
     \thispagestyle{empty}
     \begin{center}
@@ -214,18 +214,18 @@
 %-
 %-> English item commands
 %-
-\newcommand\englishtitle[1]{\def\UCAS@value@englishtitle{#1}}
-\newcommand\englishauthor[1]{\def\UCAS@value@englishauthor{#1}}
-\newcommand\englishadvisor[1]{\def\UCAS@value@englishadvisor{#1}}
-\newcommand\englishdegree[1]{\def\UCAS@value@englishdegree{#1}}
-\newcommand\englishthesistype[1]{\def\UCAS@value@englishthesistype{#1}}
-\newcommand\englishmajor[1]{\def\UCAS@value@englishmajor{#1}}
-\newcommand\englishinstitute[1]{\def\UCAS@value@englishinstitute{#1}}
-\newcommand\englishdate[1]{\def\UCAS@value@englishdate{#1}}
+\newcommand{\englishtitle}[1]{\def\UCAS@value@englishtitle{#1}}
+\newcommand{\englishauthor}[1]{\def\UCAS@value@englishauthor{#1}}
+\newcommand{\englishadvisor}[1]{\def\UCAS@value@englishadvisor{#1}}
+\newcommand{\englishdegree}[1]{\def\UCAS@value@englishdegree{#1}}
+\newcommand{\englishthesistype}[1]{\def\UCAS@value@englishthesistype{#1}}
+\newcommand{\englishmajor}[1]{\def\UCAS@value@englishmajor{#1}}
+\newcommand{\englishinstitute}[1]{\def\UCAS@value@englishinstitute{#1}}
+\newcommand{\englishdate}[1]{\def\UCAS@value@englishdate{#1}}
 %-
 %-> Redefine English style
 %-
-\newcommand\makeenglishtitle{%
+\newcommand{\makeenglishtitle}{%
     \cleardoublepage
     \thispagestyle{empty}
     \begin{center}
@@ -265,7 +265,7 @@
 %---------------------------------------------------------------------------%
 %->> Author's declaration
 %---------------------------------------------------------------------------%
-\newcommand\makedeclaration{%
+\newcommand{\makedeclaration}{%
     \cleardoublepage
     \thispagestyle{empty}
     {
@@ -314,10 +314,10 @@
 %->> New environments
 %---------------------------------------------------------------------------%
 %- define chinese keywords
-\newcommand\keywords[1]{%
+\newcommand{\keywords}[1]{%
     \noindent {\bfseries\zihao{-4}\songti \UCAS@label@keywords} #1}
 %- define engish keywords
-\newcommand\englishkeywords[1]{%
+\newcommand{\englishkeywords}[1]{%
     \noindent {\bfseries\zihao{-4} \UCAS@label@englishkeywords} #1}
 %---------------------------------------------------------------------------%
 %->> Configure table of contents
@@ -328,7 +328,7 @@
 \def\@tocrmarg{2em}% right margin indentation
 \def\@chaptervspace{1ex}% spacing between chapter titles
 %- redefine dottedtocline from classes.dtx and latex.ltx
-\def\@dottedtocline#1#2#3#4#5{% [<level>,<indent>,<numwidth>,<title>,<page>]
+\renewcommand*{\@dottedtocline}[5]{% [<level>,<indent>,<numwidth>,<title>,<page>]
     \ifnum #1>\c@tocdepth \else
         \vskip \z@ \@plus.2\p@
         {\leftskip #2\relax \rightskip \@tocrmarg \parfillskip -\rightskip
@@ -345,7 +345,7 @@
     \fi
 }
 %- redefine l@part from book.cls to add dotted toc line
-\renewcommand*\l@part[2]{% [<title>,<page>]
+\renewcommand*{\l@part}[2]{% [<title>,<page>]
     \ifnum \c@tocdepth >-2\relax
         \addpenalty{-\@highpenalty}%
         \addvspace{2.25em \@plus\p@}%
@@ -364,7 +364,7 @@
     \fi
 }
 %- redefine l@chapter from book.cls to add dotted toc line
-\renewcommand*\l@chapter[2]{% [<title>,<page>]
+\renewcommand*{\l@chapter}[2]{% [<title>,<page>]
     \ifnum \c@tocdepth >\m@ne
         \addpenalty{-\@highpenalty}%
         \vskip \@chaptervspace \@plus\p@
