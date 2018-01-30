@@ -35,9 +35,17 @@
 %- \newcommand: defines a new command, makes an error if already defined
 %- \renewcommand: redefines a predefined command, makes an error if not yet defined
 %- \providecommand: defines a new command, if already defined, keep old definition
+%- *-forms: enable error check for missing arguments or arguments contain \par
 %- \def: define a command whether new or predefined, equivalent to
 %-       \providecommand{name}{}%
+%-       \renewcommand*{name}[number of arguments][default value]{definition}
+%- \long\def: define a command whether new or predefined, equivalent to
+%-       \providecommand{name}{}%
 %-       \renewcommand{name}[number of arguments][default value]{definition}
+%- *-forms that are usually the better form to use when defining commands with
+%- arguments, unless any of these arguments is intended to contain whole paragraphs
+%- of text. If you need to use the non-star form then you should ask whether that 
+%- argument better be treated as the contents of a suitably defined environment.
 %-
 %-> Math functions
 %-

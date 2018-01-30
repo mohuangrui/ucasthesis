@@ -48,7 +48,7 @@ Style文件夹内包含ucasthesis文档类的定义文件和配置文件，对�
 
 \begin{enumerate}
   \item ucasthesis.cls：文档类定义文件，论文的最核心的格式即通过它来定义的。
-  \item ucasthesis.cfg：文档类配置文件，设定如摘要显示为“摘要”。
+  \item ucasthesis.cfg：文档类配置文件，设定如目录显示为“目~录”而非“目录”。
   \item artratex.sty: 常用宏包的加载及文档的设定，如参考文献样式，文献引用样式，页眉页脚设定等。模板为这些功能提供了开关选项，从而只需在Thesis.tex中的\verb+\usepackage[options]{artratex}+中进行启用即可，一般无需修改artratex.sty本身。
   \item artracom.sty： 用户自定义命令以及添加宏包的推荐放置位置。
 \end{enumerate}
@@ -60,7 +60,7 @@ Tex文件夹内为论文的所有实体内容，正常情况下，这也是你\t
 \begin{itemize}
   \item Frontpage.tex：为论文封面内容及中英文摘要。
   \item Mainmatter.tex：索引需要出现的Chapter。开始写论文时，可以只索引当前章节，以快速编译查看，当论文完成后，再对所有章节进行索引即可。
-  \item ChapXXXXX.tex：为论文主体的各个章节，可根据需要添加和撰写，最终需要包含在论文中的章节，须在此中进行索引。
+  \item Chap{\_}xxx.tex：为论文主体的各个章节，可根据需要添加和撰写。
   \item Appendix.tex：为附录内容
   \item Backmatter.tex：为发表文章信息，致谢部分等。
 \end{itemize}
