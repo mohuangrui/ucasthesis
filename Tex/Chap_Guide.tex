@@ -8,11 +8,11 @@
 
 \begin{enumerate}
     \item 安装软件：根据所使用的操作系统和章节~\ref{sec:system}中的信息安装\LaTeX{}编译环境。
-    \item 获取模板：下载ucasthesis(\url{https://github.com/mohuangrui/ucasthesis})模板并解压。ucasthesis模板不仅只是提供了相应的类文件，同时也提供了包括参考文献等在内的完成学位论文的一切要素，所以，下载时，推荐下载整个ucasthesis文件夹，而不是单独的文档类。
+    \item 获取模板：下载 \href{https://github.com/mohuangrui/ucasthesis}{ucasthesis} 模板并解压。ucasthesis模板不仅只是提供了相应的类文件，同时也提供了包括参考文献等在内的完成学位论文的一切要素，所以，下载时，推荐下载整个ucasthesis文件夹，而不是单独的文档类。
     \item 编译模板：
         \begin{enumerate}
             \item Windows用户：双击运行artratex.bat脚本。
-            \item Linux或Mac OS用户: 打开\verb|terminal| -> 运行 \verb|chmod +x ./artratex.sh| -> 运行 \verb|./artratex.sh xa|
+            \item Linux或Mac OS用户: 打开 \verb|terminal| -> 运行 \verb|chmod +x ./artratex.sh| -> 运行 \verb|./artratex.sh xa|
         \end{enumerate}
     \item 处理错误：若编译中遇到了问题，请先查看“常见问题”（章节~\ref{sec:qa}）。
 \end{enumerate}
@@ -34,7 +34,7 @@ Thesis.tex为主文档，其设计和规划了论文的整体框架，通过对�
             \item \verb|./artratex.sh xa|：获得全编译后的PDF文档
             \item \verb|./artratex.sh x|：快速编译模式
         \end{enumerate}
-    \item 全编译是指运行 \verb|xelatex+bibtex+xelatex+xelatex| 以正确生成所有的引用链接，如目录，参考文献及引用等。当文章在写作过程中，并无添加新的引用，则可用快速编译即只运行"xelatex"以减少编译时间。
+    \item 全编译是指运行 \verb|xelatex+bibtex+xelatex+xelatex| 以正确生成所有的引用链接，如目录，参考文献及引用等。当文章在写作过程中，并无添加新的引用，则可用快速编译即只运行xelatex以减少编译时间。
 \end{itemize}
 
 
@@ -75,7 +75,7 @@ Img文件夹用于放置论文中所需要的图类文件，支持格式有：.j
     \item ref.bib：考文献信息库。
     \item gbt7714-xxx.bst：符合国标的文献样式定义文件。
         
-        由zepinglee (\url{https://github.com/zepinglee/gbt7714-bibtex-style})开发，并满足最新国标要求。不建议尝试修改文献样式，若坚持，请查阅开发者所提供的文档。
+        由 \href{https://github.com/zepinglee/gbt7714-bibtex-style}{zepinglee}  开发，并满足最新国标要求。不建议尝试修改文献样式，若坚持，请查阅开发者所提供的文档。
 \end{enumerate}
 
 \section{数学公式、图表、参考文献等功能}
@@ -91,9 +91,7 @@ Navier-Stokes方程:
     \end{cases}
 \end{equation}
 
-常用数学公式的命令代码模板，请见WiKibook：
-
-\url{https://en.wikibooks.org/wiki/LaTeX/Mathematics}
+常用数学公式的命令代码模板，请见 \href{https://en.wikibooks.org/wiki/LaTeX/Mathematics}{WiKibook Mathematics}.
 
 \subsection{表格}
 
@@ -262,21 +260,21 @@ Navier-Stokes方程:
 \section{常见使用问题}\label{sec:qa}
 
 \begin{enumerate}
-    \item 下载模板后，用脚本编译出现错误，则i)请下载并更新模板。请更新\LaTeX{}编译器和包裹库，以确保模板与编译器的匹配。ii) 编译中若出现缺乏包裹或字体并提示是否自动下载，请选择自动下载，即可解决大部分初始编译时所遇到的问题。本模板在每次修改的发布前，都已在Windows，Linux，MacOS系统的最近两个发行版的Texlive上测试通过。
+    \item 模板每次发布前，都已在Windows，Linux，MacOS系统的最近两个发行版的Texlive上测试通过。下载模板后，若编译出现错误，则请遵从 \href{https://github.com/mohuangrui/ucasthesis}{位于主页底部的用户指南}。
 
     \item 模板文档的编码为UTF-8编码。所有文件都必须采用UTF-8编码，否则编译后生成的文档将出现乱码文本。若出现文本编辑器无法打开文档或打开文档乱码的问题，请检查您使用的编辑器对UTF-8编码的支持。如果使用WinEdt作为文本编辑器（不推荐使用），应在其Options -> Preferences -> wrapping选项卡下将两种Wrapping Modes中的内容：TeX;HTML;ANSI;ASCII|DTX...修改为：TeX;\textbf{UTF-8|ACP;}HTML;ANSI;ASCII|DTX...同时，取消Options -> Preferences -> Unicode中的Enable ANSI Format...选项。
 
     \item 推荐选择xelatex编译引擎编译中文文档。编译脚本的默认设定为xelatex编译引擎。你也可以选择不使用脚本编译，如直接使用 \TeX{}文本编辑器编译。注：\TeX{}文本编辑器编译的默认设定为pdflatex编译引擎，若选择xelatex编译引擎，请进入下拉菜单选择xelatex。为正确生成引用链接，需要进行全编译，其步骤为:\verb|xelatex + bibtex + xelatex + xelatex|。
     \item Texmaker使用简介
         \begin{enumerate}
-            \item 使用 Texmaker 打开文档 Thesis.tex。
-            \item 菜单 Options -> Define Current Document As 'Master Document'
-            \item 菜单 User -> User Commands -> Edit User Commands -> Input Menu Item as 'Auto Build' -> Click 'wizard' -> add: xelatex + bibtex + xelatex + xelatex + pdf viewer -> Click 'OK'
+            \footnotesize
+            \item 使用 Texmaker “打开” Thesis.tex。
+            \item 菜单 “选项 (Options)” -> “设置当前文档为主文档 (Define as Master Document)”
+            \item 菜单 “自定义 (User)” -> “自定义命令 (User Commands)” -> “编辑自定义命令 (Edit User Commands)” -> 左侧选择 “command 1”，右侧 “菜单项 (Menu Item)” 填入 Auto Build -> 点击下方“向导 (Wizard)” -> “添加 (Add)”: xelatex + bibtex + xelatex + xelatex + pdf viewer -> 点击“完成 (OK)”
             \item 使用 Auto Build 编译带有未生成引用链接的源文件，可以仅使用 xelatex 编译带有已经正确生成引用链接的源文件。
-            \item 编译完成，View PDF，在pdf中'ctrl+click'可链接到相对应的源文件。
+            \item 编译完成，“查看(View)” PDF，在pdf中 “ctrl+click” 可链接到相对应的源文件。
         \end{enumerate}
-
-    \item 若编译过程中出现无法找到某些package的错误，如无法找到xcolor.sty，mathtools.sty，ctexbook.sty，newtext.sty等，\TeX{}编译程序一般可以自动下载和安装相应的文件，否则，请进入\LaTeX{}软件的Package Manager (Admin)确认启用Repository--Synchronize状态。下次编译过程中\TeX{}编译程序一般将自动下载安装\LaTeX{}宏包库。
+    
     \item 模版的设计可能地考虑了适应性。致谢等所有条目都是通过最为通用的
 
         \verb+\chapter{item name}+  and \verb+\section*{item name}+
@@ -288,9 +286,7 @@ Navier-Stokes方程:
             \item 正文行距：修改 \verb|\linespread{1.3}|
             \item 参考文献行距：修改\verb|\setlength{\bibsep}{0.0ex}|
             \item 目录显示subsection：修改\verb|\setcounter{tocdepth}{2}|
-            \item 页眉页脚的设定：frontmatterstyle，mainmatterstyle，和backmatterstyle分别用于定义前言，主要内容，和附录的页眉页脚样式。                关于页眉页脚各个命令的作用和意义请参见fancyhdr的用户文档 \url{https://www.ctan.org/pkg/fancyhdr?lang=en}。同时参见ctex宏包用户文档
-                
-                \url{http://ctan.mirror.rafal.ca/language/chinese/ctex/ctex.pdf}
+            \item 页眉页脚的设定：frontmatterstyle，mainmatterstyle，和backmatterstyle分别用于定义前言，主要内容，和附录的页眉页脚样式。                关于页眉页脚各个命令的作用和意义请参见 \href{https://www.ctan.org/pkg/fancyhdr?lang=en}{fancyhdr} 的用户文档。同时参见 \href{https://ctan.org/pkg/ctex?lang=en}{ctex} 宏包用户文档。
 
             \item 设置图2.3为图2-3: 设置
                 {
@@ -307,14 +303,7 @@ Navier-Stokes方程:
 
                  \verb|\setmainfont{Times New Roman}|
 
-                若拷贝PDF内容到Word时存在乱码，解决方式是安装adobe字体库，在百度云盘：
-
-                {
-                    \scriptsize
-                    \url{http://pan.baidu.com/share/home?uk=3188136325&view=share#category/type=0}
-                }
-                 
-                 下载如下四种中文字体文件：
+                若拷贝PDF内容到Word时存在乱码，解决方式是安装adobe字体库，在 \href{http://pan.baidu.com/share/home?uk=3188136325&view=share#category/type=0}{百度云盘} 下载如下四种中文字体文件：
                  \begin{enumerate}
                      \footnotesize
                      \item AdobeFangsongStd-Regular.otf （adobe 仿宋）
