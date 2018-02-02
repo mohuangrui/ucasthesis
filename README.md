@@ -25,6 +25,8 @@ Clone or download -> Download Zip
 
 ## 更新记录
 
+* `2018-02-03` 提供了关于 Windows，Linux，MacOS 的字体调用和字体加粗异常的解决方案，修改的文件为：模板使用说明.pdf。
+
 * `2018-02-02` 回答 LaTeX 初级用户的一些软件使用问题，修改的文件为：模板使用说明.pdf。
 
 * `2018-01-30` 移除"microtype"宏包以显著提高模板的编译效率。修复下划线在pdflatex编译下显示异常的问题。修改的文件为：artratex.sty，ucasthesis.cls。
@@ -38,7 +40,6 @@ Clone or download -> Download Zip
     * 展示标题中使用数学公式的解决方案
     * 使用 zepinglee 开发的适用 Bibtex 的参考文献国标样式（<https://github.com/zepinglee/gbt7714-bibtex-style>）
     * 提高所有模板文件和代码的可读性，如命名、注释、排版等
-    * 回答了关于字体调用和字体加粗异常的问题
     * 因模板改动显著，建议的更新方式为`移植你的旧有文件到新模板中`:
         1. 下载解压新模板
         2. 替换 Tex 文件夹中的除 Frontpage.tex 以外的文件

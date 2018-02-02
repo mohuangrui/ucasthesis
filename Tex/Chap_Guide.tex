@@ -284,8 +284,8 @@ Navier-Stokes方程:
     \item 设置文档样式: 在artratex.sty中搜索关键字定位相应命令，然后修改
         \begin{enumerate}
             \item 正文行距：修改 \verb|\linespread{1.3}|
-            \item 参考文献行距：修改\verb|\setlength{\bibsep}{0.0ex}|
-            \item 目录显示subsection：修改\verb|\setcounter{tocdepth}{2}|
+            \item 参考文献行距：修改 \verb|\setlength{\bibsep}{0.0ex}|
+            \item 目录显示subsection：修改 \verb|\setcounter{tocdepth}{2}|
             \item 页眉页脚的设定：frontmatterstyle，mainmatterstyle，和backmatterstyle分别用于定义前言，主要内容，和附录的页眉页脚样式。                关于页眉页脚各个命令的作用和意义请参见 \href{https://www.ctan.org/pkg/fancyhdr?lang=en}{fancyhdr} 的用户文档。同时参见 \href{https://ctan.org/pkg/ctex?lang=en}{ctex} 宏包用户文档。
 
             \item 设置图2.3为图2-3: 设置
@@ -297,43 +297,42 @@ Navier-Stokes方程:
 \renewcommand{\thetable}{\arabic{chapter}-\arabic{table}}
 \end{verbatim}
                 }
-             \item 字体控制。如果对字体控制有较高需求，请选择xelatex编译引擎，并设置需要的字体。
-                 
-                 如启用Times New Roman 作为英文字体，设置:
+        \end{enumerate}
+
+    \item 字体控制。如对字体控制有较高需求，请选择xelatex编译引擎，并设置需要的字体。如用Times New Roman作为英文字体，在artratex.sty中设置:
 
                  \verb|\setmainfont{Times New Roman}|
 
-                若拷贝PDF内容到Word时存在乱码，解决方式是安装adobe字体库，在 \href{http://pan.baidu.com/share/home?uk=3188136325&view=share#category/type=0}{百度云盘} 下载如下四种中文字体文件：
-                 \begin{enumerate}
-                     \footnotesize
-                     \item AdobeFangsongStd-Regular.otf （adobe 仿宋）
-                     \item AdobeHeitiStd-Regular.otf（adobe 黑体）
-                     \item AdobeKaitiStd-Regular.otf（adobe 楷体）
-                     \item AdobeSongStd-Light.otf（adobe 宋体）
-                 \end{enumerate}
-                下载后，双击安装字体。然后在Thesis.tex中设置启用adobe的字体:
+                 部分用户在近期更新\LaTeX{}编译系统或是宏包库后，若出现宋体无法加粗的情形，这是由于系统所带中文字体库不完备所导致的问题。用户需要安装并调用一个完备的中文字体库，方法为：
 
-                \verb+\documentclass[doublesided,fontset=adobe]{Style/ucasthesis}%+
+                \begin{itemize}
+                    \item Linux 和 Windows： 在Thesis.tex中设置
 
-              若模版出现宋体无法加粗的情形，这是由于你的系统缺乏完备的中文字体或是ctex宏包没有调用到你的系统字体。Windows和Linux用户通过采用上述的adobe字体方案一般可解决问题。MacOS的用户则必须设置调用系统自带的中文字体，方法是在
-                
-                \verb|\RequirePackage{fontspec}|
-                
-                行下添加如下中文字体调用命令：
-                {
-                    \footnotesize
+                        {
+                            \small
+                            \verb|\documentclass[doublesided,fontset=fandol]{Style/ucasthesis}%|
+                         }
+
+                         通过显示调用 \href{https://ctan.org/tex-archive/fonts/fandol?lang=en}{fandol} 这一完备的字体库，即可正常显示粗体。\LaTeX{}编译系统一般已携带或是能自动下载安装 \href{https://ctan.org/tex-archive/fonts/fandol?lang=en}{fandol} 字库。若不能，则请手动下载并安装链接所提供的所有字体即可。
+
+                     \item MacOS: 虽然也可以安装和调用fandol字库，但更好的是直接调用系统带有的完备的中文字库： 在artratex.sty的
+
+                         \verb|\RequirePackage{fontspec}|
+
+                        行下添加如下中文字体调用命令：
+                        {
+                            \scriptsize
 \begin{verbatim}
-\setCJKmainfont[BoldFont=Heiti SC,ItalicFont=Kaiti SC]{Songti SC Light}%
+\setCJKmainfont[BoldFont=Songti SC Bold,ItalicFont=Kaiti SC]{Songti SC Light}%
 \setCJKsansfont{Heiti SC}%
 \setCJKfamilyfont{zhsong}{Songti SC Light}%
 \setCJKfamilyfont{zhhei}{Heiti SC}%
 \setCJKfamilyfont{zhkai}{Kaiti SC}%
 \end{verbatim}
-                }
-                
-                因为模版的设定考虑兼顾不同操作系统(Windows, Linux, Mac OS)并兼顾pdflatex和xelatex，为了模版的健壮性，上述字体设置和调用方案并未作为原始设定。
-        \end{enumerate}
+                        }
+                \end{itemize}
 
+                因为模版的设定考虑兼顾不同操作系统(Windows, Linux, Mac OS)并兼顾pdflatex和xelatex，为了模版的健壮性，上述字体设置和调用方案并未作为原始设定。
     \item  一般规范下，章应开始于奇数页。从而若前一章结束于奇数页，则一空白页将被插入以保证上述规则。如想修改以取消空白页，有如下方案：
      \begin{itemize}
          \item 在thesis.tex的documentclass中用singlesided替代doublesided。这使文档不区分奇偶页，因此章可以开始于任意页。此方案将移除所有空白页，包括封面处的。同时，页眉页脚的设定不再区分奇偶页。
