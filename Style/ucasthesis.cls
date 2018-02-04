@@ -69,6 +69,7 @@
 %---------------------------------------------------------------------------%
 \RequirePackage[usenames,dvipsnames,table]{xcolor}% color packages
 \RequirePackage{amsmath,amssymb,amstext}% math packages
+\RequirePackage{ulem}% underline package
 %---------------------------------------------------------------------------%
 %->> Load class configuration
 %---------------------------------------------------------------------------%
@@ -120,10 +121,10 @@
     \hbox{}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi%
 }
 %- underline
-\renewcommand{\CJKunderlinecolor}{\color[rgb]{0,0,0}}% set underline color
+%\renewcommand{\CJKunderlinecolor}{\color[rgb]{0,0,0}}% set underline color
 \newcommand{\ulenhance}[2][1pt]{% enhanced underline
     \def\ULthickness{#1}% redefine thickness
-    \CJKunderline{#2}}
+    \uline{#2}}
 \newcommand{\ulhshift}{-3em}% horizontal shift on underline
 \newcommand{\ulextend}[2][350pt]{% extend underline length
     \hbox to #1{\hfill\hspace*{\ulhshift}#2\hfill}}
@@ -155,9 +156,9 @@
     \cleardoublepage
     \thispagestyle{empty}
     \begin{center}
-        \bfseries\zihao{4}\songti
+        \zihao{4}\bfseries
         \ifUCAS@mjinfo
-            \hfill{} {\bfseries\zihao{4}\songti\UCAS@label@confidential \ulenhance{\ulextend[50pt]{\hspace*{-\ulhshift}\zihao{5}\songti\UCAS@value@confidential}}}
+            \hfill{} {\UCAS@label@confidential \ulenhance{\ulextend[50pt]{\hspace*{-\ulhshift}\zihao{5}\UCAS@value@confidential}}}
         \else
             \hfill{} {}
         \fi
@@ -168,18 +169,17 @@
 
         \vspace*{\stretch{2}}
 
-        {\bfseries\zihao{1}\heiti \ulenhance[2.5pt]{\UCAS@value@degree\UCAS@label@thesis}}
+        {\zihao{1}\bfseries\sffamily \ulenhance[2.5pt]{\UCAS@value@degree\UCAS@label@thesis}}
 
         \vspace*{\stretch{3}}
 
-        {\bfseries\zihao{-3}\heiti \ulenhance[1.5pt]{\ \UCAS@value@title\ }}
+        {\zihao{-3}\bfseries\sffamily \ulenhance[1.5pt]{\ \UCAS@value@title\ }}
 
         \vspace*{\stretch{3}}
 
         \def\tabcolsep{1pt}
         \def\arraystretch{1.4}
         \begin{tabular}{lc}
-            \bfseries\zihao{4}\songti
             \UCAS@label@author & \ulenhance[1.2pt]{\ulextend{\UCAS@value@author}}\\
             \UCAS@label@advisor & \ulenhance[1.2pt]{\ulextend{\UCAS@value@advisor}}\\
             & \ulenhance[1.2pt]{\ulextend{\UCAS@value@advisorsec}}\\
@@ -190,7 +190,7 @@
 
         \vspace*{\stretch{5}}
 
-        {\bfseries\zihao{4}\songti\UCAS@value@chinesedate}
+        {\UCAS@value@chinesedate}
 
         \vspace*{\stretch{3}}
     \end{center}
@@ -236,11 +236,11 @@
     \thispagestyle{empty}
     \begin{center}
         \linespread{1.5}
-        \bfseries\zihao{4}
+        \zihao{4}\bfseries
 
         \vspace*{50pt}
 
-        {\bfseries\zihao{-3} \ulenhance[1.5pt]{\ \UCAS@value@englishtitle\ }}
+        {\zihao{-3}\bfseries \ulenhance[1.5pt]{\ \UCAS@value@englishtitle\ }}
 
         \vspace*{\stretch{2}}
 
@@ -276,12 +276,11 @@
     \thispagestyle{empty}
     {
         \linespread{1.5}
-        \zihao{-4}\songti
 
         \vspace*{2ex}
 
         \begin{center}
-            {\bfseries\zihao{4}\heiti \UCAS@value@declare@create}
+            {\zihao{4}\bfseries\sffamily \UCAS@value@declare@create}
         \end{center}
 
         {\UCAS@value@declare@creativity}
@@ -295,7 +294,7 @@
         \vspace*{6ex}
 
         \begin{center}
-            {\bfseries\zihao{4}\heiti \UCAS@value@declare@right}
+            {\zihao{4}\bfseries\sffamily \UCAS@value@declare@right}
         \end{center}
 
         {\UCAS@value@declare@rights}
@@ -321,10 +320,10 @@
 %---------------------------------------------------------------------------%
 %- define chinese keywords
 \newcommand{\keywords}[1]{%
-    \noindent {\bfseries\zihao{-4}\songti \UCAS@label@keywords} #1}
+    \noindent {\bfseries \UCAS@label@keywords} #1}
 %- define engish keywords
 \newcommand{\englishkeywords}[1]{%
-    \noindent {\bfseries\zihao{-4} \UCAS@label@englishkeywords} #1}
+    \noindent {\bfseries \UCAS@label@englishkeywords} #1}
 %---------------------------------------------------------------------------%
 %->> Configure table of contents
 %---------------------------------------------------------------------------%
@@ -340,7 +339,7 @@
         {\leftskip #2\relax \rightskip \@tocrmarg \parfillskip -\rightskip
         \parindent #2\relax\@afterindenttrue
         \interlinepenalty\@M
-        \leavevmode \zihao{-4}\heiti
+        \leavevmode \zihao{-4}\sffamily
         \@tempdima #3\relax
         \advance\leftskip \@tempdima \null\nobreak\hskip -\leftskip
         {#4}\nobreak
@@ -360,7 +359,7 @@
             \parindent \z@ \rightskip \@pnumwidth
             \parfillskip -\@pnumwidth
             {\leavevmode
-            \large \bfseries #1
+            \zihao{4}\sffamily #1
             \leaders\hbox{$\m@th\mkern \@dotsep \cdot\mkern \@dotsep$}% add dotted toc line
             \hfil \hb@xt@\@pnumwidth{\hss #2}}\par
             \nobreak
@@ -378,7 +377,7 @@
         \begingroup
             \parindent \z@ \rightskip \@pnumwidth
             \parfillskip -\@pnumwidth
-            \leavevmode \zihao{4}\heiti
+            \leavevmode \zihao{4}\sffamily
             \advance\leftskip\@tempdima
             \hskip -\leftskip
             #1\nobreak

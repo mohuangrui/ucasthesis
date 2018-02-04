@@ -23,9 +23,9 @@ elif [[ "$#" == "2" ]]; then
     FileName="$2"
 else
     echo "---------------------------------------------------------------------------"
-    echo "Usage: "$0"  <x|xa|xb|p|pa|pb>  <filename>"
-    echo "Parameters: <x:xelatex>, <p:pdflatex>, <a:auto bibtex>, <b:auto biber>"
-    echo "Compile failed: \"X\" to terminate the terminal..."
+    echo "Usage: "$0"  <l|p|x>< |a|b>  <filename>"
+    echo "TeX engine parameters: <l:lualatex>, <p:pdflatex>, <x:xelatex>"
+    echo "Bib engine parameters: < :none>, <a:bibtex>, <b:biber>"
     echo "---------------------------------------------------------------------------"
     exit
 fi
@@ -33,10 +33,14 @@ FileName=${FileName/.tex}
 #-
 #-> Get tex compiler
 #-
-if [[ $1 == *'p'* ]]; then
-    TexCompiler="pdflatex"
+if [[ $1 == *'l'* ]]; then
+    TexCompiler="lualatex"
 else
-    TexCompiler="xelatex"
+    if [[ $1 == *'p'* ]]; then
+        TexCompiler="pdflatex"
+    else
+        TexCompiler="xelatex"
+    fi
 fi
 #-
 #-> Get bib compiler
