@@ -25,7 +25,7 @@ Clone or download -> Download Zip
 
 ## 更新记录
 
-* `2018-02-04` 在ctex开发人员的帮助下修复了错用字体调用命令导致的宋体加粗异常。然后，将模板扩展为兼容操作系统 Windows，Linux，MacOS 和 LaTeX 编译引擎 pdflatex，xelatex，lualatex。修改的文件为：artratex.sty，ucasthesis.cfg，ucasthesis.cls。
+* `2018-02-04` 在 [ctex](https://github.com/CTeX-org/ctex-kit) 开发人员的帮助下修复了错用字体命令导致的宋体加粗异常。然后，将模板的兼容性进一步扩展。当前模板兼容操作系统 Windows，Linux，MacOS 和 LaTeX 编译引擎 pdflatex，xelatex，lualatex。修改的文件为：artratex.sty，ucasthesis.cfg，ucasthesis.cls。
 
 * `2018-02-02` 回答 LaTeX 初级用户的一些软件使用问题，修改的文件为：模板使用说明.pdf。
 
@@ -33,12 +33,12 @@ Clone or download -> Download Zip
 
 * `2018-01-28` 基于国科大模板要素的变动进行了重大修改：
     * 修改封面为国科大最新封面样式
-    * 封面使用国科大新版形象标识（<http://www.ucas.ac.cn/site/11?zu=64925>）
+    * 封面使用[国科大新版形象标识](http://www.ucas.ac.cn/site/11?zu=64925)
     * 英文封面添加导师信息
     * 针对国科大对*密级*条目的最新规定，提供 *showmj* 选项以决定*密级*条目的显示与否
     * 采用最新的标题格式、论文声明、页眉页脚样式
     * 展示标题中使用数学公式的解决方案
-    * 使用 zepinglee 开发的适用 Bibtex 的参考文献国标样式（<https://github.com/zepinglee/gbt7714-bibtex-style>）
+    * 使用 [zepinglee](https://github.com/zepinglee/gbt7714-bibtex-style>) 开发的适用 Bibtex 的参考文献国标样式
     * 提高所有模板文件和代码的可读性，如命名、注释、排版等
     * 因模板改动显著，建议的更新方式为`移植你的旧有文件到新模板中`:
         1. 下载解压新模板
@@ -53,25 +53,24 @@ Clone or download -> Download Zip
 
 * `2017-03-08` 在 Frontpage.tex 中添加一个设定论文类型为 thesis 或 dissertation 的命令 \englishthesistype{}，问题/建议由臧光明同学提出。修改的文件为：ucasthesis.cls，Frontpage.tex。
 
-* `2016-10-02` 添加 *中国科学院大学开题报告 LaTeX 模板* (<https://github.com/mohuangrui/ucasproposal>)。
+* `2016-10-02` 添加 [中国科学院大学开题报告 LaTeX 模板](https://github.com/mohuangrui/ucasproposal)。
 
 ## 用户指南
 
 模板每次发布前，都已在 Windows，Linux，MacOS 系统上测试通过。下载模板后，若编译出现错误，则请遵从如下的用户指南:
 
-    * 请仔细阅读并理解“模板使用说明.pdf”文档，根据说明文档的引导对模板进行测试。
+    * 请仔细阅读并理解 `模板使用说明.pdf` 文档，根据说明文档的引导对模板进行测试。
     * 按照 `模板使用说明.pdf` 的 `先试试效果` 一节提供的方法编译模板，若出现错误，则原因可能为：
         1. 路径中存在特殊字符：请确保软件的安装路径以及模板路径中不存在奇怪的字符，
            尽量避免在路径中使用中文字符和空格。
         2. LaTeX 编译系统安装失败：请暂时抛开 ucasthesis，而是测试一个基本的中文
            LaTeX 文档，若编译无法通过，则请卸载并重新安装编译软件的最新版本。
-           注：安装完 MikTeX 后须在 CMD 内运行 `initexmf --mkmaps` 才能正常使用 pdflatex。
+           （MikTeX 用户：安装完后须在 CMD 内运行 `initexmf --mkmaps` 才能正常使用 pdflatex。
+           并进入软件的 Package Manager (Admin) 确认启用 Repository--Synchronize 状态。
+           刚安装完后的初始几次编译常会出现出错提示，需要多尝试几次才会变得流畅。）
         3. LaTeX 编译系统缺乏必要的宏包或字体：编译生成的 `.log` 文件会给出
            缺乏的宏包或字体的名称和错误提示。并且编译过程中一般会提示是否自动下载，
-           请选择自动下载，即可解决大部分宏包缺乏的问题。若没能自动下载，
-           Miktex用户可进入软件的 Package Manager (Admin) 确认启用 
-           Repository--Synchronize 状态，下次编译过程中程序一般将自动下载安装所缺乏的
-           LaTeX 宏包库。否则，则很有可能你的 Miketex 版本过旧，请卸载并安装最新版本。
+           请选择自动下载，即可解决大部分宏包缺乏的问题。若没能自动下载，可考虑手动安装。
         4. LaTeX 宏包过时：若编译生成的 `.log` 文件给出 `undefined` 类的错误，
            则是你的编译系统版本过旧或是其宏包库太久没有更新，
            请或是更新宏包库或是卸载安装最新版本。

@@ -67,9 +67,7 @@
 %---------------------------------------------------------------------------%
 %->> Required packages
 %---------------------------------------------------------------------------%
-\RequirePackage[usenames,dvipsnames,table]{xcolor}% color packages
-\RequirePackage{amsmath,amssymb,amstext}% math packages
-\RequirePackage{ulem}% underline package
+\RequirePackage{ifxetex}% LaTeX engine detection
 %---------------------------------------------------------------------------%
 %->> Load class configuration
 %---------------------------------------------------------------------------%
@@ -121,9 +119,14 @@
     \hbox{}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi%
 }
 %- underline
-%\renewcommand{\CJKunderlinecolor}{\color[rgb]{0,0,0}}% set underline color
+\ifxetex% use underline from xeCJKfntef
+    \renewcommand{\CJKunderlinecolor}{\color[rgb]{0,0,0}}% set underline color
+    \renewcommand{\uline}[1]{\CJKunderline{#1}}% unified name
+\else% use underline from ulem
+    \RequirePackage[normalem]{ulem}%
+\fi
 \newcommand{\ulenhance}[2][1pt]{% enhanced underline
-    \def\ULthickness{#1}% redefine thickness
+    \def\ULthickness{#1}% set thickness
     \uline{#2}}
 \newcommand{\ulhshift}{-3em}% horizontal shift on underline
 \newcommand{\ulextend}[2][350pt]{% extend underline length

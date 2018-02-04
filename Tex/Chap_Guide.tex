@@ -299,7 +299,17 @@ Navier-Stokes方程:
                 }
         \end{enumerate}
 
-    \item 字体控制。如对字体控制有较高需求，请选择xelatex或lualatex编译引擎，并设置需要的字体。如用Times New Roman作为英文字体，在artratex.sty中设置:
+    \item 字体控制。文档内字体切换方法：
+        \begin{itemize}
+            \item 宋体：飞扬跋扈~或 \textrm{飞扬跋扈}
+            \item 粗宋体：{\bfseries 飞扬跋扈} 或 \textbf{飞扬跋扈}
+            \item 黑体：{\sffamily 飞扬跋扈} 或 \textsf{飞扬跋扈}
+            \item 粗黑体：{\bfseries\sffamily 飞扬跋扈} 或 \textsf{\bfseries 飞扬跋扈}
+            \item 仿宋：{\ttfamily 飞扬跋扈} 或 \texttt{飞扬跋扈}
+            \item 楷体：{\itshape 飞扬跋扈} 或 \textit{飞扬跋扈}
+        \end{itemize}
+        
+        若需设置字体库，请选择xelatex或lualatex编译引擎，并设置需要的字体库。如用Times New Roman作为英文字体，在artratex.sty中设置:
 
                  \verb|\setmainfont{Times New Roman}|
 
