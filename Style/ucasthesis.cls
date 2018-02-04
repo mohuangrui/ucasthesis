@@ -123,7 +123,7 @@
     \renewcommand{\CJKunderlinecolor}{\color[rgb]{0,0,0}}% set underline color
     \renewcommand{\uline}[1]{\CJKunderline{#1}}% unified name
 \else% use underline from ulem
-    \RequirePackage[normalem]{ulem}%
+    \RequirePackage{ulem}%
 \fi
 \newcommand{\ulenhance}[2][1pt]{% enhanced underline
     \def\ULthickness{#1}% set thickness
