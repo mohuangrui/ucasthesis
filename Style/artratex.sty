@@ -17,7 +17,13 @@
 %->> Declare options
 %---------------------------------------------------------------------------%
 %-
-%-> Bibliography processor and package
+%-> LaTeX engine <pdflatex>, <lualatex>, <xelatex>
+%-
+\newif\ifARTRATEX@pdftex \ARTRATEX@pdftexfalse
+\newif\ifARTRATEX@luatex \ARTRATEX@luatexfalse
+\newif\ifARTRATEX@xetex \ARTRATEX@xetexfalse
+%-
+%-> Bibliography engine <bibtex>, <biber>
 %-
 \newif\ifARTRATEX@bibtex \ARTRATEX@bibtextrue
 \newif\ifARTRATEX@biber \ARTRATEX@biberfalse
@@ -140,25 +146,20 @@
 %->> Required packages
 %---------------------------------------------------------------------------%
 %-
+%-> Engine depended settings
+%-
+\RequirePackage{ifxetex,ifluatex}%
+\ifxetex%
+    \ARTRATEX@xetextrue
+\else\ifluatex%
+    \ARTRATEX@luatextrue
+\else%
+    \ARTRATEX@pdftextrue
+\fi\fi%
+%-
 %-> Language settings
 %-
-\RequirePackage{ifxetex,ifpdf}% packages and settings depending on PDF mode
-\ifxetex% running xelatex in PDF mode: call system fonts
-    \RequirePackage{fontspec}% support calling system fonts
-    %\defaultfontfeatures{Ligatures=TeX}% set quoting style
-    %- Set English fonts
-    %- Roman or Serif - typefaces with strokes, for main contents
-    %- examples: Times New Roman, Garamond, Adobe Garamond Pro
-    %\setmainfont[BoldFont=Garamond-Bold,ItalicFont=Garamond-Italic]{Garamond}% set \rmfamily
-    %- due to \renewcommand*{\familydefault}{\rmdefault}, it also sets \normalfont
-    %- Sans serif - typefaces without strokes, for heading demanding high readability
-    %- examples: Helvetica, Gill Sans, Futura
-    %\setsansfont{Gill Sans MT}% set \sffamily
-    %- Monospaced - typefaces with same width, for programming, tabulated data, etc
-    %- examples: Rockwell, Andale Mono, Courier, Monaco
-    %\setmonofont{Rockwell}% set \ttfamily
-\fi
-\ifpdf% running pdflatex in PDF mode: call font packages
+\ifARTRATEX@pdftex% <pdflatex> call font packages
     \RequirePackage[utf8]{inputenc}% set input encoding, document must use utf-8 encoding
     \RequirePackage[T1]{fontenc}% set font encoding to enable modern font encoding
     %- Call font package options:
@@ -166,6 +167,28 @@
     \RequirePackage{newtxtext,newtxmath}%
     %- Text + Math: Palatino
     %\RequirePackage{palatino}%
+\else% <xelatex> or <lualatex> call system fonts
+    \RequirePackage{fontspec}% support calling system fonts
+    %- Font properties: <family> + <weight> + <shape> + <size>
+    %- Specify the three default TeX font families: <main>, <sans>, <mono>
+    %- \setxxxxfont{<font>}[BoldFont=<font-b>,ItalicFont=<font-i>]%
+    %- <font>: \mdseries\upshape; <font-b>: \bfseries\upshape; <font-i>: \mdseries\itshape
+    %- <\lfseries|\mdseries|\bfseries>: weight of font, default <\mdseries>
+    %- <\upshape|\itshape|\scshape>: shape of font, default <\upshape>
+    %- Roman or Serif - typefaces with strokes - for main content
+    %- examples: Times New Roman, Garamond, Adobe Garamond Pro
+    %\setmainfont{Garamond}[BoldFont=Garamond-Bold,ItalicFont=Garamond-Italic]%
+    %- font switches: {\rmfamily ...}, \textrm{...}, {\normalfont ...}, \textnormal{...}
+    %- the latter is due to \renewcommand*{\familydefault}{\rmdefault}
+    %- Sans serif - typefaces without strokes - for headings demanding high readability
+    %- examples: Helvetica, Gill Sans, Futura
+    %\setsansfont{Gill Sans MT}% font switches: {\sffamily ...}, \textsf{...}
+    %- Monospaced - typefaces with same width - for programming, etc
+    %- examples: Rockwell, Andale Mono, Courier
+    %\setmonofont{Rockwell}% font switches: {\ttfamily, ...}, \texttt{...}
+    %- Specify user-defined font families and font switches
+    %\newfontfamily\<font-switch>{<font>}[<font features>]%
+    %\newcommand{\text<font-switch>}[1]{{\<font-switch> #1}}%
 \fi
 %-
 %-> Bibliography processor and package
@@ -295,16 +318,10 @@
 %-
 %-> Links support
 %-
-\ifxetex% running xelatex in PDF mode
-    \RequirePackage[xetex]{hyperref}%
-\else
-    \ifpdf% running pdflatex in PDF mode
-        \RequirePackage[pdftex]{hyperref}%
-    \fi
-\fi
+\RequirePackage{hyperref}%
 \hypersetup{% set hyperlinks
     %bookmarks=true,% show bookmarks bar
-    unicode=true,% allows non-Latin based languages in bookmarks
+    pdfencoding=auto,% allows non-Latin based languages in bookmarks
     %pdftitle={},% title
     %pdfauthor={},% author
     %pdfsubject={},% subject
@@ -330,12 +347,10 @@
 %- Declare graphic extensions for automatic selection when including graphics
 %- via avoiding supplying graphic extensions in \includegraphics command,
 %- the source file can be more general and adaptive
-\ifxetex% running xelatex in PDF mode
+\ifARTRATEX@xetex%
     \DeclareGraphicsExtensions{.pdf,.png,.jpg,.eps,.tif,.bmp,.gif}%
-\else
-    \ifpdf% running pdflatex in PDF mode
-        \DeclareGraphicsExtensions{.pdf,.png,.jpg}%
-    \fi
+\else% <pdflatex> or <lualatex>
+    \DeclareGraphicsExtensions{.pdf,.png,.jpg}%
 \fi
 \graphicspath{{Img/}}% search path for figures
 %-
