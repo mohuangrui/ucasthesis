@@ -148,7 +148,7 @@
 %-
 %-> Engine depended settings
 %-
-\RequirePackage{ifxetex,ifluatex}%
+\RequirePackage{ifxetex,ifluatex}% LaTeX engine detection
 \ifxetex%
     \ARTRATEX@xetextrue
 \else\ifluatex%
@@ -163,7 +163,7 @@
     \RequirePackage[utf8]{inputenc}% set input encoding, document must use utf-8 encoding
     \RequirePackage[T1]{fontenc}% set font encoding to enable modern font encoding
     %- Call font package options:
-    %- Text + Math: Adobe Times Roman (Recommended)
+    %- Text + Math: Times Roman
     \RequirePackage{newtxtext,newtxmath}%
     %- Text + Math: Palatino
     %\RequirePackage{palatino}%
