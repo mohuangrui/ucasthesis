@@ -47,10 +47,10 @@ Thesis.tex为主文档，其设计和规划了论文的整体框架，通过对�
 Style文件夹内包含ucasthesis文档类的定义文件和配置文件，对于有特殊需求的用户，通过对它们的修改可以实现特定的类设定。用户若需更新模板，一般只需用新的样式文件替换旧的即可。
 
 \begin{enumerate}
-  \item ucasthesis.cls：文档类定义文件，论文的最核心的格式即通过它来定义的。
-  \item ucasthesis.cfg：文档类配置文件，设定如目录显示为“目~录”而非“目录”。
-  \item artratex.sty: 常用宏包的加载及文档的设定，如参考文献样式，文献引用样式，页眉页脚设定等。模板为这些功能提供了开关选项，从而只需在Thesis.tex中的\verb+\usepackage[options]{artratex}+中进行启用即可，一般无需修改artratex.sty本身。
-  \item artracom.sty： 用户自定义命令以及添加宏包的推荐放置位置。
+    \item ucasthesis.cls：文档类定义文件，论文的最核心的格式即通过它来定义的。
+    \item ucasthesis.cfg：文档类配置文件，设定如目录显示为“目~录”而非“目录”。
+    \item artratex.sty: 常用宏包的加载及文档的设定，如参考文献样式，文献引用样式，页眉页脚设定等。模板为这些功能提供了开关选项，从而只需在Thesis.tex中的\verb+\usepackage[options]{artratex}+中进行启用即可，一般无需修改artratex.sty本身。
+    \item artracom.sty： 用户自定义命令以及添加宏包的推荐放置位置。
 \end{enumerate}
 
 \subsection{Tex文件夹}
@@ -58,11 +58,11 @@ Style文件夹内包含ucasthesis文档类的定义文件和配置文件，对�
 Tex文件夹内为论文的所有实体内容，正常情况下，这也是你\textbf{使用此模板撰写学文论文时，主要关注和修改的一个位置，注：所有文件都必须采用UTF-8编码，否则编译后将出现乱码文本}，详细分类介绍如下：
 
 \begin{itemize}
-  \item Frontpage.tex：为论文封面内容及中英文摘要。
-  \item Mainmatter.tex：索引需要出现的Chapter。开始写论文时，可以只索引当前章节，以快速编译查看，当论文完成后，再对所有章节进行索引即可。
-  \item Chap{\_}xxx.tex：为论文主体的各个章节，可根据需要添加和撰写。
-  \item Appendix.tex：为附录内容
-  \item Backmatter.tex：为发表文章信息，致谢部分等。
+    \item Frontpage.tex：为论文封面内容及中英文摘要。
+    \item Mainmatter.tex：索引需要出现的Chapter。开始写论文时，可以只索引当前章节，以快速编译查看，当论文完成后，再对所有章节进行索引即可。
+    \item Chap{\_}xxx.tex：为论文主体的各个章节，可根据需要添加和撰写。
+    \item Appendix.tex：为附录内容
+    \item Backmatter.tex：为发表文章信息，致谢部分等。
 \end{itemize}
 
 \subsection{Img文件夹}
@@ -74,7 +74,7 @@ Img文件夹用于放置论文中所需要的图类文件，支持格式有：.j
 \begin{enumerate}
     \item ref.bib：考文献信息库。
     \item gbt7714-xxx.bst：符合国标的文献样式定义文件。
-        
+
         由 \href{https://github.com/zepinglee/gbt7714-bibtex-style}{zepinglee}  开发，并满足最新国标要求。不建议尝试修改文献样式，若坚持，请查阅开发者所提供的文档。
 \end{enumerate}
 
@@ -286,6 +286,7 @@ Navier-Stokes方程:
             \item 正文行距：修改 \verb|\linespread{1.3}|
             \item 参考文献行距：修改 \verb|\setlength{\bibsep}{0.0ex}|
             \item 目录显示subsection：修改 \verb|\setcounter{tocdepth}{2}|
+            \item 文档内超链接的颜色及其显示：修改 \verb|\hypersetup|
             \item 页眉页脚的设定：frontmatterstyle，mainmatterstyle，和backmatterstyle分别用于定义前言，主要内容，和附录的页眉页脚样式。通过阅读这一部分的代码，可以轻松地理解和修改以获得自定义的样式。命令的详细解释请参见 \href{https://www.ctan.org/pkg/fancyhdr?lang=en}{fancyhdr} 的用户文档。同时可参见 \href{https://ctan.org/pkg/ctex?lang=en}{ctex} 宏包用户文档。
 
             \item 设置图2.3为图2-3: 设置
@@ -309,11 +310,13 @@ Navier-Stokes方程:
             \item 楷体：{\itshape 飞扬跋扈} 或 \textit{飞扬跋扈}
         \end{itemize}
         
+        由于缺乏一个统一的被各个操作系统所默认携带的完备的中文字体库，\href{https://ctan.org/pkg/ctex?lang=en}{ctex} 针对不同的操作系统而调用各系统上所对应的一类中文字体库。由于很多操作系统的字库往往缺乏原生态的加粗宋体字重，有时会发生加粗宋体被黑体所替换的情形，这对封面的字体造成影响。若需要解决这个问题，可采用调用自定义的一个完备字体库的方案。
+        
         若需设置字体库，请选择xelatex或lualatex编译引擎，并设置需要的字体库。如用Times New Roman作为英文字体，在artratex.sty中设置:
 
                  \verb|\setmainfont{Times New Roman}|
 
-                 用户如果需要安装并调用一个自定义的中文字体库，方法为：
+                 如果需要调用一个自定义的中文字体库，方法为：
 
                 \begin{itemize}
                     \item 调用 \href{https://ctan.org/pkg/ctex?lang=en}{ctex} 预定义好的备用字库： 在Thesis.tex中设置
@@ -323,9 +326,9 @@ Navier-Stokes方程:
                             \verb|\documentclass[doublesided,fontset=fandol]{Style/ucasthesis}%|
                          }
 
-                         便可方便地调用 \href{https://ctan.org/tex-archive/fonts/fandol?lang=en}{fandol} 这一字体库。\LaTeX{}编译系统一般已携带或是能自动下载安装 \href{https://ctan.org/tex-archive/fonts/fandol?lang=en}{fandol} 字库。若不能，则请手动下载并安装链接所提供的所有字体即可。
+                         便可方便地调用 \href{https://ctan.org/tex-archive/fonts/fandol?lang=en}{fandol} 这一字体库。\LaTeX{}编译系统一般已携带或是能自动下载安装 \href{https://ctan.org/tex-archive/fonts/fandol?lang=en}{fandol} 字库。若不能，则请手动下载并安装链接所提供的所有字体即可。本模板使用说明文档就是采用调用 \href{https://ctan.org/tex-archive/fonts/fandol?lang=en}{fandol} 中文字库。
 
-                     \item 手动调用系统带有的中文字库： 如调用SC字体，在artratex.sty的
+                     \item 手动调用系统带有的中文字库： 首先需要查看系统所带有的中文字库及其名称，也可选择安装可获得的中文字库。假设系统已安装或带有名为SC的中文字库（此字库为MacOS所配备，具备原生态的加粗宋体），则可在artratex.sty的
 
                          \verb|\RequirePackage{fontspec}|
 
@@ -339,9 +342,8 @@ Navier-Stokes方程:
                         }
                 \end{itemize}
 
-                字库调用的全面解释可参见 \href{https://ctan.org/pkg/fontspec}{fontspec} （英文字体调用）和 \href{https://ctan.org/pkg/xecjk?lang=en}{xeCJK} （中文字体调用）。
-
-                因为模版的设定考虑兼顾不同操作系统（Windows, Linux, Mac OS），为了模版的健壮性，上述字体设置和调用方案并未作为原始设定。
+                字库调用的全面解释可参见 \href{https://ctan.org/pkg/fontspec}{fontspec} （英文字体调用）和 \href{https://ctan.org/pkg/xecjk?lang=en}{xeCJK} （中文字体调用）。因为模版的设定考虑兼顾不同操作系统（Windows, Linux, Mac OS），为了模版的健壮性，上述字体设置和调用方案并未作为原始设定。
+            \item 如果对封面下划线上的文本不居中下划线产生疑问，这是因为那些下划线前面还有字头，导致文本只能在页面居中和在下划线上居中二选一。当前封面采取页面居中。如需要调整文本在下划线上的位置，可用 \verb|\hspace{+/- n.0em}| 命令来插入或删除 n 个空格，进行手动调整。这个解决方案是很不优雅，但问题的本质还是模板样式的不合理。
     \item  一般规范下，章应开始于奇数页。从而若前一章结束于奇数页，则一空白页将被插入以保证上述规则。如想修改以取消空白页，有如下方案：
      \begin{itemize}
          \item 在thesis.tex的documentclass中用singlesided替代doublesided。这使文档不区分奇偶页，因此章可以开始于任意页。此方案将移除所有空白页，包括封面处的。同时，页眉页脚的设定不再区分奇偶页。
