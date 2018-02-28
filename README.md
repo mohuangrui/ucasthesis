@@ -25,6 +25,8 @@ Clone or download -> Download Zip
 
 ## 更新记录
 
+* `2018-02-28` 在说明文档中回答关于封面字体，封面文本对齐，文档超链接颜色问题，修改的文件为：模板使用说明.pdf。
+
 * `2018-02-04` 在 [ctex](https://github.com/CTeX-org/ctex-kit) 开发人员的帮助下修复了错用字体命令导致的宋体加粗异常。然后，将模板的兼容性进一步扩展。当前模板兼容操作系统 Windows，Linux，MacOS 和 LaTeX 编译引擎 pdflatex，xelatex，lualatex。修改的文件为：artratex.sty，ucasthesis.cfg，ucasthesis.cls。
 
 * `2018-02-02` 回答 LaTeX 初级用户的一些软件使用问题，修改的文件为：模板使用说明.pdf。
