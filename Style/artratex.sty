@@ -306,7 +306,8 @@
 \ifARTRATEX@list% enable enhanced list and verbatim structures
     \RequirePackage{verbatim}% improve verbatim environment
     \RequirePackage{enumitem}% configure the enumerate environment
-    \RequirePackage{listings}% useful for algorithm and coding
+    \RequirePackage{listings}% source code
+    \RequirePackage{algpseudocode,algorithm,algorithmicx}% algorithm
 \fi
 %-
 %-> Math packages
@@ -333,8 +334,8 @@
     %backref=true,% do bibliographical back references
     %pagebackref=true,% backreference by page number
     colorlinks=true,% false: boxed links; true: colored links
-    linkcolor=blue,% color of internal links
-    citecolor=blue,% color of links to bibliography
+    linkcolor=black,% color of internal links
+    citecolor=black,% color of links to bibliography
     %filecolor=magenta,% color of file links
     urlcolor=red,% color of external links
     bookmarksnumbered=true,% put section numbers in bookmarks

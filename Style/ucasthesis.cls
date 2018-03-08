@@ -81,27 +81,30 @@
 %---------------------------------------------------------------------------%
 %- part one -- horizontal widths
 %- left side width + textwidth + right side width = paperwidth
-%- left side width of [odd, even] page = [odd, even]sidemargin + 1.0in (fixed) + hoffset
 %- binding side width + textwidth + nonbinding side width = paperwidth
 %- binding side width of [odd, even] page = [left, right] side width
+%- left side width of [odd, even] page = 1.0in (fixed) + hoffset + [odd, even]sidemargin
 %- assuming A4 paper (210mm x 297mm)
-\setlength{\textwidth}{150mm}% set required text width first
+\setlength{\textwidth}{146.6mm}% set required text width first
+\setlength{\hoffset}{0mm}% set horizontal offset
 \ifUCAS@printcopy% if print copy layout enabled
-    \setlength{\oddsidemargin}{10mm}% binding side width
+    \setlength{\oddsidemargin}{12.6mm}% binding side margin
     \setlength{\evensidemargin}{0mm}% ensure uniform binding side width for printing
 \else
-    \setlength{\oddsidemargin}{5mm}% left side width
-    \setlength{\evensidemargin}{5mm}% ensure uniform left side width for EThesis
+    \setlength{\oddsidemargin}{6.3mm}% left side margin
+    \setlength{\evensidemargin}{6.3mm}% ensure uniform left side width for EThesis
 \fi
-%- set margin for notes to zero
-\setlength{\marginparwidth}{0pt}% width of margin notes
-\setlength{\marginparsep}{0pt}% width of space between body text and margin notes
+\setlength{\marginparwidth}{35pt}% width of margin notes
+\setlength{\marginparsep}{10pt}% width of space between body text and margin notes
 %- part two -- vertical heights
 %- top height + textheight + bottom height = paperheight
 %- top height = 1.0in (fixed) + voffset + topmargin + headheight + headsep 
-\setlength{\textheight}{240mm}% set required text height first
-\setlength{\voffset}{-20mm}% set a minimum header height
-\setlength{\headheight}{15pt}% set a minimum header height
+\setlength{\textheight}{246.2mm}% set required text height first
+\setlength{\voffset}{-17.4mm}% set vertical offset
+\setlength{\topmargin}{20pt}% vertical margin above header
+\setlength{\headheight}{12pt}% header height
+\setlength{\headsep}{17.5pt}% vertical margin between header and body text
+\setlength{\footskip}{29.5pt}% vertical margin between footer and body text
 %- specifies the amount of space between paragraphs.
 \setlength{\parskip}{0.5ex plus 0.25ex minus 0.25ex}
 %- line spacing
@@ -172,7 +175,8 @@
 
         \vspace*{\stretch{2}}
 
-        {\zihao{1}\bfseries\sffamily \ulenhance[2.5pt]{\UCAS@value@degree\UCAS@label@thesis}}
+        %{\zihao{1}\bfseries\sffamily \ulenhance[2.5pt]{\UCAS@value@degree\UCAS@label@thesis}}
+        {\zihao{1}\bfseries\sffamily {\UCAS@value@degree\UCAS@label@thesis}}
 
         \vspace*{\stretch{3}}
 
@@ -191,11 +195,11 @@
             \UCAS@label@institute & \ulenhance[1.2pt]{\ulextend{\UCAS@value@institute}}\\
         \end{tabular}
 
-        \vspace*{\stretch{5}}
+        \vspace*{\stretch{4.5}}
 
         {\UCAS@value@chinesedate}
 
-        \vspace*{\stretch{3}}
+        \vspace*{\stretch{3.5}}
     \end{center}
     \clearpage
     \if@twoside
