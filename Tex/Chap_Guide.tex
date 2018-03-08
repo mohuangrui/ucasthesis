@@ -7,12 +7,13 @@
 \section{先试试效果}
 
 \begin{enumerate}
-    \item 安装软件：根据所使用的操作系统和章节~\ref{sec:system}中的信息安装\LaTeX{}编译环境。
-    \item 获取模板：下载 \href{https://github.com/mohuangrui/ucasthesis}{ucasthesis} 模板并解压。ucasthesis模板不仅只是提供了相应的类文件，同时也提供了包括参考文献等在内的完成学位论文的一切要素，所以，下载时，推荐下载整个ucasthesis文件夹，而不是单独的文档类。
+    \item 安装软件：根据所用操作系统和章节~\ref{sec:system}中的信息安装\LaTeX{}编译环境。
+    \item 获取模板：下载 \href{https://github.com/mohuangrui/ucasthesis}{ucasthesis} 模板并解压。ucasthesis模板不仅提供了相应的类文件，同时也提供了包括参考文献等在内的完成学位论文的一切要素，所以，下载时，推荐下载整个ucasthesis文件夹，而不是单独的文档类。
     \item 编译模板：
         \begin{enumerate}
             \item Windows用户：双击运行artratex.bat脚本。
-            \item Linux或Mac OS用户: 打开 \verb|terminal| -> 运行 \verb|chmod +x ./artratex.sh| -> 运行 \verb|./artratex.sh xa|
+            \item Linux或Mac OS用户: \verb|terminal| -> \verb|chmod +x ./artratex.sh| -> \verb|./artratex.sh xa|
+            \item 任意系统：使用\LaTeX{}编辑器打开Thesis.tex文件进行编译亦可。
         \end{enumerate}
     \item 处理错误：若编译中遇到了问题，请先查看“常见问题”（章节~\ref{sec:qa}）。
 \end{enumerate}
@@ -102,18 +103,15 @@ Navier-Stokes方程:
     \setlength{\tabcolsep}{4pt}% column separation
     \renewcommand{\arraystretch}{1.2}%row space 
     \begin{tabular}{lcccccccc}
-        \hline\hline
+        \hline
         Row number & \multicolumn{8}{c}{This is a multicolumn} \\
         %\cline{2-9}% partial hline from column i to column j
         \hline
         Row 1 & $1$ & $2$ & $4$ & $5$ & $6$ & $7$ & $8$\\
-        \hline
         Row 2 & $1$ & $2$ & $4$ & $5$ & $6$ & $7$ & $8$\\
-        \hline
         Row 3 & $1$ & $2$ & $4$ & $5$ & $6$ & $7$ & $8$\\
-        \hline
         Row 4 & $1$ & $2$ & $4$ & $5$ & $6$ & $7$ & $8$\\
-        \hline\hline
+        \hline
     \end{tabular}
     \caption{这是一个样表。}
     \label{tab:sample}
@@ -135,7 +133,7 @@ Navier-Stokes方程:
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.45\textwidth]{tc_q_criteria}
-    \caption{Q判据等值面图}
+    \caption{Q判据等值面图。 \\ Fig.~\ref{fig:tc_q_criteria}: Isocontour of Q criteria.}
     \label{fig:tc_q_criteria}
 \end{figure}
 
@@ -218,6 +216,25 @@ Navier-Stokes方程:
 
 撰写论文中，插图和制表常用到的命令，已在\verb|Tex/Commands.tex|这个文本中给出了参考代码，大家只需拷贝使用即可。
 
+\subsection{算法}
+
+如见算法~\ref{alg:euclid}，详细使用方法请参见文档 \href{https://ctan.org/pkg/algorithmicx?lang=en}{algorithmicx}。
+
+\begin{algorithm}[!htbp]
+    \caption{Euclid's algorithm}\label{alg:euclid}
+    \begin{algorithmic}[1]
+        \Procedure{Euclid}{$a,b$}\Comment{The g.c.d. of a and b}
+        \State $r\gets a\bmod b$
+        \While{$r\not=0$}\Comment{We have the answer if r is 0}
+        \State $a\gets b$
+        \State $b\gets r$
+        \State $r\gets a\bmod b$
+        \EndWhile\label{euclidendwhile}
+        \State \textbf{return} $b$\Comment{The gcd is b}
+        \EndProcedure
+    \end{algorithmic}
+\end{algorithm}
+
 \subsection{参考文献引用}
 
 参考文献引用过程以实例进行介绍，假设需要引用名为"Document Preparation System"的文献，步骤如下：
@@ -262,7 +279,13 @@ Navier-Stokes方程:
 \begin{enumerate}
     \item 模板每次发布前，都已在Windows，Linux，MacOS系统上测试通过。下载模板后，若编译出现错误，则请遵从 \href{https://github.com/mohuangrui/ucasthesis}{位于主页底部的用户指南}。
 
-    \item 模板文档的编码为UTF-8编码。所有文件都必须采用UTF-8编码，否则编译后生成的文档将出现乱码文本。若出现文本编辑器无法打开文档或打开文档乱码的问题，请检查您使用的编辑器对UTF-8编码的支持。如果使用WinEdt作为文本编辑器（不推荐使用），应在其Options -> Preferences -> wrapping选项卡下将两种Wrapping Modes中的内容：TeX;HTML;ANSI;ASCII|DTX...修改为：TeX;\textbf{UTF-8|ACP;}HTML;ANSI;ASCII|DTX...同时，取消Options -> Preferences -> Unicode中的Enable ANSI Format...选项。
+    \item 模板文档的编码为UTF-8编码。所有文件都必须采用UTF-8编码，否则编译后生成的文档将出现乱码文本。若出现文本编辑器无法打开文档或打开文档乱码的问题，请检查您使用的编辑器对UTF-8编码的支持。如果使用WinEdt作为文本编辑器（不推荐使用），应在其Options -> Preferences -> wrapping选项卡下将两种Wrapping Modes中的内容：
+        
+        TeX;HTML;ANSI;ASCII|DTX...
+        
+        修改为：TeX;\textbf{UTF-8|ACP;}HTML;ANSI;ASCII|DTX...
+        
+        同时，取消Options -> Preferences -> Unicode中的Enable ANSI Format。
 
     \item 推荐选择xelatex或lualatex编译引擎编译中文文档。编译脚本的默认设定为xelatex编译引擎。你也可以选择不使用脚本编译，如直接使用 \TeX{}文本编辑器编译。注：\TeX{}文本编辑器编译的默认设定为pdflatex编译引擎，若选择xelatex或lualatex编译引擎，请进入下拉菜单选择。为正确生成引用链接，需要进行全编译。
     \item Texmaker使用简介
@@ -343,7 +366,7 @@ Navier-Stokes方程:
                 \end{itemize}
 
                 字库调用的全面解释可参见 \href{https://ctan.org/pkg/fontspec}{fontspec} （英文字体调用）和 \href{https://ctan.org/pkg/xecjk?lang=en}{xeCJK} （中文字体调用）。因为模版的设定考虑兼顾不同操作系统（Windows, Linux, Mac OS），为了模版的健壮性，上述字体设置和调用方案并未作为原始设定。
-            \item 如果对封面下划线上的文本不居中下划线产生疑问，这是因为那些下划线前面还有字头，导致文本只能在页面居中和在下划线上居中二选一。当前封面采取页面居中。如需要调整文本在下划线上的位置，可用 \verb|\hspace{+/- n.0em}| 命令来插入或删除 n 个空格，进行手动调整。这个解决方案是很不优雅，但问题的本质还是模板样式的不合理。
+            \item 封面下划线上的文本不居中下划线，这是因为那些下划线前面还有字头，导致文本只能在页面居中和在下划线上居中二选一。当前封面采取页面居中。如需要调整文本在下划线上的位置，可用 \verb|\hspace{+/- n.0em}| 命令来插入或删除 n 个空格，进行手动调整。这个解决方案是很不优雅，但问题的本质还是模板样式的不合理。有时下划线看上去粗细不一致，这是显示的问题，打印正常。
     \item  一般规范下，章应开始于奇数页。从而若前一章结束于奇数页，则一空白页将被插入以保证上述规则。如想修改以取消空白页，有如下方案：
      \begin{itemize}
          \item 在thesis.tex的documentclass中用singlesided替代doublesided。这使文档不区分奇偶页，因此章可以开始于任意页。此方案将移除所有空白页，包括封面处的。同时，页眉页脚的设定不再区分奇偶页。
@@ -356,7 +379,7 @@ Navier-Stokes方程:
      \end{itemize}
       无论哪种方案都要注意对页眉页脚的影响并做出合适的调整。推荐是采用默认设置，尽量避免将精力花在这些无关紧要的细节上。\LaTeX{}的特点是标准化，而其导致的问题则是任何脱离标准的修改都将花费相当精力。对于电子档的论文，在thesis.tex的documentclass中，若不想使用doublesided，则可使用singlesided来减少空白页。而对于打印版，启用printcopy选项以替换doublesided/singlesided选项，这样可使奇偶页的排版在打印装订后更美观。
 
-  \item 部分所也许对论文格式有不同的设定，\LaTeX{}用户亦无需担心，仍可放心地使用当前模板进行论文撰写，因为\LaTeX{}的特征就在于内容与格式的分离。在使用此模板完成论文的撰写后，任何形式的格式调整都可独立于内容进行，并可只需通过修改模板样式文件中的少数命令轻松快速完成，并无风险。
+  \item 部分所也许对格式有不同设定，因\LaTeX{}将内容与格式分离，格式的调整可独立于内容进行，并只需修改模板样式文件完成，并无风险。
 \end{enumerate}
 
 
