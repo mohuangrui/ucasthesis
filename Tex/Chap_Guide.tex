@@ -13,7 +13,7 @@
         \begin{enumerate}
             \item Windows用户：双击运行artratex.bat脚本。
             \item Linux或Mac OS用户: \verb|terminal| -> \verb|chmod +x ./artratex.sh| -> \verb|./artratex.sh xa|
-            \item 任意系统：使用\LaTeX{}编辑器打开Thesis.tex文件进行编译亦可。
+            \item 任意系统：都可使用\LaTeX{}编辑器打开Thesis.tex文件进行编译。
         \end{enumerate}
     \item 处理错误：若编译中遇到了问题，请先查看“常见问题”（章节~\ref{sec:qa}）。
 \end{enumerate}
@@ -35,7 +35,7 @@ Thesis.tex为主文档，其设计和规划了论文的整体框架，通过对�
             \item \verb|./artratex.sh xa|：获得全编译后的PDF文档
             \item \verb|./artratex.sh x|：快速编译模式
         \end{enumerate}
-    \item 全编译是指运行 \verb|latex引擎+bibtex+latex引擎+latex引擎| 以正确生成所有的引用链接，如目录，参考文献及引用等。当文章在写作过程中，并无添加新的引用，则可用快速编译，即只运行一遍\LaTeX{}编译引擎以减少编译时间。
+    \item 全编译指运行 \verb|latex引擎+bibtex+latex引擎+latex引擎| 以正确生成所有的引用链接，如目录，参考文献及引用等。在写作过程中若无添加新的引用，则可用快速编译，即只运行一遍\LaTeX{}编译引擎以减少编译时间。
 \end{itemize}
 
 
@@ -113,7 +113,7 @@ Navier-Stokes方程:
         Row 4 & $1$ & $2$ & $4$ & $5$ & $6$ & $7$ & $8$\\
         \hline
     \end{tabular}
-    \caption{这是一个样表。}
+    \bicaption{这是一个样表。}{This is a sample table.}
     \label{tab:sample}
 \end{table}
 
@@ -121,100 +121,53 @@ Navier-Stokes方程:
 
 论文中图片的插入通常分为单图和多图，下面分别加以介绍：
 
-单图插入：假设插入名为\verb|tc_q_criteria|（后缀可以为.jpg、.png、.pdf，下同）的图片，其效果如图\ref{fig:tc_q_criteria}，其命令可为：
-\begin{verbatim}
+单图插入：假设插入名为\verb|tc_q_criteria|（后缀可以为.jpg、.png、.pdf，下同）的图片，其效果如图\ref{fig:tc_q_criteria}。
 \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=0.45\textwidth]{tc_q_criteria}
-    \caption{Q判据等值面图}
-    \label{fig:tc_q_criteria}
-\end{figure}
-\end{verbatim}
-\begin{figure}[!htbp]
-    \centering
-    \includegraphics[width=0.45\textwidth]{tc_q_criteria}
-    \caption{Q判据等值面图。 \\ Fig.~\ref{fig:tc_q_criteria}: Isocontour of Q criteria.}
+    \includegraphics[width=0.40\textwidth]{tc_q_criteria}
+    \bicaption{Q判据等值面图。}{Isocontour of Q criteria.}
     \label{fig:tc_q_criteria}
 \end{figure}
 
-如果插图的空白区域过大，希望减少插入图片后的留白，以图片\verb|shock_cyn|为例（图\ref{fig:shock_cyn}），可以使用如下代码模板：
-\begin{verbatim}
-\begin{figure}[!htbp]
-    \centering
-    %trim option's parameter order: left bottom right top
-    \includegraphics[trim = 30mm 0mm 30mm 0mm, clip,
-    width=0.40\textwidth]{shock_cyn}
-    \caption{Shock diffraction}
-    \label{fig:shock_cyn}
-\end{figure}
-\end{verbatim}
+如果插图的空白区域过大，以图片\verb|shock_cyn|为例，自动裁剪如图\ref{fig:shock_cyn}。
 \begin{figure}[!htbp]
     \centering
     %trim option's parameter order: left bottom right top
     \includegraphics[trim = 30mm 0mm 30mm 0mm, clip, width=0.40\textwidth]{shock_cyn}
-    \caption{激波圆柱作用。}
+    \bicaption{激波圆柱作用。}{Shock-cylinder interaction.}
     \label{fig:shock_cyn}
 \end{figure}
 
-多图的插入如图\ref{fig:oaspl}，其代码如下。
-\begin{verbatim}
+多图的插入如图\ref{fig:oaspl}。
 \begin{figure}[!htbp]
     \centering
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[b]{0.40\textwidth}
       \includegraphics[width=\textwidth]{oaspl_a}
       \caption{}
       \label{fig:oaspl_a}
     \end{subfigure}%
     ~%add desired spacing
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[b]{0.40\textwidth}
       \includegraphics[width=\textwidth]{oaspl_b}
       \caption{}
       \label{fig:oaspl_b}
     \end{subfigure}
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[b]{0.40\textwidth}
       \includegraphics[width=\textwidth]{oaspl_c}
       \caption{}
       \label{fig:oaspl_c}
     \end{subfigure}%
     ~%add desired spacing
-    \begin{subfigure}[b]{0.45\textwidth}
+    \begin{subfigure}[b]{0.40\textwidth}
       \includegraphics[width=\textwidth]{oaspl_d}
       \caption{}
       \label{fig:oaspl_d}
     \end{subfigure}
-    \caption{总声压级。（a）$A$，（b）$B$，（c）$C$，（d）$D$}
-    \label{fig:oaspl}
-\end{figure}
-\end{verbatim}
-\begin{figure}[!htbp]
-    \centering
-    \begin{subfigure}[b]{0.45\textwidth}
-      \includegraphics[width=\textwidth]{oaspl_a}
-      \caption{}
-      \label{fig:oaspl_a}
-    \end{subfigure}%
-    ~%add desired spacing
-    \begin{subfigure}[b]{0.45\textwidth}
-      \includegraphics[width=\textwidth]{oaspl_b}
-      \caption{}
-      \label{fig:oaspl_b}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.45\textwidth}
-      \includegraphics[width=\textwidth]{oaspl_c}
-      \caption{}
-      \label{fig:oaspl_c}
-    \end{subfigure}%
-    ~%add desired spacing
-    \begin{subfigure}[b]{0.45\textwidth}
-      \includegraphics[width=\textwidth]{oaspl_d}
-      \caption{}
-      \label{fig:oaspl_d}
-    \end{subfigure}
-    \caption{总声压级。（a）$A$，（b）$B$，（c）$C$，（d）$D$}
+    \bicaption{总声压级。（a）$A$，（b）$B$，（c）$C$，（d）$D$。}{OASPL.（a）$A$，（b）$B$，（c）$C$，（d）$D$.}
     \label{fig:oaspl}
 \end{figure}
 
-撰写论文中，插图和制表常用到的命令，已在\verb|Tex/Commands.tex|这个文本中给出了参考代码，大家只需拷贝使用即可。
+插图和制表的参考代码在\verb|Tex/Commands.tex|亦进行了汇集。
 
 \subsection{算法}
 
@@ -306,7 +259,7 @@ Navier-Stokes方程:
 
     \item 设置文档样式: 在artratex.sty中搜索关键字定位相应命令，然后修改
         \begin{enumerate}
-            \item 正文行距：修改 \verb|\linespread{1.3}|
+            \item 正文行距：启用 \verb|\linespread{1.5}|，默认1.2倍行距。
             \item 参考文献行距：修改 \verb|\setlength{\bibsep}{0.0ex}|
             \item 目录显示subsection：修改 \verb|\setcounter{tocdepth}{2}|
             \item 文档内超链接的颜色及其显示：修改 \verb|\hypersetup|
@@ -349,7 +302,7 @@ Navier-Stokes方程:
                             \verb|\documentclass[doublesided,fontset=fandol]{Style/ucasthesis}%|
                          }
 
-                         便可方便地调用 \href{https://ctan.org/tex-archive/fonts/fandol?lang=en}{fandol} 这一字体库。\LaTeX{}编译系统一般已携带或是能自动下载安装 \href{https://ctan.org/tex-archive/fonts/fandol?lang=en}{fandol} 字库。若不能，则请手动下载并安装链接所提供的所有字体即可。本模板使用说明文档就是采用调用 \href{https://ctan.org/tex-archive/fonts/fandol?lang=en}{fandol} 中文字库。
+                         便可调用 \href{https://ctan.org/tex-archive/fonts/fandol?lang=en}{fandol} 这一字体库。\LaTeX{}编译系统一般已携带或是能自动下载安装 \href{https://ctan.org/tex-archive/fonts/fandol?lang=en}{fandol} 字库。若不能，则请手动下载并安装链接所提供的所有字体即可。本模板使用说明文档就是采用调用 \href{https://ctan.org/tex-archive/fonts/fandol?lang=en}{fandol} 中文字库。
 
                      \item 手动调用系统带有的中文字库： 首先需要查看系统所带有的中文字库及其名称，也可选择安装可获得的中文字库。假设系统已安装或带有名为SC的中文字库（此字库为MacOS所配备，具备原生态的加粗宋体），则可在artratex.sty的
 

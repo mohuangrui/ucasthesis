@@ -257,6 +257,9 @@
 \RequirePackage{graphicx}% packages for including graphics
 \RequirePackage[font=small,skip=8pt]{caption}% options: [margin=10pt,labelfont=bf]
 \RequirePackage{subcaption}% package for subfigures
+\RequirePackage{bicaption}% package for binary captions
+\captionsetup[figure][bi-second]{name=Figure}% the second figure caption name
+\captionsetup[table][bi-second]{name=Table}% the second table caption name
 \RequirePackage[section]{placeins}% prevent floats from being moved over section
 %-
 %-> Page layout and spacing
@@ -335,7 +338,7 @@
     %pagebackref=true,% backreference by page number
     colorlinks=true,% false: boxed links; true: colored links
     linkcolor=black,% color of internal links
-    citecolor=black,% color of links to bibliography
+    citecolor=blue,% color of links to bibliography
     %filecolor=magenta,% color of file links
     urlcolor=red,% color of external links
     bookmarksnumbered=true,% put section numbers in bookmarks
@@ -364,7 +367,7 @@
 \fi
 %\linespread{1.5}% 1.5 for "one and a half" line spacing, and 2.0 for "double" line spacing
 %\setlength{\parskip}{0.5ex plus 0.25ex minus 0.25ex}% skip space a paragraph
-\setcounter{tocdepth}{1}% depth for the table of contents
+\setcounter{tocdepth}{2}% depth for the table of contents
 \setcounter{secnumdepth}{3}% depth for section numbering, default is 2(subsub)
 %- Set equation, figure, table numbering
 %\numberwithin{equation}{section}% set enumeration level

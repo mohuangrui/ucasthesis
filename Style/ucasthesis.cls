@@ -108,7 +108,7 @@
 %- specifies the amount of space between paragraphs.
 \setlength{\parskip}{0.5ex plus 0.25ex minus 0.25ex}
 %- line spacing
-\linespread{1.3}% line space setting
+\linespread{1.2}% line space setting
 \raggedbottom% prevent adding vertical white space in strange places
 %- default pagestyle is page number at bottom without headers and footers
 \pagestyle{plain}
@@ -131,7 +131,7 @@
 \newcommand{\ulenhance}[2][1pt]{% enhanced underline
     \def\ULthickness{#1}% set thickness
     \uline{#2}}
-\newcommand{\ulhshift}{-3em}% horizontal shift on underline
+\newcommand{\ulhshift}{-4em}% horizontal shift on underline
 \newcommand{\ulextend}[2][350pt]{% extend underline length
     \hbox to #1{\hfill\hspace*{\ulhshift}#2\hfill}}
 %---------------------------------------------------------------------------%
@@ -162,6 +162,7 @@
     \cleardoublepage
     \thispagestyle{empty}
     \begin{center}
+        \linespread{1.5}
         \zihao{4}\bfseries
         \ifUCAS@mjinfo
             \hfill{} {\UCAS@label@confidential \ulenhance{\ulextend[50pt]{\hspace*{-\ulhshift}\zihao{5}\UCAS@value@confidential}}}
@@ -185,7 +186,7 @@
         \vspace*{\stretch{3}}
 
         \def\tabcolsep{1pt}
-        \def\arraystretch{1.4}
+        \def\arraystretch{1.3}
         \begin{tabular}{lc}
             \UCAS@label@author & \ulenhance[1.2pt]{\ulextend{\UCAS@value@author}}\\
             \UCAS@label@advisor & \ulenhance[1.2pt]{\ulextend{\UCAS@value@advisor}}\\
@@ -283,6 +284,7 @@
     \thispagestyle{empty}
     {
         \linespread{1.5}
+        \zihao{-4}
 
         \vspace*{2ex}
 
