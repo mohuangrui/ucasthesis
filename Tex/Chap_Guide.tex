@@ -31,13 +31,12 @@ Thesis.tex为主文档，其设计和规划了论文的整体框架，通过对�
 \begin{itemize}
     \item Windows用户：双击Dos脚本artratex.bat可得全编译后的PDF文档。
     \item Linux或Mac OS用户：在terminal中运行
-        \begin{enumerate}
+        \begin{itemize}
             \item \verb|./artratex.sh xa|：获得全编译后的PDF文档
             \item \verb|./artratex.sh x|：快速编译模式
-        \end{enumerate}
+        \end{itemize}
     \item 全编译指运行 \verb|latex引擎+bibtex+latex引擎+latex引擎| 以正确生成所有的引用链接，如目录，参考文献及引用等。在写作过程中若无添加新的引用，则可用快速编译，即只运行一遍\LaTeX{}编译引擎以减少编译时间。
 \end{itemize}
-
 
 \subsection{Tmp文件夹}
 
@@ -73,17 +72,17 @@ Img文件夹用于放置论文中所需要的图类文件，支持格式有：.j
 \subsection{Biblio文件夹}
 
 \begin{enumerate}
-    \item ref.bib：考文献信息库。
+    \item ref.bib：参考文献信息库。
     \item gbt7714-xxx.bst：符合国标的文献样式定义文件。
 
-        由 \href{https://github.com/zepinglee/gbt7714-bibtex-style}{zepinglee}  开发，并满足最新国标要求。不建议尝试修改文献样式，若坚持，请查阅开发者所提供的文档。
+        由 \href{https://github.com/zepinglee/gbt7714-bibtex-style}{zepinglee}  开发，并满足最新国标要求。与文献样式有关的问题，请查阅开发者所提供的文档，并建议适当追踪其更新。
 \end{enumerate}
 
 \section{数学公式、图表、参考文献等功能}
 
 \subsection{数学公式}
 
-Navier-Stokes方程:
+比如Navier-Stokes方程:
 \begin{equation} \label{eq:ns}
     \begin{cases}
         \frac{\partial \rho}{\partial t} + \nabla\cdot(\rho\Vector{V}) = 0 \\
@@ -92,11 +91,11 @@ Navier-Stokes方程:
     \end{cases}
 \end{equation}
 
-常用数学公式的命令代码模板，请见 \href{https://en.wikibooks.org/wiki/LaTeX/Mathematics}{WiKibook Mathematics}.
+数学公式常用命令请见 \href{https://en.wikibooks.org/wiki/LaTeX/Mathematics}{WiKibook Mathematics}。artracom.sty中对一些常用数据类型如矢量矩阵等进行了封装，这样的好处是如有一天需要修改矢量的显示形式，只需单独修改artracom.sty中的矢量定义即可实现全文档的修改。
 
 \subsection{表格}
 
-请见这是一个样表（表~\ref{tab:sample}）
+请见表~\ref{tab:sample}。制表的更多范例，请见 \href{https://en.wikibooks.org/wiki/LaTeX/Tables}{WiKibook Tables}。
 \begin{table}[!htbp]
     \centering
     \footnotesize% fontsize
@@ -141,24 +140,24 @@ Navier-Stokes方程:
 多图的插入如图\ref{fig:oaspl}。
 \begin{figure}[!htbp]
     \centering
-    \begin{subfigure}[b]{0.40\textwidth}
+    \begin{subfigure}[b]{0.35\textwidth}
       \includegraphics[width=\textwidth]{oaspl_a}
       \caption{}
       \label{fig:oaspl_a}
     \end{subfigure}%
     ~%add desired spacing
-    \begin{subfigure}[b]{0.40\textwidth}
+    \begin{subfigure}[b]{0.35\textwidth}
       \includegraphics[width=\textwidth]{oaspl_b}
       \caption{}
       \label{fig:oaspl_b}
     \end{subfigure}
-    \begin{subfigure}[b]{0.40\textwidth}
+    \begin{subfigure}[b]{0.35\textwidth}
       \includegraphics[width=\textwidth]{oaspl_c}
       \caption{}
       \label{fig:oaspl_c}
     \end{subfigure}%
     ~%add desired spacing
-    \begin{subfigure}[b]{0.40\textwidth}
+    \begin{subfigure}[b]{0.35\textwidth}
       \includegraphics[width=\textwidth]{oaspl_d}
       \caption{}
       \label{fig:oaspl_d}
@@ -167,13 +166,14 @@ Navier-Stokes方程:
     \label{fig:oaspl}
 \end{figure}
 
-插图和制表的参考代码在\verb|Tex/Commands.tex|亦进行了汇集。
+插图的参考代码在\verb|Tex/Commands.tex|亦进行了汇集。
 
 \subsection{算法}
 
 如见算法~\ref{alg:euclid}，详细使用方法请参见文档 \href{https://ctan.org/pkg/algorithmicx?lang=en}{algorithmicx}。
 
 \begin{algorithm}[!htbp]
+    \small
     \caption{Euclid's algorithm}\label{alg:euclid}
     \begin{algorithmic}[1]
         \Procedure{Euclid}{$a,b$}\Comment{The g.c.d. of a and b}
@@ -225,7 +225,9 @@ Navier-Stokes方程:
 
 正如此处所示\citepns{lamport1986document,chen2005zhulu}
 
-参考文献索引更为详细的信息，请见Wikibook\citep{wikibook2014latex} \nocite{*}。
+参考文献索引更为详细的信息，请见 \href{https://en.wikibooks.org/wiki/LaTeX/Bibliography_Management}{WiKibook Bibliography}。
+
+\nocite{*}
 
 \section{常见使用问题}\label{sec:qa}
 
@@ -259,7 +261,7 @@ Navier-Stokes方程:
 
     \item 设置文档样式: 在artratex.sty中搜索关键字定位相应命令，然后修改
         \begin{enumerate}
-            \item 正文行距：启用 \verb|\linespread{1.5}|，默认1.2倍行距。
+            \item 正文行距：启用和设置 \verb|\linespread{1.5}|，默认1.5倍行距。
             \item 参考文献行距：修改 \verb|\setlength{\bibsep}{0.0ex}|
             \item 目录显示subsection：修改 \verb|\setcounter{tocdepth}{2}|
             \item 文档内超链接的颜色及其显示：修改 \verb|\hypersetup|
@@ -319,7 +321,11 @@ Navier-Stokes方程:
                 \end{itemize}
 
                 字库调用的全面解释可参见 \href{https://ctan.org/pkg/fontspec}{fontspec} （英文字体调用）和 \href{https://ctan.org/pkg/xecjk?lang=en}{xeCJK} （中文字体调用）。因为模版的设定考虑兼顾不同操作系统（Windows, Linux, Mac OS），为了模版的健壮性，上述字体设置和调用方案并未作为原始设定。
-            \item 封面下划线上的文本不居中下划线，这是因为那些下划线前面还有字头，导致文本只能在页面居中和在下划线上居中二选一。当前封面采取页面居中。如需要调整文本在下划线上的位置，可用 \verb|\hspace{+/- n.0em}| 命令来插入或删除 n 个空格，进行手动调整。这个解决方案是很不优雅，但问题的本质还是模板样式的不合理。有时下划线看上去粗细不一致，这是显示的问题，打印正常。
+            \item 封面下划线上的文本不居中下划线，这是因为那些下划线前面还有字头，导致文本只能在页面居中和在下划线上居中二选一。当前封面采取页面居中。如需要调整文本在下划线上的位置，可用 \verb|\hspace{+/- n.0em}| 命令来插入或删除 n 个空格，进行手动调整，比如
+
+                \verb|\advisor{\hspace{+3.0em} xxx~研究员~xxx单位}|
+                
+                这个解决方案是很不优雅，但问题本质还是样式的设计问题。有时下划线看上去粗细不一致，这是显示的问题，打印正常。
     \item  一般规范下，章应开始于奇数页。从而若前一章结束于奇数页，则一空白页将被插入以保证上述规则。如想修改以取消空白页，有如下方案：
      \begin{itemize}
          \item 在thesis.tex的documentclass中用singlesided替代doublesided。这使文档不区分奇偶页，因此章可以开始于任意页。此方案将移除所有空白页，包括封面处的。同时，页眉页脚的设定不再区分奇偶页。
