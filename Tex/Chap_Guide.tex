@@ -11,8 +11,8 @@
     \item 获取模板：下载 \href{https://github.com/mohuangrui/ucasthesis}{ucasthesis} 模板并解压。ucasthesis模板不仅提供了相应的类文件，同时也提供了包括参考文献等在内的完成学位论文的一切要素，所以，下载时，推荐下载整个ucasthesis文件夹，而不是单独的文档类。
     \item 编译模板：
         \begin{enumerate}
-            \item Windows用户：双击运行artratex.bat脚本。
-            \item Linux或Mac OS用户: \verb|terminal| -> \verb|chmod +x ./artratex.sh| -> \verb|./artratex.sh xa|
+            \item Windows：双击运行artratex.bat脚本。
+            \item Linux或Mac OS: \verb|terminal| -> \verb|chmod +x ./artratex.sh| -> \verb|./artratex.sh xa|
             \item 任意系统：都可使用\LaTeX{}编辑器打开Thesis.tex文件进行编译。
         \end{enumerate}
     \item 处理错误：若编译中遇到了问题，请先查看“常见问题”（章节~\ref{sec:qa}）。
@@ -97,6 +97,8 @@ Img文件夹用于放置论文中所需要的图类文件，支持格式有：.j
 
 请见表~\ref{tab:sample}。制表的更多范例，请见 \href{https://en.wikibooks.org/wiki/LaTeX/Tables}{WiKibook Tables}。
 \begin{table}[!htbp]
+    \bicaption{这是一个样表。}{This is a sample table.}
+    \label{tab:sample}
     \centering
     \footnotesize% fontsize
     \setlength{\tabcolsep}{4pt}% column separation
@@ -112,8 +114,6 @@ Img文件夹用于放置论文中所需要的图类文件，支持格式有：.j
         Row 4 & $1$ & $2$ & $4$ & $5$ & $6$ & $7$ & $8$\\
         \hline
     \end{tabular}
-    \bicaption{这是一个样表。}{This is a sample table.}
-    \label{tab:sample}
 \end{table}
 
 \subsection{图片插入}
@@ -124,7 +124,7 @@ Img文件夹用于放置论文中所需要的图类文件，支持格式有：.j
 \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.40\textwidth]{tc_q_criteria}
-    \bicaption{Q判据等值面图。}{Isocontour of Q criteria.}
+    \bicaption{Q判据等值面图，同时测试一下一个很长的标题，比如这真的是一个很长很长很长很长很长很长很长很长的标题。}{Isocontour of Q criteria, at the same time, this is to test a long title, for instance, this is a really very long very long very long very long very long title.}
     \label{fig:tc_q_criteria}
 \end{figure}
 
@@ -137,7 +137,7 @@ Img文件夹用于放置论文中所需要的图类文件，支持格式有：.j
     \label{fig:shock_cyn}
 \end{figure}
 
-多图的插入如图\ref{fig:oaspl}。
+多图的插入如图\ref{fig:oaspl}，多图不应在子图中给文本子标题，只要给序号，并在主标题中进行引用说明。
 \begin{figure}[!htbp]
     \centering
     \begin{subfigure}[b]{0.35\textwidth}
@@ -162,7 +162,7 @@ Img文件夹用于放置论文中所需要的图类文件，支持格式有：.j
       \caption{}
       \label{fig:oaspl_d}
     \end{subfigure}
-    \bicaption{总声压级。（a）$A$，（b）$B$，（c）$C$，（d）$D$。}{OASPL.（a）$A$，（b）$B$，（c）$C$，（d）$D$.}
+    \bicaption{总声压级。(a) 这是子图说明信息，(b) 这是子图说明信息，(c) 这是子图说明信息，(d) 这是子图说明信息。}{OASPL.(a) This is explanation of subfig, (b) This is explanation of subfig, (c) This is explanation of subfig, (d) This is explanation of subfig.}
     \label{fig:oaspl}
 \end{figure}
 
@@ -194,7 +194,7 @@ Img文件夹用于放置论文中所需要的图类文件，支持格式有：.j
 
 1）使用Google Scholar搜索Document Preparation System，在目标条目下点击Cite，展开后选择Import into BibTeX打开此文章的BibTeX索引信息，将它们copy添加到ref.bib文件中（此文件位于Biblio文件夹下）。
 
-2）你会发现索引信息中第一行为 \verb|@article{lamport1986document,|。其中 \verb|lamport1986document| 即为此文献的label (\textbf{中文文献也必须使用英文label}，一般遵照：姓氏拼音+年份+标题第一字拼音的格式)，想要在论文中索引此文献，有两种索引类型：
+2）索引信息第一行 \verb|@article{lamport1986document,|中 \verb|lamport1986document| 即为此文献的label (\textbf{中文文献也必须使用英文label}，一般遵照：姓氏拼音+年份+标题第一字拼音的格式)，想要在论文中索引此文献，有两种索引类型：
 
 文本类型：\verb|\citet{lamport1986document}|。正如此处所示 \citet{lamport1986document}; 
 
