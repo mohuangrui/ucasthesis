@@ -300,7 +300,7 @@ Img文件夹用于放置论文中所需要的图类文件，支持格式有：.j
 
         \verb|\setsansfont{Times New Roman}| （设置英文标题字体）
 
-        Windows和Mac OS自带有上述字体，Linux可从Windows或Mac OS中拷贝安装。部分\LaTeX{}版本，若setmainfont与setsansfont调用同一字体名称，会导致字体冲突，进而导致非加粗黑体失效，影响目录及节标题的显示。解决此问题的办法为1）不设置setsansfont 或 2）调用一个名字不同的Times类字体，如setsansfont\{Times\}，其中Times字体为Mac OS所带有。长图表标题的英文标题的悬挂缩进是针对Times类正文字体校准的，非Times类正文字体将存在位置偏差。
+        Windows和Mac OS自带此字体，Linux需手动安装或使用FreeSerif字体作为替代。部分\LaTeX{}版本，若setmainfont与setsansfont调用同一字体名称，会导致字体冲突，进而导致非加粗黑体失效，影响目录及节标题的显示。解决此问题的办法为1）不设置setsansfont 或 2）调用一个名字不同的Times类字体，如setsansfont\{Times\}，其中Times字体为Mac OS所带有。长图表标题的英文标题的悬挂缩进是针对Times类正文字体校准的，非Times类正文字体将存在轻微位置偏差。
                  
         如果需要调用一个\textbf{自定义的中文字体库}，方法为：
 
