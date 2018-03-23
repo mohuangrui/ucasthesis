@@ -202,28 +202,6 @@
             \RequirePackage[square,comma,numbers,sort&compress]{natbib}% square bracket
         \fi
         \bibliographystyle{Biblio/gbt7714-unsrt}% numbered scheme
-        \providecommand*{\citetns}[2][]{% text embedded \citet in superscripted mode
-            \begingroup%
-                \let\NAT@mbox=\mbox%
-                \let\@cite\NAT@citenum%
-                \let\NAT@space\NAT@spacechar%
-                \let\NAT@super@kern\relax%
-                \renewcommand\NAT@open{[}%
-                \renewcommand\NAT@close{]}%
-                \citet[#1]{#2}%
-            \endgroup%
-        }
-        \providecommand*{\citepns}[2][]{% text embedded \citep in superscripted mode
-            \begingroup%
-                \let\NAT@mbox=\mbox%
-                \let\@cite\NAT@citenum%
-                \let\NAT@space\NAT@spacechar%
-                \let\NAT@super@kern\relax%
-                \renewcommand\NAT@open{[}%
-                \renewcommand\NAT@close{]}%
-                \citep[#1]{#2}%
-            \endgroup%
-        }
     \fi
     \ifARTRATEX@authoryear% enable author year citation style
         \RequirePackage{natbib}% author year citation mode
@@ -233,6 +211,28 @@
         \RequirePackage[square,comma,numbers]{natbib}% square bracket
         \bibliographystyle{alpha}% alpha scheme
     \fi
+    \providecommand*{\citetns}[2][]{% text embedded \citet in superscripted mode
+        \begingroup%
+            \let\NAT@mbox=\mbox%
+            \let\@cite\NAT@citenum%
+            \let\NAT@space\NAT@spacechar%
+            \let\NAT@super@kern\relax%
+            \renewcommand\NAT@open{[}%
+            \renewcommand\NAT@close{]}%
+            \citet[#1]{#2}%
+        \endgroup%
+    }
+    \providecommand*{\citepns}[2][]{% text embedded \citep in superscripted mode
+        \begingroup%
+            \let\NAT@mbox=\mbox%
+            \let\@cite\NAT@citenum%
+            \let\NAT@space\NAT@spacechar%
+            \let\NAT@super@kern\relax%
+            \renewcommand\NAT@open{[}%
+            \renewcommand\NAT@close{]}%
+            \citep[#1]{#2}%
+        \endgroup%
+    }
 \fi
 %- Biber processor + biblatex package
 \ifARTRATEX@biber%

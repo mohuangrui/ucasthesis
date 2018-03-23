@@ -12,7 +12,7 @@
     \item 编译模板：
         \begin{enumerate}
             \item Windows：双击运行artratex.bat脚本。
-            \item Linux或Mac OS: \verb|terminal| -> \verb|chmod +x ./artratex.sh| -> \verb|./artratex.sh xa|
+            \item Linux或Mac OS: {\scriptsize \verb|terminal| -> \verb|chmod +x ./artratex.sh| -> \verb|./artratex.sh xa|}
             \item 任意系统：都可使用\LaTeX{}编辑器打开Thesis.tex文件进行编译。
         \end{enumerate}
     \item 处理错误：若编译中遇到了问题，请先查看“常见问题”（章节~\ref{sec:qa}）。
@@ -194,7 +194,7 @@ Img文件夹用于放置论文中所需要的图类文件，支持格式有：.j
 
 1）使用Google Scholar搜索Document Preparation System，在目标条目下点击Cite，展开后选择Import into BibTeX打开此文章的BibTeX索引信息，将它们copy添加到ref.bib文件中（此文件位于Biblio文件夹下）。
 
-2）索引信息第一行 \verb|@article{lamport1986document,|中 \verb|lamport1986document| 即为此文献的label (\textbf{中文文献也必须使用英文label}，一般遵照：姓氏拼音+年份+标题第一字拼音的格式)，想要在论文中索引此文献，有两种索引类型：
+2）索引第一行 \verb|@article{lamport1986document,|中 \verb|lamport1986document| 即为此文献的label (\textbf{中文文献也必须使用英文label}，一般遵照：姓氏拼音+年份+标题第一字拼音的格式)，想要在论文中索引此文献，有两种索引类型：
 
 文本类型：\verb|\citet{lamport1986document}|。正如此处所示 \citet{lamport1986document}; 
 
@@ -264,8 +264,8 @@ Img文件夹用于放置论文中所需要的图类文件，支持格式有：.j
             \item 正文行距：启用和设置 \verb|\linespread{1.5}|，默认1.5倍行距。
             \item 参考文献行距：修改 \verb|\setlength{\bibsep}{0.0ex}|
             \item 目录显示subsection：修改 \verb|\setcounter{tocdepth}{2}|
-            \item 文档内超链接的颜色及其显示：修改 \verb|\hypersetup|
-            \item 页眉页脚的设定：frontmatterstyle，mainmatterstyle，和backmatterstyle分别用于定义前言，主要内容，和附录的页眉页脚样式。通过阅读这一部分的代码，可以轻松地理解和修改以获得自定义的样式。命令的详细解释请参见 \href{https://www.ctan.org/pkg/fancyhdr?lang=en}{fancyhdr} 的用户文档。同时可参见 \href{https://ctan.org/pkg/ctex?lang=en}{ctex} 宏包用户文档。
+            \item 文档超链接的颜色及其显示：修改 \verb|\hypersetup|
+            \item 页眉页脚设定：frontmatterstyle，mainmatterstyle，和backmatterstyle分别定义前言，主要内容，和附录的页眉页脚样式。通过阅读这一部分的代码，可以轻松地理解和修改以获得自定义的样式。命令的详细解释请参见 \href{https://www.ctan.org/pkg/fancyhdr?lang=en}{fancyhdr} 的用户文档。同时可参见 \href{https://ctan.org/pkg/ctex?lang=en}{ctex} 宏包用户文档。
 
             \item 设置图2.3为图2-3: 设置
                 {
@@ -288,59 +288,56 @@ Img文件夹用于放置论文中所需要的图类文件，支持格式有：.j
             \item 楷体：{\itshape 飞扬跋扈} 或 \textit{飞扬跋扈}
         \end{itemize}
         
-        由于缺乏一个统一的被各个操作系统所默认携带的完备的中文字体库，\href{https://ctan.org/pkg/ctex?lang=en}{ctex} 针对不同的操作系统而调用各系统上所对应的一类中文字体库。由于很多操作系统的字库往往缺乏原生态的加粗宋体字重，有时会发生加粗宋体被黑体所替换的情形，这对封面的字体造成影响。若需要解决这个问题，可采用调用自定义的一个完备字体库的方案。
+        由于缺乏一个统一的被各个操作系统所默认携带的完备的中文字体库，\href{https://ctan.org/pkg/ctex?lang=en}{ctex} 针对不同的操作系统而调用各系统上所对应的一类中文字体库。由于很多操作系统的字库往往缺乏原生态的加粗宋体字重，有时会发生加粗宋体被黑体所替换的情形，这对封面的字体造成影响。若需要解决这个问题，可采用调用自定义的一个完备字体库的方案。若需设置字体库，请选择xelatex或lualatex编译引擎，并设置需要的字体库。
         
-        若需设置字体库，请选择xelatex或lualatex编译引擎，并设置需要的字体库。如用Times New Roman作为英文字体，在artratex.sty中设置:
+        如\textbf{用Times New Roman作为英文和数字字体}，在artratex.sty的
 
-                 \verb|\setmainfont{Times New Roman}|
+        \verb|\RequirePackage{fontspec}|
 
-                 \verb|\setsansfont{Times New Roman}|
+        行下添加如下英文字体调用命令：
 
-                 如果需要调用一个自定义的中文字体库，方法为：
+        \verb|\setmainfont{Times New Roman}| （设置英文正文字体）
 
-                \begin{itemize}
-                    \item 调用 \href{https://ctan.org/pkg/ctex?lang=en}{ctex} 预定义好的备用字库： 在Thesis.tex中设置
+        \verb|\setsansfont{Times New Roman}| （设置英文标题字体）
 
-                        {
-                            \small
-                            \verb|\documentclass[doublesided,fontset=fandol]{Style/ucasthesis}%|
-                         }
+        Windows和Mac OS自带有上述字体，Linux可从Windows或Mac OS中拷贝安装。部分\LaTeX{}版本，若setmainfont与setsansfont调用同一字体名称，会导致字体冲突，进而导致非加粗黑体失效，影响目录及节标题的显示。解决此问题的办法为1）不设置setsansfont 或 2）调用一个名字不同的Times类字体，如setsansfont\{Times\}，其中Times字体为Mac OS所带有。长图表标题的英文标题的悬挂缩进是针对Times类正文字体校准的，非Times类正文字体将存在位置偏差。
+                 
+        如果需要调用一个\textbf{自定义的中文字体库}，方法为：
 
-                         便可调用 \href{https://ctan.org/tex-archive/fonts/fandol?lang=en}{fandol} 这一字体库。\LaTeX{}编译系统一般已携带或是能自动下载安装 \href{https://ctan.org/tex-archive/fonts/fandol?lang=en}{fandol} 字库。若不能，则请手动下载并安装链接所提供的所有字体即可。本模板使用说明文档就是采用调用 \href{https://ctan.org/tex-archive/fonts/fandol?lang=en}{fandol} 中文字库。
+        \begin{itemize}
+            \item 调用 \href{https://ctan.org/pkg/ctex?lang=en}{ctex} 预定义好的备用字库： 在Thesis.tex中设置
 
-                     \item 手动调用系统带有的中文字库： 首先需要查看系统所带有的中文字库及其名称，也可选择安装可获得的中文字库。假设系统已安装或带有名为SC的中文字库（此字库为MacOS所配备，具备原生态的加粗宋体），则可在artratex.sty的
+                {
+                    \small\verb|\documentclass[doublesided,fontset=fandol]{Style/ucasthesis}%|
+                }
 
-                         \verb|\RequirePackage{fontspec}|
+                便可调用 \href{https://ctan.org/tex-archive/fonts/fandol?lang=en}{fandol} 这一字体库。\LaTeX{}编译系统一般已携带或是能自动下载安装 \href{https://ctan.org/tex-archive/fonts/fandol?lang=en}{fandol} 字库。若不能，则请手动下载并安装链接所提供的所有字体即可。本模板使用说明文档就是采用调用 \href{https://ctan.org/tex-archive/fonts/fandol?lang=en}{fandol} 中文字库。
 
-                        行下添加如下中文字体调用命令：
-                        {
-                            \scriptsize
+            \item 手动调用系统带有的中文字库： 首先需要查看系统所带有的中文字库及其名称，也可选择安装可获得的中文字库。假设系统已安装或带有名为SC的中文字库（此字库为MacOS所配备，具备原生态的加粗宋体），则可在artratex.sty的
+
+                \verb|\RequirePackage{fontspec}|
+
+                行下添加如下中文字体调用命令：
+                {
+                    \scriptsize
 \begin{verbatim}
 \setCJKmainfont[BoldFont=Songti SC Bold,ItalicFont=Kaiti SC]{Songti SC Light}%
 \setCJKsansfont{Heiti SC}%
 \end{verbatim}
-                        }
-                \end{itemize}
+                }
+        \end{itemize}
 
-                字库调用的全面解释可参见 \href{https://ctan.org/pkg/fontspec}{fontspec} （英文字体调用）和 \href{https://ctan.org/pkg/xecjk?lang=en}{xeCJK} （中文字体调用）。因为模版的设定考虑兼顾不同操作系统（Windows, Linux, Mac OS），为了模版的健壮性，上述字体设置和调用方案并未作为原始设定。
-            \item 封面下划线上的文本不居中下划线，这是因为那些下划线前面还有字头，导致文本只能在页面居中和在下划线上居中二选一。当前封面采取页面居中。如需要调整文本在下划线上的位置，可用 \verb|\hspace{+/- n.0em}| 命令来插入或删除 n 个空格，进行手动调整，比如
+        字库调用的全面解释可参见 \href{https://ctan.org/pkg/fontspec}{fontspec} （英文字体调用）和 \href{https://ctan.org/pkg/xecjk?lang=en}{xeCJK} （中文字体调用）。因为模版的设定考虑兼顾不同操作系统（Windows, Linux, Mac OS），为了模版的健壮性，上述字体设置和调用方案并未作为原始设定。
 
-                \verb|\advisor{\hspace{+3.0em} xxx~研究员~xxx单位}|
+    \item 封面下划线上的文本不居中下划线，这是因为那些下划线前面还有字头，导致文本只能在页面居中和在下划线上居中二选一。当前封面采取页面居中。如需要调整文本在下划线上的位置，可用 \verb|\hspace{+/- n.0em}| 命令来插入或删除 n 个空格，进行手动调整，比如
+
+        \verb|\advisor{\hspace{+3.0em} xxx~研究员~xxx单位}|
                 
                 这个解决方案是很不优雅，但问题本质还是样式的设计问题。有时下划线看上去粗细不一致，这是显示的问题，打印正常。
-    \item  一般规范下，章应开始于奇数页。从而若前一章结束于奇数页，则一空白页将被插入以保证上述规则。如想修改以取消空白页，有如下方案：
-     \begin{itemize}
-         \item 在thesis.tex的documentclass中用singlesided替代doublesided。这使文档不区分奇偶页，因此章可以开始于任意页。此方案将移除所有空白页，包括封面处的。同时，页眉页脚的设定不再区分奇偶页。
-         \item 可以在ucasthesis.cls文件中，将cleardoublepage命令的定义修改为：
 
-             \verb|\def\cleardoublepage{\clearpage}|
+    \item 对于电子档的论文，在Thesis.tex的documentclass中，可使用singlesided来减少空白页。而对于打印版，可考虑printcopy选项使奇偶页的排版在打印装订后更美观。
 
-             这一命令使产生空白页的机制失效。这一方案将移除所有的空白页，包括封面处的。但与方案一不同的是，页面页脚的设定可以区分奇偶页。
-         \item 在thesis.tex的documentclass中添加openany选项(openany与doublesided和printcopy都可搭配)。这一命令使章可以开始于任意页。同时，将artratex.sty中和thesis.tex中的cleardoublepage改为clearpage。此方案将移除所有的用于调整章的起始位置的空白页，而不包括封面处的。同时，页面页脚的设定可以区分奇偶页。
-     \end{itemize}
-      无论哪种方案都要注意对页眉页脚的影响并做出合适的调整。推荐是采用默认设置，尽量避免将精力花在这些无关紧要的细节上。\LaTeX{}的特点是标准化，而其导致的问题则是任何脱离标准的修改都将花费相当精力。对于电子档的论文，在thesis.tex的documentclass中，若不想使用doublesided，则可使用singlesided来减少空白页。而对于打印版，启用printcopy选项以替换doublesided/singlesided选项，这样可使奇偶页的排版在打印装订后更美观。
-
-  \item 部分所也许对格式有不同设定，因\LaTeX{}将内容与格式分离，格式的调整可独立于内容进行，并只需修改模板样式文件完成，并无风险。
+    \item 部分所也许对格式有不同设定，因\LaTeX{}将内容与格式分离，格式的调整可独立于内容进行，并只需修改模板样式文件完成，并无风险。
 \end{enumerate}
 
 
