@@ -1,4 +1,4 @@
-# `ucasthesis` 中国科学院大学学位论文 LaTeX 模板[2018样式]
+# `ucasthesis` 国科大学位论文 LaTeX 模板[2018样式]
 
 ## 模板下载
 
@@ -31,21 +31,19 @@
 
 * `2018-03-22` 演示表标题居表上，加粗图表标注文字，设置多行长图表标题悬挂缩进（由于 bicaption 宏包无法正确接受 caption 宏包的 margin 选项，图表标题的中英标题第一行无法正确同步缩进，从而放弃第一行的缩进），在说明文档中强调多图中子图标题的规范使用，通过摘要和符号列表演示如何不在目录中显示，却仍在页眉中显示标题，修改 Appendix 的设置方式以满足官方模板要求的特殊显示行为。设置 bicaption 当启用图形列表和表格列表时不在列表中显示英文标题，问题/建议由赵永明提出。修改的文件为：thesis.tex, artratex.sty, appendix.tex。
 
-* `2018-03-21` 更新 ucas_logo.pdf 使得封面中的学校 logo 放大不失真，问题/建议由 zhanglinbo 提出。修改的文件为：ucas_logo.pdf, frontpage.tex。
+* `2018-03-21` 更新 ucas_logo.pdf 使得封面中的学校 logo 放大不失真，问题/建议由 zhanglinbo 提出。
 
-* `2018-03-20` 回答标题中的英文如何设为 Times New Roman 字体，问题/建议由 Starsky Wong 提出，修改的文件为：模板使用说明.pdf。
+* `2018-03-20` 回答标题中的英文如何设为 Times New Roman 字体，问题/建议由 Starsky Wong 提出。
 
-* `2018-03-13` 进一步完善说明文档，提供目录区域独立行距设置，将正文默认行距改为易于阅读的1.5（可根据个人所用官方规则轻松设定），修复修改行距后导致章节标题位置轻微上下浮动1-2毫米的问题，移除图表后的冒号，修改的文件为：Thesis.tex, ucasthesis.cls, ucasthesis.cfg, artratex.sty, 模板使用说明.pdf。
+* `2018-03-13` 提供目录区域独立行距设置，将正文默认行距改为易于阅读的1.5（可根据个人所用官方规则轻松设定），修复修改行距后导致章节标题位置轻微上下浮动1-2毫米的问题，移除图表后的冒号。
 
-* `2018-03-10` 矫正格式上的由 will0n 和赵永明提出的一些细节问题，根据赵永明的建议设置双语图表标题，根据 tangjie1992 的建议配置算法环境，修改的文件为：ucasthesis.cls, ucasthesis.cfg, artratex.sty, frontpage.tex, 模板使用说明.pdf。
+* `2018-03-10` 矫正由 will0n 和赵永明提出的一些格式细节问题，根据赵永明的建议设置双语图表标题，根据 tangjie1992 的建议配置算法环境。
 
-* `2018-02-28` 在说明文档中回答关于封面字体，封面文本对齐，文档超链接颜色问题，修改的文件为：模板使用说明.pdf。
+* `2018-02-28` 在说明文档中回答关于封面字体，封面文本对齐，文档超链接颜色问题。
 
-* `2018-02-04` 在 [ctex](https://github.com/CTeX-org/ctex-kit) 开发人员的帮助下修复了错用字体命令导致的宋体加粗异常。然后，将模板的兼容性进一步扩展。当前模板兼容操作系统 Windows，Linux，MacOS 和 LaTeX 编译引擎 pdflatex，xelatex，lualatex。修改的文件为：artratex.sty，ucasthesis.cfg，ucasthesis.cls。
+* `2018-02-04` 在 [ctex](https://github.com/CTeX-org/ctex-kit) 开发者的帮助下修复了错用字体命令导致的宋体加粗异常。然后，将模板的兼容性进一步扩展。当前模板兼容操作系统 Windows，Linux，MacOS 和 LaTeX 编译引擎 pdflatex，xelatex，lualatex。
 
-* `2018-02-02` 回答 LaTeX 初级用户的一些软件使用问题，修改的文件为：模板使用说明.pdf。
-
-* `2018-01-30` 移除"microtype"宏包以显著提高模板的编译效率。修复下划线在pdflatex编译下显示异常的问题。修改的文件为：artratex.sty，ucasthesis.cls。
+* `2018-01-30` 移除"microtype"宏包以显著提高模板的编译效率。修复下划线在pdflatex编译下显示异常的问题。
 
 * `2018-01-28` 基于国科大模板要素的变动进行了重大修改：
     * 修改封面为国科大最新封面样式
@@ -63,11 +61,11 @@
         4. 替换 Img 文件夹
         5. 替换 Biblio/ref.bib
 
-* `2017-09-29` 将图表标题和文献列表调整为使用比正文小一号的字号，并微调标题与图标之间的间距。问题/建议由赵永明同学提出。修改的文件为：custom.sty，commons.sty。
+* `2017-09-29` 将图表标题和文献列表调整为使用比正文小一号的字号。问题/建议由赵永明同学提出。
 
-* `2017-05-14` 将文献上标引用设定为默认，增加 \citepns{} 和 \citetns{} 命令提供嵌入式非上标引用以满足有混合引用需要的用户，问题/建议由赵永明同学提出。修改的文件为：custom.sty，commons.sty。
+* `2017-05-14` 将文献上标引用设定为默认，增加 \citepns{} 和 \citetns{} 命令提供嵌入式非上标引用以满足有混合引用需要的用户，问题/建议由赵永明同学提出。
 
-* `2017-03-08` 在 Frontpage.tex 中添加一个设定论文类型为 thesis 或 dissertation 的命令 \englishthesistype{}，问题/建议由臧光明同学提出。修改的文件为：ucasthesis.cls，Frontpage.tex。
+* `2017-03-08` 添加设定论文类型为 thesis 或 dissertation 的命令 \englishthesistype{}，问题/建议由臧光明同学提出。
 
 * `2016-10-02` 添加 [中国科学院大学开题报告 LaTeX 模板](https://github.com/mohuangrui/ucasproposal)。
 
