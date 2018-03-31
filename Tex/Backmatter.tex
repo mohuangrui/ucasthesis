@@ -1,30 +1,22 @@
+\chapter[附录]{附录\quad 中国科学院大学学位论文撰写要求}\chaptermark{附\quad 录}% syntax: \chapter[toc]{title}\chaptermark{header}
+
+学位论文是研究生科研工作成果的集中体现，是评判学位申请者学术水平、授予其学位的主要依据，是科研领域重要的文献资料。根据《科学技术报告、学位论文和学术论文的编写格式》（GB/T 7713-1987）、《学位论文编写规则》（GB/T 7713.1-2006）和《文后参考文献著录规则》（GB7714—87）等国家有关标准，结合中国科学院大学（以下简称“国科大”）的实际情况，特制订本规定。
+
 \chapter{作者简历及攻读学位期间发表的学术论文与研究成果}
 
 \section*{作者简历}
 
 \subsection*{casthesis作者}
 
-吴凌云，男，福建省屏南县人，1975 年出生，中国科学院数学与系统科学研究院博士研究生。
-
-通讯地址：北京市~2734 信箱，中科院数学与系统科学研究院应用数学所
-
-邮编：100080
-
-E-mail: aloft@ctex.org
+吴凌云，福建省屏南县人，中国科学院数学与系统科学研究院博士研究生。
 
 \subsection*{ucasthesis作者}
 
-莫晃锐，男，湖南省湘潭县人，1989 年出生，中国科学院力学研究所硕士研究生。
-
-通讯地址：北京市北四环西路15号中国科学院力学研究所
-
-邮编：100190
-
-E-mail: mohuangrui@gmail.com
+莫晃锐，湖南省湘潭县人，中国科学院力学研究所硕士研究生。
 
 \section*{已发表(或正式接受)的学术论文:}
 
-[1] Thesis Template of the University of Chinese Academy of Sciences, 2014.
+[1] ucasthesis: A LaTeX Thesis Template for the University of Chinese Academy of Sciences, 2014.
 
 \section*{申请或已获得的专利:}
 
@@ -32,17 +24,16 @@ E-mail: mohuangrui@gmail.com
 
 \section*{参加的研究项目及获奖情况:}
 
-可以随意添加新的条目或是结构
+可以随意添加新的条目或是结构。
 
-\chapter{致\quad 谢}
+\chapter[致谢]{致\quad 谢}\chaptermark{致\quad 谢}% syntax: \chapter[toc]{title}\chaptermark{header}
+\thispagestyle{noheaderstyle}% 如果需要移除当前页的页眉
+%\pagestyle{noheaderstyle}% 如果需要移除整章的页眉
 
-值此论文完成之际，谨在此向多年来给予我关心和帮助的老师、学长、同学、
-朋友和家人表示衷心的感谢！
+感激casthesis作者吴凌云学长，gbt7714-bibtex-style
+开发者zepinglee，和ctex众多开发者们。若没有他们的辛勤付出和非凡工作，\LaTeX{}菜鸟的我是无法完成此国科大学位论文\LaTeX{}模板ucasthesis的。在\LaTeX{}中的一点一滴的成长源于开源社区的众多优秀资料和教程，在此对所有\LaTeX{}社区的贡献者表示感谢！
 
-没有~ctex package~的众多前辈的辛勤付出和~CASthesis package~作者吴凌云学长的贡献，
-~\LaTeX{}~菜鸟的我是无法完成此学位论文模板的。在~\LaTeX{}~中的一点一滴的成长源于
-开源社区的众多资料和教程，在此对所有前辈们的付出表示感谢！
+ucasthesis国科大学位论文样式的最终成型离不开以霍明虹老师为代表的国科大学位办公室老师们制定的官方指导文件和众多ucasthesis用户的热心测试和耐心反馈，在此对他们的认真付出表示感谢。特别对国科大的赵永明同学的众多有效反馈意见和建议表示感谢，对国科大本科部的陆晴老师的细致审核和建议表示感谢。谢谢大家的共同努力和支持，让ucasthesis为国科大学子使用\LaTeX{}撰写学位论文提供便利和高效这一目标成为可能。
 
-......
+\cleardoublepage[plain]% 让文档总是结束于偶数页，可根据需要设定页眉页脚样式，如 [noheaderstyle]
 
-谨把本文献给我最敬爱的父亲！

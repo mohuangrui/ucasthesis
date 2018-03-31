@@ -11,10 +11,9 @@
 %---------------------------------------------------------------------------%
 %->> Document class declaration
 %---------------------------------------------------------------------------%
-\documentclass[doublesided,fontset=fandol]{Style/ucasthesis}%
+\documentclass[doublesided]{Style/ucasthesis}%
 %- Multiple optional arguments:
 %- [<singlesided|doublesided|printcopy>]% set one or two sided eprint or print
-%- [showmj]% show confidential information
 %- [draftversion]% show draft version information
 %- [fontset=<fandol|...>]% specify font set to replace automatic detection
 %- [scheme=plain]% thesis writing of international students
@@ -22,7 +21,7 @@
 %---------------------------------------------------------------------------%
 %->> Document settings
 %---------------------------------------------------------------------------%
-\usepackage[super,myhdr,list]{Style/artratex}% document settings
+\usepackage[authoryear,myhdr,list]{Style/artratex}% document settings
 %- usage: \usepackage[option1,option2,...,optionN]{artratex}
 %- Multiple optional arguments:
 %- [bibtex|biber]% set bibliography processor and package
@@ -79,7 +78,6 @@
 %-> Backmatter: bibliography, glossary, index
 %-
 \backmatter% initialize the environment
-\input{Tex/Appendix}% appendix content
 \intotoc{\bibname}% add link to contents table and bookmark
 \bibliography{Biblio/ref}% bibliography
 \input{Tex/Backmatter}% other information

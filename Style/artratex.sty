@@ -11,126 +11,152 @@
 %---------------------------------------------------------------------------%
 %->> Identification
 %---------------------------------------------------------------------------%
-\NeedsTeXFormat{LaTeX2e}[1995/12/01]%
-\ProvidesPackage{artratex}[2014/10/01 v0.1 LaTeX macros package]%
+\NeedsTeXFormat{LaTeX2e}%
+\RequirePackage{expl3}% syntax for LaTeX3 turned on via \ProvidesExplxxxx
+\ProvidesExplPackage{\ExplFileName}{\ExplFileDate}{1.0}{\ExplFileDescription}%
 %---------------------------------------------------------------------------%
 %->> Declare options
 %---------------------------------------------------------------------------%
 %-
+%-> Platform fontset <windows>, <mac>, <adobe>, <times>, <others>
+%-
+\newif\ifartx@windows \artx@windowsfalse
+\newif\ifartx@mac \artx@macfalse
+\newif\ifartx@adobe \artx@adobefalse
+\newif\ifartx@times \artx@timesfalse
+\newif\ifartx@others \artx@othersfalse
+\RequirePackage{etoolbox}% a toolbox of programming facilities
+\newcommand{\artxifstreq}{\expandafter\ifstrequal\expandafter}% expansion control
+\providecommand{\g__ctex_fontset_tl}{}% platform fontset state variable
+\edef\artxfontset{\g__ctex_fontset_tl}% expanded platform fontset state variable
+\artxifstreq{\artxfontset}{windows}{\artx@windowstrue\artx@timestrue}{%
+\artxifstreq{\artxfontset}{mac}{\artx@mactrue\artx@timestrue}{%
+\artxifstreq{\artxfontset}{adobe}{\artx@adobetrue\artx@timestrue}{%
+\artx@otherstrue\artx@timesfalse}}}
+%-
 %-> LaTeX engine <pdflatex>, <lualatex>, <xelatex>
 %-
-\newif\ifARTRATEX@pdftex \ARTRATEX@pdftexfalse
-\newif\ifARTRATEX@luatex \ARTRATEX@luatexfalse
-\newif\ifARTRATEX@xetex \ARTRATEX@xetexfalse
+\newif\ifartx@pdftex \artx@pdftexfalse
+\newif\ifartx@luatex \artx@luatexfalse
+\newif\ifartx@xetex \artx@xetexfalse
+\RequirePackage{ifxetex,ifluatex}% LaTeX engine detection
+\ifxetex%
+    \artx@xetextrue
+    \RequirePackage{xeCJK}% support calling system fonts
+\else\ifluatex%
+    \artx@luatextrue
+\else%
+    \artx@pdftextrue
+\fi\fi%
 %-
 %-> Bibliography engine <bibtex>, <biber>
 %-
-\newif\ifARTRATEX@bibtex \ARTRATEX@bibtextrue
-\newif\ifARTRATEX@biber \ARTRATEX@biberfalse
+\newif\ifartx@bibtex \artx@bibtextrue
+\newif\ifartx@biber \artx@biberfalse
 \DeclareOption{bibtex}{%
-    \ARTRATEX@bibtextrue
-    \ARTRATEX@biberfalse
+    \artx@bibtextrue
+    \artx@biberfalse
 }
 \DeclareOption{biber}{%
-    \ARTRATEX@bibtexfalse
-    \ARTRATEX@bibertrue
+    \artx@bibtexfalse
+    \artx@bibertrue
 }
 %-
 %-> Citation and reference style
 %-
-\newif\ifARTRATEX@numbers \ARTRATEX@numberstrue
-\newif\ifARTRATEX@super \ARTRATEX@superfalse
-\newif\ifARTRATEX@authoryear \ARTRATEX@authoryearfalse
-\newif\ifARTRATEX@alpha \ARTRATEX@alphafalse
+\newif\ifartx@numbers \artx@numberstrue
+\newif\ifartx@super \artx@superfalse
+\newif\ifartx@authoryear \artx@authoryearfalse
+\newif\ifartx@alpha \artx@alphafalse
 \DeclareOption{numbers}{%
-    \ARTRATEX@numberstrue
-    \ARTRATEX@superfalse
-    \ARTRATEX@authoryearfalse
-    \ARTRATEX@alphafalse
+    \artx@numberstrue
+    \artx@superfalse
+    \artx@authoryearfalse
+    \artx@alphafalse
 }
 \DeclareOption{super}{%
-    \ARTRATEX@numberstrue
-    \ARTRATEX@supertrue
-    \ARTRATEX@authoryearfalse
-    \ARTRATEX@alphafalse
+    \artx@numberstrue
+    \artx@supertrue
+    \artx@authoryearfalse
+    \artx@alphafalse
 }
 \DeclareOption{authoryear}{%
-    \ARTRATEX@numbersfalse
-    \ARTRATEX@superfalse
-    \ARTRATEX@authoryeartrue
-    \ARTRATEX@alphafalse
+    \artx@numbersfalse
+    \artx@superfalse
+    \artx@authoryeartrue
+    \artx@alphafalse
 }
 \DeclareOption{alpha}{%
-    \ARTRATEX@numbersfalse
-    \ARTRATEX@superfalse
-    \ARTRATEX@authoryearfalse
-    \ARTRATEX@alphatrue
+    \artx@numbersfalse
+    \artx@superfalse
+    \artx@authoryearfalse
+    \artx@alphatrue
 }
 %-
 %-> Page layout reconfiguration
 %-
-\newif\ifARTRATEX@geometry \ARTRATEX@geometryfalse
+\newif\ifartx@geometry \artx@geometryfalse
 \DeclareOption{geometry}{%
-    \ARTRATEX@geometrytrue
+    \artx@geometrytrue
 }
 %-
 %-> Landscape layout support
 %-
-\newif\ifARTRATEX@lscape \ARTRATEX@lscapefalse
+\newif\ifartx@lscape \artx@lscapefalse
 \DeclareOption{lscape}{%
-    \ARTRATEX@lscapetrue
+    \artx@lscapetrue
 }
 %-
 %-> Header and footer
 %-
-\newif\ifARTRATEX@myhdr \ARTRATEX@myhdrfalse
+\newif\ifartx@myhdr \artx@myhdrfalse
 \DeclareOption{myhdr}{%
-    \ARTRATEX@myhdrtrue
+    \artx@myhdrtrue
 }
 %-
 %-> Color support
 %-
-\newif\ifARTRATEX@color \ARTRATEX@colorfalse
+\newif\ifartx@color \artx@colorfalse
 \DeclareOption{color}{%
-    \ARTRATEX@colortrue
+    \artx@colortrue
 }
 %-
 %-> Page background
 %-
-\newif\ifARTRATEX@background \ARTRATEX@backgroundfalse
+\newif\ifartx@background \artx@backgroundfalse
 \DeclareOption{background}{%
-    \ARTRATEX@colortrue
-    \ARTRATEX@backgroundtrue
+    \artx@colortrue
+    \artx@backgroundtrue
 }
 %-
 %-> Complex diagrams support
 %-
-\newif\ifARTRATEX@tikz \ARTRATEX@tikzfalse
+\newif\ifartx@tikz \artx@tikzfalse
 \DeclareOption{tikz}{%
-    \ARTRATEX@colortrue
-    \ARTRATEX@tikztrue
+    \artx@colortrue
+    \artx@tikztrue
 }
 %-
 %-> Complex tables support
 %-
-\newif\ifARTRATEX@table \ARTRATEX@tablefalse
+\newif\ifartx@table \artx@tablefalse
 \DeclareOption{table}{%
-    \ARTRATEX@tabletrue
+    \artx@tabletrue
 }
 %-
 %-> Enhanced list
 %-
-\newif\ifARTRATEX@list \ARTRATEX@listfalse
+\newif\ifartx@list \artx@listfalse
 \DeclareOption{list}{%
-    \ARTRATEX@colortrue
-    \ARTRATEX@listtrue
+    \artx@colortrue
+    \artx@listtrue
 }
 %-
 %-> Extra math support
 %-
-\newif\ifARTRATEX@math \ARTRATEX@mathfalse
+\newif\ifartx@math \artx@mathfalse
 \DeclareOption{math}{%
-    \ARTRATEX@mathtrue
+    \artx@mathtrue
 }
 %-
 %-> Handle non-implemented options
@@ -146,28 +172,26 @@
 %->> Required packages
 %---------------------------------------------------------------------------%
 %-
-%-> Engine depended settings
+%-> Math packages
 %-
-\RequirePackage{ifxetex,ifluatex}% LaTeX engine detection
-\ifxetex%
-    \ARTRATEX@xetextrue
-\else\ifluatex%
-    \ARTRATEX@luatextrue
-\else%
-    \ARTRATEX@pdftextrue
-\fi\fi%
+\RequirePackage{amsmath}% math packages
+\ifartx@math% extra math packages
+    \RequirePackage{mathtools,amsfonts}%
+\fi
 %-
 %-> Language settings
 %-
-\ifARTRATEX@pdftex% <pdflatex> call font packages
+\ifartx@pdftex% <pdflatex> call font packages
     \RequirePackage[utf8]{inputenc}% set input encoding, document must use utf-8 encoding
     \RequirePackage[T1]{fontenc}% set font encoding to enable modern font encoding
     %- Call font package options:
     %- Text + Math: Times Roman
-    \RequirePackage{newtxtext,newtxmath}%
+    \RequirePackage{newtxtext}%
+    \RequirePackage[cmintegrals]{newtxmath}% load after math packages
     %- Text + Math: Palatino
     %\RequirePackage{palatino}%
 \else% <xelatex> or <lualatex> call system fonts
+    \RequirePackage[cmintegrals]{newtxmath}% math symbol font, load after math but before fontspec packages
     \RequirePackage{fontspec}% support calling system fonts
     %- Font properties: <family> + <weight> + <shape> + <size>
     %- Specify the three default TeX font families: <main>, <sans>, <mono>
@@ -181,7 +205,7 @@
     %- font switches: {\rmfamily ...}, \textrm{...}, {\normalfont ...}, \textnormal{...}
     %- the latter is due to \renewcommand*{\familydefault}{\rmdefault}
     %- Sans serif - typefaces without strokes - for headings demanding high readability
-    %- examples: Helvetica, Gill Sans, Futura
+    %- examples: Arial, Helvetica, Gill Sans, Futura
     %\setsansfont{Gill Sans MT}% font switches: {\sffamily ...}, \textsf{...}
     %- Monospaced - typefaces with same width - for programming, etc
     %- examples: Rockwell, Andale Mono, Courier
@@ -189,25 +213,43 @@
     %- Specify user-defined font families and font switches
     %\newfontfamily\<font-switch>{<font>}[<font features>]%
     %\newcommand{\text<font-switch>}[1]{{\<font-switch> #1}}%
+    % without NFSSFamily option, a font family is defined only when the added font name
+    % is a new one. mathrm and mathsf can be set by \setmathrm and \setmathsf
+    %\RequirePackage{unicode-math}% another math symbol font configuration
+    %\setmathfont{XITS Math}% a complete symbol set for STIX math fonts
+    \ifartx@windows%
+        \setCJKmainfont[AutoFakeBold,ItalicFont=KaiTi]{SimSun}
+    \else\ifartx@mac%
+        \setCJKmainfont[BoldFont=Songti~SC~Bold,ItalicFont=Kaiti~SC]{Songti~SC~Light}
+    \else\ifartx@adobe%
+        \setCJKmainfont[AutoFakeBold,ItalicFont=AdobeKaitiStd-Regular]{AdobeSongStd-Light}
+    \fi\fi\fi
+    \ifartx@times%
+        \setmainfont[NFSSFamily=entextrm]{Times~New~Roman}
+        \setsansfont[NFSSFamily=entextsf]{Times~New~Roman}
+    \else
+        \setmainfont[NFSSFamily=entextrm]{FreeSerif}
+        \setsansfont[NFSSFamily=entextsf]{FreeSerif}
+    \fi
 \fi
 %-
 %-> Bibliography processor and package
 %-
 %- Bibtex processor + natbib package
-\ifARTRATEX@bibtex%
-    \ifARTRATEX@numbers% enable numbered citation style
-        \ifARTRATEX@super% enable superscripted citation style
+\ifartx@bibtex%
+    \ifartx@numbers% enable numbered citation style
+        \ifartx@super% enable superscripted citation style
             \RequirePackage[square,comma,super,sort&compress]{natbib}% superscripted square bracket
         \else
             \RequirePackage[square,comma,numbers,sort&compress]{natbib}% square bracket
         \fi
         \bibliographystyle{Biblio/gbt7714-unsrt}% numbered scheme
     \fi
-    \ifARTRATEX@authoryear% enable author year citation style
+    \ifartx@authoryear% enable author year citation style
         \RequirePackage{natbib}% author year citation mode
         \bibliographystyle{Biblio/gbt7714-plain}% author year scheme
     \fi
-    \ifARTRATEX@alpha% enable alpha citation style
+    \ifartx@alpha% enable alpha citation style
         \RequirePackage[square,comma,numbers]{natbib}% square bracket
         \bibliographystyle{alpha}% alpha scheme
     \fi
@@ -235,18 +277,18 @@
     }
 \fi
 %- Biber processor + biblatex package
-\ifARTRATEX@biber%
-    \ifARTRATEX@numbers% enable numbered citation style
-        \ifARTRATEX@super% enable superscripted citation style
+\ifartx@biber%
+    \ifartx@numbers% enable numbered citation style
+        \ifartx@super% enable superscripted citation style
             \RequirePackage[style=numeric-comp]{biblatex}%
         \else
             \RequirePackage[style=numeric-comp]{biblatex}%
         \fi
     \fi
-    \ifARTRATEX@authoryear% enable author year citation style
+    \ifartx@authoryear% enable author year citation style
         \RequirePackage[style=authoryear]{biblatex}%
     \fi
-    \ifARTRATEX@alpha% enable alpha citation style
+    \ifartx@alpha% enable alpha citation style
         \RequirePackage[style=alphabetic]{biblatex}%
     \fi
     \addbibresource{ref.bib}%
@@ -255,7 +297,7 @@
 %-> Figure environment support
 %-
 \RequirePackage{graphicx}% packages for including graphics
-\RequirePackage[font=small,labelfont=bf,skip=8pt,labelsep=space]{caption}% options: [margin=10pt,labelfont=bf]
+\RequirePackage[font={small,bf},skip=8pt,labelsep=space]{caption}% options: [margin=10pt,labelfont=bf]
 \RequirePackage{subcaption}% package for subfigures
 \RequirePackage[list=off]{bicaption}% package for binary captions
 \captionsetup[figure][bi-first]{format=hang,hangindent=-0.5em}%
@@ -266,31 +308,31 @@
 %-
 %-> Page layout and spacing
 %-
-\ifARTRATEX@geometry% enable geometry to redefine page layout
+\ifartx@geometry% enable geometry to redefine page layout
     \RequirePackage{geometry}% page layout
     %\RequirePackage{setspace}% line spacing
 \fi
-\ifARTRATEX@lscape% landscape layout
+\ifartx@lscape% landscape layout
     \RequirePackage{fancyhdr}% fancy headers and footers
     %- usage: \begin{landscape} [\thispagestyle{lscape}] text... \end{landscape}
     \RequirePackage{pdflscape}% landscape environment
     \RequirePackage[absolute]{textpos}% rotated page number
 \fi
-\ifARTRATEX@myhdr% header and footer style
+\ifartx@myhdr% header and footer style
     \RequirePackage{fancyhdr}% fancy headers and footers
 \fi
 %\RequirePackage{microtype}% improves general appearance of the text
 %-
 %-> Color
 %-
-\ifARTRATEX@color% enable color package to use color
+\ifartx@color% enable color package to use color
     %\RequirePackage{color}%
     \RequirePackage[usenames,dvipsnames,table]{xcolor}%
 \fi
 %-
 %-> Draw graphics directly with TeX commands
 %-
-\ifARTRATEX@tikz%
+\ifartx@tikz%
     \RequirePackage{tikz}% automatically load pgf package
     \usetikzlibrary{% load libraries
         positioning,
@@ -302,24 +344,20 @@
 %-
 %-> Complex tables
 %-
-\ifARTRATEX@table%
+\ifartx@table%
     \RequirePackage{ctable}% imports the array, tabularx and booktabs packages
 \fi
 %-
 %-> List structures
 %-
-\ifARTRATEX@list% enable enhanced list and verbatim structures
+\ifartx@list% enable enhanced list and verbatim structures
     \RequirePackage{verbatim}% improve verbatim environment
     \RequirePackage{enumitem}% configure the enumerate environment
+    \setlist[enumerate]{wide=\parindent}% only indent the first line
+    \setlist[itemize]{wide=\parindent}% only indent the first line
+    \setlist{nosep}% default text spacing
     \RequirePackage{listings}% source code
     \RequirePackage{algpseudocode,algorithm,algorithmicx}% algorithm
-\fi
-%-
-%-> Math packages
-%-
-\RequirePackage{amsmath,amssymb,amstext}% math packages
-\ifARTRATEX@math% extra math packages
-    \RequirePackage{mathtools,amsfonts}%
 \fi
 %-
 %-> Links support
@@ -355,7 +393,7 @@
 %- Declare graphic extensions for automatic selection when including graphics
 %- via avoiding supplying graphic extensions in \includegraphics command,
 %- the source file can be more general and adaptive
-\ifARTRATEX@xetex%
+\ifartx@xetex%
     \DeclareGraphicsExtensions{.pdf,.png,.jpg,.eps,.tif,.bmp,.gif}%
 \else% <pdflatex> or <lualatex>
     \DeclareGraphicsExtensions{.pdf,.png,.jpg}%
@@ -364,7 +402,7 @@
 %-
 %-> Layout, space, and style
 %-
-\ifARTRATEX@geometry% enable geometry to redefine page layout
+\ifartx@geometry% enable geometry to redefine page layout
     \geometry{paper=a4paper,left=31.7mm,right=31.7mm,top=25.4mm,bottom=25.4mm}%
 \fi
 %\linespread{1.5}% 1.5 for "one and a half" line spacing, and 2.0 for "double" line spacing
@@ -379,10 +417,10 @@
 %\numberwithin{table}{section}% set enumeration level
 %\renewcommand{\thetable}{\thesection\arabic{table}}% configure the label style
 %- Set bibliography entry
-\ifARTRATEX@bibtex%
+\ifartx@bibtex%
     \setlength{\bibsep}{0.0ex plus 0.2ex minus 0.2ex}% set distance between entries
 \fi
-\ifARTRATEX@biber%
+\ifartx@biber%
     \setlength\bibitemsep{0.5\baselineskip}% set distance between entries
 \fi
 \renewcommand*{\bibfont}{\small}% set font size for bibliography
@@ -408,7 +446,7 @@
 %- These headers/footers typically contain document titles, chapter
 %- or section numbers/names, and page numbers.
 %- Configure fancy style
-\ifARTRATEX@myhdr% user defined header and footer style
+\ifartx@myhdr% user defined header and footer style
     \pagestyle{fancy}%
     \providecommand{\chaptermark}{}% compatibility for non-book classes
     \providecommand{\thechapter}{}% compatibility for non-book classes
@@ -477,11 +515,20 @@
         %\renewcommand{\headrulewidth}{0pt}% header rule
         %\renewcommand{\footrulewidth}{0pt}% footer rule
     }
+    \fancypagestyle{noheaderstyle}{% header and footer style for no header
+        \fancyhf{}% clear fields
+        %\fancyhead[CE]{\footnotesize \@title}% structure elements
+        %\fancyhead[CO]{\footnotesize \leftmark}% structure elements
+        \fancyfoot[LE]{\footnotesize \thepage}% page number
+        \fancyfoot[RO]{\footnotesize \thepage}% page number
+        \renewcommand{\headrulewidth}{0pt}% header rule
+        \renewcommand{\footrulewidth}{0pt}% footer rule
+    }
 \fi
 %-
 %-> Configure landscape environment
 %-
-\ifARTRATEX@lscape%
+\ifartx@lscape%
 \fancypagestyle{lscape}{% landscape layout style
     \fancyhf{}% clear fields
     \fancyfoot[CE,CO]{%
@@ -497,7 +544,7 @@
     \renewcommand{\footrulewidth}{0pt}% footer rule
 }
 \fi
-\ifARTRATEX@list% enable enhanced list
+\ifartx@list% enable enhanced list
     \definecolor{mygreen}{rgb}{0,0.6,0}
     \definecolor{mygray}{rgb}{0.5,0.5,0.5}
     \definecolor{mymauve}{rgb}{0.58,0,0.82}
@@ -530,10 +577,10 @@
 %-
 %-> Page background
 %-
-\ifARTRATEX@background%
+\ifartx@background%
     \definecolor{backgroundcolor}{rgb}{0.85,0.85,0.85}%
     \pagecolor{backgroundcolor}% background color
 \fi
 %---------------------------------------------------------------------------%
-\endinput
+%\endinput
 
