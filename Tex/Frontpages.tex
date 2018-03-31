@@ -1,58 +1,57 @@
 %---------------------------------------------------------------------------%
-%->> Titlepage information
+%->> 封面信息及生成
 %---------------------------------------------------------------------------%
 %-
-%-> Chinese titlepage
+%-> 中文封面信息
 %-
-\confidential{}% confidential level
-\schoollogo{scale=0.095}{ucas_logo}% university logo
-\title{中国科学院大学学位论文\LaTeX{}模板 {$~^{\pi}\pi^{\pi}$}}% \title[short title for headers]{Long title of thesis}
-\author{莫晃锐}% name of author
-\advisor{刘青泉~研究员~中国科学院力学研究所}% supervisor
-\advisorsec{}% co-supervisor
-\degree{硕士}% degree
-\degreetype{理学}% degree type
-\major{流体力学}% major
-\institute{中国科学院力学研究所}% institute of author
-\chinesedate{2014~年~6~月}% customized date, 6 for summer and 12 for winter graduation
+\confidential{}% 密级：只有涉密论文才填写
+\schoollogo{scale=0.095}{ucas_logo}% 校徽
+\title{中国科学院大学学位论文\LaTeX{}模板 {$~^{\pi}\pi^{\pi}$}}% 论文中文题目
+\author{莫晃锐}% 论文作者
+\advisor{刘青泉~研究员~中国科学院力学研究所}% 指导教师：姓名 专业技术职务 工作单位
+\advisorsec{}% 第二指导老师：按情况填写
+\degree{硕士}% 学位：学士、硕士、博士
+\degreetype{理学}% 学位类别：理学、工学、工程、医学等
+\major{流体力学}% 二级学科专业名称
+\institute{中国科学院力学研究所}% 院系名称
+\chinesedate{2014~年~6~月}% 毕业日期：夏季为6月、冬季为12月
 %-
-%-> English titlepage
+%-> 英文封面信息
 %-
-\englishtitle{\LaTeX{} Thesis Template\\ of \\ The University of Chinese Academy of Sciences {$~^{\pi}\pi^{\pi}$}}
-\englishauthor{Huangrui Mo}
-\englishadvisor{Supervisor: Professor Qingquan Liu}
-\englishdegree{Master of Natural Science}% degree type <Doctor|Master> of <Philosophy|Natural Science|Engineering>
-\englishthesistype{thesis}% thesis type <thesis|dissertation>
-\englishmajor{Fluid Mechanics}% major
-\englishinstitute{Institute of Mechanics, Chinese Academy of Sciences}
-\englishdate{June, 2014}% customized date
+\englishtitle{\LaTeX{} Thesis Template\\ of \\ The University of Chinese Academy of Sciences {$~^{\pi}\pi^{\pi}$}}% 论文英文题目
+\englishauthor{Mo Huangrui}% 论文作者
+\englishadvisor{Supervisor: Professor Liu Qingquan}% 指导教师
+\englishdegree{Master}% 学位：Bachelor, Master, Doctor。封面格式将根据英文学位名称自动切换，请确保拼写准确无误
+\englishdegreetype{Natural Science}% 学位类别：Philosophy, Natural Science, Engineering, Economics, Agriculture 等
+\englishthesistype{thesis}% 论文类型： thesis, dissertation
+\englishmajor{Fluid Mechanics}% 二级学科专业名称
+\englishinstitute{Institute of Mechanics, Chinese Academy of Sciences}% 院系名称
+\englishdate{June, 2014}% 毕业日期：夏季为June、冬季为December
 %-
-%-> Create titlepages
+%-> 生成封面
 %-
-\maketitle
-\makeenglishtitle
+\maketitle% 生成中文封面
+\makeenglishtitle% 生成英文封面
 %-
-%-> Author's declaration
+%-> 作者声明
 %-
-\makedeclaration
+\makedeclaration% 生成声明页
 %-
-%-> Chinese abstract
+%-> 中文摘要
 %-
-\chapter*{摘\quad 要}
-\chaptermark{摘\quad 要}
-\setcounter{page}{1}% set page number
-\pagenumbering{Roman}% set large roman
+\chapter*{摘\quad 要}\chaptermark{摘\quad 要}% 摘要标题
+\setcounter{page}{1}% 开始页码
+\pagenumbering{Roman}% 页码符号
 
 本文是中国科学院大学学位论文模板ucasthesis的使用说明文档。主要内容为介绍\LaTeX{}文档类ucasthesis的用法，以及如何使用\LaTeX{}快速高效地撰写学位论文。
 
-\keywords{中国科学院大学，学位论文，\LaTeX{}模板}
+\keywords{中国科学院大学，学位论文，\LaTeX{}模板}% 中文关键词
 %-
-%-> English abstract
+%-> 英文摘要
 %-
-\chapter*{Abstract}
-\chaptermark{Abstract}
+\chapter*{Abstract}\chaptermark{Abstract}% 摘要标题
 
 This paper is a help documentation for the \LaTeX{} class ucasthesis, which is  a thesis template for the University of Chinese Academy of Sciences. The main content is about how to use the ucasthesis, as well as how to write thesis efficiently by using \LaTeX{}.
 
-\englishkeywords{University of Chinese Academy of Sciences (UCAS), Thesis, \LaTeX{} Template}
+\englishkeywords{University of Chinese Academy of Sciences (UCAS), Thesis, \LaTeX{} Template}% 英文关键词
 %---------------------------------------------------------------------------%
