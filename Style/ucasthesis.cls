@@ -156,12 +156,19 @@
 %-
 \renewcommand{\maketitle}{%
     \ucasifstreq{\ucas@value@englishdegree}{Bachelor}{%
+        \def\ucas@label@thesis{\ucas@label@bacthesis}%
         \def\ucas@label@major{\ucas@label@ungradmajor}%
         \def\ucas@label@institute{\ucas@label@ungradinstitute}%
     }{%
+    \ucasifstreq{\ucas@value@englishdegree}{Master}{%
+        \def\ucas@label@thesis{\ucas@label@masthesis}%
         \def\ucas@label@major{\ucas@label@gradmajor}%
         \def\ucas@label@institute{\ucas@label@gradinstitute}%
-    }%
+    }{%
+        \def\ucas@label@thesis{\ucas@label@docthesis}%
+        \def\ucas@label@major{\ucas@label@gradmajor}%
+        \def\ucas@label@institute{\ucas@label@gradinstitute}%
+    }}%
     \cleardoublepage
     \thispagestyle{empty}
     \begin{center}
@@ -176,7 +183,7 @@
 
         \vspace*{\stretch{2}}
 
-        {\zihao{1}\bfseries\sffamily {\ucas@value@degree\ucas@label@thesis}}
+        {\zihao{1}\bfseries\sffamily {\ucas@label@thesis}}
 
         \vspace*{\stretch{3}}
 
