@@ -6,7 +6,7 @@
 
 ## 重要建议
 
-* 关于 LaTeX 的知识性问题，请查阅[LaTeX Wikibook](https://en.wikibooks.org/wiki/LaTeX)。
+* 关于 LaTeX 的知识性问题，请查阅 [LaTeX Wikibook](https://en.wikibooks.org/wiki/LaTeX)。
 * 关于模板编译和样式设计的问题，请先仔细阅读`模板使用说明.pdf`并遵从提问流程。
 * 使用邮件传播 ucasthesis 时，请先删除 `artratex.bat` 以防范 Dos 脚本的潜在风险。
 
@@ -22,14 +22,14 @@
 
 ## 重要通知
 
-* `2018-03-31` 模板样式进行了修改，请查看下面的修改描述，以决定是否需要更新。
+* `2018-04-02` 模板样式进行了修改，请查看下面的修改描述，以决定是否需要更新。
 
 ## 更新记录
 
-* `2018-03-31` 模板进行了重大更新，修复了样式、字体、格式等许多问题。修改的文件为：所有文件。
+* `2018-04-02` 模板进行了重大更新，修复了样式、字体、格式等许多问题。修改的文件为：所有文件。
 
     * 根据国科大本科部陆晴老师的建议对模版样式进行了诸多拓展和修正，并完善对本科生论文元素的兼容性。
-    * 在赵永明同学的建议下对数学符号字体进行调整。在 [ctex](https://github.com/CTeX-org/ctex-kit) 开发者的帮助下解决了如何多次调用 Times New Roman 而不导致黑体调用错误的问题。
+    * 在赵永明同学的建议下对数学符号字体进行调整。在 [ctex](https://github.com/CTeX-org/ctex-kit) 开发者的帮助下解决了如何多次调用 Times New Roman 而不导致黑体调用错误的问题。修复 twn1993 发现的默认黑体为微软雅黑而不是SimHei的问题。
     * 繁复折腾测试后终于找出一个在ctex默认黑体替换粗宋体设定环境内全局AutoFakeBold失效状态下折衷特定字体库不全条件下生僻字显示和系统默认字重不全条件下粗宋体显示以及不同操作系统下如何平衡上述字库自重矛盾还有根据操作系统自动调用所带有的Times字体的方案。祝贺大家不用再为字体调用苦恼了。
     * 当前模板论文封面会根据英文学位名称如 Bachelor，Master，或是 Doctor 自动切换为相应的格式。密级信息也会根据是否填入了信息自动显示。
 
@@ -73,7 +73,7 @@
 
 * `2017-03-08` 添加设定论文类型为 thesis 或 dissertation 的命令 \englishthesistype{}，问题/建议由臧光明同学提出。
 
-* `2016-10-02` 添加 [中国科学院大学开题报告 LaTeX 模板](https://github.com/mohuangrui/ucasproposal)。
+* `2016-10-02` 添加 [ucasproposal: 中国科学院大学开题报告 LaTeX 模板](https://github.com/mohuangrui/ucasproposal)。
 
 ## 用户指南
 

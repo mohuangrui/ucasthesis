@@ -12,14 +12,18 @@
 %->> Identification
 %---------------------------------------------------------------------------%
 \NeedsTeXFormat{LaTeX2e}%
-\RequirePackage{expl3}% syntax for LaTeX3 turned on via \ProvidesExplxxxx
-\ProvidesExplPackage{\ExplFileName}{\ExplFileDate}{1.0}{\ExplFileDescription}%
+\ProvidesPackage{artratex}[2014/10/01 v0.1 LaTeX macros package]%
 %---------------------------------------------------------------------------%
 %->> Declare options
 %---------------------------------------------------------------------------%
 %-
 %-> Platform fontset <windows>, <mac>, <adobe>, <times>, <others>
 %-
+\RequirePackage{expl3}% LaTeX3 programming environment
+\ExplSyntaxOn%
+\providecommand{\g__ctex_fontset_tl}{}% platform fontset state variable
+\edef\artxfontset{\g__ctex_fontset_tl}% expanded platform fontset state variable
+\ExplSyntaxOff%
 \newif\ifartx@windows \artx@windowsfalse
 \newif\ifartx@mac \artx@macfalse
 \newif\ifartx@adobe \artx@adobefalse
@@ -27,8 +31,6 @@
 \newif\ifartx@others \artx@othersfalse
 \RequirePackage{etoolbox}% a toolbox of programming facilities
 \newcommand{\artxifstreq}{\expandafter\ifstrequal\expandafter}% expansion control
-\providecommand{\g__ctex_fontset_tl}{}% platform fontset state variable
-\edef\artxfontset{\g__ctex_fontset_tl}% expanded platform fontset state variable
 \artxifstreq{\artxfontset}{windows}{\artx@windowstrue\artx@timestrue}{%
 \artxifstreq{\artxfontset}{mac}{\artx@mactrue\artx@timestrue}{%
 \artxifstreq{\artxfontset}{adobe}{\artx@adobetrue\artx@timestrue}{%
@@ -219,14 +221,20 @@
     %\setmathfont{XITS Math}% a complete symbol set for STIX math fonts
     \ifartx@windows%
         \setCJKmainfont[AutoFakeBold,ItalicFont=KaiTi]{SimSun}
+        \setCJKsansfont[AutoFakeBold]{SimHei}
+        \setCJKmonofont{FangSong}
     \else\ifartx@mac%
-        \setCJKmainfont[BoldFont=Songti~SC~Bold,ItalicFont=Kaiti~SC]{Songti~SC~Light}
+        \setCJKmainfont[BoldFont=Songti SC Bold,ItalicFont=Kaiti SC]{Songti SC Light}
+        \setCJKsansfont{Heiti SC Light}%
+        \setCJKmonofont{STFangsong}%
     \else\ifartx@adobe%
         \setCJKmainfont[AutoFakeBold,ItalicFont=AdobeKaitiStd-Regular]{AdobeSongStd-Light}
+        \setCJKsansfont[AutoFakeBold]{AdobeHeitiStd-Regular}%
+        \setCJKmonofont{AdobeFangsongStd-Regular}%
     \fi\fi\fi
     \ifartx@times%
-        \setmainfont[NFSSFamily=entextrm]{Times~New~Roman}
-        \setsansfont[NFSSFamily=entextsf]{Times~New~Roman}
+        \setmainfont[NFSSFamily=entextrm]{Times New Roman}
+        \setsansfont[NFSSFamily=entextsf]{Times New Roman}
     \else
         \setmainfont[NFSSFamily=entextrm]{FreeSerif}
         \setsansfont[NFSSFamily=entextsf]{FreeSerif}
@@ -582,5 +590,5 @@
     \pagecolor{backgroundcolor}% background color
 \fi
 %---------------------------------------------------------------------------%
-%\endinput
+\endinput
 
