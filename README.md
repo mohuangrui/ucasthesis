@@ -9,6 +9,7 @@
 * 关于 LaTeX 的知识性问题，请查阅 [ucasthesis 和 LaTeX 知识小站](https://github.com/mohuangrui/ucasthesis/wiki) 和 [LaTeX Wikibook](https://en.wikibooks.org/wiki/LaTeX)。
 * 关于模板编译和样式设计的问题，请先仔细阅读`模板使用说明.pdf`并遵从提问流程。
 * 使用邮件传播 ucasthesis 时，请先删除 `artratex.bat` 以防范 Dos 脚本的潜在风险。
+* 开题报告请见：[ucasproposal: 中国科学院大学开题报告 LaTeX 模板](https://github.com/mohuangrui/ucasproposal)。
 
 ## 模板简介
  
@@ -35,70 +36,15 @@
 
 * `2018-03-22` 演示表标题居表上，加粗图表标注文字，设置多行长图表标题悬挂缩进（由于 bicaption 宏包无法正确接受 caption 宏包的 margin 选项，图表标题的中英标题第一行无法正确同步缩进，从而放弃第一行的缩进），在说明文档中强调多图中子图标题的规范使用，通过摘要和符号列表演示如何不在目录中显示，却仍在页眉中显示标题，修改 Appendix 的设置方式以满足官方模板要求的特殊显示行为。设置 bicaption 当启用图形列表和表格列表时不在列表中显示英文标题，问题/建议由赵永明提出。
 
-* `2018-03-21` 更新 ucas_logo.pdf 使得封面中的学校 logo 放大不失真，问题/建议由 zhanglinbo 提出。
-
-* `2018-03-20` 回答标题中的英文如何设为 Times New Roman 字体，问题/建议由 Starsky Wong 提出。
+* `2018-03-21` 更新 ucas_logo.pdf 使得封面中的学校 logo 放大不失真，问题/建议由 zhanglinbo 提出。回答标题中的英文如何设为 Times New Roman 字体，问题/建议由 Starsky Wong 提出。
 
 * `2018-03-13` 提供目录区域独立行距设置，将正文默认行距改为易于阅读的1.5（可根据个人所用官方规则轻松设定），修复修改行距后导致章节标题位置轻微上下浮动1-2毫米的问题，移除图表后的冒号。
 
-* `2018-03-10` 矫正由 will0n 和赵永明提出的一些格式细节问题，根据赵永明的建议设置双语图表标题，根据 tangjie1992 的建议配置算法环境。
+* `2018-03-10` 矫正由 will0n 和赵永明提出的一些格式细节问题，根据赵永明的建议设置双语图表标题，根据 tangjie1992 的建议配置算法环境。在说明文档中回答关于封面字体，封面文本对齐，文档超链接颜色问题。
 
-* `2018-02-28` 在说明文档中回答关于封面字体，封面文本对齐，文档超链接颜色问题。
+* `2018-02-04` 在 [ctex](https://github.com/CTeX-org/ctex-kit) 开发者的帮助下修复了错用字体命令导致的宋体加粗异常。然后，将模板的兼容性进一步扩展。当前模板兼容操作系统 Windows，Linux，MacOS 和 LaTeX 编译引擎 pdflatex，xelatex，lualatex。移除 microtype 宏包以显著提高模板的编译效率。
 
-* `2018-02-04` 在 [ctex](https://github.com/CTeX-org/ctex-kit) 开发者的帮助下修复了错用字体命令导致的宋体加粗异常。然后，将模板的兼容性进一步扩展。当前模板兼容操作系统 Windows，Linux，MacOS 和 LaTeX 编译引擎 pdflatex，xelatex，lualatex。
+* `2018-01-28` 基于国科大模板要素的变动进行了重大修改，修改封面为国科大最新封面样式。采用最新的标题格式、论文声明、页眉页脚样式。展示标题中使用数学公式的解决方案。使用 [zepinglee](https://github.com/zepinglee/gbt7714-bibtex-style) 开发的适用 Bibtex 的参考文献国标样式。提高所有模板文件和代码的可读性，如命名、注释、排版等。
 
-* `2018-01-30` 移除 microtype 宏包以显著提高模板的编译效率。修复下划线在 pdflatex 编译下显示异常的问题。
+* `2017-05-14` 将图表标题和文献列表调整为使用比正文小一号的字号，将文献上标引用设定为默认，增加 \citepns{} 和 \citetns{} 命令提供嵌入式非上标引用以满足有混合引用需要的用户，问题/建议由赵永明同学提出。添加设定论文类型为 thesis 或 dissertation 的命令 \englishthesistype{}，问题/建议由臧光明同学提出。
 
-* `2018-01-28` 基于国科大模板要素的变动进行了重大修改：
-    * 修改封面为国科大最新封面样式
-    * 封面使用[国科大新版形象标识](http://www.ucas.ac.cn/site/11?zu=64925)
-    * 英文封面添加导师信息
-    * 针对国科大对*密级*条目的最新规定，提供 *showmj* 选项以决定*密级*条目的显示与否
-    * 采用最新的标题格式、论文声明、页眉页脚样式
-    * 展示标题中使用数学公式的解决方案
-    * 使用 [zepinglee](https://github.com/zepinglee/gbt7714-bibtex-style) 开发的适用 Bibtex 的参考文献国标样式
-    * 提高所有模板文件和代码的可读性，如命名、注释、排版等
-    * 因模板改动显著，建议的更新方式为`移植你的旧有文件到新模板中`:
-        1. 下载解压新模板
-        2. 替换 Tex 文件夹中的除 Frontpage.tex 以外的文件
-        3. 修改 Tex 文件夹中的 Frontpage.tex 条目信息
-        4. 替换 Img 文件夹
-        5. 替换 Biblio/ref.bib
-
-* `2017-09-29` 将图表标题和文献列表调整为使用比正文小一号的字号。问题/建议由赵永明同学提出。
-
-* `2017-05-14` 将文献上标引用设定为默认，增加 \citepns{} 和 \citetns{} 命令提供嵌入式非上标引用以满足有混合引用需要的用户，问题/建议由赵永明同学提出。
-
-* `2017-03-08` 添加设定论文类型为 thesis 或 dissertation 的命令 \englishthesistype{}，问题/建议由臧光明同学提出。
-
-* `2016-10-02` 添加 [ucasproposal: 中国科学院大学开题报告 LaTeX 模板](https://github.com/mohuangrui/ucasproposal)。
-
-## 用户指南
-
-模板每次发布前，都已在 Windows，Linux，MacOS 系统上测试通过。下载模板后，若编译出现错误，则请遵从如下的用户指南:
-
-* 请仔细阅读并理解 `模板使用说明.pdf` 文档，根据说明文档的引导对模板进行测试。
-* 按照 `模板使用说明.pdf` 的 `先试试效果` 一节提供的方法编译模板，若出现错误，
-  则原因可能为如下几种：
-    1. 路径中存在特殊字符：请确保 LaTeX 软件的安装路径以及 LaTeX 模板的路径中
-       不存在特殊字符，尽量避免在路径中使用中文字符和空格。
-    2. LaTeX 编译系统安装失败：请暂时抛开 ucasthesis，而是测试一个基本的中文
-       LaTeX 文档，若编译无法通过，则请卸载并重新安装 LaTeX 编译软件的最新版。
-       （MikTeX 安装后须在 CMD 运行 `initexmf --mkmaps` 才能使用 pdflatex。
-       并进入软件的 Package Manager (Admin) 确认 Repository--Synchronize 状态。
-       刚安装 MikTex 的初始几次编译常会出现出错提示，需多试几次才会变得流畅。
-       相比 MikTeX，更为推荐 Texlive 完整版，注：MacTeX 实质也是 Texlive。）
-    3. LaTeX 编译系统缺乏必要的宏包：编译生成的 `.log` 文件会给出缺乏的
-       宏包如 `xxx.sty not found` 的名称和错误提示。此类错误一般不会发生在
-       Texlive 完整版上。MikTeX 编译时会提示是否自动下载，选择自动下载即可解决
-       大部分宏包缺乏的问题。若无提示，可手动安装。自动下载时请确定网络链接正常。
-    4. 操作系统缺乏必要的字体：编译生成的 `.log` 文件会给出缺乏的字体如
-        `xxx font not found` 的名称和错误提示。ucasthesis 已针对不同操作系统
-        进行了相应的字体配置，因而正常情况下不会出现字体缺失的错误。
-    5. LaTeX 宏包过时：编译生成的 `.log` 文件给出 `undefined control sequence`
-       类的错误，是由于编译系统版本过旧或其宏包库没有更新，请或是更新 LaTeX 
-       宏包库或是卸载安装最新 LaTeX 编译软件版本。
-* 使用脚本编译无错，但使用 LaTeX 文本编辑器时编译出现异常：
-    1. 请确保选择了正确的文本编译器：xelatex（推荐）或 pdflatex 或 lualatex
-    2. 请确保选择了正确的文献编译器：bibtex
-* 若按照上述步骤仍无法解决问题，请将编译生成的完整的 `.log` 文件反馈。
