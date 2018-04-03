@@ -220,24 +220,24 @@
     %\RequirePackage{unicode-math}% another math symbol font configuration
     %\setmathfont{XITS Math}% a complete symbol set for STIX math fonts
     \ifartx@windows%
-        \setCJKmainfont[AutoFakeBold,ItalicFont=KaiTi]{SimSun}
-        \setCJKsansfont[AutoFakeBold]{SimHei}
-        \setCJKmonofont{FangSong}
+        \setCJKmainfont[AutoFakeBold,ItalicFont=KaiTi]{SimSun}%
+        \setCJKsansfont[AutoFakeBold]{SimHei}%
+        \setCJKmonofont{FangSong}%
     \else\ifartx@mac%
-        \setCJKmainfont[BoldFont=Songti SC Bold,ItalicFont=Kaiti SC]{Songti SC Light}
-        \setCJKsansfont{Heiti SC Light}%
+        \setCJKmainfont[ItalicFont=Kaiti SC,BoldItalicFont=Kaiti SC Bold]{Songti SC Light}%
+        \setCJKsansfont{Heiti SC}%
         \setCJKmonofont{STFangsong}%
     \else\ifartx@adobe%
-        \setCJKmainfont[AutoFakeBold,ItalicFont=AdobeKaitiStd-Regular]{AdobeSongStd-Light}
+        \setCJKmainfont[AutoFakeBold,ItalicFont=AdobeKaitiStd-Regular]{AdobeSongStd-Light}%
         \setCJKsansfont[AutoFakeBold]{AdobeHeitiStd-Regular}%
         \setCJKmonofont{AdobeFangsongStd-Regular}%
     \fi\fi\fi
     \ifartx@times%
-        \setmainfont[NFSSFamily=entextrm]{Times New Roman}
-        \setsansfont[NFSSFamily=entextsf]{Times New Roman}
+        \setmainfont[NFSSFamily=entextrm]{Times New Roman}%
+        \setsansfont[NFSSFamily=entextsf]{Times New Roman}%
     \else
-        \setmainfont[NFSSFamily=entextrm]{FreeSerif}
-        \setsansfont[NFSSFamily=entextsf]{FreeSerif}
+        \setmainfont[NFSSFamily=entextrm]{FreeSerif}%
+        \setsansfont[NFSSFamily=entextsf]{FreeSerif}%
     \fi
 \fi
 %-

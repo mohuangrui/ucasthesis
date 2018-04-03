@@ -336,9 +336,11 @@
 %---------------------------------------------------------------------------%
 %- define chinese keywords
 \newcommand{\keywords}[1]{%
+    \vspace{\baselineskip}
     \noindent {\bfseries \ucas@label@keywords} #1}
 %- define engish keywords
 \newcommand{\englishkeywords}[1]{%
+    \vspace{\baselineskip}
     \noindent {\bfseries \ucas@label@englishkeywords} #1}
 %---------------------------------------------------------------------------%
 %->> Configure table of contents
