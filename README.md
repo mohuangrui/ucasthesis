@@ -7,7 +7,7 @@
 ## 重要建议
 
 * 关于 LaTeX 的知识性问题，请查阅 [ucasthesis 和 LaTeX 知识小站](https://github.com/mohuangrui/ucasthesis/wiki) 和 [LaTeX Wikibook](https://en.wikibooks.org/wiki/LaTeX)。
-* 关于模板编译和样式设计的问题，请先仔细阅读`模板使用说明.pdf`并遵从提问流程。
+* 关于模板编译和样式设计的问题，请先仔细阅读 **模板使用说明.pdf** 并遵从提问流程。
 * 使用邮件传播 ucasthesis 时，请先删除 `artratex.bat` 以防范 Dos 脚本的潜在风险。
 * 开题报告请见：[ucasproposal: 中国科学院大学开题报告 LaTeX 模板](https://github.com/mohuangrui/ucasproposal)。
 
@@ -27,7 +27,7 @@
 
 ## 更新记录
 
-* `2018-04-08` 将附录复原为合理的排版设置。问题/建议由邵岳林提出。修改的文件为：Thesis.tex，Appendix.tex。
+* `2018-04-08` 将附录复原为常规的排版设置。问题/建议由邵岳林提出。修改的文件为：Thesis.tex，Appendix.tex。
 
 * `2018-04-03` 根据国科大本科部陆晴老师和本科部学位办丁云云老师的复审审核建议再次修复一些样式细节问题。
 
