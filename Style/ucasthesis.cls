@@ -136,20 +136,32 @@
 %-
 %-> Chinese item commands
 %-
+\def\ucas@value@confidential{}
 \newcommand{\confidential}[1]{\def\ucas@value@confidential{#1}}
+\def\ucas@value@schoollogo{}
 \newcommand{\schoollogo}[2]{\def\ucas@value@schoollogo{\includegraphics[#1]{#2}}}
+\def\ucas@value@title{}
+\def\ucas@value@titlemark{}
 \renewcommand{\title}[2][\ucas@value@title]{%
     \def\ucas@value@title{#2}
     %\def\ucas@value@titlemark{\MakeUppercase{#1}}}
     \def\ucas@value@titlemark{#1}}
 \renewcommand{\@title}{\ucas@value@titlemark}
+\def\ucas@value@author{}
 \renewcommand{\author}[1]{\def\ucas@value@author{#1}}
+\def\ucas@value@advisor{}
 \newcommand{\advisor}[1]{\def\ucas@value@advisor{#1}}
+\def\ucas@value@advisorsec{}
 \newcommand{\advisorsec}[1]{\def\ucas@value@advisorsec{#1}}
+\def\ucas@value@degree{}
 \newcommand{\degree}[1]{\def\ucas@value@degree{#1}}
+\def\ucas@value@degreetype{}
 \newcommand{\degreetype}[1]{\def\ucas@value@degreetype{#1}}
+\def\ucas@value@major{}
 \newcommand{\major}[1]{\def\ucas@value@major{#1}}
+\def\ucas@value@institute{}
 \newcommand{\institute}[1]{\def\ucas@value@institute{#1}}
+\def\ucas@value@chinesedate{}
 \newcommand{\chinesedate}[1]{\def\ucas@value@chinesedate{#1}}
 %-
 %-> Redefine Chinese style
@@ -234,14 +246,23 @@
 %-
 %-> English item commands
 %-
+\def\ucas@value@englishtitle{}
 \newcommand{\englishtitle}[1]{\def\ucas@value@englishtitle{#1}}
+\def\ucas@value@englishauthor{}
 \newcommand{\englishauthor}[1]{\def\ucas@value@englishauthor{#1}}
+\def\ucas@value@englishadvisor{}
 \newcommand{\englishadvisor}[1]{\def\ucas@value@englishadvisor{#1}}
+\def\ucas@value@englishdegree{}
 \newcommand{\englishdegree}[1]{\edef\ucas@value@englishdegree{\zap@space#1 \@empty}}% expand and remove space
+\def\ucas@value@englishdegreetype{}
 \newcommand{\englishdegreetype}[1]{\def\ucas@value@englishdegreetype{#1}}
+\def\ucas@value@englishthesistype{}
 \newcommand{\englishthesistype}[1]{\def\ucas@value@englishthesistype{#1}}
+\def\ucas@value@englishmajor{}
 \newcommand{\englishmajor}[1]{\def\ucas@value@englishmajor{#1}}
+\def\ucas@value@englishinstitute{}
 \newcommand{\englishinstitute}[1]{\def\ucas@value@englishinstitute{#1}}
+\def\ucas@value@englishdate{}
 \newcommand{\englishdate}[1]{\def\ucas@value@englishdate{#1}}
 %-
 %-> Redefine English style
