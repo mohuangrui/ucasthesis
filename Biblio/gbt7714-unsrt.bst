@@ -9,17 +9,12 @@
 %% Copyright (C) 2016-2018 by Zeping Lee <zepinglee AT gmail.com>
 %% 
 %% This file may be distributed and/or modified under the
-%% conditions of the LaTeX Project Public License, either
-%% version 1.2 of this license or (at your option) any later
-%% version. The latest version of this license is in:
-%% 
-%%     http://www.latex-project.org/lppl.txt
-%% 
-%% and version 1.2 or later is part of all distributions of
-%% LaTeX version 1999/12/01 or later.
-%% 
-%% This BibTeX style file is derived from `plainnat.bst' by Patrick W Daly,
-%% which was designed for use with the `natbib.sty' package.
+%% conditions of the LaTeX Project Public License, either version 1.3c
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%    https://www.latex-project.org/lppl.txt
+%% and version 1.3c or later is part of all distributions of LaTeX
+%% version 2005/12/01 or later.
 %% 
 ENTRY
   { address
@@ -55,7 +50,7 @@ INTEGERS { output.state before.all mid.sentence after.sentence after.block after
 
 INTEGERS { lang.zh lang.ja lang.en lang.ru lang.other }
 
-INTEGERS { charptr stringlength }
+INTEGERS { charptr len }
 
 FUNCTION {init.state.consts}
 { #0 'before.all :=
@@ -273,27 +268,7 @@ FUNCTION {emphasize}
   if$
 }
 
-INTEGERS { ascii }
-
-FUNCTION {get.char.lang}
-{ chr.to.int$ 'ascii :=
-  ascii #64 > ascii #91 < and ascii #96 > ascii #123 < and or
-    { lang.en }
-    { ascii #227 > ascii #234 < and
-        { lang.zh }
-        { ascii #227 =
-            { lang.ja }
-            { ascii #207 > ascii #212 < and
-                { lang.ru }
-                { lang.en }
-              if$
-            }
-          if$
-        }
-      if$
-    }
-  if$
-}
+INTEGERS { byte second.byte }
 
 INTEGERS { char.lang tmp.lang }
 
@@ -302,29 +277,67 @@ STRINGS { tmp.str }
 FUNCTION {get.str.lang}
 { 'tmp.str :=
   lang.other 'tmp.lang :=
-  tmp.str empty$
-    { "Empty string!" warning$ }
-    { #1 'charptr :=
-      tmp.str text.length$ #1 + 'stringlength :=
-        { charptr stringlength < }
-        { tmp.str charptr #1 substring$ get.char.lang 'char.lang :=
-          char.lang tmp.lang >
-            { char.lang 'tmp.lang := }
-            'skip$
+  #1 'charptr :=
+  tmp.str text.length$ #1 + 'len :=
+    { charptr len < }
+    { tmp.str charptr #1 substring$ chr.to.int$ 'byte :=
+      byte #128 <
+        { charptr #1 + 'charptr :=
+          byte #64 > byte #91 < and byte #96 > byte #123 < and or
+            { lang.en 'char.lang := }
+            { lang.other 'char.lang := }
           if$
-
-          char.lang lang.zh = char.lang lang.ja = or
-            { charptr #3 + 'charptr := }
-            { char.lang lang.ru =
-                { charptr #2 + 'charptr := }
-                { charptr #1 + 'charptr := }
+        }
+        { tmp.str charptr #1 + #1 substring$ chr.to.int$ 'second.byte :=
+          byte #224 <
+            { charptr #2 + 'charptr :=
+              byte #207 > byte #212 < and
+              byte #212 = second.byte #176 < and or
+                { lang.ru 'char.lang := }
+                { lang.other 'char.lang := }
+              if$
+            }
+            { byte #240 <
+                { charptr #3 + 'charptr :=
+                  byte #227 > byte #234 < and
+                    { lang.zh 'char.lang := }
+                    { byte #227 =
+                        { second.byte #143 >
+                            { lang.zh 'char.lang := }
+                            { second.byte #128 > second.byte #132 < and
+                                { lang.ja 'char.lang := }
+                                { lang.other 'char.lang := }
+                              if$
+                            }
+                          if$
+                        }
+                        { byte #239 =
+                          second.byte #163 > second.byte #172 < and and
+                            { lang.zh 'char.lang := }
+                            { lang.other 'char.lang := }
+                          if$
+                        }
+                      if$
+                    }
+                  if$
+                }
+                { charptr #4 + 'charptr :=
+                  byte #240 = second.byte #159 > and
+                    { lang.zh 'char.lang := }
+                    { lang.other 'char.lang := }
+                  if$
+                }
               if$
             }
           if$
         }
-      while$
+      if$
+      char.lang tmp.lang >
+        { char.lang 'tmp.lang := }
+        'skip$
+      if$
     }
-  if$
+  while$
   tmp.lang
 }
 
@@ -427,27 +440,61 @@ FUNCTION {format.url}
 }
 
 FUNCTION {is.doi.in.url}
-{ url empty$
-    { #0 }
-    { doi text.length$ 'stringlength :=
-      url text.length$ 'charptr :=
-        { url charptr stringlength substring$ doi = not
-          charptr #0 >
-          and
+{ 's :=
+  s empty$
+    { #1 }
+    { url empty$
+        { #0 }
+        { s text.length$ 'len :=
+          url text.length$ 'charptr :=
+            { url charptr len substring$ s = not
+              charptr #0 >
+              and
+            }
+            { charptr #1 - 'charptr := }
+          while$
+          charptr
         }
-        { charptr #1 - 'charptr := }
-      while$
-      charptr
+      if$
     }
   if$
 }
 
 FUNCTION {format.doi}
-{ doi empty$
-    { "" }
-    { is.doi.in.url
+{ ""
+  doi empty$
+    'skip$
+    { "" 's :=
+      doi 't :=
+      #0 'numnames :=
+        { t empty$ not}
+        { t #1 #1 substring$ 'tmp.str :=
+          tmp.str "," = tmp.str " " = or t #2 #1 substring$ empty$ or
+            { t #2 #1 substring$ empty$
+                { s tmp.str * 's := }
+                'skip$
+              if$
+              s empty$ s is.doi.in.url or
+                'skip$
+                { numnames #1 + 'numnames :=
+                  numnames #1 >
+                    { ", " * }
+                    { "DOI: " * }
+                  if$
+                  "\doi{" s * "}" * *
+                }
+              if$
+              "" 's :=
+            }
+            { s tmp.str * 's := }
+          if$
+          t #2 global.max$ substring$ 't :=
+        }
+      while$
+      's :=
+      s empty$ not
+        { new.block s }
         { "" }
-        { new.block "\doi{" doi * "}" * }
       if$
     }
   if$
@@ -456,7 +503,12 @@ FUNCTION {format.doi}
 FUNCTION {format.title}
 { title empty$
     { "" }
-    { title "t" change.case$ }
+    { title
+      entry.lang lang.en =
+        { "t" change.case$ }
+        'skip$
+      if$
+    }
   if$
 }
 
@@ -574,22 +626,15 @@ FUNCTION {output.bibitem}
   before.all 'output.state :=
 }
 
-FUNCTION {n.dashify}
+FUNCTION {hyphenate}
 { 't :=
   ""
     { t empty$ not }
     { t #1 #1 substring$ "-" =
-        { t #1 #2 substring$ "--" = not
-            { "--" *
-              t #2 global.max$ substring$ 't :=
-            }
-            {   { t #1 #1 substring$ "-" = }
-                { "-" *
-                  t #2 global.max$ substring$ 't :=
-                }
-              while$
-            }
-          if$
+        { "-" *
+            { t #1 #1 substring$ "-" = }
+            { t #2 global.max$ substring$ 't := }
+          while$
         }
         { t #1 #1 substring$ *
           t #2 global.max$ substring$ 't :=
@@ -604,8 +649,8 @@ FUNCTION {extract.before.dash}
     { pop$ "" }
     { 's :=
       #1 'charptr :=
-      s text.length$ #1 + 'stringlength :=
-        { charptr stringlength <
+      s text.length$ #1 + 'len :=
+        { charptr len <
           s charptr #1 substring$ "-" = not
           and
         }
@@ -621,14 +666,14 @@ FUNCTION {extract.after.dash}
     { pop$ "" }
     { 's :=
       #1 'charptr :=
-      s text.length$ #1 + 'stringlength :=
-        { charptr stringlength <
+      s text.length$ #1 + 'len :=
+        { charptr len <
           s charptr #1 substring$ "-" = not
           and
         }
         { charptr #1 + 'charptr := }
       while$
-        { charptr stringlength <
+        { charptr len <
           s charptr #1 substring$ "-" =
           and
         }
@@ -749,7 +794,7 @@ FUNCTION {format.volume}
     { "" }
     { volume is.number
         { is.in.chinese
-            { "第" volume * "卷" * }
+            { "第 " volume * " 卷" * }
             { "volume" volume tie.or.space.connect }
           if$
         }
@@ -764,7 +809,7 @@ FUNCTION {format.number}
     { "" }
     { number is.number
         { is.in.chinese
-            { "第" number * "册" * }
+            { "第 " number * " 册" * }
             { "number" number tie.or.space.connect }
           if$
         }
@@ -798,7 +843,10 @@ FUNCTION {format.series.vol.num.title}
       if$
     }
   if$
-  "t" change.case$
+  entry.lang lang.en =
+    { "t" change.case$ }
+    'skip$
+  if$
 }
 
 FUNCTION {format.series.vol.num.booktitle}
@@ -842,7 +890,7 @@ FUNCTION {format.edition}
     { "" }
     { edition is.number
         { is.in.chinese
-            { edition "版" * }
+            { edition " 版" * }
             { edition num.to.ordinal " ed." * }
           if$
         }
@@ -868,12 +916,9 @@ FUNCTION {format.sine.loco}
   if$
 }
 
-FUNCTION {format.address}
-{ address }
-
 FUNCTION {format.sine.nomine}
 { is.in.chinese
-    { "[出版地不详]" }
+    { "[出版者不详]" }
     { "[s.n.]" }
   if$
 }
@@ -935,7 +980,7 @@ FUNCTION {format.address.publisher}
 FUNCTION {format.pages}
 { pages empty$
     { "" }
-    { pages n.dashify }
+    { pages hyphenate }
   if$
 }
 
@@ -1399,8 +1444,6 @@ FUNCTION {sortify}
   "l" change.case$
 }
 
-INTEGERS { len }
-
 FUNCTION {chop.word}
 { 's :=
   'len :=
@@ -1612,7 +1655,7 @@ FUNCTION {begin.bib}
   write$ newline$
   "\providecommand{\href}[2]{\url{#2}}"
   write$ newline$
-  "\providecommand{\doi}[1]{DOI: \href{http://dx.doi.org/#1}{#1}}"
+  "\providecommand{\doi}[1]{\href{https://doi.org/#1}{#1}}"
   write$ newline$
   "\expandafter\ifx\csname urlstyle\endcsname\relax\relax\else"
   write$ newline$
