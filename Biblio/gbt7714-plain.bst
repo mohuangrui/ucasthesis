@@ -1192,7 +1192,7 @@ FUNCTION {periodical}
   fin.entry
 }
 
-FUNCTION {article.in.journal}
+FUNCTION {article}
 { output.bibitem
   format.authors "author" output.check
   author format.key output
@@ -1256,7 +1256,7 @@ FUNCTION {online}
 
 FUNCTION {misc}
 { journal empty$ not
-    'article.in.journal
+    'article
     { booktitle empty$ not
         'incollection
         { url empty$ not
@@ -1276,8 +1276,6 @@ FUNCTION {archive}
 { "A" set.mark
   misc
 }
-
-FUNCTION {article} { misc }
 
 FUNCTION {book} { monograph }
 
@@ -1317,7 +1315,7 @@ FUNCTION {mastersthesis}
 
 FUNCTION {newspaper}
 { "N" set.mark
-  article.in.journal
+  article
 }
 
 FUNCTION {phdthesis} { mastersthesis }
