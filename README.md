@@ -6,7 +6,7 @@
 
 ## 重要建议
 
-* 关于 LaTeX 的知识性问题，请查阅 [ucasthesis 和 LaTeX 知识小站](https://github.com/mohuangrui/ucasthesis/wiki) 和 [LaTeX Wikibook](https://en.wikibooks.org/wiki/LaTeX)。
+* 关于 LaTeX 的知识性问题，请查阅 [ucasthesis 知识小站](https://github.com/mohuangrui/ucasthesis/wiki) 和 [LaTeX Wikibook](https://en.wikibooks.org/wiki/LaTeX)。
 * 关于模板编译和样式设计的问题，请先仔细阅读 **模板使用说明.pdf** 并遵从提问流程。
 * 使用邮件传播 ucasthesis 时，请先删除 `artratex.bat` 以防范 Dos 脚本的潜在风险。
 * 开题报告请见：[ucasproposal: 中国科学院大学开题报告 LaTeX 模板](https://github.com/mohuangrui/ucasproposal)。
@@ -28,9 +28,9 @@
 
 ## 更新记录
 
-* `2019-01-10` 将公式编号前加点纳入模版默认，更多相关讨论可见：[琐屑细节](https://github.com/mohuangrui/ucasthesis/wiki/琐屑细节)。在 yunyun2019 的建议下，采用 [zepinglee](https://github.com/zepinglee) 为ucas基于国标样式而开发的定制文献样式：[ucas 样式分支](https://github.com/CTeX-org/gbt7714-bibtex-style/tree/ucas)。文献样式设定的更多讨论可见：[文献样式](https://github.com/mohuangrui/ucasthesis/wiki/%E6%96%87%E7%8C%AE%E6%A0%B7%E5%BC%8F)。
+* `2019-01-10` 将公式编号前加点纳入模版默认，更多相关讨论可见：[琐屑细节](https://github.com/mohuangrui/ucasthesis/wiki/琐屑细节)。在 yunyun2019 的建议下，采用 [zepinglee](https://github.com/zepinglee)基于国标样式 为ucas所定制文献样式：[ucas 样式分支](https://github.com/CTeX-org/gbt7714-bibtex-style/tree/ucas)。文献样式设定的更多讨论可见：[文献样式](https://github.com/mohuangrui/ucasthesis/wiki/%E6%96%87%E7%8C%AE%E6%A0%B7%E5%BC%8F)。
 
-* `2018-04-08` 将附录复原为常规的排版设置。问题/建议由邵岳林提出。修改的文件为：Thesis.tex，Appendix.tex。
+* `2018-04-08` 在邵岳林的建议下将附录复原为常规的排版设置。若需将附录置于参考文献后，请见：[琐屑细节](https://github.com/mohuangrui/ucasthesis/wiki/琐屑细节)。
 
 * `2018-04-03` 根据国科大本科部陆晴老师和本科部学位办丁云云老师的复审审核建议再次修复一些样式细节问题。
 
