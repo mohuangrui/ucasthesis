@@ -28,7 +28,7 @@
 
 ## 更新记录
 
-* `2019-01-10` 将公式编号前加点纳入模版默认，更多相关讨论可见：[琐屑细节](https://github.com/mohuangrui/ucasthesis/wiki/琐屑细节)。在 yunyun2019 的建议下，采用 [zepinglee](https://github.com/zepinglee)基于国标样式 为ucas所定制文献样式：[ucas 样式分支](https://github.com/CTeX-org/gbt7714-bibtex-style/tree/ucas)。文献样式设定的更多讨论可见：[文献样式](https://github.com/mohuangrui/ucasthesis/wiki/%E6%96%87%E7%8C%AE%E6%A0%B7%E5%BC%8F)。
+* `2019-01-10` 将公式编号前加点纳入模版默认，更多相关讨论可见：[琐屑细节](https://github.com/mohuangrui/ucasthesis/wiki/琐屑细节)。在 yunyun2019 的建议下，采用 [zepinglee](https://github.com/zepinglee) 基于国标样式为 ucas 所定制文献样式：[ucas 样式分支](https://github.com/CTeX-org/gbt7714-bibtex-style/tree/ucas)。文献样式设定的更多讨论可见：[文献样式](https://github.com/mohuangrui/ucasthesis/wiki/%E6%96%87%E7%8C%AE%E6%A0%B7%E5%BC%8F)。
 
 * `2018-04-08` 在邵岳林的建议下将附录复原为常规的排版设置。若需将附录置于参考文献后，请见：[琐屑细节](https://github.com/mohuangrui/ucasthesis/wiki/琐屑细节)。
 
