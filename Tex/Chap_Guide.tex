@@ -73,15 +73,16 @@ Thesis.tex为主文档，其设计和规划了论文的整体框架，通过对�
 
 \begin{enumerate}
     \item ref.bib：参考文献信息库。
-    \item gbt7714-xxx.bst：符合国标的文献样式定义文件。由 \href{https://github.com/zepinglee/gbt7714-bibtex-style}{zepinglee}  开发，并满足最新国标要求。与文献样式有关的问题，请查阅开发者所提供的文档，并建议适当追踪其更新。
+    \item gbt7714-xxx.bst：文献样式定义文件。由 \href{https://github.com/zepinglee}{zepinglee}  开发，在最新国标的基础上对ucas进行了定制。与文献样式有关的问题，请查阅开发者所提供的文档，并建议适当追踪 \href{https://github.com/CTeX-org/gbt7714-bibtex-style/tree/ucas}{ucas 样式分支}的更新。
 \end{enumerate}
 
 \section{数学公式、图表、参考文献等功能}
 
 \subsection{数学公式}
 
-比如Navier-Stokes方程:
+比如Navier-Stokes方程（方程~\eqref{eq:ns}）:
 \begin{equation} \label{eq:ns}
+    \adddotsbeforeeqnnum%
     \begin{cases}
         \frac{\partial \rho}{\partial t} + \nabla\cdot(\rho\Vector{V}) = 0 \ \mathrm{times\ font\ test}\\
         \frac{\partial (\rho\Vector{V})}{\partial t} + \nabla\cdot(\rho\Vector{V}\Vector{V}) = \nabla\cdot\Tensor{\sigma} \ \text{times font test}\\
@@ -89,6 +90,7 @@ Thesis.tex为主文档，其设计和规划了论文的整体框架，通过对�
     \end{cases}
 \end{equation}
 \begin{equation}
+    \adddotsbeforeeqnnum%
     \frac{\partial }{\partial t}\int\limits_{\Omega} u \, \mathrm{d}\Omega + \int\limits_{S} \unitVector{n}\cdot(u\Vector{V}) \, \mathrm{d}S = \dot{\phi}
 \end{equation}
 
@@ -205,7 +207,7 @@ Thesis.tex为主文档，其设计和规划了论文的整体框架，通过对�
 
 更多例子如：
 
-\citet{walls2013drought}根据...的研究，首次提出...。其中关于...\citep{walls2013drought}，是当前中国...得到迅速发展的研究领域\citep{chen1980zhongguo}。引用同一著者在同一年份出版的多篇文献时,在出版年份之后用
+\citet{walls2013drought}根据\citet{betts2005aging}的研究，首次提出...。其中关于...\citep{walls2013drought, betts2005aging}，是当前中国...得到迅速发展的研究领域\citep{chen1980zhongguo, bravo1990comparative}。引用同一著者在同一年份出版的多篇文献时,在出版年份之后用
 英文小写字母区别，如：\citep{yuan2012lana, yuan2012lanb, yuan2012lanc}。同一处引用多篇文献时,按出版年份由近及远依次标注,中间用
 分号分开。例如\citep{chen1980zhongguo, stamerjohanns2009mathml, hls2012jinji, niu2013zonghe}。
 
@@ -232,7 +234,7 @@ Thesis.tex为主文档，其设计和规划了论文的整体框架，通过对�
 
 正如此处所示\citepns{lamport1986document,chen2005zhulu}
 
-参考文献索引更为详细的信息，请见 \href{https://github.com/zepinglee/gbt7714-bibtex-style}{zepinglee} 和 \href{https://en.wikibooks.org/wiki/LaTeX/Bibliography_Management}{WiKibook Bibliography}。
+参考文献索引更为详细的信息，请见 \href{https://en.wikibooks.org/wiki/LaTeX/Bibliography_Management}{WiKibook Bibliography}。
 
 \nocite{*}
 

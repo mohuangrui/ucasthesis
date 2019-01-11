@@ -24,11 +24,11 @@
 
 ## 重要通知
 
-* `2018-04-03` 模板样式进行了修改，请查看下面的修改描述，以决定是否需要更新。
+* `2019-01-10` 模板样式进行了修改，请查看下面的修改描述，以决定是否需要更新。
 
 ## 更新记录
 
-* `2018-08-03` 更新参考文献的样式文件，并对参考文献样式的设定进行了更多说明，具体请见：[文献样式](https://github.com/mohuangrui/ucasthesis/wiki/%E6%96%87%E7%8C%AE%E6%A0%B7%E5%BC%8F)。
+* `2019-01-10` 将公式编号前加点纳入模版默认，更多相关讨论可见：[琐屑细节](https://github.com/mohuangrui/ucasthesis/wiki/琐屑细节)。在 yunyun2019 的建议下，采用 [zepinglee](https://github.com/zepinglee) 为ucas基于国标样式而开发的定制文献样式：[ucas 样式分支](https://github.com/CTeX-org/gbt7714-bibtex-style/tree/ucas)。文献样式设定的更多讨论可见：[文献样式](https://github.com/mohuangrui/ucasthesis/wiki/%E6%96%87%E7%8C%AE%E6%A0%B7%E5%BC%8F)。
 
 * `2018-04-08` 将附录复原为常规的排版设置。问题/建议由邵岳林提出。修改的文件为：Thesis.tex，Appendix.tex。
 
@@ -47,7 +47,7 @@
 
 * `2018-02-04` 在 [ctex](https://github.com/CTeX-org/ctex-kit) 开发者的帮助下修复误用字体命令导致的粗宋体异常。然后，将模板兼容性进一步扩展为兼容操作系统 Windows，Linux，MacOS 和 LaTeX 编译引擎 pdflatex，xelatex，lualatex。移除 microtype 宏包以提高编译效率。
 
-* `2018-01-28` 基于国科大 2018 新版论文规范进行了重大修改，采用新的封面、声明、页眉页脚样式。展示标题中使用数学公式。使用 [zepinglee](https://github.com/zepinglee/gbt7714-bibtex-style) 开发的文献国标样式。
+* `2018-01-28` 基于国科大 2018 新版论文规范进行了重大修改，采用新的封面、声明、页眉页脚样式。展示标题中使用数学公式。
 
 * `2017-05-14` 增加 \citepns{} 和 \citetns{} 命令提供上标引用下混合非上标引用的需求，问题/建议由赵永明提出。添加设定论文为 thesis 或 dissertation 的命令 \englishthesistype{}，问题/建议由臧光明提出。
 
