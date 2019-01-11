@@ -85,6 +85,10 @@
 %-
 \providecommand*{\MyFactor}{0.6}% for single figure
 \providecommand*{\MySubFactor}{0.45}% for subfigure
+%-
+%-> Add dots before equation number
+%-
+\newcommand{\adddotsbeforeeqnnum}{\def\maketag@@@##1{\hbox{\m@th\normalfont\dots\ ##1}}}%
 %---------------------------------------------------------------------------%
 \endinput
 

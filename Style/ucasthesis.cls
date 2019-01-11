@@ -19,18 +19,24 @@
 %-
 %-> Layout
 %-
-\newif\ifucas@singlesided \ucas@singlesidedfalse
 \DeclareOption{singlesided}{% enable single-sided printing
-    \ucas@singlesidedtrue%
+    \PassOptionsToClass{oneside}{ctexbook}%
 }
-\newif\ifucas@doublesided \ucas@doublesidedfalse
 \DeclareOption{doublesided}{% enable double-sided printing
-    \ucas@doublesidedtrue%
+    \PassOptionsToClass{twoside}{ctexbook}%
 }
 \newif\ifucas@printcopy \ucas@printcopyfalse
 \DeclareOption{printcopy}{% enable print copy layout
-    \ucas@doublesidedtrue% auto enable double-sided style
+    \PassOptionsToClass{twoside}{ctexbook}%
     \ucas@printcopytrue%
+}
+%-
+%-> Language
+%-
+\newif\ifucas@plain \ucas@plainfalse
+\DeclareOption{plain}{% enable plain writing style
+    \PassOptionsToClass{scheme=plain}{ctexbook}%
+    \ucas@plaintrue%
 }
 %-
 %-> Draft version info
@@ -52,11 +58,7 @@
 %---------------------------------------------------------------------------%
 %->> Load class information
 %---------------------------------------------------------------------------%
-\ifucas@doublesided% if double-sided printing enabled
-    \LoadClass[UTF8,a4paper,twoside,zihao=-4]{ctexbook}
-\else% if double-sided printing isn't enabled
-    \LoadClass[UTF8,a4paper,oneside,zihao=-4]{ctexbook}
-\fi
+\LoadClass[UTF8,a4paper,zihao=-4]{ctexbook}
 %---------------------------------------------------------------------------%
 %->> Required packages
 %---------------------------------------------------------------------------%
@@ -363,6 +365,16 @@
 \newcommand{\englishkeywords}[1]{%
     \vspace{\baselineskip}
     \noindent {\bfseries \ucas@label@englishkeywords} #1}
+%---------------------------------------------------------------------------%
+%->> Customized settings
+%---------------------------------------------------------------------------%
+\ifucas@plain%
+    \def\bibetal{\ucas@value@enbibetal}
+    \def\biband{\ucas@value@enbiband}
+\else
+    \def\bibetal{\ucas@value@chbibetal}
+    \def\biband{\ucas@value@chbiband}
+\fi
 %---------------------------------------------------------------------------%
 %->> Configure table of contents
 %---------------------------------------------------------------------------%
