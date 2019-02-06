@@ -138,50 +138,50 @@
 %-
 %-> Chinese item commands
 %-
-\def\ucas@value@confidential{}
-\newcommand{\confidential}[1]{\def\ucas@value@confidential{#1}}
-\def\ucas@value@schoollogo{}
-\newcommand{\schoollogo}[2]{\def\ucas@value@schoollogo{\includegraphics[#1]{#2}}}
-\def\ucas@value@title{}
-\def\ucas@value@titlemark{}
-\renewcommand{\title}[2][\ucas@value@title]{%
-    \def\ucas@value@title{#2}
-    %\def\ucas@value@titlemark{\MakeUppercase{#1}}}
-    \def\ucas@value@titlemark{#1}}
-\renewcommand{\@title}{\ucas@value@titlemark}
-\def\ucas@value@author{}
-\renewcommand{\author}[1]{\def\ucas@value@author{#1}}
-\def\ucas@value@advisor{}
-\newcommand{\advisor}[1]{\def\ucas@value@advisor{#1}}
-\def\ucas@value@advisorsec{}
-\newcommand{\advisorsec}[1]{\def\ucas@value@advisorsec{#1}}
-\def\ucas@value@degree{}
-\newcommand{\degree}[1]{\def\ucas@value@degree{#1}}
-\def\ucas@value@degreetype{}
-\newcommand{\degreetype}[1]{\def\ucas@value@degreetype{#1}}
-\def\ucas@value@major{}
-\newcommand{\major}[1]{\def\ucas@value@major{#1}}
-\def\ucas@value@institute{}
-\newcommand{\institute}[1]{\def\ucas@value@institute{#1}}
-\def\ucas@value@chinesedate{}
-\newcommand{\chinesedate}[1]{\def\ucas@value@chinesedate{#1}}
+\def\ucas@value@ch@confidential{}
+\newcommand{\confidential}[1]{\def\ucas@value@ch@confidential{#1}}
+\def\ucas@value@ch@schoollogo{}
+\newcommand{\schoollogo}[2]{\def\ucas@value@ch@schoollogo{\includegraphics[#1]{#2}}}
+\def\ucas@value@ch@title{}
+\def\ucas@value@ch@titlemark{}
+\renewcommand{\title}[2][\ucas@value@ch@title]{%
+    \def\ucas@value@ch@title{#2}
+    %\def\ucas@value@ch@titlemark{\MakeUppercase{#1}}}
+    \def\ucas@value@ch@titlemark{#1}}
+\renewcommand{\@title}{\ucas@value@ch@titlemark}
+\def\ucas@value@ch@author{}
+\renewcommand{\author}[1]{\def\ucas@value@ch@author{#1}}
+\def\ucas@value@ch@advisor{}
+\newcommand{\advisor}[1]{\def\ucas@value@ch@advisor{#1}}
+\def\ucas@value@ch@advisors{}
+\newcommand{\advisors}[1]{\def\ucas@value@ch@advisors{#1}}
+\def\ucas@value@ch@degree{}
+\newcommand{\degree}[1]{\def\ucas@value@ch@degree{#1}}
+\def\ucas@value@ch@degreetype{}
+\newcommand{\degreetype}[1]{\def\ucas@value@ch@degreetype{#1}}
+\def\ucas@value@ch@major{}
+\newcommand{\major}[1]{\def\ucas@value@ch@major{#1}}
+\def\ucas@value@ch@institute{}
+\newcommand{\institute}[1]{\def\ucas@value@ch@institute{#1}}
+\def\ucas@value@ch@date{}
+\renewcommand{\date}[1]{\def\ucas@value@ch@date{#1}}
 %-
 %-> Redefine Chinese style
 %-
 \renewcommand{\maketitle}{%
-    \ucasifstreq{\ucas@value@englishdegree}{Bachelor}{%
-        \def\ucas@label@thesis{\ucas@label@bacthesis}%
-        \def\ucas@label@major{\ucas@label@ungradmajor}%
-        \def\ucas@label@institute{\ucas@label@ungradinstitute}%
+    \ucasifstreq{\ucas@value@en@degree}{Bachelor}{%
+        \def\ucas@label@ch@thesis{\ucas@label@ch@bacthesis}%
+        \def\ucas@label@ch@major{\ucas@label@ch@und@major}%
+        \def\ucas@label@ch@institute{\ucas@label@ch@und@institute}%
     }{%
-    \ucasifstreq{\ucas@value@englishdegree}{Master}{%
-        \def\ucas@label@thesis{\ucas@label@masthesis}%
-        \def\ucas@label@major{\ucas@label@gradmajor}%
-        \def\ucas@label@institute{\ucas@label@gradinstitute}%
+    \ucasifstreq{\ucas@value@en@degree}{Master}{%
+        \def\ucas@label@ch@thesis{\ucas@label@ch@masthesis}%
+        \def\ucas@label@ch@major{\ucas@label@ch@grad@major}%
+        \def\ucas@label@ch@institute{\ucas@label@ch@grad@institute}%
     }{%
-        \def\ucas@label@thesis{\ucas@label@docthesis}%
-        \def\ucas@label@major{\ucas@label@gradmajor}%
-        \def\ucas@label@institute{\ucas@label@gradinstitute}%
+        \def\ucas@label@ch@thesis{\ucas@label@ch@docthesis}%
+        \def\ucas@label@ch@major{\ucas@label@ch@grad@major}%
+        \def\ucas@label@ch@institute{\ucas@label@ch@grad@institute}%
     }}%
     \cleardoublepage
     \thispagestyle{empty}
@@ -189,36 +189,36 @@
         \linespread{1.5}
         \zihao{4}\bfseries
 
-        \hfill{} \ucasifstrbk{\ucas@value@confidential}{}{\ucas@label@confidential \ulenhance{\ulextend[50pt]{\hspace*{-\ulhshift}\zihao{5}\ucas@value@confidential}}}
+        \hfill{} \ucasifstrbk{\ucas@value@ch@confidential}{}{\ucas@label@ch@confidential \ulenhance{\ulextend[50pt]{\hspace*{-\ulhshift}\zihao{5}\ucas@value@ch@confidential}}}
 
         \vspace*{\stretch{4}}
 
-        {\ucas@value@schoollogo}
+        {\ucas@value@ch@schoollogo}
 
         \vspace*{\stretch{2}}
 
-        {\zihao{1}\bfseries\sffamily {\ucas@label@thesis}}
+        {\zihao{1}\bfseries\sffamily {\ucas@label@ch@thesis}}
 
         \vspace*{\stretch{3}}
 
-        {\zihao{-3}\bfseries\sffamily \ulenhance[1.5pt]{\ \ucas@value@title\ }}
+        {\zihao{-3}\bfseries\sffamily \ulenhance[1.5pt]{\ \ucas@value@ch@title\ }}
 
         \vspace*{\stretch{3}}
 
         \def\tabcolsep{1pt}
         \def\arraystretch{1.3}
         \begin{tabular}{lc}
-            \ucas@label@author & \ulenhance[1.2pt]{\ulextend{\ucas@value@author}}\\
-            \ucas@label@advisor & \ulenhance[1.2pt]{\ulextend{\ucas@value@advisor}}\\
-            & \ulenhance[1.2pt]{\ulextend{\ucas@value@advisorsec}}\\
-            \ucas@label@degree & \ulenhance[1.2pt]{\ulextend{\ucas@value@degreetype\ucas@value@degree}}\\
-            \ucas@label@major & \ulenhance[1.2pt]{\ulextend{\ucas@value@major}}\\
-            \ucas@label@institute & \ulenhance[1.2pt]{\ulextend{\ucas@value@institute}}\\
+            \ucas@label@ch@author & \ulenhance[1.2pt]{\ulextend{\ucas@value@ch@author}}\\
+            \ucas@label@ch@advisor & \ulenhance[1.2pt]{\ulextend{\ucas@value@ch@advisor}}\\
+            & \ulenhance[1.2pt]{\ulextend{\ucas@value@ch@advisors}}\\
+            \ucas@label@ch@degree & \ulenhance[1.2pt]{\ulextend{\ucas@value@ch@degreetype\ucas@value@ch@degree}}\\
+            \ucas@label@ch@major & \ulenhance[1.2pt]{\ulextend{\ucas@value@ch@major}}\\
+            \ucas@label@ch@institute & \ulenhance[1.2pt]{\ulextend{\ucas@value@ch@institute}}\\
         \end{tabular}
 
         \vspace*{\stretch{4.5}}
 
-        {\ucas@value@chinesedate}
+        {\ucas@value@ch@date}
 
         \vspace*{\stretch{3.5}}
     \end{center}
@@ -248,28 +248,28 @@
 %-
 %-> English item commands
 %-
-\def\ucas@value@englishtitle{}
-\newcommand{\englishtitle}[1]{\def\ucas@value@englishtitle{#1}}
-\def\ucas@value@englishauthor{}
-\newcommand{\englishauthor}[1]{\def\ucas@value@englishauthor{#1}}
-\def\ucas@value@englishadvisor{}
-\newcommand{\englishadvisor}[1]{\def\ucas@value@englishadvisor{#1}}
-\def\ucas@value@englishdegree{}
-\newcommand{\englishdegree}[1]{\edef\ucas@value@englishdegree{\zap@space#1 \@empty}}% expand and remove space
-\def\ucas@value@englishdegreetype{}
-\newcommand{\englishdegreetype}[1]{\def\ucas@value@englishdegreetype{#1}}
-\def\ucas@value@englishthesistype{}
-\newcommand{\englishthesistype}[1]{\def\ucas@value@englishthesistype{#1}}
-\def\ucas@value@englishmajor{}
-\newcommand{\englishmajor}[1]{\def\ucas@value@englishmajor{#1}}
-\def\ucas@value@englishinstitute{}
-\newcommand{\englishinstitute}[1]{\def\ucas@value@englishinstitute{#1}}
-\def\ucas@value@englishdate{}
-\newcommand{\englishdate}[1]{\def\ucas@value@englishdate{#1}}
+\def\ucas@value@en@title{}
+\newcommand{\TITLE}[1]{\def\ucas@value@en@title{#1}}
+\def\ucas@value@en@author{}
+\newcommand{\AUTHOR}[1]{\def\ucas@value@en@author{#1}}
+\def\ucas@value@en@advisor{}
+\newcommand{\ADVISOR}[1]{\def\ucas@value@en@advisor{#1}}
+\def\ucas@value@en@degree{}
+\newcommand{\DEGREE}[1]{\edef\ucas@value@en@degree{\zap@space#1 \@empty}}% expand and remove space
+\def\ucas@value@en@degreetype{}
+\newcommand{\DEGREETYPE}[1]{\def\ucas@value@en@degreetype{#1}}
+\def\ucas@value@en@thesistype{}
+\newcommand{\THESISTYPE}[1]{\def\ucas@value@en@thesistype{#1}}
+\def\ucas@value@en@major{}
+\newcommand{\MAJOR}[1]{\def\ucas@value@en@major{#1}}
+\def\ucas@value@en@institute{}
+\newcommand{\INSTITUTE}[1]{\def\ucas@value@en@institute{#1}}
+\def\ucas@value@en@date{}
+\newcommand{\DATE}[1]{\def\ucas@value@en@date{#1}}
 %-
 %-> Redefine English style
 %-
-\newcommand{\makeenglishtitle}{%
+\newcommand{\MAKETITLE}{%
     \cleardoublepage
     \thispagestyle{empty}
     \begin{center}
@@ -278,25 +278,25 @@
 
         \vspace*{50pt}
 
-        {\zihao{-3}\bfseries \ulenhance[1.5pt]{\ \ucas@value@englishtitle\ }}
+        {\zihao{-3}\bfseries \ulenhance[1.5pt]{\ \ucas@value@en@title\ }}
 
         \vspace*{\stretch{2}}
 
-        {\ucas@label@englishstatement}
+        {\ucas@label@en@statement}
 
         {By}
 
-        {\ucas@value@englishauthor}
+        {\ucas@value@en@author}
 
-        {\ucas@value@englishadvisor}
+        {\ucas@value@en@advisor}
 
         \vspace*{\stretch{3}}
 
-        {\ucas@value@englishinstitute}
+        {\ucas@value@en@institute}
 
         \vspace*{\stretch{1}}
 
-        {\ucas@value@englishdate}
+        {\ucas@value@en@date}
 
         \vspace*{\stretch{3}}
     \end{center}
@@ -319,32 +319,32 @@
         \vspace*{2ex}
 
         \begin{center}
-            {\zihao{4}\bfseries\sffamily \ucas@value@declare@create}
+            {\zihao{4}\bfseries\sffamily \ucas@label@ch@declare@creativity}
         \end{center}
 
-        {\ucas@value@declare@creativity}
+        {\ucas@value@ch@declare@creativity}
 
         \vspace*{3ex}
 
-        {\hfill{} {\ucas@value@declare@s \hspace*{14em}}}
+        {\hfill{} {\ucas@label@ch@declare@author \hspace*{14em}}}
 
-        {\hfill{} {\ucas@value@declare@d \hspace*{14em}}}
+        {\hfill{} {\ucas@label@ch@declare@date \hspace*{14em}}}
 
         \vspace*{6ex}
 
         \begin{center}
-            {\zihao{4}\bfseries\sffamily \ucas@value@declare@right}
+            {\zihao{4}\bfseries\sffamily \ucas@label@ch@declare@rights}
         \end{center}
 
-        {\ucas@value@declare@rights}
+        {\ucas@value@ch@declare@rights}
 
-        {\ucas@value@declare@rule}
+        {\ucas@value@ch@declare@rule}
 
         \vspace*{3ex}
 
-        {\hfill{} {\ucas@value@declare@s \hspace*{10em} \ucas@value@declare@t \hspace*{9em}}}
+        {\hfill{} {\ucas@label@ch@declare@author \hspace*{10em} \ucas@label@ch@declare@advisor \hspace*{9em}}}
 
-        {\hfill{} {\ucas@value@declare@d \hspace*{10em} \ucas@value@declare@d \hspace*{9em}}}
+        {\hfill{} {\ucas@label@ch@declare@date \hspace*{10em} \ucas@label@ch@declare@date \hspace*{9em}}}
 
         \vspace*{3ex}
     }
@@ -360,20 +360,52 @@
 %- define chinese keywords
 \newcommand{\keywords}[1]{%
     \vspace{\baselineskip}
-    \noindent {\bfseries \ucas@label@keywords} #1}
+    \noindent {\bfseries \ucas@label@ch@keywords} #1}
 %- define engish keywords
-\newcommand{\englishkeywords}[1]{%
+\newcommand{\KEYWORDS}[1]{%
     \vspace{\baselineskip}
-    \noindent {\bfseries \ucas@label@englishkeywords} #1}
+    \noindent {\bfseries \ucas@label@en@keywords} #1}
 %---------------------------------------------------------------------------%
-%->> Customized settings
+%->> Structure elements
 %---------------------------------------------------------------------------%
 \ifucas@plain%
-    \def\bibetal{\ucas@value@enbibetal}
-    \def\biband{\ucas@value@enbiband}
+    \renewcommand{\contentsname}{\ucas@label@en@tocname}
+    \renewcommand{\listfigurename}{\ucas@label@en@lsfigname}
+    \renewcommand{\listtablename}{\ucas@label@en@lstabname}
+    \renewcommand{\bibname}{\ucas@label@en@bibname}
+    \newcommand{\algname}{\ucas@label@en@algname}
+    \newcommand{\bibetal}{\ucas@label@en@bibetal}
+    \newcommand{\biband}{\ucas@label@en@biband}
+    \newcommand{\axiomname}{\ucas@label@en@axiomname}
+    \newcommand{\theoremname}{\ucas@label@en@theoremname}
+    \newcommand{\lemmaname}{\ucas@label@en@lemmaname}
+    \newcommand{\corollaryname}{\ucas@label@en@corollaryname}
+    \newcommand{\assertionname}{\ucas@label@en@assertionname}
+    \newcommand{\propositionname}{\ucas@label@en@propositionname}
+    \newcommand{\conjecturename}{\ucas@label@en@conjecturename}
+    \newcommand{\definitionname}{\ucas@label@en@definitionname}
+    \newcommand{\examplename}{\ucas@label@en@examplename}
+    \newcommand{\remarkname}{\ucas@label@en@remarkname}
+    \renewcommand{\proofname}{\ucas@label@en@proofname}
 \else
-    \def\bibetal{\ucas@value@chbibetal}
-    \def\biband{\ucas@value@chbiband}
+    \renewcommand{\contentsname}{\ucas@label@ch@tocname}
+    \renewcommand{\listfigurename}{\ucas@label@ch@lsfigname}
+    \renewcommand{\listtablename}{\ucas@label@ch@lstabname}
+    \newcommand{\algname}{\ucas@label@ch@algname}
+    \renewcommand{\bibname}{\ucas@label@ch@bibname}
+    \newcommand{\bibetal}{\ucas@label@ch@bibetal}
+    \newcommand{\biband}{\ucas@label@ch@biband}
+    \newcommand{\axiomname}{\ucas@label@ch@axiomname}
+    \newcommand{\theoremname}{\ucas@label@ch@theoremname}
+    \newcommand{\lemmaname}{\ucas@label@ch@lemmaname}
+    \newcommand{\corollaryname}{\ucas@label@ch@corollaryname}
+    \newcommand{\assertionname}{\ucas@label@ch@assertionname}
+    \newcommand{\propositionname}{\ucas@label@ch@propositionname}
+    \newcommand{\conjecturename}{\ucas@label@ch@conjecturename}
+    \newcommand{\definitionname}{\ucas@label@ch@definitionname}
+    \newcommand{\examplename}{\ucas@label@ch@examplename}
+    \newcommand{\remarkname}{\ucas@label@ch@remarkname}
+    \renewcommand{\proofname}{\ucas@label@ch@proofname}
 \fi
 %---------------------------------------------------------------------------%
 %->> Configure table of contents

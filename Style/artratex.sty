@@ -176,9 +176,33 @@
 %-
 %-> Math packages
 %-
-\RequirePackage{amsmath}% math packages
+\RequirePackage{amsmath,amsthm,amssymb}% math packages
+\theoremstyle{plain}% for theorems, lemmas, propositions, etc
+\providecommand{\theoremname}{Theorem}%
+\newtheorem{theorem}{\theoremname}[chapter]
+\providecommand{\axiomname}{Axiom}%
+\newtheorem{axiom}[theorem]{\axiomname}
+\providecommand{\lemmaname}{Lemma}%
+\newtheorem{lemma}[theorem]{\lemmaname}
+\providecommand{\corollaryname}{Corollary}%
+\newtheorem{corollary}[theorem]{\corollaryname}
+\providecommand{\assertionname}{Assertion}%
+\newtheorem{assertion}[theorem]{\assertionname}
+\providecommand{\propositionname}{Proposition}%
+\newtheorem{proposition}[theorem]{\propositionname}
+\providecommand{\conjecturename}{Conjecture}%
+\newtheorem{conjecture}[theorem]{\conjecturename}
+\theoremstyle{definition}% for definitions and examples
+\providecommand{\definitionname}{Definition}%
+\newtheorem{definition}{\definitionname}[chapter]
+\providecommand{\examplename}{Example}%
+\newtheorem{example}{\examplename}[chapter]
+\theoremstyle{remark}% for remarks and notes
+\providecommand{\remarkname}{Remark}%
+\newtheorem*{remark}{\remarkname}
+
 \ifartx@math% extra math packages
-    \RequirePackage{mathtools,amsfonts}%
+    \RequirePackage{mathtools}%
 \fi
 %-
 %-> Language settings
@@ -366,6 +390,8 @@
     \setlist{nosep}% default text spacing
     \RequirePackage{listings}% source code
     \RequirePackage{algpseudocode,algorithm,algorithmicx}% algorithm
+    \providecommand{\algname}{Algorithm}%
+    \renewcommand*{\ALG@name}{\algname}% rename label
 \fi
 %-
 %-> Links support
