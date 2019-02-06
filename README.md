@@ -24,9 +24,11 @@
 
 ## 重要通知
 
-* `2019-01-10` 模板样式进行了修改，请查看下面的修改描述，以决定是否需要更新。
+* `2019-02-06` 模板样式进行了修改，请查看下面的修改描述，以决定是否需要更新。
 
 ## 更新记录
+
+* `2019-02-06` 增加定理、定义、证明等数学环境并完善中文版和国际版之间的中英格式切换。
 
 * `2019-01-10` 将公式编号前加点纳入模版默认，更多相关讨论可见：[琐屑细节](https://github.com/mohuangrui/ucasthesis/wiki/琐屑细节)。在 yunyun2019 的建议下，采用 [zepinglee](https://github.com/zepinglee) 基于国标样式为 ucas 所定制文献样式：[ucas 样式分支](https://github.com/CTeX-org/gbt7714-bibtex-style/tree/ucas)。文献样式设定的更多讨论可见：[文献样式](https://github.com/mohuangrui/ucasthesis/wiki/%E6%96%87%E7%8C%AE%E6%A0%B7%E5%BC%8F)。
 
