@@ -171,15 +171,26 @@
 %-
 \ProcessOptions\relax%
 %---------------------------------------------------------------------------%
+%->> Detect class and counter
+%---------------------------------------------------------------------------%
+\newcommand*{\ifcounter}[1]{% check if counter exists
+    \ifcsname c@#1\endcsname%
+        \expandafter\@firstoftwo%
+    \else%
+        \expandafter\@secondoftwo%
+    \fi
+}
+\ifcounter{chapter}{\def\maincounter{chapter}}{\def\maincounter{section}}
+%---------------------------------------------------------------------------%
 %->> Required packages
 %---------------------------------------------------------------------------%
 %-
 %-> Math packages
 %-
-\RequirePackage{amsmath,amsthm,amssymb}% math packages
+\RequirePackage{amsmath,amsthm,amssymb}% math structures, theorems, and extended symbols
 \theoremstyle{plain}% for theorems, lemmas, propositions, etc
 \providecommand{\theoremname}{Theorem}%
-\newtheorem{theorem}{\theoremname}[chapter]
+\newtheorem{theorem}{\theoremname}[\maincounter]
 \providecommand{\axiomname}{Axiom}%
 \newtheorem{axiom}[theorem]{\axiomname}
 \providecommand{\lemmaname}{Lemma}%
@@ -194,15 +205,15 @@
 \newtheorem{conjecture}[theorem]{\conjecturename}
 \theoremstyle{definition}% for definitions and examples
 \providecommand{\definitionname}{Definition}%
-\newtheorem{definition}{\definitionname}[chapter]
+\newtheorem{definition}{\definitionname}[\maincounter]
 \providecommand{\examplename}{Example}%
-\newtheorem{example}{\examplename}[chapter]
+\newtheorem{example}{\examplename}[\maincounter]
 \theoremstyle{remark}% for remarks and notes
 \providecommand{\remarkname}{Remark}%
 \newtheorem*{remark}{\remarkname}
 
 \ifartx@math% extra math packages
-    \RequirePackage{mathtools}%
+    \RequirePackage{mathtools}% extension to amsmath
 \fi
 %-
 %-> Language settings
@@ -210,14 +221,20 @@
 \ifartx@pdftex% <pdflatex> call font packages
     \RequirePackage[utf8]{inputenc}% set input encoding, document must use utf-8 encoding
     \RequirePackage[T1]{fontenc}% set font encoding to enable modern font encoding
-    %- Call font package options:
-    %- Text + Math: Times Roman
-    \RequirePackage{newtxtext}%
-    \RequirePackage[cmintegrals]{newtxmath}% load after math packages
-    %- Text + Math: Palatino
-    %\RequirePackage{palatino}%
+    %- Text font: Chinese
+    %\RequirePackage{zhmCJK}% support calling system fonts
+    %\ifartx@windows%
+    %    \setCJKmainfont[AutoFakeBold,ItalicFont=simkai.ttf]{simsun.ttc}%
+    %    \setCJKsansfont[AutoFakeBold]{simhei.ttf}%
+    %    \setCJKmonofont{simfang.ttf}%
+    %\fi
+    %- Text font: English <default: computer modern|others: font packages>
+    \RequirePackage{newtxtext}% main font, <times font: newtxtext|others: palatino>
+    %- Math font: <default: computer modern|others: font packages>
+    \RequirePackage[cmintegrals]{newtxmath}% times font, load after amsmath and newtxtext packages
+    \RequirePackage{mathrsfs}% enable \mathscr for script alphabet
+    \RequirePackage[cal=cm]{mathalfa}% map styles for calligraphic \mathcal and script \mathscr alphabet
 \else% <xelatex> or <lualatex> call system fonts
-    \RequirePackage[cmintegrals]{newtxmath}% math symbol font, load after math but before fontspec packages
     \RequirePackage{fontspec}% support calling system fonts
     %- Font properties: <family> + <weight> + <shape> + <size>
     %- Specify the three default TeX font families: <main>, <sans>, <mono>
@@ -237,12 +254,10 @@
     %- examples: Rockwell, Andale Mono, Courier
     %\setmonofont{Rockwell}% font switches: {\ttfamily, ...}, \texttt{...}
     %- Specify user-defined font families and font switches
+    %- without NFSSFamily option, a font family is defined only if adding a new font name
     %\newfontfamily\<font-switch>{<font>}[<font features>]%
     %\newcommand{\text<font-switch>}[1]{{\<font-switch> #1}}%
-    % without NFSSFamily option, a font family is defined only when the added font name
-    % is a new one. mathrm and mathsf can be set by \setmathrm and \setmathsf
-    %\RequirePackage{unicode-math}% another math symbol font configuration
-    %\setmathfont{XITS Math}% a complete symbol set for STIX math fonts
+    %- Text font: Chinese
     \ifartx@windows%
         \setCJKmainfont[AutoFakeBold,ItalicFont=KaiTi]{SimSun}%
         \setCJKsansfont[AutoFakeBold]{SimHei}%
@@ -256,13 +271,38 @@
         \setCJKsansfont[AutoFakeBold]{AdobeHeitiStd-Regular}%
         \setCJKmonofont{AdobeFangsongStd-Regular}%
     \fi\fi\fi
+    %- Text font: English <default: computer modern|fontspec: system fonts|others: font packages>
     \ifartx@times%
         \setmainfont[NFSSFamily=entextrm]{Times New Roman}%
         \setsansfont[NFSSFamily=entextsf]{Times New Roman}%
+        %\setmonofont[NFSSFamily=entexttt]{Courier New}%
     \else
         \setmainfont[NFSSFamily=entextrm]{FreeSerif}%
         \setsansfont[NFSSFamily=entextsf]{FreeSerif}%
+        %\setmonofont[NFSSFamily=entexttt]{FreeMono}%
     \fi
+    %\RequirePackage{newtxtext}% main font
+    %- Math font: <default: computer modern|others: font packages <newtxmath|unicode-math>>
+    \RequirePackage[cmintegrals]{newtxmath}% times font, load after amsmath and newtxtext packages
+    \DeclareSymbolFont{operators}{OT1}{ntxtlf}{m}{n}% fix numbers by setting operator font to newtx-family
+    \SetSymbolFont{operators}{bold}{OT1}{ntxtlf}{b}{n}% fix numbers by setting operator font to newtx-family
+    \AtBeginDocument{%
+        \DeclareMathSymbol{0}{\mathalpha}{operators}{`0}%
+        \DeclareMathSymbol{1}{\mathalpha}{operators}{`1}%
+        \DeclareMathSymbol{2}{\mathalpha}{operators}{`2}%
+        \DeclareMathSymbol{3}{\mathalpha}{operators}{`3}%
+        \DeclareMathSymbol{4}{\mathalpha}{operators}{`4}%
+        \DeclareMathSymbol{5}{\mathalpha}{operators}{`5}%
+        \DeclareMathSymbol{6}{\mathalpha}{operators}{`6}%
+        \DeclareMathSymbol{7}{\mathalpha}{operators}{`7}%
+        \DeclareMathSymbol{8}{\mathalpha}{operators}{`8}%
+        \DeclareMathSymbol{9}{\mathalpha}{operators}{`9}%
+    }
+    \RequirePackage{mathrsfs}% enable \mathscr for script alphabet
+    \RequirePackage[cal=cm]{mathalfa}% map styles for calligraphic \mathcal and script \mathscr alphabet
+    %\RequirePackage{unicode-math}% another math font configuration
+    %\setmathfont{XITS Math}% a complete symbol set for STIX math fonts
+    %- mathrm and mathsf can be set by \setmathrm and \setmathsf
 \fi
 %-
 %-> Bibliography processor and package
@@ -467,7 +507,7 @@
 %-
 %-> Macro for adding content link to the table of content and bookmark
 %-
-\providecommand{\intotoc}[2][chapter]{%
+\providecommand{\intotoc}[2][\maincounter]{%
     \cleardoublepage% ensure correct page reference
     \markboth{\MakeUppercase{#2}}{}% set the leftmark
     \phantomsection% create link in bookmarks

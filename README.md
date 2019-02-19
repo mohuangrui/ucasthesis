@@ -24,32 +24,30 @@
 
 ## 重要通知
 
-* `2019-02-06` 模板样式进行了修改，请查看下面的修改描述，以决定是否需要更新。
+* `2019-02-20` 模板样式进行了修改，请查看下面的修改描述，以决定是否需要更新。
 
 ## 更新记录
 
-* `2019-02-06` 增加定理、定义、证明等数学环境并完善中文版和国际版之间的中英格式切换。
+* `2019-02-20` 根据 [opt-gaobin, issue #100](https://github.com/mohuangrui/ucasthesis/issues/100) ，增加定理、定义、证明等数学环境。根据 [DRjy, issue #102](https://github.com/mohuangrui/ucasthesis/issues/102) ，调整 \mathcal 字体样式。根据 [zike Liu, email] ，适当缩减目录列表的缩进。根据 [xiaoyaoE, issue #105](https://github.com/mohuangrui/ucasthesis/issues/105) ，使数字字体和英文字体一致。完善中文版和国际版之间的中英格式切换。
 
-* `2019-01-10` 将公式编号前加点纳入模版默认，更多相关讨论可见：[琐屑细节](https://github.com/mohuangrui/ucasthesis/wiki/琐屑细节)。在 yunyun2019 的建议下，采用 [zepinglee](https://github.com/zepinglee) 基于国标样式为 ucas 所定制文献样式：[ucas 样式分支](https://github.com/CTeX-org/gbt7714-bibtex-style/tree/ucas)。文献样式设定的更多讨论可见：[文献样式](https://github.com/mohuangrui/ucasthesis/wiki/%E6%96%87%E7%8C%AE%E6%A0%B7%E5%BC%8F)。
-
-* `2018-04-08` 在邵岳林的建议下将附录复原为常规的排版设置。若需将附录置于参考文献后，请见：[琐屑细节](https://github.com/mohuangrui/ucasthesis/wiki/琐屑细节)。
+* `2019-01-10` 根据 [mnpengjk, issue #57](https://github.com/mohuangrui/ucasthesis/issues/57) ， 将公式编号前加点纳入模版默认，更多讨论可见：[琐屑细节](https://github.com/mohuangrui/ucasthesis/wiki/琐屑细节) 。根据 [yunyun2019, issue #95](https://github.com/mohuangrui/ucasthesis/issues/95) ，采用 [zepinglee](https://github.com/zepinglee) 基于国标样式为 ucas 所定制文献样式：[ucas 样式分支](https://github.com/CTeX-org/gbt7714-bibtex-style/tree/ucas) ，文献样式更多讨论可见：[文献样式](https://github.com/mohuangrui/ucasthesis/wiki/%E6%96%87%E7%8C%AE%E6%A0%B7%E5%BC%8F)。根据 [邵岳林, email] ，将附录复原为常规的排版设置，若需将附录置于参考文献后，请见：[琐屑细节](https://github.com/mohuangrui/ucasthesis/wiki/琐屑细节)。
 
 * `2018-04-03` 根据国科大本科部陆晴老师和本科部学位办丁云云老师的复审审核建议再次修复一些样式细节问题。
 
 * `2018-04-02` 模板进行了重大更新，修复了样式、字体、格式等许多问题。
 
     * 根据国科大本科部陆晴老师的建议对模版样式进行了诸多拓展和修正，并完善对本科生论文元素的兼容性。
-    * 在赵永明同学的建议下对数学符号字体进行调整。在 [ctex](https://github.com/CTeX-org/ctex-kit) 开发者的帮助下解决了如何多次调用 Times New Roman 而不导致黑体调用错误的问题。修复 twn1993 发现的默认黑体为微软雅黑而不是SimHei的问题。
+    * 在 [ctex](https://github.com/CTeX-org/ctex-kit) 开发者的帮助下解决了如何多次调用 Times New Roman 而不导致黑体调用错误的问题。根据 [twn1993, email]，修复默认黑体为微软雅黑而不是SimHei的问题。
     * 繁复折腾测试后终于找出一个在ctex默认黑体替换粗宋体设定环境内全局AutoFakeBold失效状态下折衷特定字体库不全条件下生僻字显示和系统默认字重不全条件下粗宋体显示以及不同操作系统下如何平衡上述字库自重矛盾还有根据操作系统自动调用所带有的Times字体的方案。祝贺大家不用再为字体调用苦恼了。
     * 设定论文封面据英文学位名如 Bachelor，Master，或 Doctor 自动切换。密级据是否填写自动显示。
 
-* `2018-03-22` 演示表标题居表上，加粗图表标注，设置长图表标题悬挂缩进（由于 bicaption 宏包无法正确接受 caption 宏包的 margin 选项，图表中英标题第一行无法正确同步缩进，从而放弃第一行的缩进），强调多图中子图标题的规范使用，通过摘要和符号列表演示标题不在目录中显示却仍在页眉中显示，修改附录为学位办给出的特殊显示行为。设置 bicaption 不在图形列表和表格列表中显示英文标题，问题/建议由赵永明提出。
+* `2018-03-22` 演示表标题居表上，加粗图表标注，设置长图表标题悬挂缩进（由于 bicaption 宏包无法正确接受 caption 宏包的 margin 选项，图表中英标题第一行无法正确同步缩进，从而放弃第一行的缩进），强调多图中子图标题的规范使用，通过摘要和符号列表演示标题不在目录中显示却仍在页眉中显示。根据 [赵永明, email]，设置双语图表标题和 bicaption 不在图形列表和表格列表中显示英文标题。
 
-* `2018-03-21` 使用 [xiaoyao9933](https://github.com/xiaoyao9933/UCASthesis) 制作的 ucas_logo.pdf 使学校 logo 放大不失真，问题/建议由 zhanglinbo 提出。回答标题英文如何设为 Times New Roman 字体，问题/建议由 Starsky Wong 提出。矫正由 will0n 和赵永明提出的一些格式细节问题，根据赵永明的建议设置双语图表标题，根据 tangjie1992 的建议配置算法环境。
+* `2018-03-21` 根据 [zhanglinbo, issue #42](https://github.com/mohuangrui/ucasthesis/issues/42) ，使用 [xiaoyao9933](https://github.com/xiaoyao9933/UCASthesis) 制作的 ucas_logo.pdf 使学校 logo 放大不失真。根据 [Starsky Wong, issue #41](https://github.com/mohuangrui/ucasthesis/issues/41) ，设置标题英文设为 Times New Roman 。根据 [will0n, issue #29](https://github.com/mohuangrui/ucasthesis/issues/29) ，[Man-Ting-Fang, issue #26](https://github.com/mohuangrui/ucasthesis/issues/26) ，[diyiliaoya, issue #12](https://github.com/mohuangrui/ucasthesis/issues/12) ，和 [赵永明, email] ，矫正一些格式细节问题。根据 [tangjie1992, issue #30](https://github.com/mohuangrui/ucasthesis/issues/30) ，配置算法环境。
 
 * `2018-02-04` 在 [ctex](https://github.com/CTeX-org/ctex-kit) 开发者的帮助下修复误用字体命令导致的粗宋体异常。然后，将模板兼容性进一步扩展为兼容操作系统 Windows，Linux，MacOS 和 LaTeX 编译引擎 pdflatex，xelatex，lualatex。移除 microtype 宏包以提高编译效率。
 
 * `2018-01-28` 基于国科大 2018 新版论文规范进行了重大修改，采用新的封面、声明、页眉页脚样式。展示标题中使用数学公式。
 
-* `2017-05-14` 增加 \citepns{} 和 \citetns{} 命令提供上标引用下混合非上标引用的需求，问题/建议由赵永明提出。添加设定论文为 thesis 或 dissertation 的命令 \englishthesistype{}，问题/建议由臧光明提出。
+* `2017-05-14` 根据 [赵永明, email] ，增加 \citepns{} 和 \citetns{} 命令提供上标引用下混合非上标引用的需求。根据 [臧光明, email] ，添加设定论文为 thesis 或 dissertation 的命令。
 
