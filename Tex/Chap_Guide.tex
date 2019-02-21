@@ -139,7 +139,7 @@ Thesis.tex为主文档，其设计和规划了论文的整体框架，通过对�
 
 \subsection{表格}
 
-请见表~\ref{tab:sample}。制表的更多范例，请见 \href{https://en.wikibooks.org/wiki/LaTeX/Tables}{WiKibook Tables}。
+请见表~\ref{tab:sample}。
 \begin{table}[!htbp]
     \bicaption{这是一个样表。}{This is a sample table.}
     \label{tab:sample}
@@ -149,16 +149,18 @@ Thesis.tex为主文档，其设计和规划了论文的整体框架，通过对�
     \renewcommand{\arraystretch}{1.2}%row space 
     \begin{tabular}{lcccccccc}
         \hline
-        Row number & \multicolumn{8}{c}{This is a multicolumn} \\
+        行号 & \multicolumn{8}{c}{跨多列的标题}\\
         %\cline{2-9}% partial hline from column i to column j
         \hline
-        Row 1 & $1$ & $2$ & $4$ & $5$ & $6$ & $7$ & $8$\\
-        Row 2 & $1$ & $2$ & $4$ & $5$ & $6$ & $7$ & $8$\\
-        Row 3 & $1$ & $2$ & $4$ & $5$ & $6$ & $7$ & $8$\\
-        Row 4 & $1$ & $2$ & $4$ & $5$ & $6$ & $7$ & $8$\\
+        Row 1 & $1$ & $2$ & $3$ & $4$ & $5$ & $6$ & $7$ & $8$\\
+        Row 2 & $1$ & $2$ & $3$ & $4$ & $5$ & $6$ & $7$ & $8$\\
+        Row 3 & $1$ & $2$ & $3$ & $4$ & $5$ & $6$ & $7$ & $8$\\
+        Row 4 & $1$ & $2$ & $3$ & $4$ & $5$ & $6$ & $7$ & $8$\\
         \hline
     \end{tabular}
 \end{table}
+
+制图制表的更多范例，请见 \href{https://github.com/mohuangrui/ucasthesis/wiki}{ucasthesis 知识小站} 和 \href{https://en.wikibooks.org/wiki/LaTeX/Tables}{WiKibook Tables}。
 
 \subsection{图片插入}
 
@@ -189,18 +191,19 @@ Thesis.tex为主文档，其设计和规划了论文的整体框架，通过对�
       \caption{}
       \label{fig:oaspl_a}
     \end{subfigure}%
-    ~%add desired spacing
+    ~% add desired spacing
     \begin{subfigure}[b]{0.35\textwidth}
       \includegraphics[width=\textwidth]{oaspl_b}
       \caption{}
       \label{fig:oaspl_b}
     \end{subfigure}
+    \\% line break
     \begin{subfigure}[b]{0.35\textwidth}
       \includegraphics[width=\textwidth]{oaspl_c}
       \caption{}
       \label{fig:oaspl_c}
     \end{subfigure}%
-    ~%add desired spacing
+    ~% add desired spacing
     \begin{subfigure}[b]{0.35\textwidth}
       \includegraphics[width=\textwidth]{oaspl_d}
       \caption{}
