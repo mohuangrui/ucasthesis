@@ -122,7 +122,7 @@
 %- underline
 \ifxetex% use underline from xeCJKfntef
     \renewcommand{\CJKunderlinecolor}{\color[rgb]{0,0,0}}% set underline color
-    \renewcommand{\uline}[1]{\CJKunderline{#1}}% unified name
+    \renewcommand{\uline}[1]{\CJKunderline*{#1}}% unified name
 \else% use underline from ulem
     \RequirePackage{ulem}%
 \fi
@@ -270,6 +270,14 @@
 %-> Redefine English style
 %-
 \newcommand{\MAKETITLE}{%
+    \ucasifstreq{\ucas@value@en@degree}{Bachelor}{%
+        \def\ucas@value@en@thesistype{\ucas@value@en@bacthesistype}%
+    }{%
+    \ucasifstreq{\ucas@value@en@degree}{Master}{%
+        \def\ucas@value@en@thesistype{\ucas@value@en@masthesistype}%
+    }{%
+        \def\ucas@value@en@thesistype{\ucas@value@en@docthesistype}%
+    }}%
     \cleardoublepage
     \thispagestyle{empty}
     \begin{center}
