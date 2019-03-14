@@ -377,43 +377,45 @@
 %->> Structure elements
 %---------------------------------------------------------------------------%
 \ifucas@plain%
-    \renewcommand{\contentsname}{\ucas@label@en@tocname}
-    \renewcommand{\listfigurename}{\ucas@label@en@lsfigname}
-    \renewcommand{\listtablename}{\ucas@label@en@lstabname}
-    \renewcommand{\bibname}{\ucas@label@en@bibname}
-    \newcommand{\algname}{\ucas@label@en@algname}
-    \newcommand{\bibetal}{\ucas@label@en@bibetal}
-    \newcommand{\biband}{\ucas@label@en@biband}
-    \newcommand{\axiomname}{\ucas@label@en@axiomname}
-    \newcommand{\theoremname}{\ucas@label@en@theoremname}
-    \newcommand{\lemmaname}{\ucas@label@en@lemmaname}
-    \newcommand{\corollaryname}{\ucas@label@en@corollaryname}
-    \newcommand{\assertionname}{\ucas@label@en@assertionname}
-    \newcommand{\propositionname}{\ucas@label@en@propositionname}
-    \newcommand{\conjecturename}{\ucas@label@en@conjecturename}
-    \newcommand{\definitionname}{\ucas@label@en@definitionname}
-    \newcommand{\examplename}{\ucas@label@en@examplename}
-    \newcommand{\remarkname}{\ucas@label@en@remarkname}
-    \renewcommand{\proofname}{\ucas@label@en@proofname}
+    \def\contentsname{\ucas@label@en@tocname}
+    \def\listfigurename{\ucas@label@en@lsfigname}
+    \def\listtablename{\ucas@label@en@lstabname}
+    \def\bibname{\ucas@label@en@bibname}
+    \def\refname{\ucas@label@en@bibname}
+    \def\algname{\ucas@label@en@algname}
+    \def\bibetal{\ucas@label@en@bibetal}
+    \def\biband{\ucas@label@en@biband}
+    \def\axiomname{\ucas@label@en@axiomname}
+    \def\theoremname{\ucas@label@en@theoremname}
+    \def\lemmaname{\ucas@label@en@lemmaname}
+    \def\corollaryname{\ucas@label@en@corollaryname}
+    \def\assertionname{\ucas@label@en@assertionname}
+    \def\propositionname{\ucas@label@en@propositionname}
+    \def\conjecturename{\ucas@label@en@conjecturename}
+    \def\definitionname{\ucas@label@en@definitionname}
+    \def\examplename{\ucas@label@en@examplename}
+    \def\remarkname{\ucas@label@en@remarkname}
+    \def\proofname{\ucas@label@en@proofname}
 \else
-    \renewcommand{\contentsname}{\ucas@label@ch@tocname}
-    \renewcommand{\listfigurename}{\ucas@label@ch@lsfigname}
-    \renewcommand{\listtablename}{\ucas@label@ch@lstabname}
-    \newcommand{\algname}{\ucas@label@ch@algname}
-    \renewcommand{\bibname}{\ucas@label@ch@bibname}
-    \newcommand{\bibetal}{\ucas@label@ch@bibetal}
-    \newcommand{\biband}{\ucas@label@ch@biband}
-    \newcommand{\axiomname}{\ucas@label@ch@axiomname}
-    \newcommand{\theoremname}{\ucas@label@ch@theoremname}
-    \newcommand{\lemmaname}{\ucas@label@ch@lemmaname}
-    \newcommand{\corollaryname}{\ucas@label@ch@corollaryname}
-    \newcommand{\assertionname}{\ucas@label@ch@assertionname}
-    \newcommand{\propositionname}{\ucas@label@ch@propositionname}
-    \newcommand{\conjecturename}{\ucas@label@ch@conjecturename}
-    \newcommand{\definitionname}{\ucas@label@ch@definitionname}
-    \newcommand{\examplename}{\ucas@label@ch@examplename}
-    \newcommand{\remarkname}{\ucas@label@ch@remarkname}
-    \renewcommand{\proofname}{\ucas@label@ch@proofname}
+    \def\contentsname{\ucas@label@ch@tocname}
+    \def\listfigurename{\ucas@label@ch@lsfigname}
+    \def\listtablename{\ucas@label@ch@lstabname}
+    \def\algname{\ucas@label@ch@algname}
+    \def\bibname{\ucas@label@ch@bibname}
+    \def\refname{\ucas@label@ch@bibname}
+    \def\bibetal{\ucas@label@ch@bibetal}
+    \def\biband{\ucas@label@ch@biband}
+    \def\axiomname{\ucas@label@ch@axiomname}
+    \def\theoremname{\ucas@label@ch@theoremname}
+    \def\lemmaname{\ucas@label@ch@lemmaname}
+    \def\corollaryname{\ucas@label@ch@corollaryname}
+    \def\assertionname{\ucas@label@ch@assertionname}
+    \def\propositionname{\ucas@label@ch@propositionname}
+    \def\conjecturename{\ucas@label@ch@conjecturename}
+    \def\definitionname{\ucas@label@ch@definitionname}
+    \def\examplename{\ucas@label@ch@examplename}
+    \def\remarkname{\ucas@label@ch@remarkname}
+    \def\proofname{\ucas@label@ch@proofname}
 \fi
 %---------------------------------------------------------------------------%
 %->> Structure layout
