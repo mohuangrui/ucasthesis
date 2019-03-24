@@ -28,7 +28,7 @@
 
 ## 更新记录
 
-* `2019-03-14` 根据 [opt-gaobin, issue #121](https://github.com/mohuangrui/ucasthesis/issues/121) ，修正中文标点使下划线断掉的问题。根据 [Guoqiang Zhang, email; weili-ict, issue #120](https://github.com/mohuangrui/ucasthesis/issues/120) ，修复 \proofname 命令对2015年及更早 LaTeX 编译器的兼容性问题。
+* `2019-03-14` 根据 [opt-gaobin, issue #121](https://github.com/mohuangrui/ucasthesis/issues/121) ，修正中文标点使下划线断掉的问题。根据 [Guoqiang Zhang, email; weili-ict, issue #120](https://github.com/mohuangrui/ucasthesis/issues/120) ，修复 \proofname 命令对2015年及更早 LaTeX 编译器的兼容性问题。根据 [muzimuzhi, issue #130](https://github.com/mohuangrui/ucasthesis/issues/130) ，修正对\voffset的使用。
 
 * `2019-02-20` 根据 [opt-gaobin, issue #100](https://github.com/mohuangrui/ucasthesis/issues/100) ，增加定理、定义、证明等数学环境。根据 [DRjy, issue #102](https://github.com/mohuangrui/ucasthesis/issues/102) ，调整 \mathcal 字体样式。根据 [zike Liu, email] ，适当缩减目录列表的缩进。根据 [xiaoyaoE, issue #105](https://github.com/mohuangrui/ucasthesis/issues/105) ，使数字字体和英文字体一致。完善中文版和国际版之间的中英格式切换。
 
