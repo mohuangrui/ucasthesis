@@ -505,14 +505,49 @@
     \noindent\makebox[0.15\textwidth][l]{#2}{{#3}\hfill{#1}}\par
 }
 %-
-%-> Macro for adding content link to the table of content and bookmark
+%-> Macro for adding link to toc and bookmark
 %-
-\providecommand{\intotoc}[2][\maincounter]{%
-    \cleardoublepage% ensure correct page reference
-    \markboth{\MakeUppercase{#2}}{}% set the leftmark
-    \phantomsection% create link in bookmarks
-    \addcontentsline{toc}{#1}{#2}% add content #2 to toc as #1
+\def\munch#1{}% auxiliary command
+\newcommand{\intotocnostar}[3]{% [<\chapter|...>,<*>,<title>]
+    #1#2{% excute command
+        \phantomsection% create bookmark link
+        \addcontentsline{toc}{\expandafter\munch\string#1}{#3}% add content #3 to toc as #1
+        #3%
+    }
+    \markboth{\MakeUppercase{#3}}{}% set header mark
 }
+\newcommand{\intotocstar}[3]{% [<\chapter|...>,<extra commands>,<title>]
+    #2% excute command
+    \phantomsection% create bookmark link
+    \addcontentsline{toc}{\expandafter\munch\string#1}{#3}% add content #3 to toc as #1
+    \markboth{\MakeUppercase{#3}}{}% set header mark
+}
+\newcommand{\intotoc}{\@ifstar{\intotocstar}{\intotocnostar}}% swap starred and non-starred versions
+\newcommand{\intobmknostar}[4][0]{% [<level>,<\chapter|...>,<*>,<title>]
+    #2#3{% excute command
+        \phantomsection% create bookmark link
+        \Hy@writebookmark% write bookmark
+        {}%
+        {#4}%
+        {\@currentHref}%
+        {#1}%
+        {toc}%
+        #4%
+    }%
+    \markboth{\MakeUppercase{#4}}{}% set header mark
+}
+\newcommand{\intobmkstar}[3][0]{% [<level>,<extra commands>,<extra commands>,<title>]
+    #2% excute command
+    \phantomsection% create bookmark link
+    \Hy@writebookmark% write bookmark
+    {}%
+    {#3}%
+    {\@currentHref}%
+    {#1}%
+    {toc}%
+    \markboth{\MakeUppercase{#3}}{}% set header mark
+}
+\newcommand{\intobmk}{\@ifstar{\intobmkstar}{\intobmknostar}}% swap starred and non-starred versions
 %-
 %-> Page header and footer Style
 %-
