@@ -173,14 +173,14 @@
 %---------------------------------------------------------------------------%
 %->> Detect class and counter
 %---------------------------------------------------------------------------%
-\newcommand*{\ifcounter}[1]{% check if counter exists
+\newcommand*{\artxifcnt}[1]{% check if counter exists
     \ifcsname c@#1\endcsname%
         \expandafter\@firstoftwo%
     \else%
         \expandafter\@secondoftwo%
     \fi
 }
-\ifcounter{chapter}{\def\maincounter{chapter}}{\def\maincounter{section}}
+\artxifcnt{chapter}{\def\artxmaincnt{chapter}}{\def\artxmaincnt{section}}%
 %---------------------------------------------------------------------------%
 %->> Required packages
 %---------------------------------------------------------------------------%
@@ -190,7 +190,7 @@
 \RequirePackage{amsmath,amsthm,amssymb}% math structures, theorems, and extended symbols
 \theoremstyle{plain}% for theorems, lemmas, propositions, etc
 \providecommand{\theoremname}{Theorem}%
-\newtheorem{theorem}{\theoremname}[\maincounter]
+\newtheorem{theorem}{\theoremname}[\artxmaincnt]
 \providecommand{\axiomname}{Axiom}%
 \newtheorem{axiom}[theorem]{\axiomname}
 \providecommand{\lemmaname}{Lemma}%
@@ -205,9 +205,9 @@
 \newtheorem{conjecture}[theorem]{\conjecturename}
 \theoremstyle{definition}% for definitions and examples
 \providecommand{\definitionname}{Definition}%
-\newtheorem{definition}{\definitionname}[\maincounter]
+\newtheorem{definition}{\definitionname}[\artxmaincnt]
 \providecommand{\examplename}{Example}%
-\newtheorem{example}{\examplename}[\maincounter]
+\newtheorem{example}{\examplename}[\artxmaincnt]
 \theoremstyle{remark}% for remarks and notes
 \providecommand{\remarkname}{Remark}%
 \newtheorem*{remark}{\remarkname}
@@ -507,19 +507,19 @@
 %-
 %-> Macro for adding link to toc and bookmark
 %-
-\def\munch#1{}% auxiliary command
+\long\def\artxaux#1{}% auxiliary command
 \newcommand{\intotocnostar}[3]{% [<\chapter|...>,<*>,<title>]
     #1#2{% excute command
         \phantomsection% create bookmark link
-        \addcontentsline{toc}{\expandafter\munch\string#1}{#3}% add content #3 to toc as #1
+        \addcontentsline{toc}{\expandafter\artxaux\string#1}{#3}% add content #3 to toc as #1
         #3%
     }
     \markboth{\MakeUppercase{#3}}{}% set header mark
 }
-\newcommand{\intotocstar}[3]{% [<\chapter|...>,<extra commands>,<title>]
+\newcommand{\intotocstar}[3][\artxmaincnt]{% [<chapter|...>,<extra commands>,<title>]
     #2% excute command
     \phantomsection% create bookmark link
-    \addcontentsline{toc}{\expandafter\munch\string#1}{#3}% add content #3 to toc as #1
+    \addcontentsline{toc}{#1}{#3}% add content #3 to toc as #1
     \markboth{\MakeUppercase{#3}}{}% set header mark
 }
 \newcommand{\intotoc}{\@ifstar{\intotocstar}{\intotocnostar}}% swap starred and non-starred versions
