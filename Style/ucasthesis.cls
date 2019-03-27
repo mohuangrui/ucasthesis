@@ -122,15 +122,16 @@
     \hbox{}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi%
 }
 %- underline
-\ifxetex% use underline from xeCJKfntef
-    \renewcommand{\CJKunderlinecolor}{\color[rgb]{0,0,0}}% set underline color
-    \renewcommand{\uline}[1]{\CJKunderline*{#1}}% unified name
+\ifxetex% use underline from xeCJKfntef that fixes baseline of ulem
+    \def\CJKunderlinecolor{\color[rgb]{0,0,0}}% set underline color
+    \newcommand{\ulunify}[1]{\CJKunderline*{#1}}% unified name
 \else% use underline from ulem
     \RequirePackage{ulem}%
+    \newcommand{\ulunify}[1]{\uline{#1}}% unified name
 \fi
 \newcommand{\ulenhance}[2][1pt]{% enhanced underline
     \def\ULthickness{#1}% set thickness
-    \uline{#2}}
+    \expandafter\ulunify\expandafter{#2}}% linebreak fix
 \newcommand{\ulhshift}{-4em}% horizontal shift on underline
 \newcommand{\ulextend}[2][350pt]{% extend underline length
     \hbox to #1{\hfill\hspace*{\ulhshift}#2\hfill}}
@@ -203,7 +204,7 @@
 
         \vspace*{\stretch{3}}
 
-        {\zihao{-3}\bfseries\sffamily \ulenhance[1.5pt]{\ \ucas@value@ch@title\ }}
+        {\zihao{-3}\bfseries\sffamily \ulenhance[1.5pt]{\ucas@value@ch@title}}
 
         \vspace*{\stretch{3}}
 
@@ -288,7 +289,7 @@
 
         \vspace*{50pt}
 
-        {\zihao{-3}\bfseries \ulenhance[1.5pt]{\ \ucas@value@en@title\ }}
+        {\zihao{-3}\bfseries \ulenhance[1.5pt]{\ucas@value@en@title}}
 
         \vspace*{\stretch{2}}
 
