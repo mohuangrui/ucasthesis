@@ -122,16 +122,17 @@
     \hbox{}\newpage\if@twocolumn\hbox{}\newpage\fi\fi\fi%
 }
 %- underline
-\ifxetex% use underline from xeCJKfntef that fixes baseline of ulem
-    \def\CJKunderlinecolor{\color[rgb]{0,0,0}}% set underline color
-    \newcommand{\ulunify}[1]{\CJKunderline*{#1}}% unified name
-\else% use underline from ulem
+\ifxetex%
+    %\RequirePackage{ulem}% loaded by xeCJKfntef
+\else%
     \RequirePackage{ulem}%
-    \newcommand{\ulunify}[1]{\uline{#1}}% unified name
 \fi
+\newcommand{\ulunify}[1]{\uline{#1}}% unified name
 \newcommand{\ulenhance}[2][1pt]{% enhanced underline
     \def\ULthickness{#1}% set thickness
-    \expandafter\ulunify\expandafter{#2}}% linebreak fix
+    \def\ULdepth{0.3em}% set depth
+    \expandafter\ulunify\expandafter{#2}% linebreak fix
+}
 \newcommand{\ulhshift}{-4em}% horizontal shift on underline
 \newcommand{\ulextend}[2][350pt]{% extend underline length
     \hbox to #1{\hfill\hspace*{\ulhshift}#2\hfill}}
