@@ -369,13 +369,16 @@
 %-> Figure environment support
 %-
 \RequirePackage{graphicx}% packages for including graphics
-\RequirePackage[font={small,bf},skip=8pt,labelsep=space]{caption}% options: [margin=10pt,labelfont=bf]
+\RequirePackage[format=plain,hangindent=2.0em,font={small,bf},skip=8pt,labelsep=space]{caption}% options: [margin=10pt,labelfont=bf]
 \RequirePackage{subcaption}% package for subfigures
 \RequirePackage[list=off]{bicaption}% package for binary captions
-\captionsetup[figure][bi-first]{format=hang,hangindent=-0.5em}%
-\captionsetup[figure][bi-second]{format=hang,hangindent=-2em,name=Figure}%
-\captionsetup[table][bi-first]{format=hang,hangindent=-0.5em}%
-\captionsetup[table][bi-second]{format=hang,hangindent=-2em,name=Table}%
+\captionsetup[bi-first]{bi-first}%
+\captionsetup[bi-second]{bi-second}%
+\DeclareCaptionOption{bi-first}[]{}% 1st language
+\DeclareCaptionOption{bi-second}[]{% 2nd language
+    \def\tablename{Table}%
+    \def\figurename{Figure}%
+}
 \RequirePackage[section]{placeins}% prevent floats from being moved over section
 %-
 %-> Page layout and spacing

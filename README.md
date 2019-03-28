@@ -24,11 +24,11 @@
 
 ## 重要通知
 
-* `2019-03-27` 模板样式进行了修改，请查看下面的修改描述，以决定是否需要更新。
+* `2019-03-28` 模板样式进行了修改，请查看下面的修改描述，以决定是否需要更新。
 
 ## 更新记录
 
-* `2019-03-27` 根据 [BowenHou, issue #133](https://github.com/mohuangrui/ucasthesis/issues/133) ，使下划线能对长英文标题自动换行。
+* `2019-03-28` 根据 [zssasa, allenwoods, issue #49](https://github.com/mohuangrui/ucasthesis/issues/49) ，修复 bicaption 对 longtable 的兼容性。根据 [BowenHou, issue #133](https://github.com/mohuangrui/ucasthesis/issues/133) ，使下划线能对长标题自动换行。
 
 * `2019-03-25` 根据 [DRjy, muzimuzhi, issue #127](https://github.com/mohuangrui/ucasthesis/issues/127) ，为“摘要”等无需在目录中显示的结构元素建立书签。根据 [muzimuzhi, issue #130](https://github.com/mohuangrui/ucasthesis/issues/130) ，修正对 \voffset 的使用。
 
