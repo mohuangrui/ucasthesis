@@ -130,7 +130,7 @@
 \newcommand{\ulunify}[1]{\uline{#1}}% unified name
 \newcommand{\ulenhance}[2][1pt]{% enhanced underline
     \def\ULthickness{#1}% set thickness
-    \def\ULdepth{0.3em}% set depth
+    \setlength{\ULdepth}{0.3em}% set depth
     \expandafter\ulunify\expandafter{#2}% linebreak fix
 }
 \newcommand{\ulhshift}{-4em}% horizontal shift on underline
