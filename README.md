@@ -24,9 +24,11 @@
 
 ## 重要通知
 
-* `2019-03-28` 模板样式进行了修改，请查看下面的修改描述，以决定是否需要更新。
+* `2019-04-04` 模板样式进行了修改，请查看下面的修改描述，以决定是否需要更新。
 
 ## 更新记录
+
+* `2019-04-04` 根据 [liuy334, songchunlin, issue #134](https://github.com/mohuangrui/ucasthesis/issues/134) ，调整行距使 LaTeX 版与 Word 版的行数和每行字数相一致。
 
 * `2019-03-28` 根据 [zssasa, allenwoods, issue #49](https://github.com/mohuangrui/ucasthesis/issues/49) ，修复 bicaption 对 longtable 的兼容性。根据 [BowenHou, issue #133](https://github.com/mohuangrui/ucasthesis/issues/133) ，使下划线能对长标题自动换行。
 
