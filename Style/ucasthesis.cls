@@ -104,11 +104,11 @@
 \setlength{\topmargin}{-10.4mm}% vertical margin above header
 \setlength{\headheight}{12pt}% header height
 \setlength{\headsep}{17.5pt}% vertical margin between header and body text
-\setlength{\footskip}{29.5pt}% vertical margin between footer and body text
+\setlength{\footskip}{10.4mm}% vertical margin between footer and body text
 %- specifies the amount of space between paragraphs.
 \setlength{\parskip}{0.5ex plus 0.25ex minus 0.25ex}
 %- line spacing
-\linespread{1.5}% line space setting
+\linespread{1.6}% line space setting
 \raggedbottom% prevent adding vertical white space in strange places
 %- default pagestyle is page number at bottom without headers and footers
 \pagestyle{plain}
@@ -190,7 +190,7 @@
     \cleardoublepage
     \thispagestyle{empty}
     \begin{center}
-        \linespread{1.5}
+        \linespread{1.6}
         \zihao{4}\bfseries
 
         \hfill{} \ucasifstrbk{\ucas@value@ch@confidential}{}{\ucas@label@ch@confidential \ulenhance{\ulextend[50pt]{\hspace*{-\ulhshift}\zihao{5}\ucas@value@ch@confidential}}}
@@ -220,11 +220,11 @@
             \ucas@label@ch@institute & \ulenhance[1.2pt]{\ulextend{\ucas@value@ch@institute}}\\
         \end{tabular}
 
-        \vspace*{\stretch{4.5}}
+        \vspace*{\stretch{4}}
 
         {\ucas@value@ch@date}
 
-        \vspace*{\stretch{3.5}}
+        \vspace*{\stretch{4}}
     \end{center}
     \clearpage
     \if@twoside
@@ -285,14 +285,14 @@
     \cleardoublepage
     \thispagestyle{empty}
     \begin{center}
-        \linespread{1.5}
+        \linespread{1.6}
         \zihao{4}\bfseries
 
         \vspace*{50pt}
 
         {\zihao{-3}\bfseries \ulenhance[1.5pt]{\ucas@value@en@title}}
 
-        \vspace*{\stretch{2}}
+        \vspace*{\stretch{3}}
 
         {\ucas@label@en@statement}
 
@@ -325,7 +325,7 @@
     \cleardoublepage
     \thispagestyle{empty}
     {
-        \linespread{1.5}
+        \linespread{1.6}
         \zihao{-4}
 
         \vspace*{2ex}
