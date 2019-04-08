@@ -505,7 +505,9 @@
 %-> Nomenclature item
 %-
 \providecommand{\nomenclatureitem}[3][ ]{%
-    \noindent\makebox[0.15\textwidth][l]{#2}{{#3}\hfill{#1}}\par
+  \settowidth{\@tempdima}{#1}%
+  \noindent\makebox[0.15\textwidth][l]{#2}%
+  \parbox[t]{\dimexpr .85\textwidth - \@tempdima - 2em}{\linespread{1.2}\selectfont #3}\hfill{#1}\par
 }
 %-
 %-> Macro for adding link to toc and bookmark
