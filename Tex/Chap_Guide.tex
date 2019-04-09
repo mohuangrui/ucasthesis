@@ -31,10 +31,11 @@ Thesis.tex为主文档，其设计和规划了论文的整体框架，通过对�
     \item Linux或MacOS：在terminal中运行
         \begin{itemize}
             \item \verb|./artratex.sh xa|：获得全编译后的PDF文档
-            \item \verb|./artratex.sh x|：快速编译模式
+            \item \verb|./artratex.sh x|：快速编译，不会生成文献引用
         \end{itemize}
-    \item 全编译指运行 \verb|xelatex+bibtex+xelatex+xelatex| 以正确生成所有的引用链接，如目录，参考文献及引用等。在写作过程中若无添加新的引用，则可用快速编译，即只运行一遍\LaTeX{}编译引擎以减少编译时间。
 \end{itemize}
+
+全编译指运行 \verb|xelatex+bibtex+xelatex+xelatex| 以正确生成所有的引用链接，如目录，参考文献及引用等。在写作过程中若无添加新的引用，则可用快速编译，即只运行一遍\LaTeX{}编译引擎以减少编译时间。
 
 \subsection{Tmp文件夹}
 
@@ -42,14 +43,12 @@ Thesis.tex为主文档，其设计和规划了论文的整体框架，通过对�
 
 \subsection{Style文件夹}
 
-包含ucasthesis文档类的定义文件和配置文件，通过对它们的修改可以实现特定的模版设定。若需更新模板，一般只需用新的样式文件替换旧的即可。
+包含ucasthesis文档类的定义文件和配置文件，通过对它们的修改可以实现特定的模版设定。
 
 \begin{enumerate}
     \item ucasthesis.cls：文档类定义文件，论文的最核心的格式即通过它来定义的。
     \item ucasthesis.cfg：文档类配置文件，设定如目录显示为“目~录”而非“目录”。
-    \item artratex.sty: 常用宏包及文档设定，如参考文献样式、文献引用样式、页眉页脚设定等。这些功能具有开关选项，常只需在Thesis.tex中的如下命令中进行启用即可，一般无需修改artratex.sty本身。
-        
-        \path{\usepackage[options]{artratex}} 
+    \item artratex.sty: 常用宏包及文档设定，如参考文献样式、文献引用样式、页眉页脚设定等。这些功能具有开关选项，常只需在Thesis.tex中进行启用即可，一般无需修改artratex.sty本身。
     \item artracom.sty：自定义命令以及添加宏包的推荐放置位置。
 \end{enumerate}
 
@@ -58,10 +57,11 @@ Thesis.tex为主文档，其设计和规划了论文的整体框架，通过对�
 文件夹内为论文的所有实体内容，正常情况下，这也是\textbf{使用ucasthesis撰写学文论文时，主要关注和修改的一个位置，注：所有文件都必须采用UTF-8编码，否则编译后将出现乱码文本}，详细分类介绍如下：
 
 \begin{itemize}
-    \item Frontpage.tex：为论文中英文封面及中英文摘要。\textbf{论文封面会根据英文学位名称如Bachelor，Master，或是Doctor自动切换为相应的格式}。
+    \item Frontinfo.tex：为论文中英文封面信息。\textbf{论文封面会根据英文学位名称如Bachelor，Master，或是Doctor自动切换为相应的格式}。
+    \item Frontmatter.tex：为论文前言内容如中英文摘要等。
     \item Mainmatter.tex：索引需要出现的Chapter。开始写论文时，可以只索引当前章节，以快速编译查看，当论文完成后，再对所有章节进行索引即可。
-    \item Chap{\_}xxx.tex：为论文主体的各个章节，可根据需要添加和撰写。
-    \item Appendix.tex：为附录内容
+    \item Chap{\_}xxx.tex：为论文主体的各章，可根据需要添加和撰写。\textbf{添加新章时，可拷贝一个已有的章文件再重命名，以继承文档的 UTF8 编码}。
+    \item Appendix.tex：为附录内容。
     \item Backmatter.tex：为发表文章信息和致谢部分等。
 \end{itemize}
 
@@ -251,34 +251,16 @@ Thesis.tex为主文档，其设计和规划了论文的整体框架，通过对�
 
 更多例子如：
 
-\citet{walls2013drought} 根据 \citet{betts2005aging} 的研究，首次提出...。其中关于... \citep{walls2013drought, betts2005aging}，是当前中国...得到迅速发展的研究领域 \citep{chen1980zhongguo, bravo1990comparative}。引用同一著者在同一年份出版的多篇文献时,在出版年份之后用
-英文小写字母区别，如：\citep{yuan2012lana, yuan2012lanb, yuan2012lanc}。同一处引用多篇文献时,按出版年份由近及远依次标注,中间用
-分号分开。例如 \citep{chen1980zhongguo, stamerjohanns2009mathml, hls2012jinji, niu2013zonghe}。
+\citet{walls2013drought} 根据 \citet{betts2005aging} 的研究，首次提出...。其中关于... \citep{walls2013drought, betts2005aging}，是当前中国...得到迅速发展的研究领域 \citep{chen1980zhongguo, bravo1990comparative}。引用同一著者在同一年份出版的多篇文献时，在出版年份之后用
+英文小写字母区别，如：\citep{yuan2012lana, yuan2012lanb, yuan2012lanc}。同一处引用多篇文献时，按出版年份由近及远依次标注。例如 \citep{chen1980zhongguo, stamerjohanns2009mathml, hls2012jinji, niu2013zonghe}。
 
 使用著者-出版年制（authoryear）式参考文献样式时，中文文献必须在BibTeX索引信息的 \textbf{key} 域（请参考ref.bib文件）填写作者姓名的拼音，才能使得文献列表按照拼音排序。参考文献表中的条目（不排序号），先按语种分类排列，语种顺 序是：中文、日文、英文、俄文、其他文种。然后，中文按汉语拼音字母顺序排列，日文按第一著者的姓氏笔画排序，西文和 俄文按第一著者姓氏首字母顺序排列。如中 \citep{niu2013zonghe}、日 \citep{Bohan1928}、英 \citep{stamerjohanns2009mathml}、俄 \citep{Dubrovin1906}。
 
 如此，即完成了文献的索引，请查看下本文档的参考文献一章，看看是不是就是这么简单呢？是的，就是这么简单！
 
-不同文献样式和引用样式，如著者-出版年制（authoryear）、顺序编码制（numbers）、上标顺序编码制（super）可在Thesis.tex中对artratex.sty调用实现，如：
-\begin{itemize}
-    \footnotesize
-    \item \verb+\usepackage[numbers]{artratex}+ $\%$ 文本: Jones [1]; 括号: [1]
-    \item \verb+\usepackage[super]{artratex}+ $\%$ 文本: Jones 上标[1]; 括号: 上标[1]
-    \item \verb+\usepackage[authoryear]{artratex}+ $\%$ 文本: Jones (1995); 括号: (Jones, 1995)
-    \item \verb+\usepackage[alpha]{artratex}+ $\%$ 文本: 不可用; 括号: [Jon95]
-\end{itemize}
+不同文献样式和引用样式，如著者-出版年制（authoryear）、顺序编码制（numbers）、上标顺序编码制（super）可在Thesis.tex中对artratex.sty调用实现，详见 \href{https://github.com/mohuangrui/ucasthesis/wiki/文献样式}{ucasthesis 知识小站之文献样式}
 
-当前文档的默认参考文献样式为\textbf{authoryear}。若在上标（\textbf{super}）模式下，希望在特定位置将上标改为嵌入式标，可使用
-
-文本类型：\verb|\citetns{lamport1986document,chen2005zhulu}|。
-
-正如此处所示 \citetns{lamport1986document,chen2005zhulu}
-
-括号类型：\verb|\citepns{lamport1986document,chen2005zhulu}|。
-
-正如此处所示 \citepns{lamport1986document,chen2005zhulu}
-
-参考文献索引更为详细的信息，请见 \href{https://en.wikibooks.org/wiki/LaTeX/Bibliography_Management}{WiKibook Bibliography}。\nocite{*}% 使文献列表显示所有参考文献（包括未引用文献）
+参考文献索引的更多知识，请见 \href{https://en.wikibooks.org/wiki/LaTeX/Bibliography_Management}{WiKibook Bibliography}。\nocite{*}% 使文献列表显示所有参考文献（包括未引用文献）
 
 \section{常见使用问题}\label{sec:qa}
 
@@ -293,7 +275,7 @@ Thesis.tex为主文档，其设计和规划了论文的整体框架，通过对�
         
         同时，取消Options -> Preferences -> Unicode中的Enable ANSI Format。
 
-    \item 推荐选择xelatex或lualatex编译引擎编译中文文档。编译脚本的默认设定为xelatex编译引擎。你也可以选择不使用脚本编译，如直接使用 \LaTeX{}文本编辑器编译。注：\LaTeX{}文本编辑器编译的默认设定为pdflatex编译引擎，若选择xelatex或lualatex编译引擎，请进入下拉菜单选择。为正确生成引用链接，需要进行全编译。
+    \item 推荐选择xelatex或lualatex编译引擎编译中文文档。编译脚本的默认设定为xelatex编译引擎。你也可以选择不使用脚本编译，如直接使用 \LaTeX{}文本编辑器编译。注：\LaTeX{}文本编辑器编译的默认设定为pdflatex编译引擎，若选择xelatex或lualatex编译引擎，请进入下拉菜单选择。为正确生成引用链接和参考文献，需要进行\textbf{全编译}。
 
     \item Texmaker使用简介
         \begin{enumerate}

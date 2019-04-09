@@ -19,16 +19,16 @@
 %-
 %-> Layout
 %-
-\DeclareOption{singlesided}{% enable single-sided printing
+\DeclareOption{oneside}{%
     \PassOptionsToClass{oneside}{ctexbook}%
 }
-\DeclareOption{doublesided}{% enable double-sided printing
+\DeclareOption{twoside}{%
     \PassOptionsToClass{twoside}{ctexbook}%
 }
-\newif\ifucas@printcopy \ucas@printcopyfalse
-\DeclareOption{printcopy}{% enable print copy layout
+\newif\ifucas@print \ucas@printfalse
+\DeclareOption{print}{%
     \PassOptionsToClass{twoside}{ctexbook}%
-    \ucas@printcopytrue%
+    \ucas@printtrue%
 }
 %-
 %-> Language
@@ -87,7 +87,7 @@
 %- assuming A4 paper (210mm x 297mm)
 \setlength{\textwidth}{146.6mm}% set required text width first
 \setlength{\hoffset}{0mm}% set horizontal offset
-\ifucas@printcopy% if print copy layout enabled
+\ifucas@print% if print layout enabled
     \setlength{\oddsidemargin}{12.6mm}% binding side margin
     \setlength{\evensidemargin}{0mm}% ensure uniform binding side width for printing
 \else
@@ -152,7 +152,6 @@
     \def\ucas@value@ch@title{#2}
     %\def\ucas@value@ch@titlemark{\MakeUppercase{#1}}}
     \def\ucas@value@ch@titlemark{#1}}
-\renewcommand{\@title}{\ucas@value@ch@titlemark}
 \def\ucas@value@ch@author{}
 \renewcommand{\author}[1]{\def\ucas@value@ch@author{#1}}
 \def\ucas@value@ch@advisor{}
@@ -248,12 +247,21 @@
             \cleardoublepage[empty]
         \fi
     \fi
+    \ifucas@print%
+        \hypersetup{% set hyperlinks
+            hidelinks,% remove link color and border
+        }
+    \fi
 }
 %-
 %-> English item commands
 %-
 \def\ucas@value@en@title{}
-\newcommand{\TITLE}[1]{\def\ucas@value@en@title{#1}}
+\def\ucas@value@en@titlemark{}
+\newcommand{\TITLE}[2][\ucas@value@en@title]{%
+    \def\ucas@value@en@title{#2}
+    %\def\ucas@value@en@titlemark{\MakeUppercase{#1}}}
+    \def\ucas@value@en@titlemark{#1}}
 \def\ucas@value@en@author{}
 \newcommand{\AUTHOR}[1]{\def\ucas@value@en@author{#1}}
 \def\ucas@value@en@advisor{}
@@ -400,6 +408,8 @@
     \def\examplename{\ucas@label@en@examplename}
     \def\remarkname{\ucas@label@en@remarkname}
     \def\proofname{\ucas@label@en@proofname}
+    \def\@title{\ucas@value@en@titlemark}
+    \def\@author{\ucas@value@en@author}
 \else
     \def\contentsname{\ucas@label@ch@tocname}
     \def\listfigurename{\ucas@label@ch@lsfigname}
@@ -420,6 +430,8 @@
     \def\examplename{\ucas@label@ch@examplename}
     \def\remarkname{\ucas@label@ch@remarkname}
     \def\proofname{\ucas@label@ch@proofname}
+    \def\@title{\ucas@value@ch@titlemark}
+    \def\@author{\ucas@value@ch@author}
 \fi
 %---------------------------------------------------------------------------%
 %->> Structure layout

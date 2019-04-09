@@ -24,9 +24,11 @@
 
 ## 重要通知
 
-* `2019-04-04` 模板样式进行了修改，请查看下面的修改描述，以决定是否需要更新。
+* `2019-04-09` 模板样式进行了修改，请查看下面的修改描述，以决定是否需要更新。
 
 ## 更新记录
+
+* `2019-04-09` 对部分宏命令进行调整，无功能及样式上的修改。若需更新，建议参考 [更新指南](https://github.com/mohuangrui/ucasthesis/wiki/更新指南)。
 
 * `2019-04-04` 根据 [liuy334, songchunlin, issue #134](https://github.com/mohuangrui/ucasthesis/issues/134) ，调整行距使 LaTeX 版与 Word 版的行数和每行字数相一致。
 
