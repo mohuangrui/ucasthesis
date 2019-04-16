@@ -440,6 +440,8 @@
 \ctexset {
     chapter = {
         format = \linespread{1.0}\zihao{4}\bfseries\sffamily\centering,
+        nameformat={},
+        titleformat={},
         number = \arabic{chapter},
         %numberformat = \rmfamily,
         aftername = \quad,
