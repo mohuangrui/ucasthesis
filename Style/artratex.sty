@@ -16,7 +16,6 @@
 %---------------------------------------------------------------------------%
 %->> Declare options
 %---------------------------------------------------------------------------%
-\RequirePackage{ifthen}% support conditionals
 \RequirePackage{etoolbox}% a toolbox of programming facilities
 %-
 %-> Platform fontset <windows>, <mac>, <adobe>, <times>, <others>
@@ -590,22 +589,22 @@
     %- Define different kinds of header and footer for different parts
     \fancypagestyle{frontmatterstyle}{% style for frontmatter
         \fancyhf{}% clear fields
-        \fancyhead[C]{\footnotesize \ifthenelse{\isodd{\value{page}}}{\leftmark}{\@title}}% structure elements
+        \fancyhead[C]{\footnotesize \ifnumodd{\value{page}}{\leftmark}{\@title}}% structure elements
         \fancyfoot[C]{\footnotesize \thepage}% page number
         \renewcommand{\headrulewidth}{0.8pt}% header rule
         \renewcommand{\footrulewidth}{0pt}% footer rule
     }
     \fancypagestyle{mainmatterstyle}{% style for mainmatter
         \fancyhf{}% clear fields
-        \fancyhead[C]{\footnotesize \ifthenelse{\isodd{\value{page}}}{\artxmark\ \leftmark}{\@title}}% structure elements
-        \fancyfoot[C]{\footnotesize \ifthenelse{\isodd{\value{page}}}{\hspace*{\fill}\thepage}{\thepage\hspace*{\fill}}}% page number
+        \fancyhead[C]{\footnotesize \ifnumodd{\value{page}}{\artxmark\ \leftmark}{\@title}}% structure elements
+        \fancyfoot[C]{\footnotesize \ifnumodd{\value{page}}{\hspace*{\fill}\thepage}{\thepage\hspace*{\fill}}}% page number
         \renewcommand{\headrulewidth}{0.8pt}% header rule
         \renewcommand{\footrulewidth}{0pt}% footer rule
     }
     \fancypagestyle{backmatterstyle}{% header and footer style for backmatter
         \fancyhf{}% clear fields
-        \fancyhead[C]{\footnotesize \ifthenelse{\isodd{\value{page}}}{\leftmark}{\@title}}% structure elements
-        \fancyfoot[C]{\footnotesize \ifthenelse{\isodd{\value{page}}}{\hspace*{\fill}\thepage}{\thepage\hspace*{\fill}}}% page number
+        \fancyhead[C]{\footnotesize \ifnumodd{\value{page}}{\leftmark}{\@title}}% structure elements
+        \fancyfoot[C]{\footnotesize \ifnumodd{\value{page}}{\hspace*{\fill}\thepage}{\thepage\hspace*{\fill}}}% page number
         \renewcommand{\headrulewidth}{0.8pt}% header rule
         \renewcommand{\footrulewidth}{0pt}% footer rule
     }
@@ -642,8 +641,8 @@
     }
     \fancypagestyle{noheaderstyle}{% header and footer style for no header
         \fancyhf{}% clear fields
-        %\fancyhead[C]{\footnotesize \ifthenelse{\isodd{\value{page}}}{\leftmark}{\@title}}% structure elements
-        \fancyfoot[C]{\footnotesize \ifthenelse{\isodd{\value{page}}}{\hspace*{\fill}\thepage}{\thepage\hspace*{\fill}}}% page number
+        %\fancyhead[C]{\footnotesize \ifnumodd{\value{page}}{\leftmark}{\@title}}% structure elements
+        \fancyfoot[C]{\footnotesize \ifnumodd{\value{page}}{\hspace*{\fill}\thepage}{\thepage\hspace*{\fill}}}% page number
         \renewcommand{\headrulewidth}{0pt}% header rule
         \renewcommand{\footrulewidth}{0pt}% footer rule
     }
