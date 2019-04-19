@@ -279,13 +279,6 @@
 \ifartx@pdftex% <pdflatex> call font packages
     \RequirePackage[utf8]{inputenc}% set input encoding, document must use utf-8 encoding
     \RequirePackage[T1]{fontenc}% set font encoding to enable modern font encoding
-    %- Text font: Chinese
-    %\RequirePackage{zhmCJK}% support calling system fonts
-    %\ifartx@windows%
-    %    \setCJKmainfont[AutoFakeBold,ItalicFont=simkai.ttf]{simsun.ttc}%
-    %    \setCJKsansfont[AutoFakeBold]{simhei.ttf}%
-    %    \setCJKmonofont{simfang.ttf}%
-    %\fi
     %- Text font: English <default: computer modern|others: font packages>
     \RequirePackage{newtxtext}% main font, <times font: newtxtext|others: palatino>
     %- Math font: <default: computer modern|others: font packages>
@@ -296,7 +289,7 @@
     \RequirePackage{fontspec}% support calling system fonts
     %- Font properties: <family> + <weight> + <shape> + <size>
     %- Specify the three default TeX font families: <main>, <sans>, <mono>
-    %- \setxxxxfont{<font>}[BoldFont=<font-b>,ItalicFont=<font-i>]%
+    %- \setxxxxfont{<font>}[BoldFont=<font-b>,ItalicFont=<font-i>,BoldItalicFont=<font-bi>]%
     %- <font>: \mdseries\upshape; <font-b>: \bfseries\upshape; <font-i>: \mdseries\itshape
     %- <\lfseries|\mdseries|\bfseries>: weight of font, default <\mdseries>
     %- <\upshape|\itshape|\scshape>: shape of font, default <\upshape>
@@ -315,52 +308,91 @@
     %- without NFSSFamily option, a font family is defined only if adding a new font name
     %\newfontfamily\<font-switch>{<font>}[<font features>]%
     %\newcommand{\text<font-switch>}[1]{{\<font-switch> #1}}%
-    %- Text font: Chinese
-    \ifartx@windows%
-        \setCJKmainfont[AutoFakeBold,ItalicFont=KaiTi]{SimSun}%
-        \setCJKsansfont[AutoFakeBold]{SimHei}%
-        \setCJKmonofont{FangSong}%
-    \else\ifartx@mac%
-        \setCJKmainfont[ItalicFont=Kaiti SC,BoldItalicFont=Kaiti SC Bold]{Songti SC Light}%
-        \setCJKsansfont{Heiti SC}%
-        \setCJKmonofont{STFangsong}%
-    \else\ifartx@adobe%
-        \setCJKmainfont[AutoFakeBold,ItalicFont=AdobeKaitiStd-Regular]{AdobeSongStd-Light}%
-        \setCJKsansfont[AutoFakeBold]{AdobeHeitiStd-Regular}%
-        \setCJKmonofont{AdobeFangsongStd-Regular}%
-    \fi\fi\fi
     %- Text font: English <default: computer modern|fontspec: system fonts|others: font packages>
-    \ifartx@times%
-        \setmainfont[NFSSFamily=entextrm]{Times New Roman}%
-        \setsansfont[NFSSFamily=entextsf]{Times New Roman}%
-        %\setmonofont[NFSSFamily=entexttt]{Courier New}%
-    \else
-        \setmainfont[NFSSFamily=entextrm]{FreeSerif}%
-        \setsansfont[NFSSFamily=entextsf]{FreeSerif}%
-        %\setmonofont[NFSSFamily=entexttt]{FreeMono}%
-    \fi
     %\RequirePackage{newtxtext}% main font
     %- Math font: <default: computer modern|others: font packages <newtxmath|unicode-math>>
+    %\RequirePackage[cmintegrals]{newtxmath}% times font, load after amsmath and newtxtext packages
+    %\RequirePackage{mathrsfs}% enable \mathscr for script alphabet
+    %\RequirePackage[cal=cm]{mathalfa}% map styles for calligraphic \mathcal and script \mathscr alphabet
+    \IfFontExistsTF{XITS-Regular.otf}{%
+    \RequirePackage{unicode-math}% unicode font configuration <XITS|STIX2>
+    \def\boldsymbol#1{\symbf{#1}}% treat obsoleteness
+    \setmainfont[NFSSFamily=entextrm]{XITS}[
+      Extension      = .otf,
+      UprightFont    = *-Regular,
+      BoldFont       = *-Bold,
+      ItalicFont     = *-Italic,
+      BoldItalicFont = *-BoldItalic,
+    ]
+    \setsansfont[NFSSFamily=entextsf]{XITS}[
+      Extension      = .otf,
+      UprightFont    = *-Regular,
+      BoldFont       = *-Bold,
+      ItalicFont     = *-Italic,
+      BoldItalicFont = *-BoldItalic,
+    ]
+    \setmonofont[NFSSFamily=entexttt]{XITS}[
+      Extension      = .otf,
+      UprightFont    = *-Regular,
+      BoldFont       = *-Bold,
+      ItalicFont     = *-Italic,
+      BoldItalicFont = *-BoldItalic,
+    ]
+    \setmathfont{XITSMath-Regular}[
+      Extension    = .otf,
+      BoldFont     = XITSMath-Bold,
+      StylisticSet = 1,
+    ]
+    \setmathfont{XITSMath-Regular}[
+      Extension    = .otf,
+      range={cal,bfcal},
+      StylisticSet = 1,
+    ]
+    \setmathfont{XITSMath-Regular}[
+      Extension    = .otf,
+      range={scr,bfscr},
+      StylisticSet = 2,
+    ]
+    \setmathrm{XITSMath-Regular}[
+      Extension    = .otf,
+      BoldFont     = XITSMath-Bold,
+      StylisticSet = 1,
+    ]
+    \setmathsf{XITSMath-Regular}[
+      Extension    = .otf,
+      BoldFont     = XITSMath-Bold,
+      StylisticSet = 1,
+    ]
+    \setmathtt{XITSMath-Regular}[
+      Extension    = .otf,
+      BoldFont     = XITSMath-Bold,
+      StylisticSet = 1,
+    ]
+    }{%
+    \RequirePackage{newtxtext}% main font
     \RequirePackage[cmintegrals]{newtxmath}% times font, load after amsmath and newtxtext packages
-    \DeclareSymbolFont{operators}{OT1}{ntxtlf}{m}{n}% fix numbers by setting operator font to newtx-family
-    \SetSymbolFont{operators}{bold}{OT1}{ntxtlf}{b}{n}% fix numbers by setting operator font to newtx-family
-    \AtBeginDocument{%
-        \DeclareMathSymbol{0}{\mathalpha}{operators}{`0}%
-        \DeclareMathSymbol{1}{\mathalpha}{operators}{`1}%
-        \DeclareMathSymbol{2}{\mathalpha}{operators}{`2}%
-        \DeclareMathSymbol{3}{\mathalpha}{operators}{`3}%
-        \DeclareMathSymbol{4}{\mathalpha}{operators}{`4}%
-        \DeclareMathSymbol{5}{\mathalpha}{operators}{`5}%
-        \DeclareMathSymbol{6}{\mathalpha}{operators}{`6}%
-        \DeclareMathSymbol{7}{\mathalpha}{operators}{`7}%
-        \DeclareMathSymbol{8}{\mathalpha}{operators}{`8}%
-        \DeclareMathSymbol{9}{\mathalpha}{operators}{`9}%
-    }
     \RequirePackage{mathrsfs}% enable \mathscr for script alphabet
     \RequirePackage[cal=cm]{mathalfa}% map styles for calligraphic \mathcal and script \mathscr alphabet
-    %\RequirePackage{unicode-math}% another math font configuration
-    %\setmathfont{XITS Math}% a complete symbol set for STIX math fonts
-    %- mathrm and mathsf can be set by \setmathrm and \setmathsf
+    }
+    %- Text font: Chinese
+    \ifartx@windows%
+        \setCJKmainfont{SimSun}[AutoFakeBold,ItalicFont=KaiTi]%
+        \setCJKsansfont{SimHei}[AutoFakeBold]%
+        \setCJKmonofont{FangSong}%
+    \else\ifartx@mac%
+        \setCJKmainfont{Songti SC}[
+            UprightFont    = * Light,
+            BoldFont       = * Bold,
+            ItalicFont     = Kaiti SC,
+            BoldItalicFont = Kaiti SC Bold,
+        ]
+        \setCJKsansfont{Heiti SC}[BoldFont = * Medium]%
+        \setCJKmonofont{STFangsong}%
+    \else\ifartx@adobe%
+        \setCJKmainfont{AdobeSongStd-Light}[AutoFakeBold,ItalicFont=AdobeKaitiStd-Regular]%
+        \setCJKsansfont{AdobeHeitiStd-Regular}[AutoFakeBold]%
+        \setCJKmonofont{AdobeFangsongStd-Regular}%
+    \fi\fi\fi
 \fi
 %-
 %-> Bibliography processor and package
