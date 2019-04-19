@@ -440,10 +440,10 @@
 \ctexset {
     chapter = {
         format = \linespread{1.0}\zihao{4}\bfseries\sffamily\centering,
-        nameformat={},
-        titleformat={},
+        nameformat = {},
+        titleformat = {},
         number = \arabic{chapter},
-        %numberformat = \rmfamily,
+        numberformat = \rmfamily,
         aftername = \quad,
         beforeskip = {7pt},
         afterskip = {18pt},
@@ -454,7 +454,7 @@
 \ctexset {
     section = {
         format = \linespread{1.0}\zihao{-4}\sffamily\raggedright,
-        %numberformat = \rmfamily,
+        numberformat = \rmfamily,
         aftername = \quad,
         beforeskip = {24pt},
         afterskip = {6pt},
@@ -464,7 +464,7 @@
 \ctexset {
     subsection = {
         format = \linespread{1.0}\zihao{-4}\sffamily\raggedright,
-        %numberformat = \rmfamily,
+        numberformat = \rmfamily,
         aftername = \quad,
         beforeskip = {12pt},
         afterskip = {6pt},
@@ -474,7 +474,7 @@
 \ctexset {
     subsubsection = {
         format = \linespread{1.0}\zihao{-4}\sffamily\raggedright,
-        %numberformat = \rmfamily,
+        numberformat = \rmfamily,
         aftername = \quad,
         beforeskip = {12pt},
         afterskip = {6pt},
