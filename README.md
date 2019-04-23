@@ -28,7 +28,7 @@
 
 ## 更新记录
 
-* `2019-04-23` 拓展模版兼容博后报告。
+* `2019-04-23` 拓展模版兼容博后报告。修复 [gsp2014, issue #156](https://github.com/mohuangrui/ucasthesis/issues/156) 文献引用中的连字符的间断显示。
 
 * `2019-04-19` 修复 [nihaomiao, issue #117](https://github.com/mohuangrui/ucasthesis/issues/117) `\mathbf` 失效问题。
 
