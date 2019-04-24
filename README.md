@@ -24,11 +24,11 @@
 
 ## 重要通知
 
-* `2019-04-23` 模板样式进行了修改，请查看下面的修改描述，以决定是否需要更新。
+* `2019-04-24` 模板样式进行了修改，请查看下面的修改描述，以决定是否需要更新。
 
 ## 更新记录
 
-* `2019-04-23` 拓展模版兼容博后报告。修复 [gsp2014, issue #156](https://github.com/mohuangrui/ucasthesis/issues/156) 文献引用中的连字符的间断显示。
+* `2019-04-24` 拓展模版兼容博后报告。修复 [gsp2014, issue #156](https://github.com/mohuangrui/ucasthesis/issues/156) 文献引用中的连字符的间断显示和上标引用中逗号下沉。
 
 * `2019-04-19` 修复 [nihaomiao, issue #117](https://github.com/mohuangrui/ucasthesis/issues/117) `\mathbf` 失效问题。
 
