@@ -284,7 +284,7 @@
     %- Math font: <default: computer modern|others: font packages>
     \RequirePackage[cmintegrals]{newtxmath}% times font, load after amsmath and newtxtext packages
     \RequirePackage{mathrsfs}% enable \mathscr for script alphabet
-    \RequirePackage[cal=cm]{mathalfa}% map styles for calligraphic \mathcal and script \mathscr alphabet
+    \RequirePackage[cal=cm]{mathalpha}% map styles for calligraphic \mathcal and script \mathscr alphabet
 \else% <xelatex> or <lualatex> call system fonts
     \RequirePackage{fontspec}% support calling system fonts
     %- Font properties: <family> + <weight> + <shape> + <size>
@@ -313,7 +313,6 @@
     %- Math font: <default: computer modern|others: font packages <newtxmath|unicode-math>>
     %\RequirePackage[cmintegrals]{newtxmath}% times font, load after amsmath and newtxtext packages
     %\RequirePackage{mathrsfs}% enable \mathscr for script alphabet
-    %\RequirePackage[cal=cm]{mathalfa}% map styles for calligraphic \mathcal and script \mathscr alphabet
     \IfFontExistsTF{XITS-Regular.otf}{%
     \RequirePackage{unicode-math}% unicode font configuration <XITS|STIX2>
     \def\boldsymbol#1{\symbf{#1}}% treat obsoleteness
@@ -381,7 +380,7 @@
     \RequirePackage{newtxtext}% main font
     \RequirePackage[cmintegrals]{newtxmath}% times font, load after amsmath and newtxtext packages
     \RequirePackage{mathrsfs}% enable \mathscr for script alphabet
-    \RequirePackage[cal=cm]{mathalfa}% map styles for calligraphic \mathcal and script \mathscr alphabet
+    \RequirePackage[cal=cm]{mathalpha}% map styles for calligraphic \mathcal and script \mathscr alphabet
     }
     %- Text font: Chinese
     \ifartx@windows%
