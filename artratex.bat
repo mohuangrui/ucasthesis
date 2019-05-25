@@ -50,7 +50,7 @@ bibtex ./Tmp/%FileName%
 @rem ------------------------------------------------
 @rem ->> View compiled file
 @rem ------------------------------------------------
-start  " " /max "./Tmp/%FileName%.pdf"
+@start  " " /max "./Tmp/%FileName%.pdf"
 echo ------------------------------------------------
 echo %CompileName% %FileName%.tex finished...
 echo ------------------------------------------------
