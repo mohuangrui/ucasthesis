@@ -708,13 +708,13 @@
     \fi
 }
 %- redefine indentation for others
-\renewcommand*\l@section{\@dottedtocline{1}{1em}{2em}}
-\renewcommand*\l@subsection{\@dottedtocline{2}{2em}{3em}}
-\renewcommand*\l@subsubsection{\@dottedtocline{3}{3em}{4em}}
-\renewcommand*\l@paragraph{\@dottedtocline{4}{4em}{5em}}
-\renewcommand*\l@subparagraph{\@dottedtocline{5}{5em}{6em}}
-\renewcommand*\l@figure{\@dottedtocline{1}{1em}{2em}}
-\renewcommand*\l@table{\@dottedtocline{1}{1em}{2em}}
+\renewcommand*\l@section{\@dottedtocline{1}{1em}{1.8em}}
+\renewcommand*\l@subsection{\@dottedtocline{2}{2em}{2.8em}}
+\renewcommand*\l@subsubsection{\@dottedtocline{3}{3em}{3.8em}}
+\renewcommand*\l@paragraph{\@dottedtocline{4}{4em}{4.8em}}
+\renewcommand*\l@subparagraph{\@dottedtocline{5}{5em}{5.8em}}
+\renewcommand*\l@figure{\@dottedtocline{1}{1em}{1.8em}}
+\renewcommand*\l@table{\@dottedtocline{1}{1em}{1.8em}}
 %---------------------------------------------------------------------------%
 \endinput
 
