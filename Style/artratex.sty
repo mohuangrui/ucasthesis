@@ -320,7 +320,13 @@
     %\RequirePackage[cal=cm]{mathalfa}% map styles for calligraphic \mathcal and script \mathscr alphabet
     \IfFontExistsTF{XITS-Regular.otf}{%
     \RequirePackage{unicode-math}% unicode font configuration <XITS|STIX2>
-    \def\boldsymbol#1{\symbf{#1}}% treat obsoleteness
+    \def\boldsymbol#1{\symbfit{#1}}% treat obsoleteness
+    \providecommand{\Vector}[1]{\symbfit{#1}}% general vectors in bold italic
+    \providecommand{\unitVector}[1]{\symbfup{#1}}% unit vectors in bold roman
+    \providecommand{\Matrix}[1]{\symbfup{#1}}% matrix in bold roman
+    \providecommand{\unitMatrix}[1]{\symbfup{#1}}% identity matrix in bold roman
+    \providecommand{\Tensor}[1]{\symbfsfup{#1}}% tensor in sans-serif bold italic
+    \providecommand{\unitTensor}[1]{\symbfsfup{#1}}% identity tensor in sans-serif bold
     \setmainfont[NFSSFamily=entextrm]{XITS}[
       Extension      = .otf,
       UprightFont    = *-Regular,

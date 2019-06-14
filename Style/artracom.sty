@@ -61,16 +61,16 @@
 %- and easy adaption, it it always best to create a corresponding command for 
 %- variables in each math category.  
 %\providecommand{\Scalar}[1]{#1}% scalar is the normal math typeset, italic
-\providecommand{\Vector}[1]{\boldsymbol{#1}}% general vectors in bold italic
-%\renewcommand{\vec}[1]{\Vector{#1}}% redefine predefined vector if needed
-\providecommand{\unitVector}[1]{\boldsymbol{\mathbf{#1}}}% unit vectors in bold roman
-\providecommand{\Tensor}[1]{\boldsymbol{\mathsf{#1}}}% tensor in sans-serif bold italic
-\providecommand{\unitTensor}[1]{\boldsymbol{{\mathsf{#1}}}}% identity tensor in sans-serif bold
-\providecommand{\Matrix}[1]{\boldsymbol{\mathbf{#1}}}% matrix in bold roman
-\providecommand{\unitMatrix}[1]{\boldsymbol{\mathbf{#1}}}% identity matrix in bold roman
-\providecommand{\Unit}[1]{\,\mathrm{#1}}% units in roman
-\providecommand{\Const}[1]{\mathrm{#1}}% math constants, functions
-\providecommand{\Set}[1]{\mathbb{#1}}% special sets in blackboard bold
+\providecommand{\Vector}[1]{\boldsymbol{#1}}% General vectors in bold italic
+\providecommand{\unitVector}[1]{\boldsymbol{\mathbf{#1}}}% Unit vectors in bold roman
+\providecommand{\Matrix}[1]{\boldsymbol{\mathbf{#1}}}% Matrix in bold roman
+\providecommand{\unitMatrix}[1]{\boldsymbol{\mathbf{#1}}}% Identity matrix in bold roman
+\providecommand{\Tensor}[1]{\boldsymbol{\mathsf{#1}}}% Tensor in sans-serif bold italic
+\providecommand{\unitTensor}[1]{\boldsymbol{{\mathsf{#1}}}}% Identity tensor in sans-serif bold
+\providecommand{\Unit}[1]{\,\mathrm{#1}}% Units in roman
+\providecommand{\Const}[1]{\mathrm{#1}}% Math constants, functions
+\providecommand{\Set}[1]{\mathbb{#1}}% Special sets (e.g. real numbers) in blackboard bold
+\providecommand{\Des}[1]{\mathrm{#1}}% description
 \providecommand{\Div}{\operatorname{div}}% divergence operator
 \providecommand{\Order}{\operatorname{O}}% order operator
 \providecommand{\Trace}{\operatorname{tr}}% trace operator
@@ -79,7 +79,7 @@
 \providecommand{\Loptr}{\operatorname{\mathcal{L}}}% spatial operator
 \providecommand{\Toptr}{\operatorname{\mathcal{LL}}}% temporal operator
 \providecommand{\Soptr}{\operatorname{\mathcal{S}}}% solution operator
-\providecommand{\Des}[1]{\mathrm{#1}}% descriptive superscripts and subscripts in roman type 
+\providecommand{\Rev}[1]{\begingroup\color{blue}{#1}\endgroup}% revision highlight
 %-
 %-> Graphical length factor
 %-
