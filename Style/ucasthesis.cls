@@ -34,7 +34,7 @@
 %-> Language
 %-
 \newif\ifucas@plain \ucas@plainfalse
-\DeclareOption{plain}{% enable plain writing style
+\DeclareOption{scheme=plain}{% enable plain writing style
     \PassOptionsToClass{scheme=plain}{ctexbook}%
     \ucas@plaintrue%
 }
