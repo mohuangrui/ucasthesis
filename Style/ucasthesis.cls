@@ -271,7 +271,7 @@
         \clist_put_right:Nn \l_tmpb_clist 
           { \ulenhance[1.2pt]{\ulextend{##1}} }
       }
-    \clist_show:N\l_tmpb_clist
+    % \clist_show:N\l_tmpb_clist
     \clist_use:Nn \l_tmpb_clist { \\ & }
     \PackageWarning{test}{ xxx }
 }
