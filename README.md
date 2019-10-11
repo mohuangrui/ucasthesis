@@ -14,7 +14,7 @@
 
 ## 模板简介
  
-* ucasthesis 为撰写中国科学院大学**本**、**硕**、**博**学位论文和**博后**报告的 LaTeX 模版。ucasthesis 提供了简单明了的**模板使用说明.pdf**。无论你是否具有 LaTeX 使用经验，都可较为轻松地使用以完成学位论文的撰写和排版。谢谢大家的测试、反馈和支持，我们一起的努力让 ucasthesis 非常荣幸地得到了国科大本科部陆晴老师、本科部学位办丁云云老师和中科院数学与系统科学研究院吴凌云研究员的支持，并得到吴凌云学长在 [CTEX](http://www.ctex.org/HomePage) 的发布。
+* ucasthesis 为撰写中国科学院大学**本**、**硕**、**博**学位论文和[**博后**](https://github.com/mohuangrui/ucasthesis/wiki/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98#%E5%A6%82%E4%BD%95%E5%A1%AB%E5%86%99%E5%8D%9A%E5%A3%AB%E5%90%8E%E7%9A%84-frontinfotex-)报告的 LaTeX 模版。ucasthesis 提供了简单明了的**模板使用说明.pdf**。无论你是否具有 LaTeX 使用经验，都可较为轻松地使用以完成学位论文的撰写和排版。谢谢大家的测试、反馈和支持，我们一起的努力让 ucasthesis 非常荣幸地得到了国科大本科部陆晴老师、本科部学位办丁云云老师和中科院数学与系统科学研究院吴凌云研究员的支持，并得到吴凌云学长在 [CTEX](http://www.ctex.org/HomePage) 的发布。
 
 * 考虑到许多同学可能缺乏 LaTeX 使用经验，ucasthesis 将 LaTeX 的复杂性高度封装，开放出简单的接口，以便轻易使用。同时，对用 LaTeX 撰写论文的一些主要难题，如制图、制表、文献索引等，进行了详细说明，并提供了相应的代码样本，理解了上述问题后，对于初学者而言，使用此模板撰写学位论文将不存在实质性的困难。所以，如果你是初学者，请不要直接放弃，因为同样为初学者的我，十分明白让 LaTeX 简单易用的重要性，而这正是 ucasthesis 所追求和体现的。
 
@@ -38,7 +38,7 @@
 
 * `2019-05-25` 根据 [CDMA2019, issue #169](https://github.com/mohuangrui/ucasthesis/issues/169) 提供横排图表环境下页眉页脚的横排，具体使用见 [横排图表](https://github.com/mohuangrui/ucasthesis/wiki/横排图表)。
 
-* `2019-04-24` 拓展模版兼容博后报告。修复 [gsp2014, issue #156](https://github.com/mohuangrui/ucasthesis/issues/156) 文献引用中的连字符的间断显示和上标引用中逗号下沉。
+* `2019-04-24` 拓展模版兼容 [博后报告](https://github.com/mohuangrui/ucasthesis/wiki/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98#%E5%A6%82%E4%BD%95%E5%A1%AB%E5%86%99%E5%8D%9A%E5%A3%AB%E5%90%8E%E7%9A%84-frontinfotex-)。修复 [gsp2014, issue #156](https://github.com/mohuangrui/ucasthesis/issues/156) 文献引用中的连字符的间断显示和上标引用中逗号下沉。
 
 * `2019-04-19` 修复 [nihaomiao, issue #117](https://github.com/mohuangrui/ucasthesis/issues/117) `\mathbf` 失效问题。
 
