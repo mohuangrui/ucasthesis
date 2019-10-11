@@ -24,9 +24,11 @@
 
 ## 重要通知
 
-* `2019-06-15` 模板样式进行了修改，请查看下面的修改描述，以决定是否需要更新。
+* `2019-10-11` 模板样式进行了修改，请查看下面的修改描述，以决定是否需要更新。
 
 ## 更新记录
+
+* `2019-10-11` 根据 [Pantrick, issue #190](https://github.com/mohuangrui/ucasthesis/issues/190) 采用 [muzimuzhi](https://github.com/muzimuzhi) 提供的方法实现 \advisor{} 和 \institute{} 的自动换行功能。
 
 * `2019-08-01` 根据 [vectorliu, issue #183](https://github.com/mohuangrui/ucasthesis/issues/183) 修改英文模式下的 plain 选项为 scheme=plain 以消除对 Algorithm 样式的修改。
 

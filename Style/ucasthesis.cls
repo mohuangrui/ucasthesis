@@ -66,6 +66,21 @@
 \RequirePackage{etoolbox}% a toolbox of programming facilities
 \newcommand{\ucasifstreq}{\expandafter\ifstrequal\expandafter}% expansion control
 \newcommand{\ucasifstrbk}{\expandafter\ifblank\expandafter}% expansion control
+\RequirePackage{expl3}% LaTeX3 programming environment
+\ExplSyntaxOn
+\newcommand{\ucaslntotab}[2][1pt]{% convert lines into table lines
+    \seq_set_split:NnV \l_tmpa_seq {\\} {#2}
+    \clist_set_from_seq:NN \l_tmpa_clist \l_tmpa_seq
+    \clist_clear:N \l_tmpb_clist
+    \clist_map_inline:Nn \l_tmpa_clist
+      {%
+        \clist_put_right:Nn \l_tmpb_clist 
+          { \ulenhance[#1]{\ulextend{##1}} }
+      }
+    %\clist_show:N\l_tmpb_clist% show the content of comma list
+    \clist_use:Nn \l_tmpb_clist { \\ & }
+}
+\ExplSyntaxOff
 %---------------------------------------------------------------------------%
 %->> Load class configuration
 %---------------------------------------------------------------------------%
@@ -161,7 +176,7 @@
 \def\ucas@value@ch@author{}
 \renewcommand{\author}[1]{\def\ucas@value@ch@author{#1}}
 \def\ucas@value@ch@advisor{}
-\newcommand{\advisor}[1]{\def\ucas@value@ch@advisor{#1}}
+\newcommand{\advisor}[1]{\long\def\ucas@value@ch@advisor{#1}}
 \def\ucas@value@ch@advisors{}
 \newcommand{\advisors}[1]{\long\def\ucas@value@ch@advisors{#1}}
 \def\ucas@value@ch@degree{}
@@ -261,22 +276,6 @@
 %-
 %-> Define Chinese style
 %-
-\ExplSyntaxOn
-\newcommand\ucas@titlepage@formatter[1]{
-    \seq_set_split:NnV \l_tmpa_seq {\\} {#1}
-    \clist_set_from_seq:NN \l_tmpa_clist \l_tmpa_seq
-    \clist_clear:N \l_tmpb_clist
-    \clist_map_inline:Nn \l_tmpa_clist
-      {
-        \clist_put_right:Nn \l_tmpb_clist 
-          { \ulenhance[1.2pt]{\ulextend{##1}} }
-      }
-    % \clist_show:N\l_tmpb_clist
-    \clist_use:Nn \l_tmpb_clist { \\ & }
-    \PackageWarning{test}{ xxx }
-}
-\ExplSyntaxOff
-
 \newcommand{\maketitle@xpdc}{%
     \cleardoublepage
     \thispagestyle{empty}
@@ -304,11 +303,10 @@
         \def\arraystretch{1.3}
         \begin{tabular}{lc}
             \ucas@label@ch@author & \ulenhance[1.2pt]{\ulextend{\ucas@value@ch@author}}\\
-            \ucas@label@ch@advisor & \ulenhance[1.2pt]{\ulextend{\ucas@value@ch@advisor}}\\
-            & \ucas@titlepage@formatter{\ucas@value@ch@advisors}\\
+            \ucas@label@ch@advisor & \ucaslntotab[1.2pt]{\ucas@value@ch@advisor}\\
             \ucas@label@ch@degree & \ulenhance[1.2pt]{\ulextend{\ucas@value@ch@degreetype\ucas@value@ch@degree}}\\
             \ucas@label@ch@major & \ulenhance[1.2pt]{\ulextend{\ucas@value@ch@major}}\\
-            \ucas@label@ch@institute & \ucas@titlepage@formatter{\ucas@value@ch@institute}\\
+            \ucas@label@ch@institute & \ucaslntotab[1.2pt]{\ucas@value@ch@institute}\\
         \end{tabular}
 
         \vspace*{\stretch{4}}
