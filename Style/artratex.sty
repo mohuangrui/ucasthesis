@@ -395,8 +395,8 @@
     }
     %- Text font: Chinese
     \ifartx@windows%
-        \setCJKmainfont{SimSun}[AutoFakeBold,ItalicFont=KaiTi]%
-        \setCJKsansfont{SimHei}[AutoFakeBold]%
+        \setCJKmainfont{SimSun}[AutoFakeBold=2.5,ItalicFont=KaiTi]%
+        \setCJKsansfont{SimHei}[AutoFakeBold=2.5]%
         \setCJKmonofont{FangSong}%
     \else\ifartx@mac%
         \setCJKmainfont{Songti SC}[
@@ -408,8 +408,8 @@
         \setCJKsansfont{Heiti SC}[BoldFont = * Medium]%
         \setCJKmonofont{STFangsong}%
     \else\ifartx@adobe%
-        \setCJKmainfont{AdobeSongStd-Light}[AutoFakeBold,ItalicFont=AdobeKaitiStd-Regular]%
-        \setCJKsansfont{AdobeHeitiStd-Regular}[AutoFakeBold]%
+        \setCJKmainfont{AdobeSongStd-Light}[AutoFakeBold=2.5,ItalicFont=AdobeKaitiStd-Regular]%
+        \setCJKsansfont{AdobeHeitiStd-Regular}[AutoFakeBold=2.5]%
         \setCJKmonofont{AdobeFangsongStd-Regular}%
     \fi\fi\fi
 \fi
