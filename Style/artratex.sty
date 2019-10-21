@@ -617,16 +617,17 @@
 %- Configure fancy style
 \ifartx@xhf% user defined header and footer style
     \pagestyle{fancy}%
-    \artxifcnt{chapter}{%
-        \providecommand{\CTEXthechapter}{\thechapter.}% compatibility for non ctex classes
-        \let\artxmark\CTEXthechapter%
-        \renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{#1}}{}}% reset mark to actual name
-        \renewcommand{\sectionmark}[1]{\markright{\MakeUppercase{#1}}{}}% reset mark to actual name
-    }{%
-        \providecommand{\CTEXthesection}{\thesection.}% compatibility for non ctex classes
-        \let\artxmark\CTEXthesection%
-        \renewcommand{\sectionmark}[1]{\markright{\MakeUppercase{#1}}{}}% reset mark to actual name
-    }%
+    %- customizing headers and footers in LaTeX is a two-stage process
+    %- 1) \chapter|section call \chapter|sectionmark that call \markboth|right to define \left|rightmark
+    %-    but \chapter*|section* do not call \chapter|sectionmark, then manually call \markboth|right is needed to update \left|rightmark
+    %-    \markboth{here set \leftmark for chapter heading}{here set \rightmark for section heading}
+    %- 2) in header/footer definition, \left|rightmark represent the current chapter and section heading
+    %- original chaptermark and sectionmark for headings
+    %\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\chaptername\ \thechapter.\ #1}}{}}%
+    %\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}%
+    %- redefine to set mark to actual name
+    %\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{#1}}{}}%
+    %\renewcommand{\sectionmark}[1]{\markright{\MakeUppercase{#1}}{}}%
     %- Deactivate uppercase effect
     \renewcommand{\MakeUppercase}[1]{#1}%
     %- Define different kinds of header and footer for different parts
@@ -639,7 +640,7 @@
     }
     \fancypagestyle{mainmatterstyle}{% style for mainmatter
         \fancyhf{}% clear fields
-        \fancyhead[C]{\footnotesize \ifnumodd{\value{page}}{\artxmark\enskip\leftmark}{\@title}}% structure elements
+        \fancyhead[C]{\footnotesize \ifnumodd{\value{page}}{\leftmark}{\@title}}% structure elements
         \fancyfoot[C]{\footnotesize \ifnumodd{\value{page}}{\hspace*{\fill}\thepage}{\thepage\hspace*{\fill}}}% page number
         \renewcommand{\headrulewidth}{0.8pt}% header rule
         \renewcommand{\footrulewidth}{0pt}% footer rule
@@ -699,7 +700,7 @@
     \fancyhead[C]{%
         \begin{textblock}{1.0}[0.5,0.5](0.08,0.5)%
             \rotatebox{90}{%
-                \footnotesize \ifnumodd{\value{page}}{\artxmark\enskip\leftmark}{\@title}%
+                \footnotesize \ifnumodd{\value{page}}{\leftmark}{\@title}%
             }%
         \end{textblock}%
         \begin{textblock}{1.0}[0.5,0.5](0.08,0.5)%
