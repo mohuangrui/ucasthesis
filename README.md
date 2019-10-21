@@ -28,7 +28,7 @@
 
 ## 更新记录
 
-* `2019-10-12` 根据 [huiwenzhang, issue #198](https://github.com/mohuangrui/ucasthesis/issues/198) 修复 'mainmatter' 下 '\chapter*' 的页眉错误。
+* `2019-10-12` 根据 [huiwenzhang, issue #198](https://github.com/mohuangrui/ucasthesis/issues/198) 修复 `mainmatter` 下 `\chapter*` 的页眉错误。
 
 * `2019-10-12` 根据 [Fancy0609, muzimuzhi, issue #195](https://github.com/mohuangrui/ucasthesis/issues/195) 调整由 AutoFakeBold 控制的伪粗体加粗程度。
 
