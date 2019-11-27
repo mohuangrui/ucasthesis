@@ -399,7 +399,7 @@
         \setCJKsansfont{SimHei}[AutoFakeBold=2.5]%
         \setCJKmonofont{FangSong}%
     \else\ifartx@mac%
-        \setCJKmainfont{Songti SC}[
+        \setCJKmainfont{Songti SC}[%
             UprightFont    = * Light,
             BoldFont       = * Bold,
             ItalicFont     = Kaiti SC,
@@ -543,7 +543,7 @@
     \RequirePackage{hyperref}% load at last
     \hypersetup{% set hyperlinks
         pdfencoding=auto,% allows non-Latin based languages in bookmarks
-        %psdextra=true,% extra support for math symbols in bookmarks
+        psdextra=true,% extra support for math symbols in bookmarks
         %bookmarks=true,% show bookmarks bar
         bookmarksnumbered=true,% put section numbers in bookmarks
         pdftitle={\@title},% title

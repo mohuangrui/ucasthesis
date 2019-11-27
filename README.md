@@ -6,8 +6,8 @@
 
 ## 重要建议
 
-* 关于 LaTeX 的知识性问题，请查阅 [ucasthesis 知识小站](https://github.com/mohuangrui/ucasthesis/wiki) 和 [LaTeX Wikibook](https://en.wikibooks.org/wiki/LaTeX)。
-* 关于模板编译和样式设计的问题，请先仔细阅读 **模板使用说明.pdf** 并遵从提问流程。
+* 关于 LaTeX 的知识性问题，请查阅 [LaTeX 知识小站](https://github.com/mohuangrui/ucasthesis/wiki) 和 [LaTeX Wikibook](https://en.wikibooks.org/wiki/LaTeX)，如发问需前往 [CTeX Forum](https://github.com/CTeX-org/forum)。
+* 关于 ucasthesis 编译和设计的问题，请先读 **模板使用说明.pdf**，如发问需遵从[提问流程](https://github.com/mohuangrui/ucasthesis/wiki/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98)。
 * 使用邮件传播 ucasthesis 时，请先删除 `artratex.bat` 以防范 Dos 脚本的潜在风险。
 * 开题报告请见：[ucasproposal: 中国科学院大学开题报告 LaTeX 模板](https://github.com/mohuangrui/ucasproposal)。
 * 书脊制作请见：[latexspine: LaTeX 书脊模板](https://github.com/mohuangrui/latexspine)。

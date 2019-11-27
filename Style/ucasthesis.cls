@@ -270,7 +270,7 @@
         \def\maketitle{\maketitle@pdc}
         \def\MAKETITLE{\MAKETITLE@pdc}
     }{%
-        \ClassError{ucasthesis}{Invalid value of '\string\DEGREE'}{Please check the spelling}%
+        \ClassWarning{ucasthesis}{Invalid value of '\string\DEGREE', please check the spelling}%
     }}}}%
 }
 %-

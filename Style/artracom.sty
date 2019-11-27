@@ -27,21 +27,37 @@
 %-
 \ProcessOptions\relax%
 %---------------------------------------------------------------------------%
+%->> User added packages
+%---------------------------------------------------------------------------%
+%- this part adds normal packages
+%\RequirePackage{chemfig}% draw 2D chemical structures
+%\RequirePackage{mhchem}% typeset chemical formulae [mhchem|chemformula]
+
+%- this part adds packages that should be loaded at the very end
+\AtEndPreamble{%
+    %\RequirePackage{cleveref}% clever cross-referencing
+}
+%---------------------------------------------------------------------------%
 %->> User defined commands
 %---------------------------------------------------------------------------%
 %-
 %-> General information
 %- 
+%- \def\macroname#1<sep1>#2<sep2>{macro content, use of argument #1, #2 ...}
+%- each parameter #n is the shortest possible input sequence that matches the
+%- macro definition, separators included. Without separators, then Plain TeX
+%- macros are used just as LaTeX macros (without default parameter):
+%- \def\macroname#1#2#3{...} -> \newcommand{macroname}[3]{...}
+%- \def: define a command whether new or predefined, equivalent to
+%-       \providecommand{macroname}{}%
+%-       \renewcommand*{macroname}[number of arguments][default value]{definition}
+%- \long\def: define a command whether new or predefined, equivalent to
+%-       \providecommand{macroname}{}%
+%-       \renewcommand{macroname}[number of arguments][default value]{definition}
 %- \newcommand: defines a new command, makes an error if already defined
 %- \renewcommand: redefines a predefined command, makes an error if not yet defined
 %- \providecommand: defines a new command, if already defined, keep old definition
 %- *-forms: enable error check for missing arguments or arguments contain \par
-%- \def: define a command whether new or predefined, equivalent to
-%-       \providecommand{name}{}%
-%-       \renewcommand*{name}[number of arguments][default value]{definition}
-%- \long\def: define a command whether new or predefined, equivalent to
-%-       \providecommand{name}{}%
-%-       \renewcommand{name}[number of arguments][default value]{definition}
 %- *-forms that are usually the better form to use when defining commands with
 %- arguments, unless any of these arguments is intended to contain whole paragraphs
 %- of text. If you need to use the non-star form then you should ask whether that 
