@@ -166,21 +166,21 @@ Thesis.tex为主文档，其设计和规划了论文的整体框架，通过对�
 
 论文中图片的插入通常分为单图和多图，下面分别加以介绍：
 
-单图插入：假设插入名为\verb|tc_q_criteria|（后缀可以为.jpg、.png、.pdf，下同）的图片，其效果如图\ref{fig:tc_q_criteria}。
+单图插入：假设插入名为\verb|c06h06|（后缀可以为.jpg、.png、.pdf，下同）的图片，其效果如图\ref{fig:c06h06}。
 \begin{figure}[!htbp]
     \centering
-    \includegraphics[width=0.40\textwidth]{tc_q_criteria}
+    \includegraphics[width=0.40\textwidth]{c06h06}
     \bicaption{Q判据等值面图，同时测试一下一个很长的标题，比如这真的是一个很长很长很长很长很长很长很长很长的标题。}{Isocontour of Q criteria, at the same time, this is to test a long title, for instance, this is a really very long very long very long very long very long title.}
-    \label{fig:tc_q_criteria}
+    \label{fig:c06h06}
 \end{figure}
 
-如果插图的空白区域过大，以图片\verb|shock_cyn|为例，自动裁剪如图\ref{fig:shock_cyn}。
+如果插图的空白区域过大，以图片\verb|c06h06|为例，自动裁剪如图\ref{fig:c06h06_trim}。
 \begin{figure}[!htbp]
     \centering
     %trim option's parameter order: left bottom right top
-    \includegraphics[trim = 30mm 0mm 30mm 0mm, clip, width=0.40\textwidth]{shock_cyn}
+    \includegraphics[trim = 60mm 80mm 60mm 60mm, clip, width=0.40\textwidth]{c06h06}
     \bicaption{激波圆柱作用。}{Shock-cylinder interaction.}
-    \label{fig:shock_cyn}
+    \label{fig:c06h06_trim}
 \end{figure}
 
 多图的插入如图\ref{fig:oaspl}，多图不应在子图中给文本子标题，只要给序号，并在主标题中进行引用说明。
