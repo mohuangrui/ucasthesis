@@ -6,7 +6,6 @@
 
 ## 重要建议
 
-* 关于 LaTeX 的知识性问题，请查阅 [LaTeX 知识小站](https://github.com/mohuangrui/ucasthesis/wiki) 和 [LaTeX Wikibook](https://en.wikibooks.org/wiki/LaTeX)，如发问需前往 [CTeX Forum](https://github.com/CTeX-org/forum)。
 * 关于 ucasthesis 编译和设计的问题，请先读 **模板使用说明.pdf**，如发问需遵从[提问流程](https://github.com/mohuangrui/ucasthesis/wiki/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98)。
 * 使用邮件传播 ucasthesis 时，请先删除 `artratex.bat` 以防范 Dos 脚本的潜在风险。
 * 开题报告请见：[ucasproposal: 中国科学院大学开题报告 LaTeX 模板](https://github.com/mohuangrui/ucasproposal)。
@@ -24,9 +23,11 @@
 
 ## 重要通知
 
-* `2019-10-21` 模板样式进行了修改，请查看下面的修改描述，以决定是否需要更新。
+* `2020-01-09` 模板样式进行了修改，请查看下面的修改描述，以决定是否需要更新。
 
 ## 更新记录
+
+* `2020-01-09` 根据 [NineSH, issue #223](https://github.com/mohuangrui/ucasthesis/issues/223) 修复`bicaption`错误。
 
 * `2019-12-06` 移除 commit 中的二进制文件，以极大减少 Fork 后的文件大小。
 
