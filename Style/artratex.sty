@@ -18,23 +18,27 @@
 %---------------------------------------------------------------------------%
 \RequirePackage{etoolbox}% a toolbox of programming facilities
 %-
-%-> Platform fontset <windows>, <mac>, <adobe>, <times>, <others>
+%-> Platform fontset <windows>, <mac>, <adobe>, <none>, <times>, <others>
 %-
+%- Fetch the fontset value as user specified or automatically set based on os type
 \RequirePackage{expl3}% LaTeX3 programming environment
 \ExplSyntaxOn%
 \providecommand{\g__ctex_fontset_tl}{}% platform fontset state variable
 \edef\artxfontset{\g__ctex_fontset_tl}% expanded platform fontset state variable
 \ExplSyntaxOff%
+%- Specify font set according to the value of fontset
 \newif\ifartx@windows \artx@windowsfalse
 \newif\ifartx@mac \artx@macfalse
 \newif\ifartx@adobe \artx@adobefalse
+\newif\ifartx@none \artx@nonefalse
 \newif\ifartx@times \artx@timesfalse
 \newif\ifartx@others \artx@othersfalse
 \newcommand{\artxifstreq}{\expandafter\ifstrequal\expandafter}% expansion control
 \artxifstreq{\artxfontset}{windows}{\artx@windowstrue\artx@timestrue}{%
 \artxifstreq{\artxfontset}{mac}{\artx@mactrue\artx@timestrue}{%
 \artxifstreq{\artxfontset}{adobe}{\artx@adobetrue\artx@timestrue}{%
-\artx@otherstrue\artx@timesfalse}}}
+\artxifstreq{\artxfontset}{none}{\artx@nonetrue\artx@timestrue}{%
+\artx@otherstrue\artx@timesfalse}}}}
 %-
 %-> LaTeX engine <pdflatex>, <lualatex>, <xelatex>
 %-
@@ -276,6 +280,7 @@
 %-
 %-> Language settings
 %-
+\def\artx@fontdir{./Font/}% extra font location
 \ifartx@pdftex% <pdflatex> call font packages
     \RequirePackage[utf8]{inputenc}% set input encoding, document must use utf-8 encoding
     \RequirePackage[T1]{fontenc}% set font encoding to enable modern font encoding
@@ -291,24 +296,28 @@
         \PackageError{artratex}{%
             This package requires fontspec\MessageBreak 2016/12/27 or later version}{}
     }
-    %- Font properties: <family> + <weight> + <shape> + <size>
-    %- Specify the three default TeX font families: <main>, <sans>, <mono>
-    %- \setxxxxfont{<font>}[BoldFont=<font-b>,ItalicFont=<font-i>,BoldItalicFont=<font-bi>]%
-    %- <font>: \mdseries\upshape; <font-b>: \bfseries\upshape; <font-i>: \mdseries\itshape
-    %- <\lfseries|\mdseries|\bfseries>: weight of font, default <\mdseries>
-    %- <\upshape|\itshape|\scshape>: shape of font, default <\upshape>
+    %- Font properties: <family:rm|sf|tt> + <weight:lf|md|bf> + <shape:up|it|sl|sc> + <size>
+    %- <\rmfamily,\textrm{}|\sffamily,\textsf{}|\ttfamily,\texttt{}>: family of font <Roman|Sans serif|Monospace>, default <\rmfamily>
+    %- <\lfseries,\textlf{}|\mdseries,\textmd{}|\bfseries,\textbf{}>: weight of font <light|medium|bold>, default <\mdseries>
+    %- <\upshape,\textup{}|\itshape,\textit{}|\scshape,\textsc{}|\slshape,\textsl{}>: shape of font <upright|italic|samll capital|slanted>, default <\upshape>
+    %- Specify the default TeX font families with properties: <main>, <sans>, <mono>
+    %- \setxxxxfont{<font>}[Path=<>,Extension=<>,UprightFont=<>,BoldFont=<>,ItalicFont=<>,BoldItalicFont=<>,SlantedFont=<>,BoldSlantedFont=<>,SmallCapsFont=<>]%
+    %- The default setup for font loading automatically adds the Ligatures=TeX feature for the \setmainfont and \setsansfont commands
+    %- Fonts known to LuaTEX or XETEX may be loaded by their standard names as you'd speak them out loud
+    %- Fonts in the search path can be loaded by file name instead, but must include bold and italic variants explicitly
+    %- When a font family has both slanted and italic shapes, these may be specified separately using the analogous features ItalicFont and SlantedFont
+    %- Without these, the font switches for slanted (\textsl{},\slshape) will default to the italic shape
     %- Roman or Serif - typefaces with strokes - for main content
-    %- examples: Times New Roman, Garamond, Adobe Garamond Pro
-    %\setmainfont{Garamond}[BoldFont=Garamond-Bold,ItalicFont=Garamond-Italic]%
-    %- font switches: {\rmfamily ...}, \textrm{...}, {\normalfont ...}, \textnormal{...}
-    %- the latter is due to \renewcommand*{\familydefault}{\rmdefault}
+    %- examples: Times New Roman, Adobe Garamond Pro
+    %\setmainfont{Adobe Garamond Pro}%
+    %- extra font switches: {\normalfont ...}, \textnormal{...} due to \renewcommand*{\familydefault}{\rmdefault}
     %- Sans serif - typefaces without strokes - for headings demanding high readability
-    %- examples: Arial, Helvetica, Gill Sans, Futura
-    %\setsansfont{Gill Sans MT}% font switches: {\sffamily ...}, \textsf{...}
+    %- examples: Arial, Helvetica, Gill Sans MT, Futura
+    %\setsansfont{Gill Sans MT}%
     %- Monospaced - typefaces with same width - for programming, etc
     %- examples: Rockwell, Andale Mono, Courier
-    %\setmonofont{Rockwell}% font switches: {\ttfamily, ...}, \texttt{...}
-    %- Specify user-defined font families and font switches
+    %\setmonofont{Rockwell}%
+    %- Specify user-defined font families and font switches (like \rmfamily, \sffamily, \ttfamily)
     %- without NFSSFamily option, a font family is defined only if adding a new font name
     %\newfontfamily\<font-switch>{<font>}[<font features>]%
     %\newcommand{\text<font-switch>}[1]{{\<font-switch> #1}}%
@@ -407,11 +416,39 @@
         ]
         \setCJKsansfont{Heiti SC}[BoldFont = * Medium]%
         \setCJKmonofont{STFangsong}%
-    \else\ifartx@adobe%
-        \setCJKmainfont{AdobeSongStd-Light}[AutoFakeBold=2.5,ItalicFont=AdobeKaitiStd-Regular]%
-        \setCJKsansfont{AdobeHeitiStd-Regular}[AutoFakeBold=2.5]%
+    \else\ifartx@adobe% call font from system font library
+        \setCJKmainfont{AdobeSongStd-Light}[%
+            AutoFakeBold=2.5,
+            ItalicFont=AdobeKaitiStd-Regular,
+        ]
+        \setCJKsansfont{AdobeHeitiStd-Regular}[%
+            AutoFakeBold=2.5,
+        ]%
         \setCJKmonofont{AdobeFangsongStd-Regular}%
-    \fi\fi\fi
+    \else\ifartx@none% call font from local fontdir
+    %- Without path: i) if font specified by a string without extension, fontspec will
+    %- treat the given string as font name and use system fontconfig to search the font name
+    %- in system font library; ii) if font specified by a string with extension, fontspec will
+    %- treat the given string as font filename and use kpathsea to search the font filename in
+    %- LaTeX distribution
+    %- With path: fontspec will treat the given string as font filename and use kpathsea to
+    %- search the font filename in path, and extension is optional but recommended in this case
+        \setCJKmainfont{AdobeSongStd-Light}[%
+            Path=\artx@fontdir,
+            Extension=.otf,
+            AutoFakeBold=2.5,
+            ItalicFont=AdobeKaitiStd-Regular,
+        ]
+        \setCJKsansfont{AdobeHeitiStd-Regular}[%
+            Path=\artx@fontdir,
+            Extension=.otf,
+            AutoFakeBold=2.5,
+        ]%
+        \setCJKmonofont{AdobeFangsongStd-Regular}[%
+            Path=\artx@fontdir,
+            Extension=.otf,
+        ]
+    \fi\fi\fi\fi
 \fi
 %-
 %-> Bibliography processor and package

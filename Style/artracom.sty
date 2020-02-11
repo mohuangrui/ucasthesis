@@ -30,9 +30,8 @@
 %->> User added packages
 %---------------------------------------------------------------------------%
 %- this part adds normal packages
-%\RequirePackage{chemfig}% draw 2D chemical structures
-%\RequirePackage{mhchem}% typeset chemical formulae [mhchem|chemformula]
-
+\RequirePackage{chemfig}% draw 2D chemical structures
+\RequirePackage[version=4]{mhchem}% typeset chemical formulae [mhchem|chemformula]
 %- this part adds packages that should be loaded at the very end
 \AtEndPreamble{%
     %\RequirePackage{cleveref}% clever cross-referencing
@@ -99,8 +98,9 @@
 %-
 %-> Graphical length factor
 %-
-\providecommand*{\MyFactor}{0.6}% for single figure
-\providecommand*{\MySubFactor}{0.45}% for subfigure
+\providecommand*{\onef}{0.6}% for single figure
+\providecommand*{\twof}{0.45}% for two subfigures
+\providecommand*{\trif}{0.32}% for three subfigures
 %-
 %-> Add dots before equation number
 %-
