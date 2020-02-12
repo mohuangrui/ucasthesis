@@ -27,7 +27,7 @@
 
 ## 更新记录
 
-* `2020-02-11` 根据 [ck2019ML, issue #182](https://github.com/mohuangrui/ucasthesis/issues/182)、[univeryinli, issue #229](https://github.com/mohuangrui/ucasthesis/issues/229) 将ucasthesis在Overleaf发布并支持调用外部字体，详见[字体配置](https://github.com/mohuangrui/ucasthesis/wiki/字体配置)。根据 [xiaokongkong, issue #231](https://github.com/mohuangrui/ucasthesis/issues/231)修正几个书写。
+* `2020-02-11` 根据 [ck2019ML, issue #182](https://github.com/mohuangrui/ucasthesis/issues/182)、[univeryinli, issue #229](https://github.com/mohuangrui/ucasthesis/issues/229) 将 ucasthesis 在 [Overleaf](https://github.com/mohuangrui/ucasthesis/wiki/字体配置#linuxoverleaf-系统的字体配置) 发布并支持调用外部字体，详见[字体配置](https://github.com/mohuangrui/ucasthesis/wiki/字体配置)。根据 [xiaokongkong, issue #231](https://github.com/mohuangrui/ucasthesis/issues/231)修正几个书写。
 
 * `2020-01-09` 根据 [NineSH, issue #223](https://github.com/mohuangrui/ucasthesis/issues/223) 修复`bicaption`错误。
 
