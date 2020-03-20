@@ -12,6 +12,10 @@
 %->> Identification
 %---------------------------------------------------------------------------%
 \NeedsTeXFormat{LaTeX2e}%
+\newcommand*\@iflatexlater{\@ifl@t@r\fmtversion}%
+\@iflatexlater{2017/01/01}{}{%
+    \ClassError{ucasthesis}{TeXLive/MikTex >= 2017 is required ...}{}%
+}
 \ProvidesClass{ucasthesis}[2014/10/01 v1.0 LaTeX document class]%
 %---------------------------------------------------------------------------%
 %->> Declare options
@@ -58,7 +62,10 @@
 %---------------------------------------------------------------------------%
 %->> Load class information
 %---------------------------------------------------------------------------%
-\LoadClass[UTF8,a4paper,zihao=-4]{ctexbook}
+\LoadClass[UTF8,a4paper,zihao=-4]{ctexbook}%
+\@ifclasslater{ctexbook}{2017/01/01}{}{%
+    \ClassError{ucasthesis}{ctex >= 2017/01/01 is required ...}{}%
+}
 %---------------------------------------------------------------------------%
 %->> Required packages
 %---------------------------------------------------------------------------%

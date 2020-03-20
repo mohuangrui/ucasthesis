@@ -293,8 +293,7 @@
 \else% <xelatex> or <lualatex> call system fonts
     \RequirePackage{fontspec}% support calling system fonts
     \@ifpackagelater{fontspec}{2016/12/27}{}{%
-        \PackageError{artratex}{%
-            This package requires fontspec\MessageBreak 2016/12/27 or later version}{}
+        \PackageError{artratex}{fontspec >= 2016/12/27 is required ...}{}%
     }
     %- Font properties: <family:rm|sf|tt> + <weight:lf|md|bf> + <shape:up|it|sl|sc> + <size>
     %- <\rmfamily,\textrm{}|\sffamily,\textsf{}|\ttfamily,\texttt{}>: family of font <Roman|Sans serif|Monospace>, default <\rmfamily>
