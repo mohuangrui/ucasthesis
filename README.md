@@ -27,6 +27,8 @@
 
 ## 更新记录
 
+* `2020-07-17` [GitatHub, hushidong, issue #296](https://github.com/mohuangrui/ucasthesis/issues/296)，更新 bibtex 国标样式 [gbt7714-bibtex-style](https://github.com/CTeX-org/gbt7714-bibtex-style) ，增加 biblatex 国标样式 [biblatex-gb7714-2015](https://github.com/hushidong/biblatex-gb7714-2015)，默认从 CTAN 调用上述国标样式。文献样式更多讨论可见：[文献样式](https://github.com/mohuangrui/ucasthesis/wiki/%E6%96%87%E7%8C%AE%E6%A0%B7%E5%BC%8F)
+
 * `2020-05-22` [lipcaty, issue #281](https://github.com/mohuangrui/ucasthesis/issues/281) 修复 ctex 移除 xeCJKfntef 后对 ulem 的加载。
 
 * `2020-03-20` [zepinglee, issue #250](https://github.com/mohuangrui/ucasthesis/issues/250) 增加 LaTeX 和依赖宏包版本检测功能。
@@ -69,7 +71,7 @@
 
 * `2019-02-20` [opt-gaobin, issue #100](https://github.com/mohuangrui/ucasthesis/issues/100) ，增加定理、定义、证明等数学环境。[DRjy, issue #102](https://github.com/mohuangrui/ucasthesis/issues/102) ，调整`\mathcal`字体样式。[zike Liu, email] ，适当缩减目录列表的缩进。[xiaoyaoE, issue #105](https://github.com/mohuangrui/ucasthesis/issues/105) ，使数字字体和英文字体一致。完善中文版和国际版之间的中英格式切换。
 
-* `2019-01-10` [mnpengjk, issue #57](https://github.com/mohuangrui/ucasthesis/issues/57) ， 将公式编号前加点纳入模版默认，更多讨论可见：[琐屑细节](https://github.com/mohuangrui/ucasthesis/wiki/琐屑细节) 。[yunyun2019, issue #95](https://github.com/mohuangrui/ucasthesis/issues/95) ，采用 [zepinglee](https://github.com/zepinglee) 基于国标样式为`ucas`所定制文献样式：[ucas 样式分支](https://github.com/CTeX-org/gbt7714-bibtex-style/tree/ucas) ，文献样式更多讨论可见：[文献样式](https://github.com/mohuangrui/ucasthesis/wiki/%E6%96%87%E7%8C%AE%E6%A0%B7%E5%BC%8F)。[邵岳林, email] ，将附录复原为常规的排版设置，若需将附录置于参考文献后，请见：[琐屑细节](https://github.com/mohuangrui/ucasthesis/wiki/琐屑细节)。
+* `2019-01-10` [mnpengjk, issue #57](https://github.com/mohuangrui/ucasthesis/issues/57) ，将公式编号前加点纳入模版默认，更多讨论可见：[琐屑细节](https://github.com/mohuangrui/ucasthesis/wiki/琐屑细节) 。[yunyun2019, issue #95](https://github.com/mohuangrui/ucasthesis/issues/95)，更新文献样式。[邵岳林, email] ，将附录复原为常规的排版设置，若需将附录置于参考文献后，请见：[琐屑细节](https://github.com/mohuangrui/ucasthesis/wiki/琐屑细节)。
 
 * `2018-04-03` 根据国科大本科部陆晴老师和本科部学位办丁云云老师的复审审核建议再次修复一些样式细节问题。
 

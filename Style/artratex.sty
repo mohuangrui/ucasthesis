@@ -17,6 +17,7 @@
 %->> Declare options
 %---------------------------------------------------------------------------%
 \RequirePackage{etoolbox}% a toolbox of programming facilities
+\newcommand{\artxifstreq}{\expandafter\ifstrequal\expandafter}% expansion control
 %-
 %-> Platform fontset <windows>, <mac>, <adobe>, <none>, <times>, <others>
 %-
@@ -33,7 +34,6 @@
 \newif\ifartx@none \artx@nonefalse
 \newif\ifartx@times \artx@timesfalse
 \newif\ifartx@others \artx@othersfalse
-\newcommand{\artxifstreq}{\expandafter\ifstrequal\expandafter}% expansion control
 \artxifstreq{\artxfontset}{windows}{\artx@windowstrue\artx@timestrue}{%
 \artxifstreq{\artxfontset}{mac}{\artx@mactrue\artx@timestrue}{%
 \artxifstreq{\artxfontset}{adobe}{\artx@adobetrue\artx@timestrue}{%
@@ -59,13 +59,16 @@
 %-
 \newif\ifartx@bibtex \artx@bibtextrue
 \newif\ifartx@biber \artx@biberfalse
+\def\artxbib{bibtex}
 \DeclareOption{bibtex}{%
     \artx@bibtextrue
     \artx@biberfalse
+    \def\artxbib{bibtex}
 }
 \DeclareOption{biber}{%
     \artx@bibtexfalse
     \artx@bibertrue
+    \def\artxbib{biber}
 }
 %-
 %-> Citation and reference style
@@ -466,12 +469,12 @@
         \else
             \citestyle{numbers}%
         \fi
-        \bibliographystyle{Biblio/gbt7714-unsrt}% numbered scheme
+        \bibliographystyle{gbt7714-numerical}% numbered scheme
     \fi
     \ifartx@authoryear% enable author year citation style
         \RequirePackage{natbib}% author year citation mode
         \citestyle{authoryear}%
-        \bibliographystyle{Biblio/gbt7714-plain}% author year scheme
+        \bibliographystyle{gbt7714-author-year}% author year scheme
     \fi
     \ifartx@alpha% enable alpha citation style
         \RequirePackage[square,comma,numbers]{natbib}% alpha citation mode
@@ -488,18 +491,20 @@
 \ifartx@biber%
     \ifartx@numbers% enable numbered citation style
         \ifartx@super% enable superscripted citation style
-            \RequirePackage[style=numeric-comp]{biblatex}%
+            \RequirePackage[backend=biber,style=gb7714-2015]{biblatex}%
         \else
-            \RequirePackage[style=numeric-comp]{biblatex}%
+            \RequirePackage[backend=biber,style=gb7714-2015]{biblatex}%
         \fi
     \fi
     \ifartx@authoryear% enable author year citation style
-        \RequirePackage[style=authoryear]{biblatex}%
+        \RequirePackage[backend=biber,style=gb7714-2015ay]{biblatex}%
     \fi
     \ifartx@alpha% enable alpha citation style
-        \RequirePackage[style=alphabetic]{biblatex}%
+        \RequirePackage[backend=biber,style=alphabetic]{biblatex}%
     \fi
     \addbibresource{ref.bib}%
+    \providecommand{\citep}[1]{\parencite{#1}}% compatibility
+    \providecommand{\citet}[1]{\textcite{#1}}% compatibility
 \fi
 %-
 %-> Figure environment support
@@ -641,7 +646,8 @@
     \setlength{\bibsep}{0.0ex plus 0.2ex minus 0.2ex}% set distance between entries
 \fi
 \ifartx@biber%
-    \setlength\bibitemsep{0.5\baselineskip}% set distance between entries
+    %\setlength\bibitemsep{0.5\baselineskip}% set distance between entries
+    \setlength\bibitemsep{0.0ex plus 0.2ex minus 0.2ex}% set distance between entrie
 \fi
 \renewcommand*{\bibfont}{\small}% set font size for bibliography
 %-
