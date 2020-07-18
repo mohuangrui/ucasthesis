@@ -3,7 +3,7 @@
 %-                           Document Style                                -%
 %-                                                                         -%
 %---------------------------------------------------------------------------%
-%- Copyright (C) Huangrui Mo <huangrui.mo@gmail.com> 
+%- Copyright (C) Huangrui Mo <huangrui.mo@gmail.com>
 %- This is free software: you can redistribute it and/or modify it
 %- under the terms of the GNU General Public License as published by
 %- the Free Software Foundation, either version 3 of the License, or
@@ -245,7 +245,7 @@
     \markboth{\MakeUppercase{#3}}{}% set header mark
 }
 \newcommand{\intobmk}{\@ifstar{\intobmkstar}{\intobmknostar}}% swap starred and non-starred versions
-%\newcommand{\rmlbk}[1]{\begingroup\def\\{\relax\ifhmode\unskip\fi\space\ignorespaces}#1\endgroup}% remove line breaks 
+%\newcommand{\rmlbk}[1]{\begingroup\def\\{\relax\ifhmode\unskip\fi\space\ignorespaces}#1\endgroup}% remove line breaks
 %---------------------------------------------------------------------------%
 %->> Required packages
 %---------------------------------------------------------------------------%
@@ -489,6 +489,7 @@
 \fi
 %- Biber processor + biblatex package
 \ifartx@biber%
+    \RequirePackage{hyperref}
     \ifartx@numbers% enable numbered citation style
         \ifartx@super% enable superscripted citation style
             \RequirePackage[backend=biber,style=gb7714-2015]{biblatex}%
@@ -502,9 +503,9 @@
     \ifartx@alpha% enable alpha citation style
         \RequirePackage[backend=biber,style=alphabetic]{biblatex}%
     \fi
-    \addbibresource{ref.bib}%
-    \providecommand{\citep}[1]{\parencite{#1}}% compatibility
-    \providecommand{\citet}[1]{\textcite{#1}}% compatibility
+    \addbibresource{Biblio/ref.bib}%
+    \renewrobustcmd*{\citet}{\textcite}
+    \renewrobustcmd*{\citep}{\parencite}
 \fi
 %-
 %-> Figure environment support
@@ -581,7 +582,9 @@
 %-> Link support
 %-
 \AtEndPreamble{%
+    \ifartx@bibtex%
     \RequirePackage{hyperref}% load at last
+    \fi
     \hypersetup{% set hyperlinks
         pdfencoding=auto,% allows non-Latin based languages in bookmarks
         psdextra=true,% extra support for math symbols in bookmarks
@@ -766,9 +769,9 @@
     %- the reference point of the text box, [0,0]: top left; [0.5,0.5]: middle; [0,1]: bottom left
     %- [<hpos>,<vpos>] are fractions of the width and height of the page and specify
     %- the position point on page, [0,0]: top left; [0.5,0.5]: middle; [0,1]: bottom left
-    %- set unit of <blockwidth>, <hpos> arguments via module 
+    %- set unit of <blockwidth>, <hpos> arguments via module
     \setlength{\TPHorizModule}{\paperwidth}%
-    %- set unit of <vpos> argument via module 
+    %- set unit of <vpos> argument via module
     \setlength{\TPVertModule}{\paperheight}%
     %- \rule[raise]{width}{thickness}
     %- \rotatebox[origin=c]{angle}{text}
@@ -818,4 +821,3 @@
 \fi
 %---------------------------------------------------------------------------%
 \endinput
-
