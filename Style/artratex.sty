@@ -455,6 +455,13 @@
 %-
 %-> Bibliography processor and package
 %-
+\def\artxbibref{Biblio/ref.bib}% bibliography reference file
+\def\artxbibtexnum{Biblio/gbt7714-numerical}% bibtex numbers bst
+\def\artxbibtexauy{Biblio/gbt7714-author-year}% bibtex authoryear bst
+\def\artxbibtexalp{alpha}% bibtex alpha bst
+\def\artxbibernum{Biblio/gb7714-2015}% biber numbers bst
+\def\artxbiberauy{Biblio/gb7714-2015ay}% biber authoryear bst
+\def\artxbiberalp{alphabetic}% biber alpha bst
 %- Bibtex processor + natbib package
 \ifartx@bibtex%
     % Set punctuation and mode of citation style
@@ -469,16 +476,16 @@
         \else
             \citestyle{numbers}%
         \fi
-        \bibliographystyle{gbt7714-numerical}% numbered scheme
+        \bibliographystyle{\artxbibtexnum}% numbered scheme
     \fi
     \ifartx@authoryear% enable author year citation style
         \RequirePackage{natbib}% author year citation mode
         \citestyle{authoryear}%
-        \bibliographystyle{gbt7714-author-year}% author year scheme
+        \bibliographystyle{\artxbibtexauy}% author year scheme
     \fi
     \ifartx@alpha% enable alpha citation style
         \RequirePackage[square,comma,numbers]{natbib}% alpha citation mode
-        \bibliographystyle{alpha}% alpha scheme
+        \bibliographystyle{\artxbibtexalp}% alpha scheme
     \fi
     \providecommand*{\citetns}[2][]{% text embedded \citet in superscripted mode
         \begingroup\citestyle{numbers}\citet[#1]{#2}\endgroup%
@@ -492,25 +499,26 @@
     \AtEndPreamble{\RequirePackage{hyperref}}% enable biblatex detection of hyperref
     \ifartx@numbers% enable numbered citation style
         \ifartx@super% enable superscripted citation style
-            \RequirePackage[backend=biber,style=gb7714-2015,gbcitelocal=chinese,mincitenames=1,maxcitenames=2]{biblatex}%
+            \RequirePackage[backend=biber,style=\artxbibernum,mincitenames=1,maxcitenames=2]{biblatex}%
         \else
-            \RequirePackage[backend=biber,style=gb7714-2015,gbcitelocal=chinese,mincitenames=1,maxcitenames=2]{biblatex}%
+            \RequirePackage[backend=biber,style=\artxbibernum,mincitenames=1,maxcitenames=2]{biblatex}%
             \renewrobustcmd*{\citet}{\textcite}%
             \renewrobustcmd*{\citep}{\parencite}%
         \fi
     \fi
     \ifartx@authoryear% enable author year citation style
-        \RequirePackage[backend=biber,style=gb7714-2015ay,gbcitelocal=chinese,mincitenames=1,maxcitenames=2]{biblatex}%
+        \RequirePackage[backend=biber,style=\artxbiberauy,mincitenames=1,maxcitenames=2]{biblatex}%
+            \renewrobustcmd*{\citet}{\textcite}%
             \renewrobustcmd*{\citep}{\parencite}%
     \fi
     \ifartx@alpha% enable alpha citation style
-        \RequirePackage[backend=biber,style=alphabetic]{biblatex}%
+        \RequirePackage[backend=biber,style=\artxbiberalp]{biblatex}%
     \fi
-    \addbibresource{Biblio/ref.bib}%
+    \addbibresource{\artxbibref}%
     \providecommand{\citep}[1]{\parencite{#1}}% compatibility
     \providecommand{\citet}[1]{\textcite{#1}}% compatibility
-    \providecommand{\bibetal}{et al.}%
-    \providecommand{\biband}{and}%
+    \providecommand{\bibetal}{et al.}% compatibility
+    \providecommand{\biband}{and}% compatibility
     \DefineBibliographyStrings{english}{%
         andincite         = {\biband},
         andothersincite   = {\bibetal{}},
