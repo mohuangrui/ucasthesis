@@ -27,7 +27,9 @@
 
 ## 更新记录
 
-* `2020-07-17` [GitatHub, hushidong, issue #296](https://github.com/mohuangrui/ucasthesis/issues/296)，更新 bibtex 国标样式 [gbt7714-bibtex-style](https://github.com/CTeX-org/gbt7714-bibtex-style) ，增加 biblatex 国标样式 [biblatex-gb7714-2015](https://github.com/hushidong/biblatex-gb7714-2015)，默认从 CTAN 调用上述国标样式。文献样式更多讨论可见：[文献样式](https://github.com/mohuangrui/ucasthesis/wiki/%E6%96%87%E7%8C%AE%E6%A0%B7%E5%BC%8F)
+* `2020-07-22` [hushidong, zepinglee, issue #296](https://github.com/mohuangrui/ucasthesis/issues/296)，完善 biblatex 和 bibtex 样式。文献样式更多讨论可见：[文献样式](https://github.com/mohuangrui/ucasthesis/wiki/%E6%96%87%E7%8C%AE%E6%A0%B7%E5%BC%8F)。
+
+* `2020-07-17` [GitatHub, hushidong, issue #296](https://github.com/mohuangrui/ucasthesis/issues/296)，更新 bibtex 国标样式 [gbt7714-bibtex-style](https://github.com/CTeX-org/gbt7714-bibtex-style) ，增加 biblatex 国标样式 [biblatex-gb7714-2015](https://github.com/hushidong/biblatex-gb7714-2015)，默认从 CTAN 调用上述国标样式。文献样式更多讨论可见：[文献样式](https://github.com/mohuangrui/ucasthesis/wiki/%E6%96%87%E7%8C%AE%E6%A0%B7%E5%BC%8F)。
 
 * `2020-05-22` [lipcaty, issue #281](https://github.com/mohuangrui/ucasthesis/issues/281) 修复 ctex 移除 xeCJKfntef 后对 ulem 的加载。
 

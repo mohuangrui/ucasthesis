@@ -1,0 +1,345 @@
+%%
+%% ---------------------------------------------------------------
+%% biblatex-gb7714-2015 --- A biblatex implementation of the
+%% GBT7714-2015 citation style,author year sequence
+%% Maintained by huzhenzhen
+%% E-mail: hzzmail@163.com
+%% Released under the LaTeX Project Public License v1.3c or later
+%% ---------------------------------------------------------------
+%%
+\def\versionofgbtstyle{2020/07/21 v1.0v}
+\ProvidesFile{gb7714-2015ay.cbx}[\versionofgbtstyle biblatex citation style]
+
+%
+%   加载标准样式
+%
+\RequireCitationStyle{authoryear-comp}
+
+\ExecuteBibliographyOptions{
+  %autocite  = superscript ,
+  %autopunct = true       ,
+  %sorting   = none        ,
+  maxcitenames=1,
+  mincitenames=1,
+  uniquename=init,%因为使用了名字缩写选项，所以需要设置uniquename=init而不是full避免冲突
+  uniquelist=minyear
+}
+
+%
+%   选项设置，针对3.7以下版本
+%
+%   原理方法:labeldate用于控制是否给引用标签提供日期的成分
+\defversion{3.4}{cbxopt}{
+    \ExecuteBibliographyOptions{
+      labeldate=true
+    }
+}
+
+%
+%   选项设置，针对3.7以上版本
+%
+%   原理方法:labeldateparts用于控制是否给引用标签提供日期的成分
+\defversion{3.7}{cbxopt}{
+    \ExecuteBibliographyOptions{
+      labeldateparts=true
+    }
+}
+
+\ifboolexpr{%选择选项设置
+test {\iftoggle{iftlfive}}%biblatex<=3.2
+or
+test {\iftoggle{iftlsix}}%3.3<=biblatex<=3.6
+}{\switchversion{3.4}{cbxopt}}{\switchversion{3.7}{cbxopt}}%else: biblatex>=3.7
+
+
+\ifboolexpr{%兼容cite:labelyear+extrayear
+test {\iftoggle{iftlfive}}%biblatex<=3.2
+or
+test {\iftoggle{iftlsix}}%3.3<=biblatex<=3.6
+or
+test {\iftoggle{iftlseven}}%3.7=biblatex
+}{\newbibmacro{cite:labeldate+extradate}{\usebibmacro{cite:labelyear+extrayear}}}{}%else: biblatex>3.7
+
+%textcite标注命令中的标点设置，注意只针对textcite命令。
+% v-old
+% v1.0t，20200320，hzz，修改如下
+% 在cbx中增加标注中的nameyeardelim标点定义，避免bbx使用其它样式时出现问题
+% 同时设置textcite的nameyeardelim为一个短空格，似乎原来直接连上去的不够美观
+\DeclareDelimFormat[cite,parencite,pagescite]{nameyeardelim}{\addcomma\space}%\addcomma\space
+\DeclareDelimFormat[textcite]{nameyeardelim}{\addthinspace}%\addcomma\space
+\DeclareDelimFormat[textcite]{andothersdelim}{\iffieldequalstr{userf}{chinese}{\addthinspace}{\addspace}}%
+\AtEveryCitekey{%
+\iffieldequalstr{userf}{chinese}{\renewcommand*{\andothersdelim}{\addthinspace}}%\addthinspace
+  {\renewcommand*{\andothersdelim}{\addspace}}%
+}
+
+
+%
+%   重定义cite:label，针对biblatex3.8以上版本set条目集的标注(引用)标签
+%
+%   原理方法:当条目是set时，v3.8以上版本，都没有有用的信息(区别于3.7以下版本set复制第一个成员的信息)，
+%   于是利用entrykey来给出标签，那么就要set的条目关键字是需要的字符串，注意字符串中间不能有空格
+\renewbibmacro*{cite:label}{%
+  \iffieldundef{label}%
+    {\iffieldundef{labeltitle}{\printtext[bibhyperref]{\printfield{entrykey}}}%entrykey
+    {\printtext[bibhyperref]{\printfield[citetitle]{labeltitle}}}}%
+    {\printtext[bibhyperref]{\printfield{label}}}}
+
+%
+%   重定义cite命令
+%
+%   方法:\DeclareCiteCommand{\cite}[\mkbibparens]{precode}{loopcode}{sepcode}{postcode}
+%    v1.0p版后将cite的处理方式修改为类似pagescite，而不再使用biblatex的标准方式
+\DeclareCiteCommand{\cite}
+  {\usebibmacro{cite:init}%
+  \renewbibmacro*{postnote}{%
+  \iffieldundef{postnote}%
+    {}%
+    {\thefield{postnote}}}%
+    (\usebibmacro{prenote}}%)
+  {\usebibmacro{citeindex}%
+   \usebibmacro{cite}}
+  {}
+  {%(
+  )\mkbibsuperscript{\usebibmacro{postnote}}%\usebibmacro{postnote}
+  }
+
+%
+%   定义upcite命令
+%   20180604，v1.0l，hzz
+%   20190409，v1.0r，hzz
+%   方法:与cite命令相同
+\newrobustcmd*{\upcite}{%
+    \cite}
+
+%
+%   重定义parencite命令
+%
+%\DeclareCiteCommand{\parencite}
+%  {\usebibmacro{cite:init}%
+%  \renewbibmacro*{postnote}{%
+%  \iffieldundef{postnote}%
+%    {}%
+%    {\nopunct%
+%     \printfield{postnote}}}%
+%    (\usebibmacro{prenote}}%)
+%  {\usebibmacro{citeindex}%
+%   \usebibmacro{cite}}
+%  {}
+%  {%(
+%  )\mkbibsuperscript{\usebibmacro{postnote}}}
+
+
+%
+%   新定义pagescite命令，以满足标签带页码的国标要求
+%
+%   原理方法:
+%   新增\pagescite引用命令
+\DeclareCiteCommand{\pagescite}
+  {\usebibmacro{cite:init}%
+  \renewbibmacro*{postnote}{%
+  \iffieldundef{postnote}%
+    {\thefield{pages}}%
+    {\thefield{postnote}}}%
+    (\usebibmacro{prenote}%)
+    }%
+  {\usebibmacro{citeindex}%
+   \usebibmacro{cite}}
+  {}
+  {%(
+  )\mkbibsuperscript{\usebibmacro{postnote}}}
+
+%
+%   定义yearpagescite，用于当文中作者已经存在，需要页码和年份的情况
+%
+%   原理:增加一个命令yearpagescite
+%   参考biblatex.DEF中的\DeclareCiteCommand*{\citeyear}命令
+\DeclareCiteCommand{\yearpagescite}
+  {\usebibmacro{cite:init}%
+  \renewbibmacro*{postnote}{%
+  \iffieldundef{postnote}%
+    {\thefield{pages}}%
+    {\thefield{postnote}}}%
+  \printtext{(}\usebibmacro{prenote}}%
+  {\usebibmacro{cite:labeldate+extradate}}%\printfield{year}\printfield{extrayear}
+  {\multicitedelim}%
+  {\printtext{)}\textsuperscript{\usebibmacro{postnote}}}
+
+%
+%   定义yearcite，用于当文中作者已经存在，仅需要年份的情况
+%
+%   原理:增加一个命令yearcite
+\DeclareCiteCommand{\yearcite}%仅输出年份，不要页码
+  {\usebibmacro{cite:init}%
+  \printtext{(}\usebibmacro{prenote}}%
+  {\usebibmacro{cite:labeldate+extradate}}%\printfield{year}\printfield{extrayear}
+  {\multicitedelim}%
+  {\printtext{)}}
+
+%
+%   定义\authornumcite命令，输出作者信息，然后在后面带上顺序编码
+%   20180427，v1.0k，增加，hzz
+%   20190409，v1.0r，hzz
+%   为与顺序编码制兼容，增加了命令，定义与citet相同
+\newbibmacro*{citeta}{%
+  \iffieldundef{shorthand}
+    {\ifthenelse{\ifnameundef{labelname}\OR\iffieldundef{labelyear}}
+       {\usebibmacro{cite:label}%
+        \setunit{\printdelim{nonameyeardelim}}%
+        \usebibmacro{cite:labeldate+extradate}%
+        \usebibmacro{cite:reinit}}
+       {\iffieldequals{namehash}{\cbx@lasthash}
+          {\ifthenelse{\iffieldequals{labelyear}{\cbx@lastyear}\AND
+                       \(\value{multicitecount}=0\OR\iffieldundef{postnote}\)}
+             {\setunit{\addcomma}%
+              \usebibmacro{cite:extradate}}
+             {\setunit{\compcitedelim}%
+              \usebibmacro{cite:labeldate+extradate}%
+              \savefield{labelyear}{\cbx@lastyear}}}
+          {\printnames{labelname}%
+           %\setunit{\printdelim{nameyeardelim}}%
+           (\usebibmacro{cite:labeldate+extradate})%
+           \savefield{namehash}{\cbx@lasthash}%
+           \savefield{labelyear}{\cbx@lastyear}}}}
+    {\usebibmacro{cite:shorthand}%
+     \usebibmacro{cite:reinit}}%
+  \setunit{\multicitedelim}}
+
+\DeclareCiteCommand{\authornumcite}%
+  {\usebibmacro{cite:init}%
+  \renewbibmacro*{postnote}{%
+  \iffieldundef{postnote}%
+    {}%
+    {\thefield{postnote}}}%
+    \usebibmacro{prenote}}%
+  {\usebibmacro{citeindex}%
+   \usebibmacro{citeta}}
+  {}
+  {\mkbibsuperscript{\usebibmacro{postnote}}%\usebibmacro{postnote}
+  }
+
+%
+%   增加如下多个命令
+%   20190409，v1.0r，hzz
+%   方法:利用newcommand或newrobustcmd命令进行定义
+%   注意\citet和\citep命令之所以不用newrobustcmd，是为避免加载natbib模块后产生冲突
+
+%同\authornumcite
+%\DeclareCiteCommand{\citet}%
+%  {\usebibmacro{cite:init}%
+%  \renewbibmacro*{postnote}{%
+%  \iffieldundef{postnote}%
+%    {}%
+%    {\thefield{postnote}}}%
+%    \usebibmacro{prenote}}%
+%  {\usebibmacro{citeindex}%
+%   \usebibmacro{citet}}
+%  {}
+%  {%(
+%  )\mkbibsuperscript{\usebibmacro{postnote}}%\usebibmacro{postnote}
+%  }
+
+
+%
+%   重定义citet，因为前面与\authornumcite同定义的命令无法正确处理多个bibtexkey同时给出的压缩情况
+%   20200721，v1.0v，hzz
+%   方法:利用textcite命令进行定义
+%   基本利用textcite命令来写citet，仅利用bool{cbx:incitet}做判断，进而处理不同的页码形式
+\newbool{cbx:incitet}
+\newbibmacro*{citet:postnote}{%
+  \ifthenelse{\value{multicitecount}=\value{multicitetotal}}
+    {\setunit{}%
+     \printtext{%
+       \ifbool{cbx:parens}
+         {\bibcloseparen\global\boolfalse{cbx:parens}}
+         {}}}
+    {\setunit{%
+       \ifbool{cbx:parens}
+         {\bibcloseparen\global\boolfalse{cbx:parens}}
+         {}%
+       \textcitedelim}}%
+       \renewbibmacro*{postnote}{%
+      \iffieldundef{postnote}%
+        {}%
+        {\thefield{postnote}}}%
+      \mkbibsuperscript{\usebibmacro{postnote}}%
+       }
+
+\DeclareCiteCommand{\cbx@textcite}
+  {\usebibmacro{cite:init}}
+  {\usebibmacro{citeindex}%
+   \usebibmacro{textcite}}
+  {}
+  {\ifbool{cbx:incitet}{\usebibmacro{citet:postnote}}{\usebibmacro{textcite:postnote}}}
+
+  \newrobustcmd{\cbx@citet@init}[2]{%
+  \global\booltrue{cbx:incitet}%
+  \setcounter{textcitetotal}{0}%
+  \setcounter{textcitecount}{0}%
+  \def\cbx@savedcites{#1}#2\cbx@savedcites\empty}
+
+  \renewrobustcmd{\cbx@textcite@init}[2]{%
+  \global\boolfalse{cbx:incitet}%
+  \setcounter{textcitetotal}{0}%
+  \setcounter{textcitecount}{0}%
+  \def\cbx@savedcites{#1}#2\cbx@savedcites\empty}
+
+\DeclareCiteCommand{\citet}[\cbx@citet@init\cbx@textcite]
+  {\gdef\cbx@savedkeys{}%
+   \citetrackerfalse%
+   \pagetrackerfalse%
+   \DeferNextCitekeyHook%
+   \usebibmacro{cite:init}}
+  {\ifthenelse{\iffirstcitekey\AND\value{multicitetotal}>0}
+     {\protected@xappto\cbx@savedcites{()(\thefield{multipostnote})}%
+      \global\clearfield{multipostnote}}
+     {}%
+   \xappto\cbx@savedkeys{\thefield{entrykey},}%
+   \iffieldequals{namehash}{\cbx@lasthash}
+     {}
+     {\stepcounter{textcitetotal}%
+      \savefield{namehash}{\cbx@lasthash}}}
+  {}
+  {\protected@xappto\cbx@savedcites{%
+     [\thefield{prenote}][\thefield{postnote}]{\cbx@savedkeys}}}
+
+\let\cbx@citets@init\cbx@citet@init
+\pretocmd{\cbx@citets@init}{\UseNextMultiCiteHook}{}{}
+\DeclareMultiCiteCommand{\citets}[\cbx@citets@init\cbx@textcites]{\citet}{}
+
+%同cite
+\DeclareCiteCommand{\citep}
+  {\usebibmacro{cite:init}%
+  \renewbibmacro*{postnote}{%
+  \iffieldundef{postnote}%
+    {}%
+    {\thefield{postnote}}}%
+    (\usebibmacro{prenote}}%)
+  {\usebibmacro{citeindex}%
+   \usebibmacro{cite}}
+  {}
+  {%(
+  )\mkbibsuperscript{\usebibmacro{postnote}}%\usebibmacro{postnote}
+  }
+
+\newrobustcmd*{\citetns}%
+    {\textcite}
+
+\newrobustcmd*{\citepns}%
+    {\parencite}
+
+\newrobustcmd*{\inlinecite}%
+    {\parencite}
+
+
+%
+%   增加如下复数的命令，以符合biblatex的复数命令习惯
+%   20190430，v1.0r，hzz
+% citec和citecs命令是为了兼容顺序编码制。
+% authornumcites是常用命令authornumcite的复数形式
+\newrobustcmd*{\citec}%
+    {\cite}
+
+\DeclareMultiCiteCommand{\citecs}[]{\cite}{\multicitedelim}
+
+\DeclareMultiCiteCommand{\authornumcites}[]{\authornumcite}{\multicitedelim}

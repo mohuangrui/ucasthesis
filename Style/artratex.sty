@@ -489,22 +489,34 @@
 \fi
 %- Biber processor + biblatex package
 \ifartx@biber%
+    \AtEndPreamble{\RequirePackage{hyperref}}% enable biblatex detection of hyperref
     \ifartx@numbers% enable numbered citation style
         \ifartx@super% enable superscripted citation style
-            \RequirePackage[backend=biber,style=gb7714-2015]{biblatex}%
+            \RequirePackage[backend=biber,style=gb7714-2015,gbcitelocal=chinese,mincitenames=1,maxcitenames=2]{biblatex}%
         \else
-            \RequirePackage[backend=biber,style=gb7714-2015]{biblatex}%
+            \RequirePackage[backend=biber,style=gb7714-2015,gbcitelocal=chinese,mincitenames=1,maxcitenames=2]{biblatex}%
+            \renewrobustcmd*{\citet}{\textcite}%
+            \renewrobustcmd*{\citep}{\parencite}%
         \fi
     \fi
     \ifartx@authoryear% enable author year citation style
-        \RequirePackage[backend=biber,style=gb7714-2015ay]{biblatex}%
+        \RequirePackage[backend=biber,style=gb7714-2015ay,gbcitelocal=chinese,mincitenames=1,maxcitenames=2]{biblatex}%
+            \renewrobustcmd*{\citep}{\parencite}%
     \fi
     \ifartx@alpha% enable alpha citation style
         \RequirePackage[backend=biber,style=alphabetic]{biblatex}%
     \fi
-    \addbibresource{ref.bib}%
+    \addbibresource{Biblio/ref.bib}%
     \providecommand{\citep}[1]{\parencite{#1}}% compatibility
     \providecommand{\citet}[1]{\textcite{#1}}% compatibility
+    \providecommand{\bibetal}{et al.}%
+    \providecommand{\biband}{and}%
+    \DefineBibliographyStrings{english}{%
+        andincite         = {\biband},
+        andothersincite   = {\bibetal{}},
+        andincitecn       = {\biband},
+        andothersincitecn = {\bibetal},
+    }
 \fi
 %-
 %-> Figure environment support

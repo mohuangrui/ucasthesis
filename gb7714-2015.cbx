@@ -1,0 +1,376 @@
+%%
+%% ---------------------------------------------------------------
+%% biblatex-gb7714-2015 --- A biblatex implementation of the
+%% GBT7714-2015 citation style,numerical sequence
+%% Maintained by huzhenzhen
+%% E-mail: hzzmail@163.com
+%% Released under the LaTeX Project Public License v1.3c or later
+%% ---------------------------------------------------------------
+%%
+\def\versionofgbtstyle{2020/07/21 v1.0v}
+\ProvidesFile{gb7714-2015.cbx}[\versionofgbtstyle biblatex citation style]
+
+%
+%   加载标准样式
+%
+\RequireCitationStyle{numeric-comp} %numeric
+
+
+%
+%   选项设置
+%
+\ExecuteBibliographyOptions{
+  autocite  = superscript ,
+  autopunct = true       ,
+  %sorting   = none        ,
+  maxcitenames=1,
+  mincitenames=1,
+}
+
+%textcite标注命令中的标点设置
+%\DeclareDelimFormat[textcite]{andothersdelim}{\addspace}%
+
+%
+%将连续3篇文献压缩改为连续2篇文献压缩
+%
+%该宏的目的是抛弃压缩内部的编号，而仅输出最后一个编号，主要通过cbx@tempcnta来控制
+%一般情况下cbx@tempcnta为0，所以该宏不输出任何内容。当cbx@tempcnta在cite:comp:comp宏中更改变大后
+%说明开始进入需要压缩的范围，当到压缩终点时，cbx@tempcnta必然大于1，则输出内容。
+%修改第二行的数字1为0即可将默认的3个开始压缩变为2个开始压缩。
+\renewbibmacro*{cite:dump}{%
+  \ifnumgreater{\value{cbx@tempcnta}}{0}%
+    {\ifnumgreater{\value{cbx@tempcnta}}{0}%1改为0，可以将压缩起始3个编号改为2个编号
+       {\bibrangedash}%
+       {\multicitedelim}%
+     \bibhyperref[\cbx@lastkey]{%
+       \ifdef\cbx@lastprefix%
+         {\printtext[labelprefix]{\cbx@lastprefix}}%
+         {}%
+       \printtext[labelnumber]{\cbx@lastnumber}}}%
+    {}%
+  \setcounter{cbx@tempcnta}{0}%
+  \global\undef\cbx@lastprefix}
+
+%
+%   定义一个上标方括号wrapper
+%
+\newcommand*\mkbibsuperbracket[1]{%
+  \mkbibsuperscript{\mkbibbrackets{#1}}%
+}
+
+%   修改postnote的输出格式
+\DeclareFieldFormat{postnote}{#1}
+
+%
+%   重定义cite命令
+%
+%   方法:\DeclareCiteCommand{\cite}[\mkbibparens]{precode}{loopcode}{sepcode}{postcode}
+%    v1.0p版后将cite的处理方式修改为类似pagescite，而不再使用biblatex的标准方式
+\DeclareCiteCommand{\cite}[\mkbibsuperscript]%利用mkbibsuperbracket添加方括号
+  {[\usebibmacro{cite:init}%
+   \usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \usebibmacro{cite:comp}}
+  {}
+  {\usebibmacro{cite:dump}]%
+   \printfield{postnote}}
+%   v1.0p 以前用的方式
+%\DeclareCiteCommand{\cite}[\mkbibsuperbracket]%利用mkbibsuperbracket添加方括号
+%  {\usebibmacro{cite:init}%
+%   \usebibmacro{prenote}}
+%  {\usebibmacro{citeindex}%
+%   \usebibmacro{cite:comp}}
+%  {}
+%  {\usebibmacro{cite:dump}%
+%   \usebibmacro{postnote}}
+
+%
+%   定义upcite命令
+%   20180604，v1.0l，hzz
+%   20190409，v1.0r，hzz
+%   方法:对supercite增加[]
+\newrobustcmd*{\upcite}{%
+    \cite}
+
+%
+%   重定义parencite命令，以满足标签带页码的国标要求
+%
+\DeclareCiteCommand{\parencite}%[\mkbibbrackets]
+  {[\usebibmacro{cite:init}%]
+   \usebibmacro{prenote}}%
+  {\usebibmacro{citeindex}%
+   \usebibmacro{cite:comp}}
+  {}
+  {%[
+  \usebibmacro{cite:dump}]%
+   \mkbibsuperscript{\printfield{postnote}}}
+
+%
+%   新定义pagescite命令，以满足标签带页码的国标要求
+%
+%   原理方法:
+%   1.新增页码输出宏
+\newbibmacro*{postpages}{%
+  \iffieldundef{postnote}
+    {\printfield[postnote]{pages}}
+    {\printfield{postnote}}}
+%   2.新增\pagescite引用命令
+\DeclareCiteCommand{\pagescite}[\mkbibsuperscript]%\mkbibbrackets,仍然用上标
+  {[\usebibmacro{cite:init}%]直接添加方括号
+   \usebibmacro{prenote}%
+   }
+  {\usebibmacro{citeindex}%
+   \usebibmacro{cite:comp}}
+  {}
+  {\usebibmacro{cite:dump}]%
+   \usebibmacro{postpages}}
+
+%
+%   定义yearpagescite，为与ay样式兼容，等同于\pagescite
+%
+\DeclareCiteCommand{\yearpagescite}[\mkbibsuperscript]%\mkbibbrackets,仍然用上标
+  {[\usebibmacro{cite:init}%]直接添加方括号
+   \usebibmacro{prenote}%
+   }
+  {\usebibmacro{citeindex}%
+   \usebibmacro{cite:comp}}
+  {}
+  {\usebibmacro{cite:dump}]%
+   \usebibmacro{postpages}}
+
+%
+%   定义\yearcite命令，为与ay样式兼容，且提供不输出页码的标签格式，
+%
+%   原理方法:等同于\pagescite，但不要页码
+\DeclareCiteCommand{\yearcite}[\mkbibsuperscript]%\mkbibbrackets,仍然用上标
+  {[\usebibmacro{cite:init}%]直接添加方括号
+   \usebibmacro{prenote}%
+   }
+  {\usebibmacro{citeindex}%
+   \usebibmacro{cite:comp}}
+  {}
+  {\usebibmacro{cite:dump}]}
+
+%
+%   定义\authornumcite命令，输出作者信息，然后在后面带上顺序编码
+%   20180427，v1.0k，增加，hzz
+%   gb7714样式新定义的命令都把cite放到最后，比如前面的pagescite，yearcite，这里的\authornumcite
+%   区别于biblatex定义的命令都把cite放到前面，比如citeauthor等。
+%见numeric.CBX
+\newbibmacro*{cite}{%
+  \printtext[bibhyperref]{%
+    \printfield{labelprefix}%
+    \printfield{labelnumber}%
+    \ifbool{bbx:subentry}
+      {\printfield{entrysetcount}}
+      {}}}
+%见numeric.CBX，\DeclareCiteCommand{\cite},
+\DeclareCiteCommand{\authornumcite}%[\mkbibsuperscript]
+  {\usebibmacro{prenote}}
+  {\iffieldequalstr{userf}{cn}{\renewcommand*{\andothersdelim}{\addthinspace}}%\addthinspace
+  {\renewcommand*{\andothersdelim}{\addspace}}%
+  \printnames{labelname}\mkbibsuperscript{\mkbibbrackets{\usebibmacro{citeindex}%
+   \usebibmacro{cite}}}}
+  {\multicitedelim}
+  {\mkbibsuperscript{\printfield{postnote}}}
+
+
+%
+%   增加如下多个命令
+%   20190409，v1.0r，hzz
+%   方法:利用newcommand或newrobustcmd命令进行定义
+%   注意\citet和\citep命令之所以不用newrobustcmd，是为避免加载natbib模块后产生冲突
+%\DeclareCiteCommand{\citet}%
+%  {\usebibmacro{prenote}}
+%  {\iffieldequalstr{userf}{cn}{\renewcommand*{\andothersdelim}{\addthinspace}}%\addthinspace
+%  {\renewcommand*{\andothersdelim}{\addspace}}%
+%  \printnames{labelname}\mkbibsuperscript{\mkbibbrackets{\usebibmacro{citeindex}%
+%   \usebibmacro{cite}}}}
+%  {\multicitedelim}
+%  {\mkbibsuperscript{\printfield{postnote}}}
+
+%
+%   重定义citet，因为前面与\authornumcite同定义的命令无法正确处理多个bibtexkey同时给出的压缩情况
+%   20200721，v1.0v，hzz
+%   方法:利用textcite命令进行定义
+%   基本利用textcite命令来写citet，仅利用bool{cbx:incitet}做判断，进而处理不同的上标和页码形式
+\newbool{cbx:incitet}
+\global\booltrue{cbx:incitet}
+
+\newbibmacro*{citet}{%
+  \iffieldequals{namehash}{\cbx@lasthash}%
+    {\usebibmacro{cite:comp}}%
+    {\usebibmacro{cite:dump}%
+     \ifbool{cbx:parens}%
+       {\mkbibsuperscript{\printtext{\bibclosebracket}}\global\boolfalse{cbx:parens}}%
+       {}%
+     \iffirstcitekey
+       {}
+       {\textcitedelim}%
+     \usebibmacro{cite:init}%
+     \ifnameundef{labelname}
+       {\printfield[citetitle]{labeltitle}}
+       {\printnames{labelname}}%
+     \setunit*{\printdelim{namelabeldelim}}%
+     \mkbibsuperscript{\printtext{\bibopenbracket}\global\booltrue{cbx:parens}%
+     \ifnumequal{\value{citecount}}{1}
+       {\usebibmacro{prenote}}%
+       {}%
+     \usebibmacro{cite:comp}%
+     \stepcounter{textcitecount}%
+     \savefield{namehash}{\cbx@lasthash}}}}
+
+\DeclareCiteCommand{\cbx@textcite}%
+  {\usebibmacro{cite:init}}%
+  {\usebibmacro{citeindex}%
+   \ifbool{cbx:incitet}{\usebibmacro{citet}}{\usebibmacro{textcite}}%
+   }%
+  {}%
+  {\ifbool{cbx:incitet}{\mkbibsuperscript{\usebibmacro{cite:dump}\usebibmacro{postnote}}}%
+        {\usebibmacro{cite:dump}\usebibmacro{postnote}}%
+   \ifbool{cbx:parens}%
+     {\ifbool{cbx:incitet}{\mkbibsuperscript{\bibclosebracket}}{\bibclosebracket}%
+     \global\boolfalse{cbx:parens}}%
+     {}}
+
+  \newrobustcmd{\cbx@citet@init}[2]{%
+  \global\booltrue{cbx:incitet}%
+  \setcounter{textcitetotal}{0}%
+  \setcounter{textcitecount}{0}%
+  \def\cbx@savedcites{#1}#2\cbx@savedcites\empty}
+
+  \renewrobustcmd{\cbx@textcite@init}[2]{%
+  \global\boolfalse{cbx:incitet}%
+  \setcounter{textcitetotal}{0}%
+  \setcounter{textcitecount}{0}%
+  \def\cbx@savedcites{#1}#2\cbx@savedcites\empty}
+
+\DeclareCiteCommand{\citet}[\cbx@citet@init\cbx@textcite]
+  {\gdef\cbx@savedkeys{}%
+   \citetrackerfalse%
+   \pagetrackerfalse%
+   \DeferNextCitekeyHook%
+   \usebibmacro{cite:init}}
+  {\ifthenelse{\iffirstcitekey\AND\value{multicitetotal}>0}
+     {\protected@xappto\cbx@savedcites{()(\thefield{multipostnote})}%
+      \global\clearfield{multipostnote}}
+     {}%
+   \xappto\cbx@savedkeys{\thefield{entrykey},}%
+   \iffieldequals{namehash}{\cbx@lasthash}
+     {}
+     {\stepcounter{textcitetotal}%
+      \savefield{namehash}{\cbx@lasthash}}}
+  {}
+  {\protected@xappto\cbx@savedcites{%
+     [\thefield{prenote}][\thefield{postnote}]{\cbx@savedkeys}}}
+
+
+
+\DeclareCiteCommand{\citep}[\mkbibsuperscript]%利用mkbibsuperbracket添加方括号
+  {[\usebibmacro{cite:init}%
+   \usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \usebibmacro{cite:comp}}
+  {}
+  {\usebibmacro{cite:dump}]%
+   \printfield{postnote}}
+
+\newrobustcmd*{\citetns}%
+    {\textcite}
+
+\newrobustcmd*{\citepns}%
+    {\parencite}
+
+\newrobustcmd*{\inlinecite}%
+    {\parencite}
+
+%
+%   增加如下复数的命令，以符合biblatex的复数命令习惯
+%   20190430，v1.0r，hzz
+% citec和citecs命令是实现了[1]-[3]这样的压缩形式。
+% authornumcites是常用命令authornumcite的复数形式
+\DeclareFieldFormat{labelbracket}{\mkbibbrackets{#1}}
+
+\newbibmacro*{citec:comp:comp}{%
+  \ifboolexpr{
+    ( test {\iffieldundef{labelprefix}} and test {\ifundef\cbx@lastprefix} )
+    or
+    test {\iffieldequals{labelprefix}{\cbx@lastprefix}}
+  }
+    {\ifnumequal{\thefield{labelnumber}}{\value{cbx@tempcntb}}
+       {\savefield{entrykey}{\cbx@lastkey}%
+        \savefield{labelnumber}{\cbx@lastnumber}%
+        \addtocounter{cbx@tempcnta}{1}}
+       {\ifnumequal{\thefield{labelnumber}}{\value{cbx@tempcntb}-1}
+          {}
+          {\usebibmacro{citec:dump}%
+           \ifnumgreater{\value{cbx@tempcntb}}{-1}
+             {\multicitedelim}
+             {}%
+           \printtext[bibhyperref]{%
+             \printfield{labelprefix}%
+             \printtext[labelbracket]{\printfield{labelnumber}}}}}}
+    {\usebibmacro{cite:comp:end}}%
+  \setcounter{cbx@tempcntb}{\thefield{labelnumber}}%
+  \savefield{labelprefix}{\cbx@lastprefix}}
+
+\newbibmacro*{citec:comp}{%
+  \addtocounter{cbx@tempcntb}{1}%
+  \iffieldundef{shorthand}
+    {\ifbool{bbx:subentry}
+       {\iffieldundef{entrysetcount}
+          {\usebibmacro{citec:comp:comp}}
+          {\usebibmacro{cite:comp:inset}}}
+       {\usebibmacro{citec:comp:comp}}}
+    {\usebibmacro{cite:comp:shand}}}
+
+\newbibmacro*{citec:dump}{%
+  \ifnumgreater{\value{cbx@tempcnta}}{0}
+    {\ifnumgreater{\value{cbx@tempcnta}}{1}
+       {\bibrangedash}
+       {\multicitedelim}%
+     \bibhyperref[\cbx@lastkey]{%
+       \ifdef\cbx@lastprefix
+         {\printtext[labelprefix]{\cbx@lastprefix}}
+         {}%
+       \printtext[labelbracket]{\cbx@lastnumber}}}%labelnumber
+    {}%
+  \setcounter{cbx@tempcnta}{0}%
+  \global\undef\cbx@lastprefix}
+
+%\DeclareCiteCommand{\citec}[\mkbibsuperscript]%[\mkbibbrackets]
+%  {\usebibmacro{cite:init}%
+%   \usebibmacro{prenote}}
+%  {\usebibmacro{citeindex}%
+%   \usebibmacro{citec:comp}}
+%  {}
+%  {\usebibmacro{citec:dump}%
+%   \usebibmacro{postnote}}
+
+%上面这个用于非压缩情况，这里考虑了压缩的情况
+\DeclareCiteCommand{\citec}[\mkbibsuperscript]%
+  {\ifnumless{\value{multicitecount}}{2}
+     {\usebibmacro{cite:init}%
+      \usebibmacro{prenote}}
+     {\iffieldundef{prenote}
+        {\iffieldundef{postnote}
+           {}
+           {\usebibmacro{citec:dump}%
+            \usebibmacro{cite:init}%
+            \setunit{\multicitedelim}}}
+        {\usebibmacro{citec:dump}%
+         \usebibmacro{cite:init}%
+         \setunit{\multicitedelim}%
+         \usebibmacro{prenote}}}}
+  {\usebibmacro{citeindex}%
+   \usebibmacro{citec:comp}}
+  {}
+  {\ifboolexpr{       test {\ifnumequal{\value{multicitecount}}{\value{multicitetotal}}}
+               or not test {\iffieldundef{postnote}}}
+     {\usebibmacro{citec:dump}%
+      \usebibmacro{postnote}}
+     {}}
+
+\DeclareMultiCiteCommand{\citecs}[\mkbibsuperscript]{\citec}{}
+
+\DeclareMultiCiteCommand{\authornumcites}[]{\authornumcite}{\multicitedelim}
