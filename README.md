@@ -17,7 +17,7 @@
 
 * 考虑到许多同学可能缺乏 LaTeX 使用经验，ucasthesis 将 LaTeX 的复杂性高度封装，开放出简单的接口，以便轻易使用。同时，对用 LaTeX 撰写论文的一些主要难题，如制图、制表、文献索引等，进行了详细说明，并提供了相应的代码样本，理解了上述问题后，对于初学者而言，使用此模板撰写学位论文将不存在实质性的困难。所以，如果你是初学者，请不要直接放弃，因为同样为初学者的我，十分明白让 LaTeX 简单易用的重要性，而这正是 ucasthesis 所追求和体现的。
 
-* 此中国科学院大学学位论文模板 ucasthesis 基于中科院数学与系统科学研究院吴凌云研究员的 CASthesis 模板发展而来。当前 ucasthesis 模板满足最新的中国科学院大学学位论文撰写要求和封面设定。兼顾操作系统：Windows，Linux，MacOS 和 LaTeX 编译引擎：pdflatex，xelatex，lualatex。支持中文书签、中文渲染、中文粗体显示、拷贝 PDF 中的文本到其他文本编辑器等特性（[Windows 系统 PDF 拷贝乱码的解决方案需见：字体配置](https://github.com/mohuangrui/ucasthesis/wiki/%E5%AD%97%E4%BD%93%E9%85%8D%E7%BD%AE)）。此外，对模板的文档结构进行了精心设计，撰写了编译脚本提高模板的易用性和使用效率。
+* 此中国科学院大学学位论文模板 ucasthesis 基于中科院数学与系统科学研究院吴凌云研究员的 CASthesis 模板发展而来。当前 ucasthesis 模板满足最新的中国科学院大学学位论文撰写要求和封面设定。兼顾操作系统：Windows、Linux、MacOS；LaTeX 编译引擎：pdflatex、xelatex、lualatex；文献编译引擎：bibtex、biber (biblatex)；文献样式：著者-出版年制（authoryear）、顺序编码制（numbers）、上标顺序编码制（super）、字符编码制（alpha）。支持中文书签、中文渲染、中文粗体显示、拷贝 PDF 中的文本到其他文本编辑器等特性（[Windows 系统 PDF 拷贝乱码的解决方案需见：字体配置](https://github.com/mohuangrui/ucasthesis/wiki/%E5%AD%97%E4%BD%93%E9%85%8D%E7%BD%AE)）。此外，对模板的文档结构进行了精心设计，撰写了编译脚本提高模板的易用性和使用效率。
 
 * ucasthesis 的目标在于简化学位论文的撰写，利用 LaTeX 格式与内容分离的特征，模板将格式设计好后，作者可只需关注论文内容。 同时，ucasthesis 有着整洁一致的代码结构和扼要的注解，对文档的仔细阅读可为初学者提供一个学习 LaTeX 的窗口。此外，模板的架构十分注重通用性，事实上，ucasthesis 不仅是国科大学位论文模板，同时，通过少量修改即可成为使用 LaTeX 撰写中英文文章或书籍的通用模板，并为使用者的个性化设定提供了接口。
 
@@ -27,9 +27,11 @@
 
 ## 更新记录
 
-* `2020-07-22` [hushidong, zepinglee, issue #296](https://github.com/mohuangrui/ucasthesis/issues/296)，完善 biblatex 和 bibtex 样式。文献样式更多讨论可见：[文献样式](https://github.com/mohuangrui/ucasthesis/wiki/%E6%96%87%E7%8C%AE%E6%A0%B7%E5%BC%8F)。
+* `2020-07-28` [Tony, issue #299](https://github.com/mohuangrui/ucasthesis/issues/299)，更新 bibtex 样式。文献样式更多讨论可见：[文献样式](https://github.com/mohuangrui/ucasthesis/wiki/%E6%96%87%E7%8C%AE%E6%A0%B7%E5%BC%8F)。
 
-* `2020-07-17` [GitatHub, hushidong, issue #296](https://github.com/mohuangrui/ucasthesis/issues/296)，更新 bibtex 国标样式 [gbt7714-bibtex-style](https://github.com/CTeX-org/gbt7714-bibtex-style) ，增加 biblatex 国标样式 [biblatex-gb7714-2015](https://github.com/hushidong/biblatex-gb7714-2015)。文献样式更多讨论可见：[文献样式](https://github.com/mohuangrui/ucasthesis/wiki/%E6%96%87%E7%8C%AE%E6%A0%B7%E5%BC%8F)。
+* `2020-07-22` [hushidong, zepinglee, issue #296](https://github.com/mohuangrui/ucasthesis/issues/296)，完善 biblatex 和 bibtex 样式。
+
+* `2020-07-17` [GitatHub, hushidong, issue #296](https://github.com/mohuangrui/ucasthesis/issues/296)，更新 bibtex 国标样式 [gbt7714-bibtex-style](https://github.com/CTeX-org/gbt7714-bibtex-style) ，增加 biblatex 国标样式 [biblatex-gb7714-2015](https://github.com/hushidong/biblatex-gb7714-2015)。
 
 * `2020-05-22` [lipcaty, issue #281](https://github.com/mohuangrui/ucasthesis/issues/281) 修复 ctex 移除 xeCJKfntef 后对 ulem 的加载。
 

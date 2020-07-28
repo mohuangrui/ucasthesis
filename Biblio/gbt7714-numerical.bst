@@ -1,10 +1,10 @@
 %%
-%% This is file `gbt7714-author-year.bst',
+%% This is file `gbt7714-numerical.bst',
 %% generated with the docstrip utility.
 %%
 %% The original source files were:
 %%
-%% gbt7714.dtx  (with options: `2015,authoryear')
+%% gbt7714.dtx  (with options: `2015,numerical')
 %% -------------------------------------------------------------------
 %% GB/T 7714-2015 BibTeX Style
 %% https://github.com/CTeX-org/gbt7714-bibtex-style
@@ -48,11 +48,6 @@ INTEGERS {
   show.preprint
   show.note
   show.english.translation
-  lang.zh.order
-  lang.ja.order
-  lang.en.order
-  lang.ru.order
-  lang.other.order
 }
 
 FUNCTION {load.config}
@@ -64,7 +59,7 @@ FUNCTION {load.config}
   #0 'uppercase.name :=
   #1 'terms.in.macro :=
   #0 'year.after.author :=
-  #0 'period.after.author :=
+  #1 'period.after.author :=
   #1 'sentence.case.title :=
   #0 'link.title :=
   #1 'title.in.journal :=
@@ -84,11 +79,6 @@ FUNCTION {load.config}
   #0 'show.preprint :=
   #0 'show.note :=
   #0 'show.english.translation :=
-  #1 'lang.zh.order :=
-  #2 'lang.ja.order :=
-  #3 'lang.en.order :=
-  #4 'lang.ru.order :=
-  #5 'lang.other.order :=
 }
 
 ENTRY
@@ -595,7 +585,7 @@ FUNCTION {format.authors}
 { author empty$ not
     { author format.names }
     { "empty author in " cite$ * warning$
-      bbl.anonymous
+      ""
     }
   if$
 }
@@ -1000,7 +990,7 @@ FUNCTION {format.journal}
         'skip$
       if$
     }
-    'pop$
+    'skip$
   if$
 }
 
@@ -1549,7 +1539,7 @@ FUNCTION {monograph}
     { editor empty$ not
         { format.editors }
         { "empty author and editor in " cite$ * warning$
-          bbl.anonymous
+          ""
         }
       if$
     }
@@ -1778,7 +1768,7 @@ FUNCTION {preprint}
     { editor empty$ not
         { format.editors }
         { "empty author and editor in " cite$ * warning$
-          bbl.anonymous
+          ""
         }
       if$
     }
@@ -2139,139 +2129,14 @@ FUNCTION {calc.label}
   'label :=
 }
 
-FUNCTION {sort.language.label}
-{ entry.lang lang.zh =
-    { lang.zh.order }
-    { entry.lang lang.ja =
-        { lang.ja.order }
-        { entry.lang lang.en =
-            { lang.en.order }
-            { entry.lang lang.ru =
-                { lang.ru.order }
-                { lang.other.order }
-              if$
-            }
-          if$
-        }
-      if$
-    }
-  if$
-  int.to.chr$
-}
+INTEGERS { seq.num }
 
-FUNCTION {sort.format.names}
-{ 's :=
-  #1 'nameptr :=
-  ""
-  s num.names$ 'numnames :=
-  numnames 'namesleft :=
-    { namesleft #0 > }
-    {
-      s nameptr "{vv{ } }{ll{ }}{  ff{ }}{  jj{ }}" format.name$ 't :=
-      nameptr #1 >
-        {
-          "   "  *
-          namesleft #1 = t "others" = and
-            { "zzzzz" * }
-            { numnames #2 > nameptr #2 = and
-                { "zz" * year field.or.null * "   " * }
-                'skip$
-              if$
-              t sortify *
-            }
-          if$
-        }
-        { t sortify * }
-      if$
-      nameptr #1 + 'nameptr :=
-      namesleft #1 - 'namesleft :=
-    }
-  while$
-}
+FUNCTION {init.seq}
+{ #0 'seq.num :=}
 
-FUNCTION {sort.format.title}
-{ 't :=
-  "A " #2
-    "An " #3
-      "The " #4 t chop.word
-    chop.word
-  chop.word
-  sortify
-  #1 global.max$ substring$
-}
-
-FUNCTION {anonymous.sort}
-{ entry.lang lang.zh =
-    { "yi4 ming2" }
-    { "anon" }
-  if$
-}
-
-FUNCTION {warn.empty.key}
-{ entry.lang lang.zh =
-    { "empty key in " cite$ * warning$ }
-    'skip$
-  if$
-}
-
-FUNCTION {author.sort}
-{ key empty$
-    { warn.empty.key
-      author empty$
-        { anonymous.sort }
-        { author sort.format.names }
-      if$
-    }
-    { key sortify }
-  if$
-}
-
-FUNCTION {author.editor.sort}
-{ key empty$
-    { warn.empty.key
-      author empty$
-        { editor empty$
-            { anonymous.sort }
-            { editor sort.format.names }
-          if$
-        }
-        { author sort.format.names }
-      if$
-    }
-    { key sortify }
-  if$
-}
-
-FUNCTION {author.organization.sort}
-{ key empty$
-    { warn.empty.key
-      author empty$
-        { organization empty$
-            { anonymous.sort }
-            { "The " #4 organization chop.word sortify }
-          if$
-        }
-        { author sort.format.names }
-      if$
-    }
-    { key sortify }
-  if$
-}
-
-FUNCTION {editor.organization.sort}
-{ key empty$
-    { warn.empty.key
-      editor empty$
-        { organization empty$
-            { anonymous.sort }
-            { "The " #4 organization chop.word sortify }
-          if$
-        }
-        { editor sort.format.names }
-      if$
-    }
-    { key sortify }
-  if$
+FUNCTION {int.to.fix}
+{ "000000000" swap$ int.to.str$ *
+  #-1 #10 substring$
 }
 
 FUNCTION {presort}
@@ -2283,29 +2148,8 @@ FUNCTION {presort}
   label sortify
   "    "
   *
-  sort.language.label
-  type$ "book" =
-  type$ "inbook" =
-  or
-    'author.editor.sort
-    { type$ "collection" =
-      type$ "proceedings" =
-      or
-        'editor.organization.sort
-        'author.sort
-      if$
-    }
-  if$
-  *
-  "    "
-  *
-  year field.or.null sortify
-  *
-  "    "
-  *
-  cite$
-  *
-  #1 entry.max$ substring$
+  seq.num #1 + 'seq.num :=
+  seq.num  int.to.fix
   'sort.label :=
   sort.label *
   #1 entry.max$ substring$
@@ -2406,6 +2250,8 @@ READ
 EXECUTE {init.state.consts}
 
 EXECUTE {load.config}
+
+EXECUTE {init.seq}
 
 ITERATE {presort}
 
