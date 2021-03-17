@@ -1,0 +1,19 @@
+name: Build Thesis 
+on: [push]
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+      - name: Build with xelatex
+        uses: xu-cheng/latex-action@v2
+        with:
+          working_directory: ./
+          root_file: Thesis.tex
+          latexmk_use_xelatex: true
+      - name: Upload PDF
+        uses: actions/upload-artifact@v2 #actions/upload-artifact@v2
+        with:
+          name: Thesis  # zip format
+          path: Thesis.pdf
