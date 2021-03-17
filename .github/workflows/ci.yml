@@ -2,7 +2,7 @@ name: Build Thesis
 on: [push]
 jobs:
   build_latex:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04 #ubuntu-latest
     steps:
       - name: Set up Git repository
         uses: actions/checkout@v2
