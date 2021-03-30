@@ -23,9 +23,11 @@
 
 ## 重要通知
 
-* `2020-01-09` 模板样式进行了修改，请查看下面的修改描述，以决定是否需要更新。
+* `2021-03-30` 模板样式进行了修改，请查看下面的修改描述，以决定是否需要更新。
 
 ## 更新记录
+
+* `2021-03-30` 更新原创性声明和使用声明页。移除英文封面声明中的 "the"。
 
 * `2020-07-28` [Tony, issue #299](https://github.com/mohuangrui/ucasthesis/issues/299)，更新 bibtex 样式。文献样式更多讨论可见：[文献样式](https://github.com/mohuangrui/ucasthesis/wiki/%E6%96%87%E7%8C%AE%E6%A0%B7%E5%BC%8F)。
 
