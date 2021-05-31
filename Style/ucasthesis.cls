@@ -152,7 +152,7 @@
 \newcommand{\ulunify}[1]{\uline{#1}}% unified name
 \newcommand{\ulenhance}[2][1pt]{% enhanced underline
     \def\ULthickness{#1}% set thickness
-    \setlength{\ULdepth}{0.3em}% set depth
+    \setlength{\ULdepth}{0.5em}% set depth
     \expandafter\ulunify\expandafter{#2}% linebreak fix
 }
 \newcommand{\ulhshift}{-4em}% horizontal shift on underline
@@ -358,7 +358,7 @@
         \vspace*{30pt}
 
         \linespread{2.0}
-        \zihao{4}\bfseries
+        \zihao{4}
 
         \makebox[3.0em][s]{\ucas@label@ch@classid} \ulenhance{\ulextend[6em]{\zihao{5}\ucas@value@ch@classid}} \hfill{} \ucas@label@ch@confidential \ulenhance{\ulextend[6em]{\zihao{5}\ucas@value@ch@confidential}}
 
@@ -370,11 +370,11 @@
 
         \vspace*{\stretch{1}}
 
-        {\zihao{-2}\bfseries\sffamily{\ziju{0.5} \ucas@label@ch@thesis}}
+        {\zihao{-2}\bfseries\sffamily{\ziju{0.5}\ucas@label@ch@thesis}}
 
         \vspace*{\stretch{3}}
 
-        {\zihao{-3}\bfseries\sffamily \ulenhance[1.5pt]{\ucas@value@ch@title}}
+        {\zihao{-3} \ulenhance[1.5pt]{\ucas@value@ch@title}}
 
         \vspace*{\stretch{2.5}}
 
@@ -453,15 +453,15 @@
     \thispagestyle{empty}
     \begin{center}
         \linespread{2.0}
-        \zihao{4}\bfseries
+        \zihao{4}
 
         \vspace*{50pt}
 
-        {\zihao{3}\bfseries \ucas@value@ch@title}
+        {\zihao{3} \ucas@value@ch@title}
 
         \vspace*{\stretch{3}}
 
-        {\zihao{-3}\bfseries \ucas@value@en@title}
+        {\zihao{-3} \ucas@value@en@title}
 
         \vspace*{\stretch{3}}
 
