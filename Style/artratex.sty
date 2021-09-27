@@ -204,23 +204,32 @@
 %-
 %-> Macro for adding link to toc and bookmark
 %-
-\long\def\artxaux#1{}% auxiliary command
-\newcommand{\intotocnostar}[3]{% [<\chapter|...>,<*>,<title>]
+\newcommand{\intotocnostar}[3]{% [<\chapter|...>,<*>,<title>][example: \intotoc\chapter*{Nomenclature}]
+    \edef\artxmark{\expandafter\@gobble\string#1}% get the string 'cmd' after '\' in a command '\cmd'
     #1#2{% excute command
         \phantomsection% create bookmark link
-        \addcontentsline{toc}{\expandafter\artxaux\string#1}{#3}% add content #3 to toc as #1
+        \addcontentsline{toc}{\artxmark}{#3}% add content #3 to toc as #1
         #3%
     }
-    \markboth{\MakeUppercase{#3}}{}% set header mark
+    \artxifstreq{\artxmark}{chapter}{%
+        \markboth{\MakeUppercase{#3}}{}% set left mark
+    }{%
+        \markright{\MakeUppercase{#3}}% set right mark
+    }
 }
-\newcommand{\intotocstar}[3][\artxmaincnt]{% [<chapter|...>,<extra commands>,<title>]
+\newcommand{\intotocstar}[3][\artxmaincnt]{% [<chapter|...>,<extra commands>,<title>][example: \intotoc*{\cleardoublepage}{Abstract}]
     #2% excute command
     \phantomsection% create bookmark link
     \addcontentsline{toc}{#1}{#3}% add content #3 to toc as #1
-    \markboth{\MakeUppercase{#3}}{}% set header mark
+    \artxifstreq{#1}{chapter}{%
+        \markboth{\MakeUppercase{#3}}{}% set left mark
+    }{%
+        \markright{\MakeUppercase{#3}}% set right mark
+    }
 }
 \newcommand{\intotoc}{\@ifstar{\intotocstar}{\intotocnostar}}% swap starred and non-starred versions
-\newcommand{\intobmknostar}[4][0]{% [<level>,<\chapter|...>,<*>,<title>]
+\newcommand{\intobmknostar}[4][0]{% [<level>,<\chapter|...>,<*>,<title>] [example: \intobmk\chapter*{Abstract}]
+    \edef\artxmark{\expandafter\@gobble\string#2}% get the string 'cmd' after '\' in a command '\cmd'
     #2#3{% excute command
         \phantomsection% create bookmark link
         \Hy@writebookmark% write bookmark
@@ -231,9 +240,13 @@
         {toc}%
         #4%
     }%
-    \markboth{\MakeUppercase{#4}}{}% set header mark
+    \artxifstreq{\artxmark}{chapter}{%
+        \markboth{\MakeUppercase{#4}}{}% set left mark
+    }{%
+        \markright{\MakeUppercase{#4}}% set right mark
+    }
 }
-\newcommand{\intobmkstar}[3][0]{% [<level>,<extra commands>,<title>]
+\newcommand{\intobmkstar}[3][0]{% [<level>,<extra commands>,<title>] [example: \intobmk*{\cleardoublepage}{\contentsname}]
     #2% excute command
     \phantomsection% create bookmark link
     \Hy@writebookmark% write bookmark
@@ -242,7 +255,11 @@
     {\@currentHref}%
     {#1}%
     {toc}%
-    \markboth{\MakeUppercase{#3}}{}% set header mark
+    \artxifstreq{#1}{0}{%
+        \markboth{\MakeUppercase{#3}}{}% set left mark
+    }{%
+        \markright{\MakeUppercase{#3}}% set right mark
+    }
 }
 \newcommand{\intobmk}{\@ifstar{\intobmkstar}{\intobmknostar}}% swap starred and non-starred versions
 %\newcommand{\rmlbk}[1]{\begingroup\def\\{\relax\ifhmode\unskip\fi\space\ignorespaces}#1\endgroup}% remove line breaks 
@@ -581,7 +598,7 @@
 %-> Complex tables
 %-
 \ifartx@table%
-    \RequirePackage{ctable}% imports the array, tabularx and booktabs packages
+    \RequirePackage{ctable,multirow}% imports the array, tabularx, booktabs and multirow packages
 \fi
 %-
 %-> List structures
