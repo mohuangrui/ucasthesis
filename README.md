@@ -11,6 +11,10 @@
 * 开题报告见：[ucasproposal: 中国科学院大学开题报告 LaTeX 模板](https://github.com/mohuangrui/ucasproposal)。
 * 书脊制作见：[latexspine: LaTeX 书脊模板](https://github.com/mohuangrui/latexspine)。
 
+<h1 align="center">
+<img width="50%" src="https://github.com/mohuangrui/mohuangrui/blob/main/gallery/ucasthesis.gif" alt="ucasthesis">
+</h1>
+
 ## 模板简介
  
 * ucasthesis 为撰写中国科学院大学**本**、**硕**、**博**学位论文和[**任意高校博后**](https://github.com/mohuangrui/ucasthesis/wiki/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98#%E5%A6%82%E4%BD%95%E5%A1%AB%E5%86%99%E5%8D%9A%E5%A3%AB%E5%90%8E%E7%9A%84-frontinfotex-)报告的 LaTeX 模版。ucasthesis 提供了简单明了的**模板使用说明.pdf**。无论你是否具有 LaTeX 使用经验，都可较为轻松地使用以完成学位论文的撰写和排版。谢谢大家的测试、反馈和支持，我们一起的努力让 ucasthesis 非常荣幸地得到了国科大本科部陆晴老师、本科部学位办丁云云老师和中科院数学与系统科学研究院吴凌云研究员的支持，并得到吴凌云学长在 [CTEX](http://www.ctex.org/HomePage) 的发布。
