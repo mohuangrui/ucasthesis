@@ -31,6 +31,8 @@
 
 ## 更新记录
 
+* `2022-04-02` [jdhao, issue #34](https://github.com/mohuangrui/ucasthesis/issues/34)，修改会议论文引用中题目与会议间隔"//"为". "；修改英文摘要中"Keywords"为"Key Words"。
+
 * `2021-09-27` [benkwoook, issue #359](https://github.com/mohuangrui/ucasthesis/issues/359)，增强 artratex.sty，提供去掉“引言”类章节的章节编号的功能。
 
 * `2021-03-30` 更新原创性声明和使用声明页。移除英文封面声明中的 "the"。
