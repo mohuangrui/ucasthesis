@@ -249,6 +249,7 @@
         \def\ucas@value@en@thesistype{\ucas@value@en@thesistype@bac}%
         \def\maketitle{\maketitle@xpdc}
         \def\MAKETITLE{\MAKETITLE@xpdc}
+        \def\ucas@value@ch@declare@creativity{\ucas@value@ch@declare@creativity@bac}
     }{%
     \ucasifstreq{\ucas@value@en@degree}{Master}{%
         \def\ucas@label@ch@thesis{\ucas@label@ch@thesis@mas}%
