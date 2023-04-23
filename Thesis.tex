@@ -16,6 +16,7 @@
 %- [<oneside|twoside|print>]% oneside eprint, twoside eprint, or paper print
 %- [fontset=<adobe|none|...>]% specify font set instead of automatic detection
 %- [scheme=plain]% thesis writing of international students
+%- [review]% generate review version
 %- [draftversion]% show draft version information
 %- [standard options for ctex book class: draft|paper size|font size|...]%
 %---------------------------------------------------------------------------%
@@ -89,7 +90,7 @@
 }{%
     \printbibliography% bibliography
 }
-\input{Tex/Backmatter}% other information
+\makebackmatter{Tex/Backmatter}% other information
 \end{document}
 %---------------------------------------------------------------------------%
 

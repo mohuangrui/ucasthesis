@@ -43,6 +43,13 @@
     \ucas@plaintrue%
 }
 %-
+%-> Rewiew
+%-
+\newif\ifucas@review \ucas@reviewfalse
+\DeclareOption{review}{%
+    \ucas@reviewtrue%
+}
+%-
 %-> Draft version info
 %-
 \newif\ifucas@versioninfo \ucas@versioninfofalse
@@ -309,8 +316,13 @@
         \def\tabcolsep{1pt}
         \def\arraystretch{1.3}
         \begin{tabular}{lc}
+            \ifucas@review
+            \ucas@label@ch@author & \ulenhance[1.2pt]{\ulextend{\ucas@value@review}}\\
+            \ucas@label@ch@advisor & \ucaslntotab[1.2pt]{\ucas@value@review}\\
+            \else
             \ucas@label@ch@author & \ulenhance[1.2pt]{\ulextend{\ucas@value@ch@author}}\\
             \ucas@label@ch@advisor & \ucaslntotab[1.2pt]{\ucas@value@ch@advisor}\\
+            \fi
             \ucas@label@ch@degree & \ulenhance[1.2pt]{\ulextend{\ucas@value@ch@degreetype\ucas@value@ch@degree}}\\
             \ucas@label@ch@major & \ulenhance[1.2pt]{\ulextend{\ucas@value@ch@major}}\\
             \ucas@label@ch@institute & \ucaslntotab[1.2pt]{\ucas@value@ch@institute}\\
@@ -428,9 +440,15 @@
 
         {By}
 
+        \ifucas@review
+        {\ucas@value@review}
+
+        {\ucas@value@review}
+        \else
         {\ucas@value@en@author}
 
         {\ucas@value@en@advisor}
+        \fi
 
         \vspace*{\stretch{3}}
 
@@ -539,6 +557,14 @@
     \if@twoside
         \thispagestyle{empty}
         \cleardoublepage[empty]
+    \fi
+}
+%---------------------------------------------------------------------------%
+%->> make backmatter
+%---------------------------------------------------------------------------%
+\newcommand{\makebackmatter}[1]{
+    \unless\ifucas@review
+    \input{#1}
     \fi
 }
 %---------------------------------------------------------------------------%
