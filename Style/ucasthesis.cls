@@ -426,7 +426,7 @@
 
         {\ucas@label@en@statement}
 
-        {By}
+        {by}
 
         {\ucas@value@en@author}
 
