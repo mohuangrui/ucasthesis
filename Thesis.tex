@@ -21,7 +21,7 @@
 %---------------------------------------------------------------------------%
 %->> Document settings
 %---------------------------------------------------------------------------%
-\usepackage[authoryear,list]{Style/artratex}% document settings
+\usepackage[super,list]{Style/artratex}% document settings
 %- usage: \usepackage[option1,option2,...,optionN]{artratex}
 %- Multiple optional arguments:
 %- [bibtex|biber]% set bibliography processor and package
@@ -59,13 +59,13 @@
 \frontmatter% initialize the environment
 \input{Tex/Frontmatter}% title page, abstract
 {% content list region
-\linespread{1.2}% local line space
-\intobmk*{\cleardoublepage}{\contentsname}% add link to bookmark
-\tableofcontents% content catalog
-\intobmk*{\cleardoublepage}{\listfigurename}% add link to bookmark
-\listoffigures% figure catalog
-\intobmk*{\cleardoublepage}{\listtablename}% add link to bookmark
-\listoftables% table catalog
+    \linespread{1.2}% local line space
+    \intobmk*{\cleardoublepage}{\contentsname}% add link to bookmark
+    \tableofcontents% content catalog
+    \intobmk*{\cleardoublepage}{\listfiguretablename}% add link to bookmark
+    \listoffigures% figure catalog
+    % \intobmk*{\cleardoublepage}{\listtablename}% add link to bookmark
+    \listoftables% table catalog
 }
 \input{Tex/Prematter}% symbol list, preface content
 %-

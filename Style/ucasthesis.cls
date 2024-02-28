@@ -559,6 +559,7 @@
     \def\contentsname{\ucas@label@en@tocname}
     \def\listfigurename{\ucas@label@en@lsfigname}
     \def\listtablename{\ucas@label@en@lstabname}
+    \def\listfiguretablename{\ucas@label@en@lsfigtabname}
     \def\bibname{\ucas@label@en@bibname}
     \def\refname{\ucas@label@en@bibname}
     \def\algname{\ucas@label@en@algname}
@@ -581,6 +582,7 @@
     \def\contentsname{\ucas@label@ch@tocname}
     \def\listfigurename{\ucas@label@ch@lsfigname}
     \def\listtablename{\ucas@label@ch@lstabname}
+    \def\listfiguretablename{\ucas@label@ch@lsfigtabname}
     \def\algname{\ucas@label@ch@algname}
     \def\bibname{\ucas@label@ch@bibname}
     \def\refname{\ucas@label@ch@bibname}
