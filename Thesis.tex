@@ -63,9 +63,14 @@
     \intobmk*{\cleardoublepage}{\contentsname}% add link to bookmark
     \tableofcontents% content catalog
     \intobmk*{\cleardoublepage}{\listfiguretablename}% add link to bookmark
+    \let\oldnumberline\numberline
+    \renewcommand\numberline{\figurename~\oldnumberline} % add figurename to item of list,but appendix not recommand,that is still wrong
     \listoffigures% figure catalog
-    % \intobmk*{\cleardoublepage}{\listtablename}% add link to bookmark
+    \let\clearpage\relax % figure and table list need in one page
+    \renewcommand\numberline{\tablename~\oldnumberline} % add tablename to item of list,but appendix not recommand,that is still wrong
     \listoftables% table catalog
+    \renewcommand\numberline{\oldnumberline}
+    \markboth{\listfiguretablename}{\@title} % set left mark,right mark not use
 }
 \input{Tex/Prematter}% symbol list, preface content
 %-

@@ -672,12 +672,12 @@
 \setcounter{tocdepth}{2}% depth for the table of contents
 \setcounter{secnumdepth}{3}% depth for section numbering, default is 2(subsub)
 %- Set equation, figure, table numbering
-%\numberwithin{equation}{section}% set enumeration level
-%\renewcommand{\theequation}{\thesection\arabic{equation}}% configure the label style
-%\numberwithin{figure}{section}% set enumeration level
-%\renewcommand{\thefigure}{\thesection\arabic{figure}}% configure the label style
-%\numberwithin{table}{section}% set enumeration level
-%\renewcommand{\thetable}{\thesection\arabic{table}}% configure the label style
+% \numberwithin{equation}{section}% set enumeration level
+\renewcommand{\theequation}{\thechapter-\arabic{equation}}% configure the label style
+% \numberwithin{figure}{section}% set enumeration level
+\renewcommand{\thefigure}{\thechapter-\arabic{figure}}% configure the label style
+% \numberwithin{table}{section}% set enumeration level
+\renewcommand{\thetable}{\thechapter-\arabic{table}}% configure the label style
 %- Set bibliography entry
 \ifartx@bibtex%
     \setlength{\bibsep}{0.0ex plus 0.2ex minus 0.2ex}% set distance between entries

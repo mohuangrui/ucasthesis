@@ -653,7 +653,7 @@
 \ctexset {
     appendix = {
         %numbering = true|false,
-        %number = \rmfamily\Alph{chapter},
+        number = \rmfamily\chinese{chapter},
     }
 }
 %---------------------------------------------------------------------------%
