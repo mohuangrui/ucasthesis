@@ -1,4 +1,4 @@
-# `ucasthesis` 国科大学位论文 LaTeX 模板 [最新样式]
+# `ucasthesis` 国科大学位论文 LaTeX 模板 [最新样式-2023版]
 
 ## 模板下载
 
