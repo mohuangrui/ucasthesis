@@ -78,6 +78,14 @@
 %-
 \mainmatter% initialize the environment
 \input{Tex/Mainmatter}% main content
+
+\intotoc*{\cleardoublepage}{\bibname}% add link to toc
+\artxifstreq{\artxbib}{bibtex}{% enable bibtex
+    \bibliography{Biblio/ref}% bibliography
+}{%
+    \printbibliography% bibliography
+}
+
 %-
 %-> Appendix
 %-
@@ -85,15 +93,9 @@
 \appendix% initialize the environment
 \input{Tex/Appendix}% appendix content
 %-
-%-> Backmatter: bibliography, glossary, index
+%-> Backmatter: glossary, index
 %-
 \backmatter% initialize the environment
-\intotoc*{\cleardoublepage}{\bibname}% add link to toc
-\artxifstreq{\artxbib}{bibtex}{% enable bibtex
-    \bibliography{Biblio/ref}% bibliography
-}{%
-    \printbibliography% bibliography
-}
 \input{Tex/Backmatter}% other information
 \end{document}
 %---------------------------------------------------------------------------%

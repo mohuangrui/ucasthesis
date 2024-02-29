@@ -656,6 +656,21 @@
         number = \rmfamily\chinese{chapter},
     }
 }
+% additional settings for appendix
+\let\oldappendix\appendix
+\renewcommand\appendix{
+    \oldappendix % origin appendix
+    \renewcommand\thechapter{\arabic{chapter}} % still in arabic number,not Alph
+    \ctexset{ % set name with appendix
+        figurename={附图},
+        tablename={附表},
+        section={name={附}},
+        subsection={name={附}},
+    }
+    \captionsetup[figure][bi-second]{name=App Figure} % set bicaption name
+    \captionsetup[table][bi-second]{name=App Table}
+    \renewcommand\theequation{附\arabic{chapter}-\arabic{equation}} % set equation name
+}
 %---------------------------------------------------------------------------%
 %->> Configure table of contents
 %---------------------------------------------------------------------------%
